@@ -1,0 +1,5 @@
+{
+  "name": "Sistem Informasi Kurikulum SMK TANJUNG PRIOK 1",
+  "description": "Platform pembaruan kurikulum digital terpadu untuk SMK TANJUNG PRIOK 1 dengan integrasi database Google Sheets untuk data siswa, jadwal, dan pembayaran.",
+  "requestFramePermissions": []
+}
