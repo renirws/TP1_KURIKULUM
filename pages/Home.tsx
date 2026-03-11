@@ -56,10 +56,10 @@ const Home: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
               category="Asesmen"
-              title="Jadwal Pelaksanaan ASTS & ASAS"
-              date="26 Februari 2026"
-              excerpt="Informasi jadwal pelaksanaan Asesmen Sumatif Tengah Semester (ASTS) untuk kelas X & XI serta Asesmen Sumatif Akhir Semester (ASAS) untuk kelas XII."
-              imageUrl="https://drive.google.com/thumbnail?id=1QqnHKbNnaFbYf2maDhpNLR0RvdIxC3Lm&sz=w1600"
+              title="Jadwal Pelaksanaan USBK Kelas XII"
+              date="11 Maret 2026"
+              excerpt="Informasi jadwal pelaksanaan Ujian Satuan Pendidikan Berbasis Komputer (USBK) untuk siswa kelas XII yang akan dilaksanakan pada tanggal 6 - 10 April 2026."
+              imageUrl="https://drive.google.com/thumbnail?id=1TwFCjtcxnUcbSzCYFs06gvorXyzuoCFC&sz=w1600"
             />
             <AnnouncementCard 
               category="Ramadhan"
