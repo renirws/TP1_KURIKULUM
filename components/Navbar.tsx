@@ -10,6 +10,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Beranda', path: '/' },
+    { name: 'Warta Berita', path: '/warta' },
     { name: 'Kurikulum', path: '/kurikulum' },
     { name: 'Siswa', path: '/siswa' },
     { name: 'Guru', path: '/guru' },

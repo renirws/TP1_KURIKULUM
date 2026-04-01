@@ -2,6 +2,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import News from './pages/News';
 import Curriculum from './pages/Curriculum';
 import Students from './pages/Students';
 import Teachers from './pages/Teachers';
@@ -51,6 +52,7 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/warta" element={<News />} />
             <Route path="/kurikulum/*" element={<Curriculum />} />
             <Route path="/siswa" element={<Students />} />
             <Route path="/guru" element={<Teachers />} />

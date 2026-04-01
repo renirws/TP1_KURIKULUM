@@ -44,7 +44,7 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1a3a5a]">Warta Kurikulum</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1a3a5a]">Warta Berita</h2>
               <div className="w-24 h-2 bg-[#059669] mt-3"></div>
             </div>
             <Link to="/kurikulum" className="text-[#059669] font-bold hover:underline mt-4 md:mt-0 flex items-center">
@@ -54,6 +54,14 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnnouncementCard 
+              category="USBK 2026"
+              title="Daftar Peserta & Jadwal Sesi USBK"
+              date="01 April 2026"
+              excerpt="Berikut adalah pembagian sesi peserta USBK SMK Tanjung Priok 1. Sesi 1: 07.00 - 09.00 WIB | Sesi 2: 09.30 - 11.30 WIB. Silakan klik gambar untuk memperbesar daftar peserta."
+              imageUrl="https://drive.google.com/thumbnail?id=1Nir_lwlU97RqmYA8xm4rTafeXIAWDqK9&sz=w1600"
+              link="/warta"
+            />
             <AnnouncementCard 
               category="Asesmen"
               title="Jadwal Pelaksanaan USBK Kelas XII"
@@ -137,28 +145,62 @@ const Home: React.FC = () => {
   );
 };
 
-const AnnouncementCard: React.FC<{ category: string, title: string, date: string, excerpt: string, link?: string, videoUrl?: string, imageUrl?: string }> = ({ category, title, date, excerpt, link, videoUrl, imageUrl }) => (
-  <div className="bg-white border-t-4 border-[#059669] p-8 shadow-sm hover:shadow-xl transition-all group rounded-b-2xl flex flex-col h-full">
-    <div className="flex-grow">
-      <span className="text-xs font-black uppercase bg-emerald-100 text-[#059669] px-3 py-1 rounded-full">{category}</span>
-      <h3 className="text-xl font-bold text-[#1a3a5a] mt-5 group-hover:text-[#059669] transition cursor-pointer leading-tight">{title}</h3>
-      <div className="flex items-center text-gray-400 text-xs mt-3">
-        <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-        {date}
-      </div>
-      
-      {imageUrl && (
-        <div className="mt-4 aspect-video rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-          <img 
-            src={imageUrl} 
-            alt={title} 
-            className="w-full h-full object-cover transition-transform group-hover:scale-105"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-      )}
+const AnnouncementCard: React.FC<{ category: string, title: string, date: string, excerpt: string, link?: string, videoUrl?: string, imageUrl?: string }> = ({ category, title, date, excerpt, link, videoUrl, imageUrl }) => {
+  const [isZoomed, setIsZoomed] = React.useState(false);
 
-      {videoUrl && (
+  return (
+    <div className="bg-white border-t-4 border-[#059669] p-8 shadow-sm hover:shadow-xl transition-all group rounded-b-2xl flex flex-col h-full">
+      <div className="flex-grow">
+        <span className="text-xs font-black uppercase bg-emerald-100 text-[#059669] px-3 py-1 rounded-full">{category}</span>
+        <h3 className="text-xl font-bold text-[#1a3a5a] mt-5 group-hover:text-[#059669] transition cursor-pointer leading-tight">{title}</h3>
+        <div className="flex items-center text-gray-400 text-xs mt-3">
+          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          {date}
+        </div>
+        
+        {imageUrl && (
+          <>
+            <div 
+              className="mt-4 aspect-video rounded-xl overflow-hidden border border-gray-100 shadow-sm cursor-zoom-in"
+              onClick={() => setIsZoomed(true)}
+            >
+              <img 
+                src={imageUrl} 
+                alt={title} 
+                className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            {/* Zoom Modal */}
+            {isZoomed && (
+              <div 
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-10 animate-in fade-in duration-200"
+                onClick={() => setIsZoomed(false)}
+              >
+                <button 
+                  className="absolute top-6 right-6 text-white hover:text-[#059669] transition-colors z-[110]"
+                  onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
+                >
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+                <div className="relative max-w-5xl w-full h-full flex items-center justify-center">
+                  <img 
+                    src={imageUrl} 
+                    alt={title} 
+                    className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
+                    referrerPolicy="no-referrer"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {videoUrl && (
         <div className="mt-4 aspect-video rounded-xl overflow-hidden border border-gray-100 shadow-inner">
           <iframe 
             width="100%" 
@@ -177,15 +219,25 @@ const AnnouncementCard: React.FC<{ category: string, title: string, date: string
     
     <div className="mt-8">
       {link ? (
-        <a 
-          href={link} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center text-sm font-bold text-[#1a3a5a] group-hover:text-[#059669] transition"
-        >
-          Detail Berita 
-          <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
-        </a>
+        link.startsWith('http') ? (
+          <a 
+            href={link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center text-sm font-bold text-[#1a3a5a] group-hover:text-[#059669] transition"
+          >
+            Detail Berita 
+            <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        ) : (
+          <Link 
+            to={link} 
+            className="flex items-center text-sm font-bold text-[#1a3a5a] group-hover:text-[#059669] transition"
+          >
+            Detail Berita 
+            <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+          </Link>
+        )
       ) : (
         <button className="flex items-center text-sm font-bold text-[#1a3a5a] group-hover:text-[#059669] transition">
           Detail Berita 
@@ -194,6 +246,7 @@ const AnnouncementCard: React.FC<{ category: string, title: string, date: string
       )}
     </div>
   </div>
-);
+  );
+};
 
 export default Home;
