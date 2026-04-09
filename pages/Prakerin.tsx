@@ -13,6 +13,8 @@ const Prakerin: React.FC = () => {
     { url: "https://drive.google.com/thumbnail?id=1Ip4JEgpj96HkHcZscvl3-fB1U3zGGsjq&sz=w4000", title: "Jadwal LAB DKV 3 / Ruang XI DKV" },
     { url: "https://drive.google.com/thumbnail?id=1qz9T_MEBIzsd2agqQBRJHQTmrJ4O8dQd&sz=w4000", title: "Jadwal LAB 4 / LAB TL" },
     { url: "https://drive.google.com/thumbnail?id=15J--6M5p8UG0D-kF-lKj2fLX77LnKoCF&sz=w4000", title: "Daftar Penguji" },
+    { url: "https://drive.google.com/thumbnail?id=1FbcqNNd_mjasXaUKXJ609uJpjDLPkAGe&sz=w4000", title: "Skenario Ujian" },
+    { url: "https://drive.google.com/thumbnail?id=1N-6Lx6R9U84D26CR-ISKuf7Wjmzu7HcQ&sz=w4000", title: "Tata Tertib Ujian" },
   ];
 
   const nextSlide = () => {
