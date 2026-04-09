@@ -55,11 +55,19 @@ const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
+              category="Prakerin"
+              title="Ujian Lisan Laporan Prakerin Kelas XII"
+              date="06 April 2026"
+              excerpt="Pelaksanaan Ujian Lisan Prakerin Siswa/i Kelas XII SMK Tanjung Priok 1 dilaksanakan tgl 13 April - 15 April 2026. Harap hadir tepat waktu dengan seragam Hitam Putih."
+              imageUrl="https://drive.google.com/thumbnail?id=1Ya27lfM7idDYTs1RbCl_rR3Nm2Zu8UBo&sz=w1600"
+              link="/prakerin"
+            />
+            <AnnouncementCard 
               category="USBK 2026"
               title="Daftar Peserta & Jadwal Sesi USBK"
               date="01 April 2026"
               excerpt="Berikut adalah pembagian sesi peserta USBK SMK Tanjung Priok 1. Sesi 1: 07.00 - 09.00 WIB | Sesi 2: 09.30 - 11.30 WIB. Silakan klik gambar untuk memperbesar daftar peserta."
-              imageUrl="https://drive.google.com/thumbnail?id=1Nir_lwlU97RqmYA8xm4rTafeXIAWDqK9&sz=w1600"
+              imageUrl="https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w1600"
               link="/warta"
             />
             <AnnouncementCard 
@@ -68,13 +76,6 @@ const Home: React.FC = () => {
               date="11 Maret 2026"
               excerpt="Informasi jadwal pelaksanaan Ujian Satuan Pendidikan Berbasis Komputer (USBK) untuk siswa kelas XII yang akan dilaksanakan pada tanggal 6 - 10 April 2026."
               imageUrl="https://drive.google.com/thumbnail?id=1TwFCjtcxnUcbSzCYFs06gvorXyzuoCFC&sz=w1600"
-            />
-            <AnnouncementCard 
-              category="Ramadhan"
-              title="Pelaksanaan KBM Ramadhan 1447 H"
-              date="26 Februari 2026"
-              excerpt="Pelaksanaan KBM Ramadhan 1447 H di SMK Tanjung Priok 1 diisi dengan kegiatan religius seperti sholat dhuha berjamaah dan tilawah Al-Qur'an untuk meningkatkan ketaqwaan siswa."
-              videoUrl="https://www.youtube.com/embed/zysuXPTddhg"
             />
             <AnnouncementCard 
               category="Ujian Sekolah Praktek"

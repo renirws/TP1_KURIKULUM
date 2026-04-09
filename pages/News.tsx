@@ -4,8 +4,8 @@ import { motion } from 'motion/react';
 
 const News: React.FC = () => {
   const [isZoomed, setIsZoomed] = React.useState(false);
-  // Placeholder image URL - User should replace this with their actual image
-  const usbkImageUrl = "https://drive.google.com/thumbnail?id=1Nir_lwlU97RqmYA8xm4rTafeXIAWDqK9&sz=w1600";
+  // Menggunakan ukuran thumbnail yang lebih besar untuk kejelasan (w4000)
+  const usbkImageUrl = "https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w4000";
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -13,7 +13,7 @@ const News: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
           <Link to="/" className="inline-flex items-center text-[#059669] font-bold mb-8 hover:underline group">
             <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -82,7 +82,7 @@ const News: React.FC = () => {
                 <h4 className="font-bold text-[#1a3a5a] mb-2">Instruksi Peserta:</h4>
                 <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
                   <li>Membawa kartu peserta ujian yang sah.</li>
-                  <li>Mengenakan seragam sekolah lengkap dan rapi.</li>
+                  <li>Mengenakan seragam sekolah lengkap dan rpi.</li>
                   <li>Dilarang membawa alat komunikasi ke dalam ruang ujian.</li>
                   <li>Patuhi protokol kesehatan dan tata tertib yang berlaku.</li>
                 </ul>
@@ -92,25 +92,25 @@ const News: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Zoom Modal */}
+      {/* Zoom Modal - Truly Full Screen */}
       {isZoomed && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10 animate-in fade-in duration-300"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black p-0 animate-in fade-in duration-300"
           onClick={() => setIsZoomed(false)}
         >
           <button 
-            className="absolute top-6 right-6 text-white hover:text-[#059669] transition-colors z-[110] bg-black/50 p-2 rounded-full"
+            className="absolute top-6 right-6 text-white hover:text-[#059669] transition-colors z-[110] bg-black/50 p-3 rounded-full"
             onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
-          <div className="relative max-w-7xl w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center">
             <img 
               src={usbkImageUrl} 
-              alt="Daftar Peserta USBK Zoomed" 
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500"
+              alt="Daftar Peserta USBK Full Screen" 
+              className="w-full h-full object-contain animate-in zoom-in-95 duration-500"
               referrerPolicy="no-referrer"
               onClick={(e) => e.stopPropagation()}
             />
