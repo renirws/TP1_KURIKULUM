@@ -12,6 +12,7 @@ const Prakerin: React.FC = () => {
     { url: "https://drive.google.com/thumbnail?id=1BKkU9IvbjCIGU7usmZ1gaw4G0zM5aeFS&sz=w4000", title: "Jadwal LAB DKV 2" },
     { url: "https://drive.google.com/thumbnail?id=1Ip4JEgpj96HkHcZscvl3-fB1U3zGGsjq&sz=w4000", title: "Jadwal LAB DKV 3 / Ruang XI DKV" },
     { url: "https://drive.google.com/thumbnail?id=1qz9T_MEBIzsd2agqQBRJHQTmrJ4O8dQd&sz=w4000", title: "Jadwal LAB 4 / LAB TL" },
+    { url: "https://drive.google.com/thumbnail?id=1xaWsyrSLcHX2dQrgbz5H1oa7skU3iRW8&sz=w4000", title: "Jadwal Ujian Prakerin" },
     { url: "https://drive.google.com/thumbnail?id=15J--6M5p8UG0D-kF-lKj2fLX77LnKoCF&sz=w4000", title: "Daftar Penguji" },
     { url: "https://drive.google.com/thumbnail?id=1FbcqNNd_mjasXaUKXJ609uJpjDLPkAGe&sz=w4000", title: "Skenario Ujian" },
     { url: "https://drive.google.com/thumbnail?id=1N-6Lx6R9U84D26CR-ISKuf7Wjmzu7HcQ&sz=w4000", title: "Tata Tertib Ujian" },
@@ -131,7 +132,16 @@ const Prakerin: React.FC = () => {
                         </div>
                         <div>
                           <p className="font-bold text-[#1a3a5a]">Seragam</p>
-                          <p className="text-gray-600 text-sm">Hitam Putih rapi dan sopan.</p>
+                          <p className="text-gray-600 text-sm">Baju putih panjang bahan, celana panjang hitam bahan, dasi hitam, sepatu pantofel.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center mr-4 flex-shrink-0">
+                          <svg className="w-6 h-6 text-[#059669]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                          <p className="font-bold text-[#1a3a5a]">Rambut & Kerapihan</p>
+                          <p className="text-gray-600 text-sm">Laki-laki: Panjang rambut 2cm. Perempuan: Rambut diikat rapih (jika berjilbab, gunakan warna hitam).</p>
                         </div>
                       </li>
                       <li className="flex items-start">
@@ -140,7 +150,7 @@ const Prakerin: React.FC = () => {
                         </div>
                         <div>
                           <p className="font-bold text-[#1a3a5a]">Laporan</p>
-                          <p className="text-gray-600 text-sm">Membawa Laporan Prakerin sebanyak 3 rangkap.</p>
+                          <p className="text-gray-600 text-sm">Membawa Laporan Prakerin sebanyak 3 rangkap beserta jurnal pkl yang sdh diisi & tanda tangan mentor PKL dari perusahaan.</p>
                         </div>
                       </li>
                       <li className="flex items-start">
