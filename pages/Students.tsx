@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Students: React.FC = () => {
   const scheduleLinks = {
@@ -98,6 +99,65 @@ const Students: React.FC = () => {
             </a>
           </div>
         ))}
+      </div>
+
+      {/* Nilai Ujian PKL Section */}
+      <div className="mt-20">
+        <div className="mb-10">
+          <h3 className="text-2xl font-black text-[#1a3a5a] flex items-center">
+            <span className="w-2 h-8 bg-emerald-500 mr-4 rounded-full"></span>
+            Nilai Ujian PKL Siswa XII - 2025/2026
+          </h3>
+        </div>
+
+        <div className="bg-white rounded-[3rem] shadow-2xl border border-emerald-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-emerald-600 to-emerald-800 p-8 md:p-12 text-white">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div>
+                <h4 className="text-2xl md:text-3xl font-black mb-2">Cek Nilai Ujian PKL</h4>
+                <p className="text-emerald-100/80 font-medium">Akses rekapitulasi nilai ujian lisan laporan PKL Tahun Pelajaran 2025/2026.</p>
+              </div>
+              <a 
+                href="https://ais-pre-dyfnmc3vskjtpuoanz5k2l-441986179843.asia-southeast1.run.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-emerald-700 px-8 py-4 rounded-2xl font-black text-sm tracking-widest uppercase hover:bg-emerald-50 transition shadow-xl flex items-center space-x-3 flex-shrink-0"
+              >
+                <span>CEK NILAI SAYA</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div className="p-8 md:p-12 bg-emerald-50/30">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h5 className="font-bold text-[#1a3a5a] text-lg">Komponen Penilaian:</h5>
+                <ul className="space-y-3">
+                  <li className="flex items-center text-gray-600">
+                    <svg className="w-5 h-5 mr-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                    Kualitas Laporan & Jurnal PKL
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <svg className="w-5 h-5 mr-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                    Presentasi & Penguasaan Materi
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <svg className="w-5 h-5 mr-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                    Sikap & Kedisiplinan (Atribut Lengkap)
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white p-6 rounded-3xl border border-emerald-100 shadow-sm">
+                <p className="text-sm text-gray-500 italic leading-relaxed">
+                  "Nilai yang ditampilkan merupakan hasil akumulasi dari penguji 1 dan penguji 2. Pastikan Anda telah menyelesaikan seluruh administrasi laporan sebelum mengecek nilai akhir."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Info Section */}
