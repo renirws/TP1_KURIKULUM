@@ -25,13 +25,6 @@ const Gallery: React.FC = () => {
       videoUrl: 'https://youtube.com/shorts/mFUSgLlnTOo?si=21KQ8fGrB9lGtDIj'
     },
     {
-      id: 7,
-      title: 'Ujian Sekolah Berbasis Komputer',
-      category: 'Akademik',
-      imageUrl: 'https://drive.google.com/thumbnail?id=1ER7ri91mX-q9QZFjxqWzFPYYLlXSGnua&sz=w800',
-      description: 'Pelaksanaan ujian sekolah digital untuk mengevaluasi kompetensi teori siswa.'
-    },
-    {
       id: 8,
       title: 'Ujian Lisan Prakerin',
       category: 'Akademik',
