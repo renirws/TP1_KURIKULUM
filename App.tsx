@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion } from 'motion/react';
 import Home from './pages/Home';
 import News from './pages/News';
 import Prakerin from './pages/Prakerin';
@@ -20,6 +21,29 @@ const App: React.FC = () => {
     <Router>
       <div className="flex flex-col min-h-screen">
         <header className="z-50 shadow-sm">
+          {/* Scrolling PPDB Announcement */}
+          <div className="bg-yellow-400 text-[#1a3a5a] py-2 overflow-hidden whitespace-nowrap border-b border-yellow-500">
+            <motion.div 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+              className="flex shrink-0 items-center"
+            >
+              {[...Array(4)].map((_, i) => (
+                <a 
+                  key={i}
+                  href="https://ppdb2025.smktanjungpriok1.sch.id" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 hover:text-[#059669] transition-colors flex items-center"
+                >
+                  <span className="mr-3">🚩</span>
+                  PENDAFTARAN PESERTA DIDIK BARU (PPDB) TAHUN PELAJARAN 2025/2026 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
+                  <span className="ml-3">🔥</span>
+                </a>
+              ))}
+            </motion.div>
+          </div>
+
           {/* Top Image Banner - Adjusted for better fit */}
           <div className="w-full bg-white overflow-hidden flex justify-center">
             <img 
