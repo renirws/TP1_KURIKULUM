@@ -9,12 +9,21 @@ interface GalleryItem {
   category: Category;
   imageUrl: string;
   description: string;
+  videoUrl?: string;
 }
 
 const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('Semua');
 
   const galleryItems: GalleryItem[] = [
+    {
+      id: 11,
+      title: 'Video Dokumentasi USBK 2025/2026',
+      category: 'Kegiatan',
+      imageUrl: 'https://img.youtube.com/vi/mFUSgLlnTOo/maxresdefault.jpg',
+      description: 'Melihat kembali suasana pelaksanaan Ujian Satuan Pendidikan Berbasis Komputer Tahun Pelajaran 2025/2026.',
+      videoUrl: 'https://youtube.com/shorts/mFUSgLlnTOo?si=21KQ8fGrB9lGtDIj'
+    },
     {
       id: 7,
       title: 'Ujian Sekolah Berbasis Komputer',
@@ -42,20 +51,6 @@ const Gallery: React.FC = () => {
       category: 'Akademik',
       imageUrl: 'https://drive.google.com/thumbnail?id=1Zk3JiA_WEflBir3NWJt_D01PGV7by3Vb&sz=w800',
       description: 'Suasana kelas kolaboratif dengan metode Deep Learning.'
-    },
-    {
-      id: 3,
-      title: 'Lomba Keterampilan Siswa',
-      category: 'Prestasi',
-      imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-      description: 'Siswa kami meraih medali dalam kompetisi tingkat nasional.'
-    },
-    {
-      id: 4,
-      title: 'Kegiatan Ekstrakurikuler',
-      category: 'Kegiatan',
-      imageUrl: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800',
-      description: 'Pengembangan minat dan bakat melalui organisasi siswa.'
     },
     {
       id: 5,
@@ -133,19 +128,50 @@ const Gallery: React.FC = () => {
                 alt={item.title} 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute top-4 left-4">
+              <div className="absolute top-4 left-4 flex gap-2">
                 <span className="bg-[#059669] text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
                   {item.category}
                 </span>
+                {item.videoUrl && (
+                  <span className="bg-red-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    Video
+                  </span>
+                )}
               </div>
+              {item.videoUrl && (
+                <a 
+                  href={item.videoUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                >
+                  <div className="bg-white/90 p-5 rounded-full shadow-2xl transform scale-75 group-hover:scale-100 transition-transform duration-500">
+                    <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </a>
+              )}
             </div>
             <div className="p-8">
-              <h3 className="text-2xl font-black text-[#1a3a5a] mb-2 group-hover:text-[#059669] transition-colors">
+              <h3 className="text-2xl font-black text-[#1a3a5a] mb-2 group-hover:text-[#059669] transition-colors flex items-center justify-between">
                 {item.title}
               </h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+              <p className="text-gray-500 text-sm leading-relaxed font-medium mb-4">
                 {item.description}
               </p>
+              {item.videoUrl && (
+                <a 
+                  href={item.videoUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-red-600 font-black text-xs uppercase tracking-widest hover:text-red-700 transition"
+                >
+                  Tonton Video Dokumentasi
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7-7 7M3 12h18"></path></svg>
+                </a>
+              )}
             </div>
           </div>
         ))}
