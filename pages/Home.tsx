@@ -55,6 +55,14 @@ const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
+              category="Penting"
+              title="Jadwal Pelaksanaan UKK Kelas XII"
+              date="19 April 2026"
+              excerpt="Pelaksanaan Uji Kompetensi Keahlian (UKK) Mandiri SMK Tanjung Priok 1 dilaksanakan tanggal 20 - 24 April 2026. Wajib membawa seragam praktik sesuai kejuruan."
+              imageUrl="https://drive.google.com/thumbnail?id=1ydNqBuZEleKQ7uutqM4hvBI84CPPXRCw&sz=w1600"
+              link="/warta"
+            />
+            <AnnouncementCard 
               category="Prakerin"
               title="Ujian Lisan Laporan Prakerin Kelas XII"
               date="06 April 2026"
