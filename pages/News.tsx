@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 
 const News: React.FC = () => {
-  const [isZoomed, setIsZoomed] = React.useState(false);
+  const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // UKK Data
@@ -21,6 +21,10 @@ const News: React.FC = () => {
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, []);
+
+  const handleZoom = (url: string) => {
+    setZoomImageUrl(url);
+  };
   // Menggunakan ukuran thumbnail yang lebih besar untuk kejelasan (w4000)
   const usbkImageUrl = "https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w4000";
 
@@ -77,7 +81,7 @@ const News: React.FC = () => {
                 
                 <div 
                   className="relative group cursor-zoom-in rounded-3xl overflow-hidden border-4 border-gray-100 shadow-2xl"
-                  onClick={() => setIsZoomed(true)}
+                  onClick={() => handleZoom(usbkImageUrl)}
                 >
                   <img 
                     src={usbkImageUrl} 
@@ -121,6 +125,11 @@ const News: React.FC = () => {
             </div>
 
             <div className="p-8 md:p-12 space-y-10">
+              <div className="flex items-center justify-between">
+                <h3 className="text-2xl font-bold text-[#1a3a5a]">Slide Gallery Jadwal UKK</h3>
+                <span className="text-sm text-gray-400 italic hidden md:inline">*Klik gambar untuk melihat detail & zoom</span>
+              </div>
+
               <div className="relative group">
                 <div className="aspect-[16/10] md:aspect-[21/9] bg-gray-100 rounded-[2rem] overflow-hidden relative shadow-inner">
                   <AnimatePresence mode="wait">
@@ -130,7 +139,8 @@ const News: React.FC = () => {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -50 }}
                       transition={{ duration: 0.5 }}
-                      className="absolute inset-0"
+                      className="absolute inset-0 cursor-zoom-in"
+                      onClick={() => handleZoom(`https://drive.google.com/thumbnail?id=${ukkSchedules[currentSlide].id}&sz=w4000`)}
                     >
                       <div className="absolute top-6 left-6 z-10">
                         <span className={`${ukkSchedules[currentSlide].color} text-white px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest shadow-lg`}>
@@ -138,11 +148,18 @@ const News: React.FC = () => {
                         </span>
                       </div>
                       <img 
-                        src={`https://drive.google.com/thumbnail?id=${ukkSchedules[currentSlide].id}&sz=w1200`}
+                        src={`https://drive.google.com/thumbnail?id=${ukkSchedules[currentSlide].id}&sz=w1600`}
                         alt={ukkSchedules[currentSlide].title}
-                        className="w-full h-full object-contain md:object-cover"
+                        className="w-full h-full object-contain md:object-cover transition-transform group-hover:scale-105"
                         referrerPolicy="no-referrer"
                       />
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div className="bg-white/80 p-3 rounded-full shadow-lg">
+                          <svg className="w-8 h-8 text-[#1a3a5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                          </svg>
+                        </div>
+                      </div>
                     </motion.div>
                   </AnimatePresence>
 
@@ -195,25 +212,25 @@ const News: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Zoom Modal - Truly Full Screen */}
-      {isZoomed && (
+      {/* Zoom Modal - Supporting any image URL */}
+      {zoomImageUrl && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black p-0 animate-in fade-in duration-300"
-          onClick={() => setIsZoomed(false)}
+          onClick={() => setZoomImageUrl(null)}
         >
           <button 
-            className="absolute top-6 right-6 text-white hover:text-[#059669] transition-colors z-[110] bg-black/50 p-3 rounded-full"
-            onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
+            className="absolute top-6 right-6 text-white hover:text-[#059669] transition-colors z-[110] bg-black/50 p-3 rounded-full shadow-2xl"
+            onClick={(e) => { e.stopPropagation(); setZoomImageUrl(null); }}
           >
             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center p-4">
             <img 
-              src={usbkImageUrl} 
-              alt="Daftar Peserta USBK Full Screen" 
-              className="w-full h-full object-contain animate-in zoom-in-95 duration-500"
+              src={zoomImageUrl} 
+              alt="Zoomed Detail" 
+              className="max-w-full max-h-full object-contain animate-in zoom-in-95 duration-500 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
               referrerPolicy="no-referrer"
               onClick={(e) => e.stopPropagation()}
             />
