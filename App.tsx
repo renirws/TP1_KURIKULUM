@@ -37,7 +37,7 @@ const App: React.FC = () => {
                   className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 hover:text-[#059669] transition-colors flex items-center"
                 >
                   <span className="mr-3">🚩</span>
-                  PENDAFTARAN PESERTA DIDIK BARU (PPDB) TAHUN PELAJARAN 2025/2026 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
+                  PENDAFTARAN PESERTA DIDIK BARU (PPDB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
                   <span className="ml-3">🔥</span>
                 </a>
               ))}
