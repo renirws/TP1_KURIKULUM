@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.schema.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tp1kurikulum.my.id/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/warta</loc>
+    <lastmod>2026-04-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/galeri</loc>
+    <lastmod>2026-04-21</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/kurikulum</loc>
+    <lastmod>2026-04-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>

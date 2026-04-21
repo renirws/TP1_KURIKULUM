@@ -84,7 +84,15 @@ export const Footer: React.FC = () => {
 
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center text-xs font-black text-gray-500 uppercase tracking-widest">
           <p>&copy; {new Date().getFullYear()} TIM IT SMK TANJUNG PRIOK 1</p>
-          <p className="mt-4 md:mt-0">MADE WITH PASSION FOR EDUCATION</p>
+          <div className="flex flex-wrap justify-center gap-6 mt-4 md:mt-0">
+            <span className="hover:text-emerald-400 cursor-default">Pemesinan Kapal</span>
+            <span className="hover:text-emerald-400 cursor-default">TKRO</span>
+            <span className="hover:text-emerald-400 cursor-default">DKV</span>
+            <span className="hover:text-emerald-400 cursor-default">Teknik Logistik</span>
+            <span className="hover:text-emerald-400 cursor-default">UKK 2026</span>
+            <span className="hover:text-emerald-400 cursor-default">USBK 2026</span>
+          </div>
+          <p className="mt-4 md:mt-0">EXCELLENT & PROFESSIONAL</p>
         </div>
       </div>
     </footer>

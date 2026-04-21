@@ -29,21 +29,23 @@ const News: React.FC = () => {
   const usbkImageUrl = "https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w4000";
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <main className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-6xl mx-auto space-y-12"
         >
-          <Link to="/" className="inline-flex items-center text-[#059669] font-bold mb-4 hover:underline group">
-            <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
-            Kembali ke Beranda
-          </Link>
+          <header>
+            <Link to="/" className="inline-flex items-center text-[#059669] font-black mb-4 hover:underline group text-sm uppercase tracking-widest">
+              <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+              Kembali ke Beranda
+            </Link>
+          </header>
 
           {/* UKK Announcement Section */}
-          <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
-            <div className="bg-[#059669] p-8 text-white">
+          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
+            <header className="bg-[#059669] p-8 text-white">
               <div className="flex items-center space-x-3 mb-4">
                 <span className="bg-white text-[#059669] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Info Kurikulum</span>
                 <span className="text-white/60 text-sm">19 April 2026</span>
@@ -52,7 +54,7 @@ const News: React.FC = () => {
               <p className="mt-4 text-emerald-50 leading-relaxed text-sm md:text-base">
                 Pemberitahuan pelaksanaan UKK Mandiri untuk Siswa/i Kelas XII SMK Tanjung Priok 1 Tahun Pelajaran 2025/2026.
               </p>
-            </div>
+            </header>
 
             <div className="p-8 md:p-12 space-y-10">
               <div className="flex items-center justify-between">
@@ -138,20 +140,20 @@ const News: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
           {/* USBK Announcement Section */}
-          <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
-            <div className="bg-[#1a3a5a] p-8 text-white">
+          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
+            <header className="bg-[#1a3a5a] p-8 text-white">
               <div className="flex items-center space-x-3 mb-4">
                 <span className="bg-[#059669] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Pengumuman Penting</span>
                 <span className="text-white/60 text-sm">01 April 2026</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold">Daftar Peserta USBK SMK Tanjung Priok 1</h1>
+              <h2 className="text-3xl md:text-4xl font-bold">Daftar Peserta USBK SMK Tanjung Priok 1</h2>
               <p className="mt-4 text-emerald-100/80 leading-relaxed text-sm md:text-base">
                 Informasi pembagian sesi dan ruang untuk pelaksanaan Ujian Satuan Pendidikan Berbasis Komputer (USBK) Tahun Pelajaran 2025/2026.
               </p>
-            </div>
+            </header>
 
             <div className="p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-6 mb-10">
@@ -209,10 +211,10 @@ const News: React.FC = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </article>
         </motion.div>
       </div>
-
+ 
       {/* Zoom Modal - Supporting any image URL */}
       {zoomImageUrl && (
         <div 
@@ -238,7 +240,7 @@ const News: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

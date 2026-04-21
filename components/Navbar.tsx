@@ -41,8 +41,8 @@ export const Navbar: React.FC = () => {
               />
             </div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-[#1a3a5a] leading-tight">SMK TANJUNG PRIOK 1</h1>
-              <p className="text-xs text-[#059669] uppercase tracking-widest font-bold">Excellent and Professional</p>
+              <span className="block text-xl md:text-2xl font-black text-[#1a3a5a] leading-tight">SMK TANJUNG PRIOK 1</span>
+              <p className="text-xs text-[#059669] uppercase tracking-widest font-black italic">Excellent and Professional</p>
             </div>
           </Link>
 
