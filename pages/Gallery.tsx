@@ -17,6 +17,14 @@ const Gallery: React.FC = () => {
 
   const galleryItems: GalleryItem[] = [
     {
+      id: 12,
+      title: 'Dokumentasi UKK Kelas XII 2026',
+      category: 'Kegiatan',
+      imageUrl: 'https://img.youtube.com/vi/0GJjyaMwVvA/maxresdefault.jpg',
+      description: 'Dokumentasi pelaksanaan Ujian Kompetensi Keahlian (UKK) yang diikuti oleh 119 siswa dari 4 jurusan unggulan pada 20-24 April 2026.',
+      videoUrl: 'https://youtu.be/0GJjyaMwVvA'
+    },
+    {
       id: 11,
       title: 'Video Dokumentasi USBK 2025/2026',
       category: 'Kegiatan',
