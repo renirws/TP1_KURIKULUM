@@ -48,24 +48,26 @@ const Home: React.FC = () => {
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500 rounded-full blur-[100px] opacity-10"></div>
       </section>
 
-      {/* Statistics / Quick Info Section */}
-      <section className="py-12 bg-[#1a3a5a] text-white border-y border-white/5">
-        <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div className="text-4xl font-black text-emerald-400 mb-1">4</div>
-            <div className="text-xs uppercase tracking-widest font-bold opacity-60">Program Keahlian</div>
-          </div>
-          <div>
-            <div className="text-4xl font-black text-emerald-400 mb-1">119</div>
-            <div className="text-xs uppercase tracking-widest font-bold opacity-60">Siswa XII (UKK)</div>
-          </div>
-          <div>
-            <div className="text-4xl font-black text-emerald-400 mb-1">100%</div>
-            <div className="text-xs uppercase tracking-widest font-bold opacity-60">Kurikulum Industri</div>
-          </div>
-          <div>
-            <div className="text-4xl font-black text-emerald-400 mb-1">T-FAC</div>
-            <div className="text-xs uppercase tracking-widest font-bold opacity-60">Teaching Factory</div>
+      {/* Statistics & Quick Links Section */}
+      <section className="relative z-20 -mt-10 md:-mt-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-4">
+            <div className="bg-[#1a3a5a] text-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-white/5">
+              <div className="text-3xl font-black text-emerald-400">4</div>
+              <div className="text-[10px] uppercase tracking-widest font-bold opacity-60 mt-1">Program Keahlian</div>
+            </div>
+            <div className="bg-[#1a3a5a] text-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-white/5">
+              <div className="text-3xl font-black text-emerald-400">119</div>
+              <div className="text-[10px] uppercase tracking-widest font-bold opacity-60 mt-1">Siswa XII (UKK)</div>
+            </div>
+            <a href="https://stapone.netlify.app/" target="_blank" rel="noopener noreferrer" className="bg-emerald-600 text-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-white/10 hover:bg-emerald-700 transition-all group">
+              <div className="text-xl font-black mb-1 group-hover:scale-110 transition-transform">Tefa DKV</div>
+              <div className="text-[10px] uppercase tracking-widest font-bold opacity-80">Portal Kreatif Siswa</div>
+            </a>
+            <a href="https://s.id/bimlappkl" target="_blank" rel="noopener noreferrer" className="bg-white text-[#1a3a5a] p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-gray-100 hover:bg-gray-50 transition-all group">
+              <div className="text-xl font-black mb-1 group-hover:scale-110 transition-transform text-[#059669]">Bimbingan PKL</div>
+              <div className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Sisfo Praktik Industri</div>
+            </a>
           </div>
         </div>
       </section>
