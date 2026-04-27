@@ -92,8 +92,8 @@ const Gallery: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl">
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-black text-[#1a3a5a]">Galeri Dokumentasi</h1>
-        <div className="w-24 h-1.5 bg-[#059669] mx-auto mt-6 mb-6"></div>
+        <h1 className="text-4xl md:text-5xl font-black text-[#0f172a]">Galeri Dokumentasi</h1>
+        <div className="w-24 h-1.5 bg-[#3b82f6] mx-auto mt-6 mb-6"></div>
         <p className="text-gray-500 text-lg max-w-2xl mx-auto">
           Melihat lebih dekat aktivitas, fasilitas, dan berbagai pencapaian civitas akademika SMK Tanjung Priok 1.
         </p>
@@ -107,8 +107,8 @@ const Gallery: React.FC = () => {
             onClick={() => setActiveCategory(cat)}
             className={`px-8 py-3 rounded-2xl font-bold transition-all duration-300 ${
               activeCategory === cat
-                ? 'bg-[#1a3a5a] text-white shadow-xl scale-105'
-                : 'bg-white text-gray-500 hover:bg-emerald-50 border border-gray-100'
+                ? 'bg-[#0f172a] text-white shadow-xl scale-105'
+                : 'bg-white text-gray-500 hover:bg-blue-50 border border-gray-100'
             }`}
           >
             {cat}
@@ -130,7 +130,7 @@ const Gallery: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute top-4 left-4 flex gap-2">
-                <span className="bg-[#059669] text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
+                <span className="bg-[#3b82f6] text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
                   {item.category}
                 </span>
                 {item.videoUrl && (
@@ -156,7 +156,7 @@ const Gallery: React.FC = () => {
               )}
             </div>
             <div className="p-8">
-              <h3 className="text-2xl font-black text-[#1a3a5a] mb-2 group-hover:text-[#059669] transition-colors flex items-center justify-between">
+              <h3 className="text-2xl font-black text-[#0f172a] mb-2 group-hover:text-[#3b82f6] transition-colors flex items-center justify-between">
                 {item.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed font-medium mb-4">
@@ -179,7 +179,7 @@ const Gallery: React.FC = () => {
       </div>
 
       {/* Featured Video / Live Action Call */}
-      <div className="mt-24 bg-[#1a3a5a] rounded-[3.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
+      <div className="mt-24 bg-[#0f172a] rounded-[3.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 p-10 opacity-5">
            <svg className="w-64 h-64" fill="currentColor" viewBox="0 0 24 24">
              <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
@@ -203,7 +203,7 @@ const Gallery: React.FC = () => {
               <span>TONTON DI YOUTUBE</span>
             </a>
           </div>
-          <div className="hidden lg:block w-72 h-72 bg-gradient-to-br from-[#059669] to-[#065f46] rounded-full blur-3xl opacity-20"></div>
+          <div className="hidden lg:block w-72 h-72 bg-gradient-to-br from-[#3b82f6] to-[#1e40af] rounded-full blur-3xl opacity-20"></div>
         </div>
       </div>
     </div>

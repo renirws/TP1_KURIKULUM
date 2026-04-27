@@ -17,7 +17,7 @@ const ExternalLinks: React.FC = () => {
       description: "Sistem informasi dan panduan bimbingan Praktik Kerja Lapangan (PKL) untuk siswa-siswi SMK Tanjung Priok 1.",
       url: "https://s.id/bimlappkl",
       icon: <BookOpen className="w-8 h-8" />,
-      color: "from-emerald-500 to-teal-600",
+      color: "from-blue-500 to-blue-600",
       tag: "Akademik"
     }
   ];
@@ -29,7 +29,7 @@ const ExternalLinks: React.FC = () => {
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[#059669] font-black text-xs uppercase tracking-[0.3em] mb-4 block"
+            className="text-[#3b82f6] font-black text-xs uppercase tracking-[0.3em] mb-4 block"
           >
             Resources & Portals
           </motion.span>
@@ -37,9 +37,9 @@ const ExternalLinks: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black text-[#1a3a5a] tracking-tight mb-6"
+            className="text-4xl md:text-6xl font-black text-[#0f172a] tracking-tight mb-6"
           >
-            Tautan <span className="text-[#059669]">Penting</span>
+            Tautan <span className="text-[#3b82f6]">Penting</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -66,15 +66,15 @@ const ExternalLinks: React.FC = () => {
               {/* Animated Background Decor */}
               <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${link.color} opacity-5 rounded-bl-[5rem] group-hover:scale-150 transition-transform duration-700`}></div>
               
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${link.color} text-white flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20 group-hover:rotate-6 transition-transform duration-500`}>
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${link.color} text-white flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20 group-hover:rotate-6 transition-transform duration-500`}>
                 {link.icon}
               </div>
 
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#059669] bg-emerald-50 px-3 py-1 rounded-full mb-4">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#3b82f6] bg-blue-50 px-3 py-1 rounded-full mb-4">
                 {link.tag}
               </span>
 
-              <h2 className="text-2xl font-black text-[#1a3a5a] mb-4 group-hover:text-[#059669] transition-colors">
+              <h2 className="text-2xl font-black text-[#0f172a] mb-4 group-hover:text-[#3b82f6] transition-colors">
                 {link.title}
               </h2>
 
@@ -82,7 +82,7 @@ const ExternalLinks: React.FC = () => {
                 {link.description}
               </p>
 
-              <div className="mt-auto flex items-center text-[#1a3a5a] font-black text-sm group-hover:translate-x-2 transition-transform duration-300">
+              <div className="mt-auto flex items-center text-[#0f172a] font-black text-sm group-hover:translate-x-2 transition-transform duration-300">
                 Kunjungi Situs
                 <ExternalLink className="w-4 h-4 ml-2" />
               </div>
@@ -92,8 +92,8 @@ const ExternalLinks: React.FC = () => {
 
         {/* SEO Content Section */}
         <section className="max-w-4xl mx-auto mt-24 pt-16 border-t border-gray-200">
-          <h2 className="text-2xl font-black text-[#1a3a5a] mb-6">Integrasi Digital Kurikulum</h2>
-          <div className="prose prose-emerald max-w-none text-gray-500 font-medium">
+          <h2 className="text-2xl font-black text-[#0f172a] mb-6">Integrasi Digital Kurikulum</h2>
+          <div className="prose prose-blue max-w-none text-gray-500 font-medium">
             <p className="mb-4">
               Sebagai bagian dari upaya digitalisasi pendidikan, SMK Tanjung Priok 1 mengembangkan ekosistem pendukung yang memudahkan kolaborasi antar industri, guru, dan siswa. 
               <strong> Teaching Factory (Tefa)</strong> di program keahlian DKV merupakan cerminan dari kurikulum berbasis produk yang nyata dan kompetitif.

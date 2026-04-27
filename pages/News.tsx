@@ -9,9 +9,9 @@ const News: React.FC = () => {
   // UKK Data
   const ukkSchedules = [
     { title: "Teknik Pemesinan Kapal", id: "1ydNqBuZEleKQ7uutqM4hvBI84CPPXRCw", color: "bg-blue-600" },
-    { title: "Teknik Kendaraan Ringan Otomotif", id: "1nrdxOBQMWD2Bn92z5MYG9ZgTmFaT2lBY", color: "bg-red-600" },
-    { title: "Desain Komunikasi Visual", id: "1zNIVLg_hHcyMD_EyYtC9mvOBBuAeKRKU", color: "bg-emerald-600" },
-    { title: "Teknik Logistik", id: "1McQOlK3yKdubAtE0aeG9VAchc9ye_QrU", color: "bg-orange-600" }
+    { title: "Teknik Kendaraan Ringan Otomotif", id: "1nrdxOBQMWD2Bn92z5MYG9ZgTmFaT2lBY", color: "bg-indigo-600" },
+    { title: "Desain Komunikasi Visual", id: "1zNIVLg_hHcyMD_EyYtC9mvOBBuAeKRKU", color: "bg-cyan-600" },
+    { title: "Teknik Logistik", id: "1McQOlK3yKdubAtE0aeG9VAchc9ye_QrU", color: "bg-sky-600" }
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % ukkSchedules.length);
@@ -37,21 +37,21 @@ const News: React.FC = () => {
           className="max-w-6xl mx-auto space-y-12"
         >
           <header>
-            <Link to="/" className="inline-flex items-center text-[#059669] font-black mb-4 hover:underline group text-sm uppercase tracking-widest">
+            <Link to="/" className="inline-flex items-center text-[#3b82f6] font-black mb-4 hover:underline group text-sm uppercase tracking-widest">
               <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
               Kembali ke Beranda
             </Link>
           </header>
 
           {/* UKK Announcement Section */}
-          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
-            <header className="bg-[#059669] p-8 text-white">
+          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-blue-100">
+            <header className="bg-gradient-to-r from-[#0f172a] to-[#3b82f6] p-8 text-white">
               <div className="flex items-center space-x-3 mb-4">
-                <span className="bg-white text-[#059669] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Info Kurikulum</span>
+                <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/30">Info Kurikulum</span>
                 <span className="text-white/60 text-sm">19 April 2026</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">Jadwal Uji Kompetensi Keahlian (UKK)</h2>
-              <p className="mt-4 text-emerald-50 leading-relaxed text-sm md:text-base">
+              <p className="mt-4 text-blue-50 leading-relaxed text-sm md:text-base opacity-90">
                 Pemberitahuan pelaksanaan UKK Mandiri untuk Siswa/i Kelas XII SMK Tanjung Priok 1 Tahun Pelajaran 2025/2026.
               </p>
             </header>
@@ -151,7 +151,7 @@ const News: React.FC = () => {
           onClick={() => setZoomImageUrl(null)}
         >
           <button 
-            className="absolute top-6 right-6 text-white hover:text-[#059669] transition-colors z-[110] bg-black/50 p-3 rounded-full shadow-2xl"
+            className="absolute top-6 right-6 text-white hover:text-[#3b82f6] transition-colors z-[110] bg-black/50 p-3 rounded-full shadow-2xl"
             onClick={(e) => { e.stopPropagation(); setZoomImageUrl(null); }}
           >
             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md border-b-4 border-[#059669]">
+    <nav className="bg-white shadow-md border-b-4 border-[#3b82f6]">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-24">
           {/* Logo Section */}
@@ -42,8 +42,8 @@ export const Navbar: React.FC = () => {
               />
             </div>
             <div>
-              <span className="block text-xl md:text-2xl font-black text-[#1a3a5a] leading-tight">SMK TANJUNG PRIOK 1</span>
-              <p className="text-xs text-[#059669] uppercase tracking-widest font-black italic">Excellent and Professional</p>
+              <span className="block text-xl md:text-2xl font-black text-[#0f172a] leading-tight">SMK TANJUNG PRIOK 1</span>
+              <p className="text-xs text-[#3b82f6] uppercase tracking-widest font-black italic">Excellent and Professional</p>
             </div>
           </Link>
 
@@ -55,8 +55,8 @@ export const Navbar: React.FC = () => {
                 to={link.path}
                 className={`px-3 py-2 text-sm font-black uppercase tracking-tighter transition-all duration-300 rounded-xl ${
                   isActive(link.path)
-                    ? 'text-white bg-[#059669] shadow-lg shadow-emerald-500/20'
-                    : 'text-[#1a3a5a] hover:text-[#059669] hover:bg-emerald-50'
+                    ? 'text-white bg-[#3b82f6] shadow-lg shadow-blue-500/20'
+                    : 'text-[#0f172a] hover:text-[#3b82f6] hover:bg-blue-50'
                 }`}
               >
                 {link.name}
@@ -72,21 +72,21 @@ export const Navbar: React.FC = () => {
                 to={link.path}
                 className={`px-2 py-2 text-[10px] font-black uppercase tracking-tighter transition-all duration-300 rounded-lg ${
                   isActive(link.path)
-                    ? 'text-white bg-[#059669]'
-                    : 'text-[#1a3a5a] hover:text-[#059669]'
+                    ? 'text-white bg-[#3b82f6]'
+                    : 'text-[#0f172a] hover:text-[#3b82f6]'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <Link to="/tautan" className="px-2 py-2 text-[10px] font-black uppercase tracking-tighter text-[#059669] animate-pulse">Lainnya</Link>
+            <Link to="/tautan" className="px-2 py-2 text-[10px] font-black uppercase tracking-tighter text-[#3b82f6] animate-pulse">Lainnya</Link>
           </div>
 
           {/* Mobile Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#1a3a5a] hover:text-[#059669] focus:outline-none"
+              className="text-[#0f172a] hover:text-[#3b82f6] focus:outline-none"
             >
               <svg className="h-8 w-8 fill-current" viewBox="0 0 24 24">
                 {isOpen ? (
@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 text-sm font-bold rounded-lg mb-1 ${
-                  isActive(link.path) ? 'bg-[#059669] text-white' : 'text-[#1a3a5a] hover:bg-emerald-50'
+                  isActive(link.path) ? 'bg-[#3b82f6] text-white' : 'text-[#0f172a] hover:bg-blue-50'
                 }`}
               >
                 {link.name}

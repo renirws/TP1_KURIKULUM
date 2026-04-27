@@ -19,17 +19,17 @@ const Curriculum: React.FC = () => {
     {
       title: "Teknik Kendaraan Ringan Otomotif",
       id: "1nrdxOBQMWD2Bn92z5MYG9ZgTmFaT2lBY",
-      color: "bg-red-600"
+      color: "bg-indigo-600"
     },
     {
       title: "Desain Komunikasi Visual",
       id: "1zNIVLg_hHcyMD_EyYtC9mvOBBuAeKRKU",
-      color: "bg-emerald-600"
+      color: "bg-cyan-600"
     },
     {
       title: "Teknik Logistik",
       id: "1McQOlK3yKdubAtE0aeG9VAchc9ye_QrU",
-      color: "bg-orange-600"
+      color: "bg-sky-600"
     }
   ];
 
@@ -62,8 +62,8 @@ const Curriculum: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#1a3a5a]">Program Keahlian</h1>
-        <div className="w-20 h-1.5 bg-[#059669] mt-4 mb-4"></div>
+        <h1 className="text-4xl md:text-5xl font-bold text-[#0f172a]">Program Keahlian</h1>
+        <div className="w-20 h-1.5 bg-[#3b82f6] mt-4 mb-4"></div>
         <p className="text-gray-500 text-lg max-w-2xl">Jelajahi kompetensi keahlian unggulan di SMK Tanjung Priok 1 yang telah terstandarisasi Industri dengan pendekatan Deep Learning.</p>
       </div>
 
@@ -77,8 +77,8 @@ const Curriculum: React.FC = () => {
               onClick={() => setSelectedMajor(value as Major)}
               className={`w-full text-left px-5 py-4 rounded-xl font-bold transition-all border ${
                 selectedMajor === value 
-                  ? 'bg-[#1a3a5a] text-white border-[#1a3a5a] shadow-lg translate-x-2' 
-                  : 'bg-white hover:bg-emerald-50 text-[#1a3a5a] border-gray-100'
+                  ? 'bg-[#0f172a] text-white border-[#0f172a] shadow-lg translate-x-2' 
+                  : 'bg-white hover:bg-blue-50 text-[#0f172a] border-gray-100'
               }`}
             >
               {value}
@@ -90,18 +90,18 @@ const Curriculum: React.FC = () => {
         <div className="lg:col-span-3 space-y-12">
           {/* Structure Section */}
           <div className="bg-white rounded-[2rem] shadow-sm border border-gray-50 p-10 overflow-hidden relative">
-            <div className="absolute top-0 right-0 bg-[#059669] text-white px-6 py-2 rounded-bl-2xl font-bold text-sm">Kurikulum Deep Learning</div>
-            <h2 className="text-3xl font-bold text-[#1a3a5a] mb-8 flex items-center">
-              <span className="w-2 h-8 bg-[#059669] mr-4 rounded-full"></span>
+            <div className="absolute top-0 right-0 bg-[#3b82f6] text-white px-6 py-2 rounded-bl-2xl font-bold text-sm">Kurikulum Deep Learning</div>
+            <h2 className="text-3xl font-bold text-[#0f172a] mb-8 flex items-center">
+              <span className="w-2 h-8 bg-[#3b82f6] mr-4 rounded-full"></span>
               Struktur Kurikulum
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-emerald-50">
+                <thead className="bg-blue-50">
                   <tr>
-                    <th className="px-6 py-4 border-b text-sm font-black text-[#059669]">MATA PELAJARAN</th>
-                    <th className="px-6 py-4 border-b text-sm font-black text-[#059669]">KATEGORI</th>
-                    <th className="px-6 py-4 border-b text-sm font-black text-[#059669]">DURASI (JP)</th>
+                    <th className="px-6 py-4 border-b text-sm font-black text-[#3b82f6]">MATA PELAJARAN</th>
+                    <th className="px-6 py-4 border-b text-sm font-black text-[#3b82f6]">KATEGORI</th>
+                    <th className="px-6 py-4 border-b text-sm font-black text-[#3b82f6]">DURASI (JP)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
@@ -119,7 +119,7 @@ const Curriculum: React.FC = () => {
                 href={majorLinks[selectedMajor]} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 bg-[#059669] text-white px-8 py-4 rounded-2xl font-black text-lg hover:bg-emerald-700 transition shadow-xl transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center space-x-3 bg-[#3b82f6] text-white px-8 py-4 rounded-2xl font-black text-lg hover:bg-blue-700 transition shadow-xl transform hover:scale-105 active:scale-95"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 <span>UNDUH STRUKTUR KURIKULUM</span>
@@ -133,11 +133,11 @@ const Curriculum: React.FC = () => {
           {/* Academic Calendar Section */}
           <div className="bg-white rounded-[2rem] shadow-sm border border-gray-50 p-10 overflow-hidden relative">
              <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-[#1a3a5a] flex items-center">
-                <span className="w-2 h-8 bg-[#1a3a5a] mr-4 rounded-full"></span>
+              <h2 className="text-3xl font-bold text-[#0f172a] flex items-center">
+                <span className="w-2 h-8 bg-[#0f172a] mr-4 rounded-full"></span>
                 Kalender Akademik
               </h2>
-              <div className="flex items-center text-xs font-bold text-[#1a3a5a] bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
+              <div className="flex items-center text-xs font-bold text-[#0f172a] bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
                 <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
                 TA 2025/2026 GENAP
               </div>
@@ -145,7 +145,7 @@ const Curriculum: React.FC = () => {
             
             <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="flex-1 space-y-4">
-                <h3 className="text-2xl font-black text-[#1a3a5a]">Kalender Akademik Semester Genap</h3>
+                <h3 className="text-2xl font-black text-[#0f172a]">Kalender Akademik Semester Genap</h3>
                 <p className="text-gray-500 font-medium leading-relaxed">
                   Akses jadwal lengkap kegiatan belajar mengajar, agenda ujian, praktik industri, dan hari libur sekolah untuk Tahun Ajaran 2025/2026 Semester Genap.
                 </p>
@@ -154,9 +154,9 @@ const Curriculum: React.FC = () => {
                 href={calendarLink} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-[#1a3a5a] text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-2xl flex items-center space-x-3 whitespace-nowrap"
+                className="bg-[#0f172a] text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-2xl flex items-center space-x-3 whitespace-nowrap"
               >
-                <svg className="w-6 h-6 text-[#059669]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <svg className="w-6 h-6 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 <span>LIHAT KALENDER</span>
               </a>
             </div>
@@ -171,8 +171,8 @@ const Curriculum: React.FC = () => {
 
           {/* UKK Section */}
           <div className="bg-white rounded-[2rem] shadow-sm border border-gray-50 p-10 overflow-hidden relative">
-            <h2 className="text-3xl font-bold text-[#1a3a5a] mb-8 flex items-center">
-              <span className="w-2 h-8 bg-orange-500 mr-4 rounded-full"></span>
+            <h2 className="text-3xl font-bold text-[#0f172a] mb-8 flex items-center">
+              <span className="w-2 h-8 bg-blue-500 mr-4 rounded-full"></span>
               Jadwal Uji Kompetensi Keahlian (UKK)
             </h2>
 
@@ -243,15 +243,15 @@ const Curriculum: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-emerald-50 border border-emerald-100 p-8 rounded-[2rem]">
-                <h3 className="text-xl font-black text-emerald-900 mb-4 flex items-center">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2rem]">
+                <h3 className="text-xl font-black text-blue-900 mb-4 flex items-center">
                   <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                   Aturan Berpakaian
                 </h3>
-                <p className="text-emerald-800 font-bold leading-relaxed mb-4">
+                <p className="text-blue-800 font-bold leading-relaxed mb-4">
                   Menggunakan seragam Praktek sesuai kejuruan masing-masing.
                 </p>
-                <div className="flex items-center text-sm font-medium text-emerald-700">
+                <div className="flex items-center text-sm font-medium text-blue-700">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                   Berpakaian rapih, bersih, dan sesuai standar industri.
                 </div>
