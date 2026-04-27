@@ -1,11 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 
 const Home: React.FC = () => {
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: { transition: { staggerChildren: 0.2 } },
+    viewport: { once: true, margin: "-100px" }
+  };
+
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative h-[550px] md:h-[650px] overflow-hidden bg-gradient-to-br from-[#1a3a5a] via-[#1a3a5a] to-[#059669]">
+      <motion.section 
+        className="relative h-[550px] md:h-[650px] overflow-hidden bg-gradient-to-br from-[#1a3a5a] via-[#1a3a5a] to-[#059669]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -19,8 +38,13 @@ const Home: React.FC = () => {
         
         <div className="absolute inset-0 flex items-center">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl text-white space-y-6 relative z-10">
-              <span className="bg-[#059669]/20 backdrop-blur-md text-emerald-400 px-4 py-1.5 rounded-full text-xs font-black tracking-[0.2em] uppercase border border-emerald-400/30 inline-block animate-in fade-in slide-in-from-left duration-700">
+            <motion.div 
+              className="max-w-3xl text-white space-y-6 relative z-10"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="bg-[#059669]/20 backdrop-blur-md text-emerald-400 px-4 py-1.5 rounded-full text-xs font-black tracking-[0.2em] uppercase border border-emerald-400/30 inline-block">
                 Pusat Informasi Kurikulum Digital
               </span>
               <h1 className="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter">
@@ -39,17 +63,20 @@ const Home: React.FC = () => {
                   Portal Siswa
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Floating background blobs for depth */}
         <div className="absolute top-1/4 -right-20 w-96 h-96 bg-emerald-500 rounded-full blur-[120px] opacity-20"></div>
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500 rounded-full blur-[100px] opacity-10"></div>
-      </section>
+      </motion.section>
 
       {/* Statistics & Quick Links Section */}
-      <section className="relative z-20 -mt-10 md:-mt-16">
+      <motion.section 
+        className="relative z-20 -mt-10 md:-mt-16"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-4">
             <div className="bg-[#1a3a5a] text-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-white/5">
@@ -70,10 +97,14 @@ const Home: React.FC = () => {
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* News Section */}
-      <section className="py-24 bg-white" id="warta">
+      <motion.section 
+        className="py-24 bg-white" 
+        id="warta"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-4">
           <header className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-xl">
@@ -108,10 +139,13 @@ const Home: React.FC = () => {
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Quick Access Bento Section */}
-      <section className="py-24 bg-gray-50">
+      <motion.section 
+        className="py-24 bg-gray-50"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-4">
           <header className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1a3a5a] mb-4">Akses Cepat <span className="text-[#059669]">Digital</span></h2>
@@ -155,10 +189,13 @@ const Home: React.FC = () => {
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Value Proposition Section - Good for SEO Keywords */}
-      <section className="py-24 bg-emerald-50 relative overflow-hidden">
+      <motion.section 
+        className="py-24 bg-emerald-50 relative overflow-hidden"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-black mb-6">Mengapa Memilih SMK Tanjung Priok 1?</h2>
@@ -188,10 +225,13 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Profile Section */}
-      <section className="py-24 bg-white border-t border-gray-100">
+      <motion.section 
+        className="py-24 bg-white border-t border-gray-100"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <header className="relative inline-block">
@@ -233,7 +273,7 @@ const Home: React.FC = () => {
             </form>
           </aside>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 };
