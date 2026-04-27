@@ -45,6 +45,9 @@ export const Footer: React.FC = () => {
               <li><Link to="/galeri" className="hover:text-emerald-400 transition-all flex items-center">
                 <span className="w-1 h-1 bg-[#059669] mr-3 rounded-full"></span>Galeri Dokumentasi</Link>
               </li>
+              <li><Link to="/tautan" className="hover:text-emerald-400 transition-all flex items-center">
+                <span className="w-1 h-1 bg-[#059669] mr-3 rounded-full"></span>Tautan Penting</Link>
+              </li>
               <li><Link to="/berkas" className="hover:text-emerald-400 transition-all flex items-center">
                 <span className="w-1 h-1 bg-[#059669] mr-3 rounded-full"></span>Unggah & Unduh Berkas</Link>
               </li>

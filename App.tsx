@@ -10,6 +10,7 @@ import Students from './pages/Students';
 import Teachers from './pages/Teachers';
 import AcademicCalendar from './pages/AcademicCalendar';
 import Gallery from './pages/Gallery';
+import ExternalLinks from './pages/ExternalLinks';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 
@@ -83,6 +84,7 @@ const App: React.FC = () => {
             <Route path="/siswa" element={<Students />} />
             <Route path="/guru" element={<Teachers />} />
             <Route path="/galeri" element={<Gallery />} />
+            <Route path="/tautan" element={<ExternalLinks />} />
             <Route path="/berkas" element={<AcademicCalendar />} />
           </Routes>
         </main>

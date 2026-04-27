@@ -15,6 +15,7 @@ export const Navbar: React.FC = () => {
     { name: 'Siswa', path: '/siswa' },
     { name: 'Guru', path: '/guru' },
     { name: 'Galeri', path: '/galeri' },
+    { name: 'Tautan', path: '/tautan' },
     { name: 'Unggah & Unduh Berkas', path: '/berkas' },
   ];
 
