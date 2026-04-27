@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import Home from './pages/Home';
 import News from './pages/News';
 import Prakerin from './pages/Prakerin';
@@ -45,16 +45,19 @@ const App: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Top Image Banner - Adjusted for better fit */}
-          <div className="w-full bg-white overflow-hidden flex justify-center">
-            <img 
-              src={topBannerUrl} 
-              alt="Banner Utama SMK Tanjung Priok 1" 
-              className="w-full h-auto max-h-[300px] object-contain md:object-fill"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
-            />
+          {/* Top Image Banner - Improved responsiveness */}
+          <div className="w-full bg-white overflow-hidden flex justify-center border-b border-gray-100">
+            <div className="container mx-auto">
+              <img 
+                src={topBannerUrl} 
+                alt="Banner Utama SMK Tanjung Priok 1" 
+                className="w-full h-auto max-h-[150px] md:max-h-[300px] object-contain transition-all duration-700"
+                loading="eager"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            </div>
           </div>
           
           <div className="bg-[#1a3a5a] text-white py-2 px-4 text-sm hidden md:block border-t border-white/10">

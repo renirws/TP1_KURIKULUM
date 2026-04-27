@@ -48,20 +48,38 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-1 lg:space-x-2">
+          <div className="hidden xl:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 text-sm font-bold transition duration-300 rounded-md ${
+                className={`px-3 py-2 text-sm font-black uppercase tracking-tighter transition-all duration-300 rounded-xl ${
                   isActive(link.path)
-                    ? 'text-white bg-[#059669]'
+                    ? 'text-white bg-[#059669] shadow-lg shadow-emerald-500/20'
                     : 'text-[#1a3a5a] hover:text-[#059669] hover:bg-emerald-50'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
+          </div>
+
+          {/* Desktop Menu (Medium Screens) */}
+          <div className="hidden md:flex xl:hidden items-center space-x-1">
+            {navLinks.slice(0, 5).map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-2 py-2 text-[10px] font-black uppercase tracking-tighter transition-all duration-300 rounded-lg ${
+                  isActive(link.path)
+                    ? 'text-white bg-[#059669]'
+                    : 'text-[#1a3a5a] hover:text-[#059669]'
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <Link to="/tautan" className="px-2 py-2 text-[10px] font-black uppercase tracking-tighter text-[#059669] animate-pulse">Lainnya</Link>
           </div>
 
           {/* Mobile Toggle */}

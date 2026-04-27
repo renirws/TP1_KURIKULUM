@@ -106,14 +106,53 @@ const Home: React.FC = () => {
               imageUrl="https://drive.google.com/thumbnail?id=1Ya27lfM7idDYTs1RbCl_rR3Nm2Zu8UBo&sz=w1600"
               link="/prakerin"
             />
-            <AnnouncementCard 
-              category="Assesmen"
-              title="Pembagian Sesi & Ruang USBK 2026"
-              date="01 April 2026"
-              excerpt="Cek pembagian sesi dan ruang ujian untuk Ujian Satuan Pendidikan Berbasis Komputer (USBK) SMK Tanjung Priok 1."
-              imageUrl="https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w1600"
-              link="/warta"
-            />
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Access Bento Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <header className="text-center mb-16">
+            <h2 className="text-4xl font-black text-[#1a3a5a] mb-4">Akses Cepat <span className="text-[#059669]">Digital</span></h2>
+            <p className="text-gray-500 font-medium">Portal khusus pendukung kurikulum dan kreativitas siswa SMK Tanjung Priok 1.</p>
+          </header>
+          
+          <div className="grid md:grid-cols-12 gap-6 auto-rows-[240px]">
+            {/* Tefa DKV - Large Bento Item */}
+            <a 
+              href="https://stapone.netlify.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="md:col-span-8 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-[3rem] p-10 text-white relative overflow-hidden group shadow-2xl hover:shadow-purple-500/20 transition-all duration-500"
+            >
+              <div className="relative z-10 h-full flex flex-col">
+                <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest w-fit mb-4">Teaching Factory</span>
+                <h3 className="text-3xl md:text-5xl font-black mb-4 group-hover:translate-x-2 transition-transform">Tefa DKV Portofolio</h3>
+                <p className="text-purple-100 max-w-lg font-medium">Showcase karya terbaik siswa Desain Komunikasi Visual dan layanan jasa kreatif profesional.</p>
+                <div className="mt-auto flex items-center font-black text-sm group-hover:translate-x-2 transition-transform">
+                  Kunjungi Portal <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </div>
+              </div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
+            </a>
+
+            {/* PKL Bimbingan - Tall Bento Item */}
+            <a 
+              href="https://s.id/bimlappkl" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="md:col-span-4 bg-white rounded-[3rem] p-10 border border-gray-100 shadow-xl group hover:border-[#059669] transition-all duration-500 flex flex-col"
+            >
+              <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-[#059669] mb-8 group-hover:rotate-6 transition-transform">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              </div>
+              <h3 className="text-2xl font-black text-[#1a3a5a] mb-4">Bimbingan PKL</h3>
+              <p className="text-gray-500 font-medium text-sm leading-relaxed mb-8">Sistem monitoring dan panduan digital Praktik Kerja Lapangan.</p>
+              <div className="mt-auto flex items-center text-[#059669] font-black text-sm group-hover:translate-x-2 transition-transform">
+                Buka Panduan <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+              </div>
+            </a>
           </div>
         </div>
       </section>
