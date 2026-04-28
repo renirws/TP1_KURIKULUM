@@ -15,7 +15,7 @@ const Teachers: React.FC = () => {
             <span className="bg-[#3b82f6] text-white px-4 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-6 inline-block shadow-lg">
               Portal Pendidik
             </span>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight text-white">
               Ruang Guru <br/>
               <span className="text-blue-400">SMK Tanjung Priok 1</span>
             </h1>
