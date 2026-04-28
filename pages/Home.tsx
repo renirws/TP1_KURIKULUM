@@ -47,7 +47,7 @@ const Home: React.FC = () => {
               <span className="bg-blue-500/20 backdrop-blur-md text-blue-400 px-4 py-1.5 rounded-full text-xs font-black tracking-[0.2em] uppercase border border-blue-400/30 inline-block">
                 Pusat Informasi Kurikulum Digital
               </span>
-              <h1 className="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter">
+              <h1 className="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter text-white">
                 Mencetak SDM <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Kompeten</span><br />
                 & Berkarakter
@@ -162,7 +162,7 @@ const Home: React.FC = () => {
             >
               <div className="relative z-10 h-full flex flex-col">
                 <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest w-fit mb-4">Teaching Factory</span>
-                <h3 className="text-3xl md:text-5xl font-black mb-4 group-hover:translate-x-2 transition-transform">Tefa DKV Portofolio</h3>
+                <h3 className="text-3xl md:text-5xl font-black mb-4 group-hover:translate-x-2 transition-transform text-white">Tefa DKV Portofolio</h3>
                 <p className="text-purple-100 max-w-lg font-medium">Showcase karya terbaik siswa Desain Komunikasi Visual dan layanan jasa kreatif profesional.</p>
                 <div className="mt-auto flex items-center font-black text-sm group-hover:translate-x-2 transition-transform">
                   Kunjungi Portal <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -263,7 +263,7 @@ const Home: React.FC = () => {
             <div className="absolute top-0 right-0 p-8 opacity-10">
               <svg className="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             </div>
-            <h3 className="text-4xl font-black mb-8 relative z-10 tracking-tight">Kirim Aspirasi</h3>
+            <h3 className="text-4xl font-black mb-8 relative z-10 tracking-tight text-white">Kirim Aspirasi</h3>
             <p className="text-blue-100/60 mb-10 font-medium leading-relaxed">Saluran komunikasi terbuka untuk kritik, saran, atau pertanyaan seputar program kurikulum.</p>
             <form className="space-y-4 relative z-10">
               <input type="text" placeholder="Nama Lengkap" className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-[#3b82f6] focus:bg-white/10 transition placeholder:text-white/20 font-bold" />
