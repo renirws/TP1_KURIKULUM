@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { sheetsService } from '../services/googleSheetsService';
 import { ExamSchedule, Major } from '../types';
 
@@ -8,38 +7,6 @@ const Curriculum: React.FC = () => {
   const [examSchedules, setExamSchedules] = useState<ExamSchedule[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMajor, setSelectedMajor] = useState<Major>(Major.DKV);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const ukkSchedules = [
-    {
-      title: "Teknik Pemesinan Kapal",
-      id: "1ydNqBuZEleKQ7uutqM4hvBI84CPPXRCw",
-      color: "bg-blue-600"
-    },
-    {
-      title: "Teknik Kendaraan Ringan Otomotif",
-      id: "1nrdxOBQMWD2Bn92z5MYG9ZgTmFaT2lBY",
-      color: "bg-indigo-600"
-    },
-    {
-      title: "Desain Komunikasi Visual",
-      id: "1zNIVLg_hHcyMD_EyYtC9mvOBBuAeKRKU",
-      color: "bg-cyan-600"
-    },
-    {
-      title: "Teknik Logistik",
-      id: "1McQOlK3yKdubAtE0aeG9VAchc9ye_QrU",
-      color: "bg-sky-600"
-    }
-  ];
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % ukkSchedules.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + ukkSchedules.length) % ukkSchedules.length);
-
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const loadData = async () => {
@@ -166,96 +133,6 @@ const Curriculum: React.FC = () => {
               <p className="font-bold italic">
                 Informasi jadwal dapat berubah sewaktu-waktu sesuai kebijakan sekolah dan dinas terkait. Silakan unduh versi terbaru secara berkala.
               </p>
-            </div>
-          </div>
-
-          {/* UKK Section */}
-          <div className="bg-white rounded-[2rem] shadow-sm border border-gray-50 p-10 overflow-hidden relative">
-            <h2 className="text-3xl font-bold text-[#0f172a] mb-8 flex items-center">
-              <span className="w-2 h-8 bg-blue-500 mr-4 rounded-full"></span>
-              Jadwal Uji Kompetensi Keahlian (UKK)
-            </h2>
-
-            <div className="relative group">
-              <div className="aspect-[16/9] md:aspect-[21/9] bg-gray-100 rounded-[2rem] overflow-hidden relative shadow-inner">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0"
-                  >
-                    <div className="absolute top-6 left-6 z-10">
-                      <span className={`${ukkSchedules[currentSlide].color} text-white px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest shadow-lg`}>
-                        {ukkSchedules[currentSlide].title}
-                      </span>
-                    </div>
-                    <img 
-                      src={`https://drive.google.com/thumbnail?id=${ukkSchedules[currentSlide].id}&sz=w1200`}
-                      alt={ukkSchedules[currentSlide].title}
-                      className="w-full h-full object-contain md:object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Navigation Arrows */}
-                <button 
-                  onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all z-20 group-hover:scale-110"
-                >
-                  <svg className="w-6 h-6 text-[#1a3a5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <button 
-                  onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all z-20 group-hover:scale-110"
-                >
-                  <svg className="w-6 h-6 text-[#1a3a5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
-                </button>
-
-                {/* Dots */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-                  {ukkSchedules.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCurrentSlide(i)}
-                      className={`w-2 h-2 rounded-full transition-all ${currentSlide === i ? 'bg-white w-8' : 'bg-white/50'}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 grid md:grid-cols-2 gap-8 items-start">
-              <div className="bg-orange-50 border border-orange-100 p-8 rounded-[2rem]">
-                <h3 className="text-xl font-black text-orange-900 mb-4 flex items-center">
-                  <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  Pelaksanaan Ujian
-                </h3>
-                <p className="text-orange-800 font-bold leading-relaxed mb-4">
-                  Pelaksanaan Ujian UKK Siswa/i Kelas XII SMK Tanjung Priok 1 dilaksanaan tgl 20 April - 24 April 2026.
-                </p>
-                <div className="flex items-center text-sm font-medium text-orange-700">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  Harap hadir tepat waktu dengan tolerasi maksimal 15 menit dari jadwal ujian.
-                </div>
-              </div>
-
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2rem]">
-                <h3 className="text-xl font-black text-blue-900 mb-4 flex items-center">
-                  <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                  Aturan Berpakaian
-                </h3>
-                <p className="text-blue-800 font-bold leading-relaxed mb-4">
-                  Menggunakan seragam Praktek sesuai kejuruan masing-masing.
-                </p>
-                <div className="flex items-center text-sm font-medium text-blue-700">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                  Berpakaian rapih, bersih, dan sesuai standar industri.
-                </div>
-              </div>
             </div>
           </div>
         </div>
