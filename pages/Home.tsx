@@ -87,7 +87,7 @@ const Home: React.FC = () => {
               <div className="text-3xl font-black text-blue-400">119</div>
               <div className="text-[10px] uppercase tracking-widest font-bold opacity-60 mt-1">Siswa XII (UKK)</div>
             </div>
-            <a href="https://stapone.netlify.app/" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-white/10 hover:bg-blue-700 transition-all group">
+            <a href="https://www.priokart.my.id" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-white/10 hover:bg-blue-700 transition-all group">
               <div className="text-xl font-black mb-1 group-hover:scale-110 transition-transform">Tefa DKV</div>
               <div className="text-[10px] uppercase tracking-widest font-bold opacity-80">Portal Kreatif Siswa</div>
             </a>
@@ -155,7 +155,7 @@ const Home: React.FC = () => {
           <div className="grid md:grid-cols-12 gap-6 auto-rows-[240px]">
             {/* Tefa DKV - Large Bento Item */}
             <a 
-              href="https://stapone.netlify.app/" 
+              href="https://www.priokart.my.id" 
               target="_blank" 
               rel="noopener noreferrer"
               className="md:col-span-8 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-[3rem] p-10 text-white relative overflow-hidden group shadow-2xl hover:shadow-purple-500/20 transition-all duration-500"

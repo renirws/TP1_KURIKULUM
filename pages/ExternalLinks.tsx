@@ -7,7 +7,7 @@ const ExternalLinks: React.FC = () => {
     {
       title: "Tefa DKV (Teaching Factory)",
       description: "Portal resmi Teaching Factory Program Keahlian Desain Komunikasi Visual SMK Tanjung Priok 1. Showcase karya siswa dan layanan jasa kreatif.",
-      url: "https://stapone.netlify.app/",
+      url: "https://www.priokart.my.id",
       icon: <Globe className="w-8 h-8" />,
       color: "from-purple-500 to-indigo-600",
       tag: "Project"
