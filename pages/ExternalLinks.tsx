@@ -15,7 +15,7 @@ const ExternalLinks: React.FC = () => {
     {
       title: "Bimbingan PKL",
       description: "Sistem informasi dan panduan bimbingan Praktik Kerja Lapangan (PKL) untuk siswa-siswi SMK Tanjung Priok 1.",
-      url: "https://s.id/bimlappkl",
+      url: "https://simpkl.smktanjungpriok1.sch.id",
       icon: <BookOpen className="w-8 h-8" />,
       color: "from-blue-500 to-blue-600",
       tag: "Akademik"
