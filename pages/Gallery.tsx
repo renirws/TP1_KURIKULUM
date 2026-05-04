@@ -10,6 +10,8 @@ interface GalleryItem {
   imageUrl: string;
   description: string;
   videoUrl?: string;
+  objectPosition?: string;
+  imageClassName?: string;
 }
 
 const Gallery: React.FC = () => {
@@ -18,10 +20,12 @@ const Gallery: React.FC = () => {
   const galleryItems: GalleryItem[] = [
     {
       id: 13,
-      title: 'Kunjungan Kelas Industri TKRO',
+      title: 'Kunjungan Industri TKRO',
       category: 'Kegiatan',
-      imageUrl: 'https://drive.google.com/thumbnail?id=1A1_lWr-eiOhFx6Nxt_4t9iNCMts0A61a&sz=w800',
-      description: 'Kunjungan siswa kelas XI TKRO pada tanggal 4 Mei 2026 merupakan persiapan prakerin yang merupakan bagian dari rangkaian kegiatan kelas industri.'
+      imageUrl: 'https://lh3.googleusercontent.com/d/1A1_lWr-eiOhFx6Nxt_4t9iNCMts0A61a',
+      description: 'Persiapan Prakerin siswa kelas XI TKRO melalui rangkaian kegiatan Kelas Industri untuk penyelarasan kompetensi dengan dunia kerja (4 Mei 2026).',
+      objectPosition: 'object-center',
+      imageClassName: 'object-contain bg-slate-900'
     },
     {
       id: 12,
@@ -130,11 +134,11 @@ const Gallery: React.FC = () => {
             key={item.id} 
             className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500"
           >
-            <div className="relative h-72 overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <img 
                 src={item.imageUrl} 
                 alt={item.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className={`w-full h-full transition-transform duration-700 group-hover:scale-110 ${item.imageClassName || 'object-cover'} ${item.objectPosition || 'object-center'}`}
               />
               <div className="absolute top-4 left-4 flex gap-2">
                 <span className="bg-[#3b82f6] text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
