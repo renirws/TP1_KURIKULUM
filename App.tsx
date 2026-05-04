@@ -22,7 +22,7 @@ const App: React.FC = () => {
     <Router>
       <div className="flex flex-col min-h-screen">
         <header className="z-50 shadow-sm">
-          {/* Scrolling PPDB Announcement */}
+          {/* Scrolling SPMB Announcement */}
           <div className="bg-yellow-400 text-[#0f172a] py-2 overflow-hidden whitespace-nowrap border-b border-yellow-500">
             <motion.div 
               animate={{ x: ["0%", "-50%"] }}
@@ -38,7 +38,7 @@ const App: React.FC = () => {
                     className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 hover:text-blue-700 transition-colors flex items-center"
                   >
                     <span className="mr-3">🚩</span>
-                    PENDAFTARAN PESERTA DIDIK BARU (PPDB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
+                    SELEKSI PENERIMAAN MURID BARU (SPMB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
                     <span className="ml-3">🔥</span>
                   </a>
                   <a 
@@ -48,7 +48,7 @@ const App: React.FC = () => {
                     className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 text-[#2563eb] hover:text-blue-800 transition-colors flex items-center"
                   >
                     <span className="mr-3">📝</span>
-                    IKUTI TES MINAT BAKAT CALON SISWA DI: tesminatbakatsmktp01.netlify.app
+                    IKUTI TES MINAT BAKAT CALON SISWA DI: tesminatbakatsmktp01.netlify.app (Bagian dari SPMB)
                     <span className="ml-3">✨</span>
                   </a>
                 </React.Fragment>

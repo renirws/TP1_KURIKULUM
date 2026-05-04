@@ -138,10 +138,10 @@ const Home: React.FC = () => {
               link="/prakerin"
             />
             <AnnouncementCard 
-              category="PPDB"
+              category="SPMB"
               title="Tes Minat & Bakat Calon Siswa Baru"
               date="Mei 2026"
-              excerpt="Bagi calon peserta didik baru yang telah mendaftar, silakan mengikuti rangkaian Tes Minat Bakat secara online melalui portal resmi kami."
+              excerpt="Bagi calon murid baru yang telah mendaftar, silakan mengikuti rangkaian Tes Minat Bakat secara online melalui portal resmi kami."
               imageUrl="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80"
               link="https://tesminatbakatsmktp01.netlify.app/"
             />

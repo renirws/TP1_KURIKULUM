@@ -17,6 +17,13 @@ const Gallery: React.FC = () => {
 
   const galleryItems: GalleryItem[] = [
     {
+      id: 13,
+      title: 'Kunjungan Kelas Industri TKRO',
+      category: 'Kegiatan',
+      imageUrl: 'https://drive.google.com/thumbnail?id=1A1_lWr-eiOhFx6Nxt_4t9iNCMts0A61a&sz=w800',
+      description: 'Kunjungan siswa kelas XI TKRO pada tanggal 4 Mei 2026 merupakan persiapan prakerin yang merupakan bagian dari rangkaian kegiatan kelas industri.'
+    },
+    {
       id: 12,
       title: 'Dokumentasi UKK Kelas XII 2026',
       category: 'Kegiatan',
