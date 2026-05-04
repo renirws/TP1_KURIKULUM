@@ -19,6 +19,14 @@ const ExternalLinks: React.FC = () => {
       icon: <BookOpen className="w-8 h-8" />,
       color: "from-blue-500 to-blue-600",
       tag: "Akademik"
+    },
+    {
+      title: "Tes Minat Bakat PPDB",
+      description: "Uji minat dan bakat bagi calon peserta didik baru SMK Tanjung Priok 1 sebagai bagian dari rangkaian pendaftaran.",
+      url: "https://tesminatbakatsmktp01.netlify.app/",
+      icon: <ExternalLink className="w-8 h-8" />,
+      color: "from-amber-500 to-orange-600",
+      tag: "PPDB"
     }
   ];
 

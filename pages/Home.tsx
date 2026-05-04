@@ -137,6 +137,14 @@ const Home: React.FC = () => {
               imageUrl="https://drive.google.com/thumbnail?id=1Ya27lfM7idDYTs1RbCl_rR3Nm2Zu8UBo&sz=w1600"
               link="/prakerin"
             />
+            <AnnouncementCard 
+              category="PPDB"
+              title="Tes Minat & Bakat Calon Siswa Baru"
+              date="Mei 2026"
+              excerpt="Bagi calon peserta didik baru yang telah mendaftar, silakan mengikuti rangkaian Tes Minat Bakat secara online melalui portal resmi kami."
+              imageUrl="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80"
+              link="https://tesminatbakatsmktp01.netlify.app/"
+            />
           </div>
         </div>
       </motion.section>

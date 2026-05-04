@@ -30,17 +30,28 @@ const App: React.FC = () => {
               className="flex shrink-0 items-center"
             >
               {[...Array(4)].map((_, i) => (
-                <a 
-                  key={i}
-                  href="https://ppdb2025.smktanjungpriok1.sch.id" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 hover:text-blue-700 transition-colors flex items-center"
-                >
-                  <span className="mr-3">🚩</span>
-                  PENDAFTARAN PESERTA DIDIK BARU (PPDB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
-                  <span className="ml-3">🔥</span>
-                </a>
+                <React.Fragment key={i}>
+                  <a 
+                    href="https://ppdb2025.smktanjungpriok1.sch.id" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 hover:text-blue-700 transition-colors flex items-center"
+                  >
+                    <span className="mr-3">🚩</span>
+                    PENDAFTARAN PESERTA DIDIK BARU (PPDB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
+                    <span className="ml-3">🔥</span>
+                  </a>
+                  <a 
+                    href="https://tesminatbakatsmktp01.netlify.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 text-[#2563eb] hover:text-blue-800 transition-colors flex items-center"
+                  >
+                    <span className="mr-3">📝</span>
+                    IKUTI TES MINAT BAKAT CALON SISWA DI: tesminatbakatsmktp01.netlify.app
+                    <span className="ml-3">✨</span>
+                  </a>
+                </React.Fragment>
               ))}
             </motion.div>
           </div>
