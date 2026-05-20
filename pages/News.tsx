@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
+  const [zoomScale, setZoomScale] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // UKK Data
@@ -24,6 +25,7 @@ const News: React.FC = () => {
 
   const handleZoom = (url: string) => {
     setZoomImageUrl(url);
+    setZoomScale(1);
   };
   // Menggunakan ukuran thumbnail yang lebih besar untuk kejelasan (w4000)
   const usbkImageUrl = "https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w4000";
@@ -42,6 +44,129 @@ const News: React.FC = () => {
               Kembali ke Beranda
             </Link>
           </header>
+
+          {/* ASAS Genap Announcement Section */}
+          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
+            <header className="bg-gradient-to-r from-[#065f46] to-[#0d9488] p-8 text-white">
+              <div className="flex items-center space-x-3 mb-4">
+                <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/30">Agenda Akademik</span>
+                <span className="text-white/20">•</span>
+                <span className="text-white/80 text-sm">20 Mei 2026</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold">Asesmen Sumatif Akhir Semester Genap (ASAS Genap)</h2>
+              <p className="mt-4 text-emerald-50 leading-relaxed text-sm md:text-base opacity-90">
+                Pemberitahuan pelaksanaan Asesmen Sumatif Akhir Semester Genap (ASAS Genap) Tahun Pelajaran 2025/2026 untuk Siswa/i Kelas X & XI SMK Tanjung Priok 1 yang akan berlangsung pada tanggal 4 - 10 Juni 2026.
+              </p>
+            </header>
+
+            <div className="p-8 md:p-12 space-y-10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#065f46]">Jadwal Pelaksanaan ASAS Genap</h3>
+                  <p className="text-gray-500 text-sm mt-1">Ketuk tombol zoom atau klik gambar jadwal untuk memperbesar detail resolusi tinggi.</p>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  <a 
+                    href="https://drive.google.com/file/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s/view?usp=drive_link" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-full text-sm shadow transition duration-300"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    <span>Google Drive</span>
+                  </a>
+                  <button 
+                    onClick={() => handleZoom("https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s")}
+                    className="inline-flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-full text-sm shadow transition duration-300 cursor-pointer"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                    <span>Zoom Jadwal</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Cover Schedule Interactive Viewport */}
+              <div className="relative max-w-2xl mx-auto group">
+                <div 
+                  className="bg-slate-950 rounded-[2rem] overflow-hidden relative shadow-lg cursor-zoom-in border border-slate-100 transition duration-500"
+                  onClick={() => handleZoom("https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s")}
+                >
+                  <div className="absolute top-6 left-6 z-10">
+                    <span className="bg-emerald-600 text-white px-5 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg">
+                      Tahun Pelajaran 2025/2026
+                    </span>
+                  </div>
+                  <div className="aspect-[3/4] md:aspect-[4/5] flex items-center justify-center bg-slate-950 overflow-hidden p-2">
+                    <img 
+                      src="https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s"
+                      alt="Jadwal ASAS Genap Kelas X XI"
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-103"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
+                    <div className="bg-white/90 p-3 rounded-full shadow-lg text-slate-900 mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                      </svg>
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-wider">Buka & Zoom Jadwal Lengkap</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Information Cards Grid */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-emerald-50/50 border border-emerald-120 p-8 rounded-[2rem]">
+                  <h3 className="text-lg font-black text-emerald-900 mb-4 flex items-center">
+                    <svg className="w-5.5 h-5.5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Sesi & Tanggal Penting
+                  </h3>
+                  <p className="text-emerald-800 font-bold leading-relaxed mb-4">
+                    Pelaksanaan ujian berlangsung dari tanggal <span className="underline">Kamis, 4 Juni s.d. Rabu, 10 Juni 2026</span>.
+                  </p>
+                  <ul className="text-sm font-medium text-emerald-700 space-y-2.5">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
+                      <span>Diikuti oleh seluruh peserta didik Kelas X dan XI SMK Tanjung Priok 1.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
+                      <span>Konfigurasi sesi dan pengaturan ruangan dapat dikoordinasikan melalui wali kelas masing-masing.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-teal-50/50 border border-teal-120 p-8 rounded-[2rem]">
+                  <h3 className="text-lg font-black text-teal-900 mb-4 flex items-center">
+                    <svg className="w-5.5 h-5.5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    Persiapan Mandiri Siswa
+                  </h3>
+                  <p className="text-teal-800 font-bold leading-relaxed mb-4">
+                    Harap mempersiapkan diri dengan menjaga <span className="underline">kedisiplinan, seragam resmi sekolah, dan fisik</span>.
+                  </p>
+                  <ul className="text-sm font-medium text-teal-700 space-y-2.5">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-teal-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
+                      <span>Wajib membawa alat tulis secara mandiri (tidak diperkenankan saling meminjam saat ujian).</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-teal-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
+                      <span>Hadir paling lambat 15 menit sebelum bel masuk untuk mengikuti pengarahan awal panitia.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
 
           {/* UKK Announcement Section */}
           <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-blue-100">
@@ -144,28 +269,95 @@ const News: React.FC = () => {
         </motion.div>
       </div>
  
-      {/* Zoom Modal - Supporting any image URL */}
+      {/* Zoom Modal - Supporting any image URL with Interactive controls */}
       {zoomImageUrl && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black p-0 animate-in fade-in duration-300"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 animate-in fade-in duration-300 backdrop-blur-md"
           onClick={() => setZoomImageUrl(null)}
         >
-          <button 
-            className="absolute top-6 right-6 text-white hover:text-[#3b82f6] transition-colors z-[110] bg-black/50 p-3 rounded-full shadow-2xl"
-            onClick={(e) => { e.stopPropagation(); setZoomImageUrl(null); }}
-          >
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-          <div className="w-full h-full flex items-center justify-center p-4">
-            <img 
-              src={zoomImageUrl} 
-              alt="Zoomed Detail" 
-              className="max-w-full max-h-full object-contain animate-in zoom-in-95 duration-500 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
-              referrerPolicy="no-referrer"
+          {/* Top Info Panel */}
+          <div className="absolute top-0 inset-x-0 p-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent z-[110]">
+            <div className="text-left">
+              <h4 className="text-white font-bold text-base">Detail Jadwal Resmi</h4>
+              <p className="text-gray-400 text-xs mt-0.5">Tekan tombol di bawah untuk perbesar/perkecil atau seret gambar untuk menjelajah detail.</p>
+            </div>
+            <button 
+              className="text-white hover:text-red-400 transition-colors bg-white/10 hover:bg-white/20 p-2.5 rounded-full cursor-pointer"
+              onClick={(e) => { e.stopPropagation(); setZoomImageUrl(null); }}
+              aria-label="Tutup"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          {/* Draggable Viewport */}
+          <div className="w-full h-full flex items-center justify-center p-4 overflow-hidden relative">
+            <motion.div
+              drag={zoomScale > 1}
+              dragElastic={0.15}
+              dragTransition={{ bounceStiffness: 600, bounceDamping: 30 }}
+              animate={{ 
+                scale: zoomScale,
+              }}
+              className="max-w-full max-h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <img 
+                src={zoomImageUrl} 
+                alt="Zoomed Detail" 
+                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl select-none"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </div>
+
+          {/* Interactive Floating Zoom Tools Panel */}
+          <div 
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-[#1e293b]/90 border border-slate-700/60 px-6 py-3 rounded-full flex items-center space-x-5 shadow-2xl backdrop-blur-md z-[110]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Zoom Out */}
+            <button 
+              onClick={() => setZoomScale(prev => Math.max(prev - 0.5, 1))}
+              disabled={zoomScale <= 1}
+              className={`text-white p-2 rounded-full transition ${zoomScale <= 1 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-white/10 active:scale-95 cursor-pointer'}`}
+              title="Perkecil (Zoom Out)"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M20 12H4"></path>
+              </svg>
+            </button>
+
+            {/* Scale Value */}
+            <span className="text-white font-mono text-sm font-black min-w-[55px] text-center">
+              {Math.round(zoomScale * 100)}%
+            </span>
+
+            {/* Zoom In */}
+            <button 
+              onClick={() => setZoomScale(prev => Math.min(prev + 0.5, 4.0))}
+              disabled={zoomScale >= 4}
+              className={`text-white p-2 rounded-full transition ${zoomScale >= 4 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-white/10 active:scale-95 cursor-pointer'}`}
+              title="Perbesar (Zoom In)"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </button>
+
+            <span className="w-[1px] h-5 bg-slate-600/60"></span>
+
+            {/* Reset */}
+            <button 
+              onClick={() => setZoomScale(1)}
+              disabled={zoomScale === 1}
+              className={`text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-lg transition ${zoomScale === 1 ? 'opacity-40 text-slate-400 cursor-not-allowed' : 'bg-emerald-600 hover:bg-emerald-500 text-white active:scale-95 cursor-pointer'}`}
+              title="Kembali ke Ukuran Awal"
+            >
+              Reset
+            </button>
           </div>
         </div>
       )}

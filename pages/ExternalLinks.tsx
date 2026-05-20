@@ -27,6 +27,14 @@ const ExternalLinks: React.FC = () => {
       icon: <ExternalLink className="w-8 h-8" />,
       color: "from-amber-500 to-orange-600",
       tag: "SPMB"
+    },
+    {
+      title: "Sertifikasi Kompetensi LSP",
+      description: "Portal pendaftaran dan verifikasi asesi (siswa) untuk uji kompetensi BNSP di Lembaga Sertifikasi Profesi (LSP) P1 SMK Tanjung Priok 1.",
+      url: "https://smktp01-lsp.netlify.app/",
+      icon: <BookOpen className="w-8 h-8" />,
+      color: "from-emerald-500 to-teal-600",
+      tag: "LSP"
     }
   ];
 
