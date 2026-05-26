@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Globe, BookOpen } from 'lucide-react';
+import { ExternalLink, Globe, BookOpen, Award } from 'lucide-react';
 
 const ExternalLinks: React.FC = () => {
   const links = [
@@ -31,8 +31,8 @@ const ExternalLinks: React.FC = () => {
     {
       title: "Sertifikasi Kompetensi LSP",
       description: "Portal pendaftaran dan verifikasi asesi (siswa) untuk uji kompetensi BNSP di Lembaga Sertifikasi Profesi (LSP) P1 SMK Tanjung Priok 1.",
-      url: "https://smktp01-lsp.netlify.app/",
-      icon: <BookOpen className="w-8 h-8" />,
+      url: "https://lspsmktanjungpriok1.netlify.app/",
+      icon: <Award className="w-8 h-8" />,
       color: "from-emerald-500 to-teal-600",
       tag: "LSP"
     }
