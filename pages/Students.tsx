@@ -22,27 +22,6 @@ const Students: React.FC = () => {
     xii: "https://drive.google.com/file/d/1huNhbHXZ2t_0GwDG3Dc0q7PQLWb6250A/view?usp=drive_link"
   };
   
-  const adminLinks = [
-    {
-      grade: "Kelas X",
-      description: "Portal administrasi, absensi, dan rekapan SPP khusus untuk siswa jenjang kelas sepuluh semua jurusan.",
-      link: "https://docs.google.com/spreadsheets/d/1Ak0zQ53sA8_Dz9do96gIWG9tZgmPAfEz8eaXT0NhfLw/edit?usp=drive_link",
-      color: "from-blue-500 to-blue-700"
-    },
-    {
-      grade: "Kelas XI",
-      description: "Portal administrasi, absensi, dan rekapan SPP khusus untuk siswa jenjang kelas sebelas semua jurusan.",
-      link: "https://docs.google.com/spreadsheets/d/1u1PchsvKZ1JqmLVfIVB-uFbnwfmNcejBHj8UdtlEzlA/edit?usp=drive_link",
-      color: "from-[#0f172a] to-[#1e40af]"
-    },
-    {
-      grade: "Kelas XII",
-      description: "Portal administrasi, absensi, dan rekapan SPP terintegrasi untuk siswa jenjang kelas dua belas bersumber dari Google Sheet.",
-      link: "https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/edit?usp=sharing",
-      color: "from-[#3b82f6] to-[#1d4ed8]"
-    }
-  ];
-
   // States for GSheet dynamic search
   const [selectedClass, setSelectedClass] = useState<'XI' | 'XII'>('XII');
   const [students, setStudents] = useState<StudentData[]>([]);
@@ -337,42 +316,6 @@ const Students: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mb-10">
-        <h3 className="text-2xl font-black text-[#0f172a] flex items-center">
-          <span className="w-2 h-8 bg-[#3b82f6] mr-4 rounded-full"></span>
-          Link Spreadsheet Administrasi & SPP
-        </h3>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-8 mb-20">
-        {adminLinks.map((item, index) => (
-          <div key={index} className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-2xl transition-all duration-300 group">
-            <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white mb-6 shadow-lg transform group-hover:rotate-6 transition-transform`}>
-              <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            
-            <h2 className="text-3xl font-black text-[#0f172a] mb-4 uppercase">{item.grade}</h2>
-            <p className="text-gray-500 font-medium mb-8 leading-relaxed text-sm">
-              {item.description}
-            </p>
-            
-            <a 
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full bg-gradient-to-r ${item.color} text-white py-4 rounded-2xl font-black text-sm tracking-widest uppercase hover:brightness-110 transition shadow-md flex items-center justify-center space-x-2`}
-            >
-              <span>BUKA DATABASE</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-              </svg>
-            </a>
-          </div>
-        ))}
       </div>
 
       {/* NEW INTERACTIVE SPP ENGINE FOR CLASS XI & XII */}
