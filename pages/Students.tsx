@@ -44,6 +44,7 @@ const Students: React.FC = () => {
   ];
 
   // States for GSheet dynamic search
+  const [selectedClass, setSelectedClass] = useState<'XI' | 'XII'>('XII');
   const [students, setStudents] = useState<StudentData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -57,8 +58,13 @@ const Students: React.FC = () => {
     const fetchStudentData = async () => {
       try {
         setLoading(true);
-        // Fetch columns AC to AJ which contain Class XII administration SPP arrears
-        const res = await fetch("https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/gviz/tq?tqx=out:json&sheet=KLS%20XI%2025%2F26&range=AC2:AJ");
+        // Determine sheet name based on selected class
+        // Class XI uses 'KLS X 25/26' and Class XII uses 'KLS XI 25/26'
+        const sheetName = selectedClass === 'XI' ? 'KLS X 25/26' : 'KLS XI 25/26';
+        const encodedSheetName = encodeURIComponent(sheetName);
+        
+        // Fetch columns AC to AJ which contain Class XI / XII administration SPP arrears
+        const res = await fetch(`https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/gviz/tq?tqx=out:json&sheet=${encodedSheetName}&range=AC2:AJ`);
         if (!res.ok) {
           throw new Error("Gagal mengambil data dari Google Sheets. Silakan periksa koneksi internet Anda.");
         }
@@ -124,14 +130,14 @@ const Students: React.FC = () => {
         setError(null);
       } catch (err: any) {
         console.error("Error fetching sheet:", err);
-        setError(err.message || "Gagal memuat data administrasi.");
+        setError(err.message || `Gagal memuat data administrasi Kelas ${selectedClass}.`);
       } finally {
         setLoading(false);
       }
     };
     
     fetchStudentData();
-  }, [refreshTrigger]);
+  }, [refreshTrigger, selectedClass]);
 
   // Helper to check if a student has cleared all debts
   const isLunas = (student: StudentData): boolean => {
@@ -228,7 +234,7 @@ const Students: React.FC = () => {
             </tr>
             <tr>
               <td class="meta-label">Jenjang / Kelas</td>
-              <td class="meta-value">: Kelas XII</td>
+              <td class="meta-value">: Kelas ${selectedClass}</td>
               <td></td>
               <td></td>
             </tr>
@@ -369,7 +375,7 @@ const Students: React.FC = () => {
         ))}
       </div>
 
-      {/* NEW INTERACTIVE SPP ENGINE FOR CLASS XII */}
+      {/* NEW INTERACTIVE SPP ENGINE FOR CLASS XI & XII */}
       <div id="cek-spp" className="mb-20">
         <div className="bg-white rounded-[3rem] border border-slate-100 shadow-xl overflow-hidden">
           {/* Header */}
@@ -382,14 +388,44 @@ const Students: React.FC = () => {
             
             <div className="max-w-3xl">
               <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block">Fitur Pencarian Mandiri</span>
-              <h2 className="text-3xl md:text-4xl font-black mb-4">Cek Keuangan & SPP Real-time Kelas XII</h2>
+              <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">Cek Keuangan & SPP Real-time Kelas XI & XII</h2>
               <p className="text-slate-300 font-medium text-base leading-relaxed">
-                Asisten pencarian terpadu siswa Kelas XII. Cukup ketik Nama atau NIS Anda untuk memverifikasi detail tunggakan SPP, UTS, UAS, PPDB secara instan dan 100% valid bersumber langsung dari Google Sheet sekolah.
+                Asisten pencarian terpadu siswa Kelas XI & XII. Silakan pilih kelas Anda di bawah, kemudian ketik Nama atau NIS Anda untuk memverifikasi detail tunggakan SPP, UTS, UAS, PPDB secara instan dan 100% valid bersumber langsung dari Google Sheet sekolah.
               </p>
             </div>
           </div>
 
           <div className="p-8 md:p-12">
+            {/* Class Selection Toggle */}
+            <div className="flex bg-slate-100 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-200 mb-10 shadow-inner">
+              <button
+                onClick={() => {
+                  setSelectedClass('XI');
+                  setSearchQuery('');
+                }}
+                className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all cursor-pointer ${
+                  selectedClass === 'XI'
+                    ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <span>KELAS XI</span>
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedClass('XII');
+                  setSearchQuery('');
+                }}
+                className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all cursor-pointer ${
+                  selectedClass === 'XII'
+                    ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <span>KELAS XII</span>
+              </button>
+            </div>
+
             {/* Stats Summary Panel */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
               <div className="bg-slate-50 border border-slate-100 p-6 rounded-3xl flex items-center space-x-5">
@@ -671,7 +707,7 @@ const Students: React.FC = () => {
                   <span className="text-[10px] font-black uppercase tracking-widest text-blue-200">Kartu Kontrol Keuangan Siswa</span>
                 </div>
                 <h3 className="text-xl font-black leading-tight mt-1">{selectedStudent.nama}</h3>
-                <p className="text-xs text-slate-300 font-mono mt-1">NIS: {selectedStudent.nis} • Kelas XII</p>
+                <p className="text-xs text-slate-300 font-mono mt-1">NIS: {selectedStudent.nis} • Kelas {selectedClass}</p>
               </div>
 
               {/* Modal Content */}
