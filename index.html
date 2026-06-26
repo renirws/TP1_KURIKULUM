@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurikulum SMK TANJUNG PRIOK 1 | Sistem Informasi Akademik Terpadu</title>
-    <meta name="description" content="Pusat Informasi Kurikulum SMK TANJUNG PRIOK 1. Akses jadwal UKK, USBK, prakerin, dan berita pendidikan terbaru untuk siswa dan orang tua.">
-    <meta name="keywords" content="SMK Tanjung Priok 1, Kurikulum SMK, UKK 2026, USBK 2026, SPMB 2026, SMK Jakarta Utara, Pendidikan Vokasi">
+    <title>Sistem Informasi Kurikulum SMK TANJUNG PRIOK 1 | Portal Akademik & SPP Online</title>
+    <meta name="description" content="Pusat Informasi Kurikulum SMK TANJUNG PRIOK 1. Akses jadwal pelajaran, kalender akademik, bimbingan PKL, sertifikasi LSP, modul generator PPM, serta cek SPP & keuangan siswa secara mandiri dan real-time.">
+    <meta name="keywords" content="SMK Tanjung Priok 1, Kurikulum SMK, Cek SPP Online SMK Tanjung Priok 1, LSP SMK Tanjung Priok 1, Modul Generator PPM, UKK 2026, USBK 2026, SPMB 2026, SMK Jakarta Utara, Pendidikan Vokasi">
     <meta name="author" content="Tim Kurikulum SMK Tanjung Priok 1">
     <link rel="canonical" href="https://tp1kurikulum.my.id/" />
 
@@ -28,17 +28,59 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "School",
-      "name": "SMK TANJUNG PRIOK 1",
-      "url": "https://tp1kurikulum.my.id/",
-      "logo": "https://tp1kurikulum.my.id/logo.png",
-      "description": "Sekolah Menengah Kejuruan di Jakarta Utara dengan kurikulum industri terpadu.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Jakarta Utara",
-        "addressRegion": "DKI Jakarta",
-        "addressCountry": "ID"
-      }
+      "@graph": [
+        {
+          "@type": "School",
+          "@id": "https://tp1kurikulum.my.id/#school",
+          "name": "SMK TANJUNG PRIOK 1",
+          "url": "https://tp1kurikulum.my.id/",
+          "logo": "https://tp1kurikulum.my.id/logo.png",
+          "image": "https://tp1kurikulum.my.id/og-image.jpg",
+          "description": "Sekolah Menengah Kejuruan Pusat Keunggulan di Jakarta Utara dengan program keahlian Pemesinan Kapal, TKRO, DKV, dan Manajemen Logistik berstandar industri.",
+          "telephone": "+62-21-4301192",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jl. Mangga No.3, Lagoa, Koja",
+            "addressLocality": "Jakarta Utara",
+            "addressRegion": "DKI Jakarta",
+            "postalCode": "14270",
+            "addressCountry": "ID"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-6.115856",
+            "longitude": "106.903824"
+          },
+          "sameAs": [
+            "https://lspsmktanjungpriok1.netlify.app/",
+            "https://smktp01-lsp.netlify.app/",
+            "https://sites.google.com/view/modulgeneratesmktp1/moodul-generator",
+            "https://tesminatbakatsmktp01.netlify.app/"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-21-4301192",
+            "contactType": "customer service",
+            "areaServed": "ID",
+            "availableLanguage": ["id", "en"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://tp1kurikulum.my.id/#website",
+          "url": "https://tp1kurikulum.my.id/",
+          "name": "Sistem Informasi Kurikulum SMK TANJUNG PRIOK 1",
+          "description": "Portal Kurikulum & Sistem Informasi Keuangan Siswa Mandiri SMK Tanjung Priok 1.",
+          "publisher": {
+            "@id": "https://tp1kurikulum.my.id/#school"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://tp1kurikulum.my.id/siswa?q={search_term_string}#cek-spp",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
     }
     </script>
 

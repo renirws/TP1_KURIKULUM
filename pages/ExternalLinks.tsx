@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Globe, BookOpen, Award } from 'lucide-react';
+import { ExternalLink, Globe, BookOpen, Award, Sparkles } from 'lucide-react';
 
 const ExternalLinks: React.FC = () => {
   const links = [
@@ -35,6 +35,14 @@ const ExternalLinks: React.FC = () => {
       icon: <Award className="w-8 h-8" />,
       color: "from-emerald-500 to-teal-600",
       tag: "LSP"
+    },
+    {
+      title: "Modul Generator & Pembuatan PPM",
+      description: "Asisten cerdas berbasis web untuk membantu merumuskan, menyusun, dan menghasilkan Program Pengembangan Pembelajaran (PPM) serta Modul Ajar kurikulum secara otomatis, cepat, dan efisien.",
+      url: "https://sites.google.com/view/modulgeneratesmktp1/moodul-generator",
+      icon: <Sparkles className="w-8 h-8" />,
+      color: "from-violet-500 to-fuchsia-600",
+      tag: "Modul Generator"
     }
   ];
 
