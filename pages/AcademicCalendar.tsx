@@ -321,7 +321,7 @@ const AcademicCalendar: React.FC = () => {
           "offers": {
             "@type": "Offer",
             "name": "Pendaftaran Siswa Baru (PPDB)",
-            "url": "https://ppdb2025.smktanjungpriok1.sch.id"
+            "url": "https://smktanjungpriok1.sch.id/ppdb"
           }
         })}
       </script>

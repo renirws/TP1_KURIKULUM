@@ -63,7 +63,7 @@ const Home: React.FC = () => {
     },
     {
       question: "Bagaimana alur pendaftaran siswa baru (SPMB) tahun pelajaran 2026/2027?",
-      answer: "Pendaftaran dapat diakses secara online melalui portal resmi ppdb2025.smktanjungpriok1.sch.id. Calon siswa diwajibkan mengikuti rangkaian Tes Minat Bakat online di tautan resmi kami untuk penyesuaian profil kompetensi jurusan pilihan."
+      answer: "Pendaftaran dapat diakses secara online melalui portal resmi smktanjungpriok1.sch.id/ppdb. Calon siswa diwajibkan mengikuti rangkaian Tes Minat Bakat online di tautan resmi kami untuk penyesuaian profil kompetensi jurusan pilihan."
     }
   ];
 
@@ -249,7 +249,7 @@ const Home: React.FC = () => {
 
                 <div className="pt-4 border-t border-white/5 space-y-3">
                   <a 
-                    href="https://ppdb2025.smktanjungpriok1.sch.id" 
+                    href="https://smktanjungpriok1.sch.id/ppdb" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 py-3.5 rounded-xl font-black text-xs uppercase tracking-widest flex items-center justify-center space-x-2 transition cursor-pointer shadow-md"

@@ -32,13 +32,13 @@ const App: React.FC = () => {
               {[...Array(4)].map((_, i) => (
                 <React.Fragment key={i}>
                   <a 
-                    href="https://ppdb2025.smktanjungpriok1.sch.id" 
+                    href="https://smktanjungpriok1.sch.id/ppdb" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="font-black text-xs md:text-sm uppercase tracking-[0.15em] px-12 hover:text-blue-700 transition-colors flex items-center"
                   >
                     <span className="mr-3">🚩</span>
-                    SELEKSI PENERIMAAN MURID BARU (SPMB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: ppdb2025.smktanjungpriok1.sch.id
+                    SELEKSI PENERIMAAN MURID BARU (SPMB) TAHUN PELAJARAN 2026/2027 TELAH DIBUKA! DAFTAR SEKARANG DI: smktanjungpriok1.sch.id/ppdb
                     <span className="ml-3">🔥</span>
                   </a>
                   <a 
