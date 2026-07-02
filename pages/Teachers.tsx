@@ -5,6 +5,7 @@ const Teachers: React.FC = () => {
   const scheduleLink = "https://drive.google.com/file/d/1KHZ1hRPjJ0gW2JZTFyPhijMphjVFwirD/view?usp=drive_link";
   const adminToolLink = "https://s.id/ToolAjarGuru";
   const permissionFormLink = "https://forms.gle/FMQBg8EemZeRpwdT6";
+  const rakerLink = "https://s.id/RAKER_TP01";
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -72,6 +73,18 @@ const Teachers: React.FC = () => {
                       </svg>
                       <span>ADMINISTRASI GURU</span>
                     </a>
+
+                    <a 
+                      href={rakerLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-900/60 text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-blue-900 transition-all shadow-xl flex items-center space-x-4 transform hover:scale-105 active:scale-95 border-2 border-blue-300"
+                    >
+                      <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                      </svg>
+                      <span>RAKER GURU</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -123,6 +136,30 @@ const Teachers: React.FC = () => {
                 className="block w-full py-4 bg-blue-600 text-center text-white font-black rounded-2xl hover:bg-blue-500 transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95"
               >
                 ADMINISTRASI GURU
+              </a>
+            </div>
+
+            {/* RAKER Guru Card - NEW */}
+            <div className="bg-gradient-to-br from-blue-900 to-[#0f172a] p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-blue-400/40">
+              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform">
+                <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-blue-500/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-blue-300 mb-3 border border-blue-400/30">
+                <span>AGENDA RESMI</span>
+              </div>
+              <h3 className="text-2xl font-black mb-3">RAKER Guru TP01</h3>
+              <p className="text-blue-100/70 text-sm font-medium mb-6 leading-relaxed">
+                Akses dokumen, materi, pembagian tugas, dan hasil keputusan Rapat Kerja (RAKER) Guru SMK Tanjung Priok 1.
+              </p>
+              <a 
+                href={rakerLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 bg-blue-500 text-center text-white font-black rounded-2xl hover:bg-blue-400 transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-blue-700"
+              >
+                BUKA LINK RAKER
               </a>
             </div>
 
