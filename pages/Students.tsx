@@ -526,7 +526,7 @@ const Students: React.FC = () => {
                         <span>Informasi Kredensial Resmi:</span>
                       </div>
                       <p className="text-blue-700 leading-relaxed">
-                        Gunakan username sesuai tabel autorisasi yang terdaftar di sekolah (misal: <strong className="font-mono">Andri@Kval.com</strong>, <strong className="font-mono">RENI@Kval.com</strong>, <strong className="font-mono">ARUM@Kval.com</strong>, <strong className="font-mono">KHOLID@Kval.com</strong>, dsb) dengan password <strong className="font-mono">123456</strong>.
+                        Gunakan username sesuai tabel autorisasi yang terdaftar di sekolah (misal: <strong className="font-mono">Andri@Kval.com</strong>, <strong className="font-mono">RENI@Kval.com</strong>, <strong className="font-mono">ARUM@Kval.com</strong>, <strong className="font-mono">KHOLID@Kval.com</strong>, dsb).
                       </p>
                     </div>
                   </div>
