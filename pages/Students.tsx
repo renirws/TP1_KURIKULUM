@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, Info, HelpCircle, X } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 interface StudentData {
   no: number;
@@ -285,6 +286,12 @@ const Students: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
+      <SEO 
+        title="Cek SPP Online & Portal Siswa SMK TANJUNG PRIOK 1 | Jadwal Pelajaran"
+        description="Portal Siswa SMK Tanjung Priok 1 Jakarta Utara. Cek tagihan SPP online Kelas XI dan XII secara mandiri dan real-time dari database Google Sheets, unduh jadwal pelajaran KOSP terbaru, dan akses administrasi akademik."
+        keywords="Cek SPP Online SMK Tanjung Priok 1, Portal Siswa SMK Tanjung Priok 1, Pembayaran SPP SMK, Jadwal Pelajaran SMK Tanjung Priok 1, SPP Kelas XI XII, SMK Jakarta Utara"
+        canonical="https://tp1kurikulum.my.id/siswa"
+      />
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-[#0f172a]">Portal Siswa</h1>
         <div className="w-20 h-1.5 bg-[#3b82f6] mx-auto mt-4 mb-4"></div>

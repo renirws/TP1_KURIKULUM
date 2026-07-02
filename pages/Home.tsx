@@ -25,12 +25,22 @@ import {
   CheckCircle2,
   FileText,
   CreditCard,
-  MessageSquare
+  MessageSquare,
+  Search,
+  Star,
+  TrendingUp,
+  Shield,
+  Zap,
+  Check,
+  Globe,
+  Database
 } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const Home: React.FC = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeMajorTab, setActiveMajorTab] = useState<'tpk' | 'tkro' | 'dkv' | 'mlog'>('tpk');
+  const [quickSearch, setQuickSearch] = useState<string>('');
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -42,6 +52,27 @@ const Home: React.FC = () => {
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
+
+  // SEO-friendly Interactive Quick Navigation Shortcuts
+  const quickShortcuts = [
+    { title: "Cek SPP Online Kelas XI & XII", category: "Keuangan Siswa", icon: <CreditCard className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Pantau tunggakan SPP, dana pembangunan (PPDB), dan uang ujian akhir secara real-time dari database Google Sheets.", keywords: "spp keuangan bayar tunggakan administrasi kelas xi xii siswa murid tagihan ujian uas uts" },
+    { title: "Jadwal Pelajaran KOSP & JP", category: "Kurikulum Merdeka", icon: <BookOpen className="w-6 h-6 text-blue-600" />, link: "/kurikulum", desc: "Unduh struktur kurikulum, alokasi jam pelajaran (JP), dan jadwal pembelajaran aktif untuk semua kelas.", keywords: "jadwal pelajaran kosp kurikulum merdeka jam jp unduh dokumen guru jadwal aktif" },
+    { title: "LSP-P1 Lisensi BNSP", category: "Sertifikasi Profesi", icon: <ShieldCheck className="w-6 h-6 text-amber-600" />, link: "https://lspsmktanjungpriok1.netlify.app/", desc: "Uji kompetensi keahlian bersertifikat Garuda Emas BNSP untuk jaminan daya saing tinggi di industri.", keywords: "lsp bnsp sertifikasi profesi kompetensi garuda emas ujian lisensi nasional" },
+    { title: "Modul Generator PPM Guru", category: "Layanan Guru", icon: <FileText className="w-6 h-6 text-purple-600" />, link: "https://sites.google.com/view/modulgeneratesmktp1/moodul-generator", desc: "Akses dan generate modul ajar interaktif sesuai standar pemodelan pembelajaran bagi guru vokasi.", keywords: "modul generator ppm guru ajar mengajar administrasi perangkat mengajar rpp" },
+    { title: "Bimbingan & Jurnal PKL Prakerin", category: "Kemitraan Industri", icon: <Compass className="w-6 h-6 text-cyan-600" />, link: "/prakerin", desc: "Panduan penyusunan laporan, jadwal bimbingan, dan info magang di PT Dok Kodja Bahari & Astra.", keywords: "pkl prakerin magang industri dok kodja bahari astra jurnal laporan lisan bimbingan" },
+    { title: "Pendaftaran Siswa Baru (SPMB 2026)", category: "PPDB Online", icon: <GraduationCap className="w-6 h-6 text-red-600" />, link: "https://smktanjungpriok1.sch.id/ppdb", desc: "Daftar online sekarang di portal resmi dan ikuti rangkaian tes minat bakat calon murid baru.", keywords: "ppdb spmb daftar baru siswa 2026 tes minat bakat online masuk pendaftaran seleksi" },
+    { title: "Warta & Pengumuman UKK", category: "Berita Sekolah", icon: <Award className="w-6 h-6 text-indigo-600" />, link: "/warta", desc: "Jadwal pelaksanaan UKK Mandiri, ujian lisan, dan update kalender akademik terbaru tahun ini.", keywords: "warta berita pengumuman ukk ujian sekolah jadwal agenda kegiatan kalender libur" },
+    { title: "Portfolio Teaching Factory (PriokArt)", category: "Unit Produksi", icon: <Tv className="w-6 h-6 text-pink-600" />, link: "https://www.priokart.my.id", desc: "Eksplorasi karya desain grafis, fotografi industri, dan videografi komersial karya siswa DKV.", keywords: "priokart tefa teaching factory dkv multimedia desain grafis foto video produksi" }
+  ];
+
+  const filteredShortcuts = quickShortcuts.filter(item => 
+    quickSearch === '' || 
+    item.title.toLowerCase().includes(quickSearch.toLowerCase()) || 
+    item.desc.toLowerCase().includes(quickSearch.toLowerCase()) || 
+    item.keywords.toLowerCase().includes(quickSearch.toLowerCase()) ||
+    item.category.toLowerCase().includes(quickSearch.toLowerCase())
+  );
+
 
   // SEO-friendly FAQ Data to capture target search queries
   const faqData = [
@@ -121,6 +152,7 @@ const Home: React.FC = () => {
 
   return (
     <main className="overflow-x-hidden">
+      <SEO />
       {/* 1. Hero Section - Premium & SEO Optimized */}
       <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center bg-gradient-to-br from-[#070b19] via-[#0f172a] to-[#1e3a8a] text-white py-20 px-4 overflow-hidden">
         {/* Abstract vector backgrounds */}
@@ -318,6 +350,121 @@ const Home: React.FC = () => {
               <div className="text-lg font-black tracking-tight leading-none text-blue-600">Bimbingan PKL</div>
               <div className="text-[10px] uppercase tracking-widest font-black text-slate-400 mt-1.5">Panduan Praktik Kerja</div>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 2.5 SEO Interactive Quick Navigation & Finder (Pencarian Layanan Cepat) */}
+      <section className="py-16 bg-slate-50 border-y border-slate-200/80 relative overflow-hidden" id="eksplorasi-cepat">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-4 mb-10">
+            <div className="inline-flex items-center space-x-2 bg-blue-100/80 text-blue-800 px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase">
+              <Zap className="w-3.5 h-3.5 text-blue-600 fill-blue-600 animate-pulse" />
+              <span>Portal Akses & Layanan Digital Terpadu</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+              Cari Informasi, Layanan SPP & Dokumen Akademik
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto font-medium">
+              Ketik kata kunci (misal: <span className="font-bold text-blue-600">SPP</span>, <span className="font-bold text-blue-600">Jadwal</span>, <span className="font-bold text-blue-600">PKL</span>, <span className="font-bold text-blue-600">LSP BNSP</span>, atau <span className="font-bold text-blue-600">PPDB</span>) untuk menuju layanan yang Anda butuhkan secara instan.
+            </p>
+
+            {/* Quick Interactive Search Bar */}
+            <div className="relative max-w-xl mx-auto pt-2">
+              <div className="relative flex items-center">
+                <Search className="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" />
+                <input
+                  type="text"
+                  value={quickSearch}
+                  onChange={(e) => setQuickSearch(e.target.value)}
+                  placeholder="Ketik layanan yang dicari: SPP, Jadwal Pelajaran, BNSP, Modul..."
+                  className="w-full pl-12 pr-10 py-4 bg-white border-2 border-slate-200 rounded-2xl text-slate-800 placeholder-slate-400 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 shadow-sm transition-all"
+                />
+                {quickSearch && (
+                  <button 
+                    onClick={() => setQuickSearch('')}
+                    className="absolute right-4 text-xs font-bold text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition"
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Grid Cards of Shortcuts */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+            {filteredShortcuts.length > 0 ? (
+              filteredShortcuts.map((item, idx) => (
+                item.link.startsWith('http') ? (
+                  <a
+                    key={idx}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white hover:bg-gradient-to-br hover:from-blue-50/50 hover:to-indigo-50/50 p-6 rounded-3xl border border-slate-200/80 hover:border-blue-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="p-3 bg-slate-50 group-hover:bg-blue-500/10 rounded-2xl transition">
+                          {item.icon}
+                        </span>
+                        <span className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 bg-slate-100 text-slate-600 rounded-lg group-hover:bg-blue-100 group-hover:text-blue-800 transition">
+                          {item.category}
+                        </span>
+                      </div>
+                      <h3 className="font-black text-slate-900 text-base mb-2 group-hover:text-blue-600 transition flex items-center justify-between">
+                        <span>{item.title}</span>
+                        <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition text-blue-500 flex-shrink-0 ml-1" />
+                      </h3>
+                      <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
+                        {item.desc}
+                      </p>
+                    </div>
+                    <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-600">
+                      <span>Buka Layanan</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+                    </div>
+                  </a>
+                ) : (
+                  <Link
+                    key={idx}
+                    to={item.link}
+                    className="bg-white hover:bg-gradient-to-br hover:from-blue-50/50 hover:to-indigo-50/50 p-6 rounded-3xl border border-slate-200/80 hover:border-blue-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="p-3 bg-slate-50 group-hover:bg-blue-500/10 rounded-2xl transition">
+                          {item.icon}
+                        </span>
+                        <span className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 bg-slate-100 text-slate-600 rounded-lg group-hover:bg-blue-100 group-hover:text-blue-800 transition">
+                          {item.category}
+                        </span>
+                      </div>
+                      <h3 className="font-black text-slate-900 text-base mb-2 group-hover:text-blue-600 transition flex items-center justify-between">
+                        <span>{item.title}</span>
+                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition text-blue-500 flex-shrink-0 ml-1" />
+                      </h3>
+                      <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
+                        {item.desc}
+                      </p>
+                    </div>
+                    <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-600">
+                      <span>Akses Fitur</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+                    </div>
+                  </Link>
+                )
+              ))
+            ) : (
+              <div className="col-span-full bg-white p-12 rounded-3xl border border-slate-200 text-center space-y-3">
+                <Search className="w-10 h-10 text-slate-300 mx-auto" />
+                <h4 className="font-black text-slate-700 text-base">Layanan "{quickSearch}" Tidak Ditemukan</h4>
+                <p className="text-xs text-slate-500 max-w-md mx-auto">
+                  Cobalah gunakan kata kunci lain seperti <button onClick={() => setQuickSearch('SPP')} className="underline font-bold text-blue-600">SPP</button>, <button onClick={() => setQuickSearch('Jadwal')} className="underline font-bold text-blue-600">Jadwal</button>, atau <button onClick={() => setQuickSearch('BNSP')} className="underline font-bold text-blue-600">BNSP</button>.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

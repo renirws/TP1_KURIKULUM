@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { sheetsService } from '../services/googleSheetsService';
 import { ExamSchedule, Major } from '../types';
 import { BookOpen, Award, Calendar, Download, ChevronRight, Clock, Shield, Sparkles, AlertCircle, Anchor, Settings, Image as ImageIcon, Truck, Check } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const Curriculum: React.FC = () => {
   const [examSchedules, setExamSchedules] = useState<ExamSchedule[]>([]);
@@ -1530,6 +1531,12 @@ const Curriculum: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
+      <SEO 
+        title="Kurikulum Merdeka & Konsentrasi Keahlian SMK TANJUNG PRIOK 1 | TPK, TKRO, DKV, MLOG"
+        description="Struktur Kurikulum Operasional Sekolah (KOSP) SMK Tanjung Priok 1 Jakarta Utara. Alokasi jam pelajaran, modul ajar, dan spesialisasi kejuruan berstandar industri: Pemesinan Kapal, Otomotif TKRO Astra, Desain Komunikasi Visual (DKV), & Manajemen Logistik."
+        keywords="Kurikulum SMK Tanjung Priok 1, KOSP SMK, Struktur Kurikulum Merdeka SMK, Teknik Pemesinan Kapal, TKRO Otomotif Astra, DKV PriokArt, Manajemen Logistik, Modul Generator PPM Guru"
+        canonical="https://tp1kurikulum.my.id/kurikulum"
+      />
       <div className="mb-16 text-center">
         <span className="bg-blue-500 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block">Portal Kurikulum Resmi</span>
         <h1 className="text-4xl md:text-5xl font-black text-[#0f172a] mt-2">Program & Konsentrasi Keahlian</h1>

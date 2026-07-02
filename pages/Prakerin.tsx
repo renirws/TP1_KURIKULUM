@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { SEO } from '../components/SEO';
 
 const Prakerin: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,6 +29,12 @@ const Prakerin: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <SEO 
+        title="Bimbingan PKL & Jadwal Ujian Prakerin SMK TANJUNG PRIOK 1 | Magang Industri"
+        description="Informasi resmi bimbingan Praktik Kerja Lapangan (PKL) / Prakerin SMK Tanjung Priok 1 Jakarta Utara. Jadwal ujian lisan, panduan penyusunan laporan, dan kemitraan industri bersama PT Dok Kodja Bahari & Astra."
+        keywords="PKL SMK Tanjung Priok 1, Prakerin SMK Tanjung Priok 1, Magang SMK Jakarta Utara, Jadwal Ujian Prakerin SMK, Bimbingan Laporan PKL, Dok Kodja Bahari, Astra"
+        canonical="https://tp1kurikulum.my.id/prakerin"
+      />
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

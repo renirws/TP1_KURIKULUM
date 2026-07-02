@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { SEO } from '../components/SEO';
 
 const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
@@ -32,6 +33,12 @@ const News: React.FC = () => {
 
   return (
     <main className="min-h-screen bg-gray-50 py-12">
+      <SEO 
+        title="Warta Sekolah & Jadwal Ujian UKK/USBK 2026 | SMK TANJUNG PRIOK 1"
+        description="Berita dan pengumuman terbaru SMK Tanjung Priok 1 Jakarta Utara. Jadwal Ujian Kompetensi Keahlian (UKK), Ujian Sekolah Berbasis Komputer (USBK), ASAS Genap, serta kegiatan akademik sekolah."
+        keywords="Warta SMK Tanjung Priok 1, Berita SMK Tanjung Priok 1, Jadwal UKK 2026, USBK SMK 2026, ASAS Genap, Pengumuman Sekolah Jakarta Utara"
+        canonical="https://tp1kurikulum.my.id/warta"
+      />
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
