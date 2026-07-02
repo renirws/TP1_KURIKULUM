@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, Info, HelpCircle, X } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -16,7 +16,97 @@ interface StudentData {
   jumlah: string;
 }
 
+interface AuthorizedUser {
+  id: string;
+  password: string;
+  nama: string;
+}
+
+const AUTHORIZED_USERS: AuthorizedUser[] = [
+  { id: "Andri@Kval.com", password: "123456", nama: "H. Andri Susanto, ST" },
+  { id: "ARUM@Kval.com", password: "123456", nama: "ARUM DHAMAYANTI, SE" },
+  { id: "ELANG@Kval.com", password: "123456", nama: "ELANG WIDYA P. ST" },
+  { id: "RENI@Kval.com", password: "123456", nama: "RENI WIDIASTUTI , M.Kom" },
+  { id: "DANU@Kval.com", password: "123456", nama: "DANU WIBOWO S.Pd" },
+  { id: "KHOLID@Kval.com", password: "123456", nama: "KHOLID AFIFUDIN S.Pd" },
+  { id: "ANNIKE@Kval.com", password: "123456", nama: "ANNIKE K. ST" },
+  { id: "ANGGI@Kval.com", password: "123456", nama: "ANGGI ARINI W. S.Kom" },
+  { id: "KHAIRUDDIN@Kval.com", password: "123456", nama: "KHAIRUDDIN ARIF, ST" },
+  { id: "SILVANY@Kval.com", password: "123456", nama: "SILVANY,S.Pd" },
+  { id: "KUSNADI@Kval.com", password: "123456", nama: "KUSNADI ST" },
+  { id: "DEWI@Kval.com", password: "123456", nama: "DEWI FITRIANI SE" },
+  { id: "ISTI@Kval.com", password: "123456", nama: "ISTI NURFIDA, S.Pd" },
+  { id: "Azrichan@Kval.com", password: "123456", nama: "Azrichan S.Si" },
+  { id: "TRIANA@Kval.com", password: "123456", nama: "TRIANA SUSANA S.Pd" },
+  { id: "CITRA@Kval.com", password: "123456", nama: "CITRA INDRAWATI, S.Pd" },
+  { id: "HUSAIN@Kval.com", password: "123456", nama: "HUSAIN" },
+  { id: "JOJI@Kval.com", password: "123456", nama: "JOJI SETIONO, S.Pd" },
+  { id: "CHASIELDA@Kval.com", password: "123456", nama: "CHASIELDA ULUM AL DHIEN" },
+  { id: "ERNI@Kval.com", password: "123456", nama: "N. ERNI KUSTINI, S.Pdi" },
+  { id: "ABAS@Kval.com", password: "123456", nama: "ABAS BASUKI S.Pd" },
+  { id: "DANIEL@Kval.com", password: "123456", nama: "DANIEL SAARANI S.Ds" },
+  { id: "DIMAS@Kval.com", password: "123456", nama: "DIMAS ARIANTO SE" },
+  { id: "ARIF@Kval.com", password: "123456", nama: "M. ARIF. S.Kom" },
+  { id: "EVRI@Kval.com", password: "123456", nama: "EVRI SANDHA" },
+  { id: "FEBY@Kval.com", password: "123456", nama: "FEBY PURNAMA S.Pd" },
+  { id: "Tias@Kval.com", password: "123456", nama: "Tias Hadaning, S.Pd" },
+  { id: "AgusB@Kval.com", password: "123456", nama: "Agus Bachtiar,S.Pd" },
+  { id: "Danang@Kval.com", password: "123456", nama: "Danang Wisudhana,ST" }
+];
+
 const Students: React.FC = () => {
+  // Auth state for protecting SPP table
+  const [authUser, setAuthUser] = useState<{ id: string; nama: string } | null>(() => {
+    try {
+      const saved = localStorage.getItem('spp_auth_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
+  });
+  const [loginUsername, setLoginUsername] = useState<string>('');
+  const [loginPassword, setLoginPassword] = useState<string>('');
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError(null);
+    const trimmedUsername = loginUsername.trim().toLowerCase();
+    const trimmedPassword = loginPassword.trim();
+
+    if (!trimmedUsername || !trimmedPassword) {
+      setLoginError('Harap isi Username dan Password terlebih dahulu.');
+      return;
+    }
+
+    const matchedUser = AUTHORIZED_USERS.find(
+      u => u.id.toLowerCase() === trimmedUsername && u.password === trimmedPassword
+    );
+
+    if (matchedUser) {
+      const userData = { id: matchedUser.id, nama: matchedUser.nama };
+      setAuthUser(userData);
+      try {
+        localStorage.setItem('spp_auth_user', JSON.stringify(userData));
+      } catch (e) {
+        console.error('Failed to save auth state', e);
+      }
+      setLoginUsername('');
+      setLoginPassword('');
+    } else {
+      setLoginError('Username atau Password tidak valid! Silakan periksa kembali kredensial Anda dari daftar akses resmi sekolah.');
+    }
+  };
+
+  const handleLogout = () => {
+    setAuthUser(null);
+    try {
+      localStorage.removeItem('spp_auth_user');
+    } catch (e) {
+      console.error('Failed to clear auth state', e);
+    }
+  };
   const scheduleLinks = {
     x: "https://drive.google.com/file/d/1HA0K05tP7fm4onhAEuRB-uPzUMbVWVVr/view?usp=drive_link",
     xi: "https://drive.google.com/file/d/1BGsX3s93xihuyhL-6AaW7PilVz7H6T6y/view?usp=drive_link",
@@ -346,8 +436,136 @@ const Students: React.FC = () => {
           </div>
 
           <div className="p-8 md:p-12">
-            {/* Class Selection Toggle */}
-            <div className="flex bg-slate-100 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-200 mb-10 shadow-inner">
+            {!authUser ? (
+              <div className="max-w-xl mx-auto py-4">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 md:p-10 shadow-sm relative">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md shadow-blue-500/20">
+                    <Lock className="w-8 h-8" />
+                  </div>
+
+                  <div className="text-center mb-8">
+                    <span className="inline-flex items-center space-x-1 bg-amber-500/10 text-amber-700 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-3">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>Proteksi Privasi Siswa</span>
+                    </span>
+                    <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      Akses Terbatas: Tabel Data SPP
+                    </h3>
+                    <p className="text-slate-600 text-sm mt-2 font-medium leading-relaxed">
+                      Sesuai prosedur keamanan data keuangan, tabel rincian SPP Kelas XI &amp; XII hanya dapat ditampilkan setelah verifikasi wewenang. Silakan masukkan Username &amp; Password akun resmi Anda.
+                    </p>
+                  </div>
+
+                  {loginError && (
+                    <div className="bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-2xl mb-6 flex items-start space-x-3 text-xs md:text-sm">
+                      <AlertTriangle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-bold block mb-0.5">Gagal Masuk</span>
+                        <span>{loginError}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <form onSubmit={handleLogin} className="space-y-5">
+                    <div>
+                      <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
+                        Username / ID Akun (Email)
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
+                          <User className="w-5 h-5" />
+                        </div>
+                        <input
+                          type="text"
+                          value={loginUsername}
+                          onChange={(e) => setLoginUsername(e.target.value)}
+                          placeholder="Contoh: RENI@Kval.com / Andri@Kval.com"
+                          className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-300 rounded-2xl text-slate-900 font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">
+                        Password
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
+                          <Key className="w-5 h-5" />
+                        </div>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          value={loginPassword}
+                          onChange={(e) => setLoginPassword(e.target.value)}
+                          placeholder="Masukkan password akun Anda..."
+                          className="w-full pl-12 pr-12 py-3.5 bg-white border border-slate-300 rounded-2xl text-slate-900 font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute inset-y-0 right-4 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer"
+                        >
+                          {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                        </button>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-black py-4 rounded-2xl shadow-lg shadow-blue-500/25 transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer text-sm tracking-wide uppercase"
+                    >
+                      <span>Masuk &amp; Tampilkan Tabel Data</span>
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </form>
+
+                  <div className="mt-8 pt-6 border-t border-slate-200/80">
+                    <div className="bg-blue-50/70 border border-blue-100 rounded-2xl p-4 text-xs text-blue-900 space-y-1">
+                      <div className="font-extrabold flex items-center space-x-1 text-blue-800">
+                        <Info className="w-4 h-4 flex-shrink-0" />
+                        <span>Informasi Kredensial Resmi:</span>
+                      </div>
+                      <p className="text-blue-700 leading-relaxed">
+                        Gunakan username sesuai tabel autorisasi yang terdaftar di sekolah (misal: <strong className="font-mono">Andri@Kval.com</strong>, <strong className="font-mono">RENI@Kval.com</strong>, <strong className="font-mono">ARUM@Kval.com</strong>, <strong className="font-mono">KHOLID@Kval.com</strong>, dsb) dengan password <strong className="font-mono">123456</strong>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                {/* Welcome Banner when logged in */}
+                <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white p-6 md:p-8 rounded-3xl mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl border border-blue-800/40 relative overflow-hidden">
+                  <div className="flex items-center space-x-5 relative z-10">
+                    <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center border border-blue-400/30 text-blue-300 shadow-inner flex-shrink-0">
+                      <ShieldCheck className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <div className="flex items-center space-x-2 mb-1">
+                        <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-300 px-3 py-0.5 rounded-full border border-emerald-500/30">
+                          Akses Terverifikasi
+                        </span>
+                        <span className="text-xs text-blue-300 font-mono">({authUser.id})</span>
+                      </div>
+                      <h4 className="text-xl font-black text-white tracking-tight">
+                        Selamat Datang, {authUser.nama}
+                      </h4>
+                      <p className="text-xs text-slate-300 mt-0.5 font-medium">
+                        Status Wewenang: Wali Kelas / Guru / Staf Keuangan — Akses Penuh Database SPP
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center space-x-2 bg-rose-600 hover:bg-rose-700 text-white px-5 py-3 rounded-2xl text-xs font-extrabold tracking-wider uppercase transition shadow-lg shadow-rose-600/20 cursor-pointer flex-shrink-0 self-stretch md:self-auto justify-center"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Keluar / Lock</span>
+                  </button>
+                </div>
+
+                {/* Class Selection Toggle */}
+                <div className="flex bg-slate-100 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-200 mb-10 shadow-inner">
               <button
                 onClick={() => {
                   setSelectedClass('XI');
@@ -584,6 +802,8 @@ const Students: React.FC = () => {
                   Menampilkan {filteredStudents.length} dari {students.length} total asesi siswa.
                 </div>
               </div>
+            )}
+              </>
             )}
           </div>
         </div>
