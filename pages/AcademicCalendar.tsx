@@ -68,6 +68,13 @@ const AcademicCalendar: React.FC = () => {
       url: 'https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link'
     },
     { 
+      name: 'SK Mengajar Guru SMK Tanjung Priok 1 TA 2026/2027', 
+      type: 'Folder Google Drive', 
+      size: 'Multi-Files', 
+      icon: <Award className="w-6 h-6 text-purple-600" />,
+      url: 'https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link'
+    },
+    { 
       name: 'Format Pembelajaran Jarak Jauh (PJJ) & Blended Learning', 
       type: 'DOCX', 
       size: '2.5 MB', 

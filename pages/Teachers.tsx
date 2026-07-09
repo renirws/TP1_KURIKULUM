@@ -172,6 +172,7 @@ const Teachers: React.FC = () => {
   const adminToolLink = "https://s.id/ToolAjarGuru";
   const permissionFormLink = "https://forms.gle/FMQBg8EemZeRpwdT6";
   const rakerLink = "https://s.id/RAKER_TP01";
+  const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
 
   // States for Teacher Schedule Slideshow
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
@@ -470,6 +471,28 @@ const Teachers: React.FC = () => {
 
           {/* Sidebar Cards */}
           <div className="space-y-8">
+            {/* SK Mengajar Card */}
+            <div className="bg-gradient-to-br from-purple-900 to-indigo-950 p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-purple-500/30">
+              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform">
+                <Award className="w-32 h-32 text-purple-400" />
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-purple-500/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-purple-300 mb-3 border border-purple-400/30">
+                <span>DOKUMEN UTAMA</span>
+              </div>
+              <h3 className="text-2xl font-black mb-3">SK Mengajar TA 2026/2027</h3>
+              <p className="text-purple-100/70 text-sm font-medium mb-6 leading-relaxed">
+                Unduh Surat Keputusan (SK) Mengajar resmi untuk kelengkapan administrasi, pemberkasan, dan sertifikasi pendidik tahun pelajaran 2026/2027.
+              </p>
+              <a 
+                href={skMengajarLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 bg-purple-600 text-center text-white font-black rounded-2xl hover:bg-purple-500 transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-purple-800"
+              >
+                UNDUH SK MENGAJAR
+              </a>
+            </div>
+
             {/* Tool Ajar Guru Card */}
             <div className="bg-[#0f172a] p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-blue-500/30">
               <div className="absolute bottom-0 right-0 p-4 opacity-5 transform group-hover:-rotate-12 transition-transform">
