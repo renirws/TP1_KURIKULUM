@@ -493,7 +493,7 @@ const AcademicCalendar: React.FC = () => {
                   <p className="text-[10px] text-indigo-200 font-bold uppercase tracking-wider">{month.year}</p>
                 </div>
                 <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center font-mono text-xs font-bold">
-                  {(mIdx + 1 + (selectedSemester === 'GENAP' ? 6 : 0)).toString().padStart(2, '0')}
+                  {(selectedSemester === 'GANJIL' ? mIdx + 7 : mIdx + 1).toString().padStart(2, '0')}
                 </div>
               </div>
 
