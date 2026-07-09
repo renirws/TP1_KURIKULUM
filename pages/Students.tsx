@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -115,6 +115,10 @@ const Students: React.FC = () => {
   
   // States for GSheet dynamic search
   const [selectedClass, setSelectedClass] = useState<'XI' | 'XII'>('XII');
+  
+  // States for Schedule Slideshow
+  const [activeScheduleIndex, setActiveScheduleIndex] = useState<number>(0);
+  const [slideDirection, setSlideDirection] = useState<number>(1);
   const [students, setStudents] = useState<StudentData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -408,22 +412,125 @@ const Students: React.FC = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <ScheduleCard 
-                kelas="Kelas X" 
-                description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas X Tahun Ajaran 2026/2027." 
-                link={scheduleLinks.x} 
-              />
-              <ScheduleCard 
-                kelas="Kelas XI" 
-                description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XI Tahun Ajaran 2026/2027." 
-                link={scheduleLinks.xi} 
-              />
-              <ScheduleCard 
-                kelas="Kelas XII" 
-                description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XII Tahun Ajaran 2026/2027." 
-                link={scheduleLinks.xii} 
-              />
+            {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
+            <div className="flex bg-slate-900/50 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-700/30 mb-10 shadow-inner relative z-20">
+              {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
+                <button
+                  key={label}
+                  onClick={() => {
+                    setSlideDirection(idx > activeScheduleIndex ? 1 : -1);
+                    setActiveScheduleIndex(idx);
+                  }}
+                  className={`flex-1 py-3 text-xs md:text-sm font-black rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                    activeScheduleIndex === idx
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            {/* Interactive Slideshow viewport */}
+            <div className="relative max-w-2xl mx-auto px-4 py-2">
+              {/* Desktop Arrow Controls */}
+              <button
+                onClick={() => {
+                  const prevIdx = (activeScheduleIndex - 1 + 3) % 3;
+                  setSlideDirection(-1);
+                  setActiveScheduleIndex(prevIdx);
+                }}
+                className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 text-white hover:text-blue-400 rounded-full flex items-center justify-center transition border border-white/10 hover:border-blue-400/30 backdrop-blur-sm cursor-pointer shadow-lg group"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
+              </button>
+
+              <button
+                onClick={() => {
+                  const nextIdx = (activeScheduleIndex + 1) % 3;
+                  setSlideDirection(1);
+                  setActiveScheduleIndex(nextIdx);
+                }}
+                className="absolute -right-4 md:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 text-white hover:text-blue-400 rounded-full flex items-center justify-center transition border border-white/10 hover:border-blue-400/30 backdrop-blur-sm cursor-pointer shadow-lg group"
+                aria-label="Next Slide"
+              >
+                <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
+              </button>
+
+              {/* Slide Transition Container */}
+              <div className="overflow-hidden p-2 rounded-[2.5rem]">
+                <AnimatePresence mode="wait" initial={false} custom={slideDirection}>
+                  <motion.div
+                    key={activeScheduleIndex}
+                    custom={slideDirection}
+                    variants={{
+                      enter: (dir: number) => ({
+                        x: dir > 0 ? 150 : -150,
+                        opacity: 0,
+                        scale: 0.95
+                      }),
+                      center: {
+                        x: 0,
+                        opacity: 1,
+                        scale: 1
+                      },
+                      exit: (dir: number) => ({
+                        x: dir < 0 ? 150 : -150,
+                        opacity: 0,
+                        scale: 0.95
+                      })
+                    }}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="w-full"
+                  >
+                    {activeScheduleIndex === 0 && (
+                      <ScheduleCard 
+                        kelas="Kelas X" 
+                        description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas X Tahun Ajaran 2026/2027." 
+                        link={scheduleLinks.x} 
+                      />
+                    )}
+                    {activeScheduleIndex === 1 && (
+                      <ScheduleCard 
+                        kelas="Kelas XI" 
+                        description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XI Tahun Ajaran 2026/2027." 
+                        link={scheduleLinks.xi} 
+                      />
+                    )}
+                    {activeScheduleIndex === 2 && (
+                      <ScheduleCard 
+                        kelas="Kelas XII" 
+                        description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XII Tahun Ajaran 2026/2027." 
+                        link={scheduleLinks.xii} 
+                      />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Progress Dots Indicators */}
+              <div className="flex justify-center space-x-2.5 mt-8 z-10 relative">
+                {[0, 1, 2].map((idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setSlideDirection(idx > activeScheduleIndex ? 1 : -1);
+                      setActiveScheduleIndex(idx);
+                    }}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeScheduleIndex === idx 
+                        ? 'w-8 bg-blue-500' 
+                        : 'w-2.5 bg-slate-600 hover:bg-slate-500'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
