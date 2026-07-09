@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -108,9 +108,9 @@ const Students: React.FC = () => {
     }
   };
   const scheduleLinks = {
-    x: "https://drive.google.com/file/d/1HA0K05tP7fm4onhAEuRB-uPzUMbVWVVr/view?usp=drive_link",
-    xi: "https://drive.google.com/file/d/1BGsX3s93xihuyhL-6AaW7PilVz7H6T6y/view?usp=drive_link",
-    xii: "https://drive.google.com/file/d/1huNhbHXZ2t_0GwDG3Dc0q7PQLWb6250A/view?usp=drive_link"
+    x: "https://drive.google.com/drive/folders/1gzdpZi8M3eKUJii83yJ66My3Kpv70weh?usp=sharing",
+    xi: "https://drive.google.com/drive/folders/1GnU-z4b1ewqco5PAqIp655z2xAbhE7dQ?usp=drive_link",
+    xii: "https://drive.google.com/drive/folders/1vptz9TwsOxxjrxWmZRHl_ayNxw8VyK3X?usp=drive_link"
   };
   
   // States for GSheet dynamic search
@@ -398,18 +398,32 @@ const Students: React.FC = () => {
           </div>
           
           <div className="relative z-10">
-            <div className="text-center md:text-left mb-8">
-              <span className="bg-[#3b82f6] text-white px-4 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block">Update Terkini</span>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Jadwal Mata Pelajaran</h2>
-              <p className="text-blue-100/80 font-medium text-lg leading-relaxed max-w-2xl">
-                Unduh jadwal kegiatan belajar mengajar terbaru Tahun Ajaran 2025/2026 sesuai dengan jenjang kelas Anda.
+            <div className="text-center md:text-left mb-10">
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase mb-4 inline-block shadow-sm">
+                Tahun Ajaran 2026/2027
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Jadwal Mata Pelajaran</h2>
+              <p className="text-blue-100/80 font-medium text-base md:text-lg leading-relaxed max-w-2xl">
+                Akses folder Google Drive resmi sekolah yang berisi seluruh jadwal lengkap kegiatan belajar mengajar (KBM) terbaru sesuai tingkatan kelas Anda.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <ScheduleDownloadButton label="KELAS X" link={scheduleLinks.x} />
-              <ScheduleDownloadButton label="KELAS XI" link={scheduleLinks.xi} />
-              <ScheduleDownloadButton label="KELAS XII" link={scheduleLinks.xii} />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <ScheduleCard 
+                kelas="Kelas X" 
+                description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas X Tahun Ajaran 2026/2027." 
+                link={scheduleLinks.x} 
+              />
+              <ScheduleCard 
+                kelas="Kelas XI" 
+                description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XI Tahun Ajaran 2026/2027." 
+                link={scheduleLinks.xi} 
+              />
+              <ScheduleCard 
+                kelas="Kelas XII" 
+                description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XII Tahun Ajaran 2026/2027." 
+                link={scheduleLinks.xii} 
+              />
             </div>
           </div>
         </div>
@@ -959,18 +973,45 @@ const Students: React.FC = () => {
   );
 };
 
-const ScheduleDownloadButton: React.FC<{ label: string, link: string }> = ({ label, link }) => (
-  <a 
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="bg-white text-[#0f172a] px-6 py-5 rounded-2xl font-black text-lg hover:bg-blue-50 transition-all shadow-xl flex items-center justify-center space-x-3 transform hover:scale-105 active:scale-95 border-b-4 border-blue-500"
+const ScheduleCard: React.FC<{ 
+  kelas: string; 
+  description: string; 
+  link: string; 
+}> = ({ kelas, description, link }) => (
+  <motion.div 
+    whileHover={{ y: -8, scale: 1.02 }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-slate-100 shadow-xl flex flex-col justify-between h-full relative group hover:border-blue-300 transition-all duration-300"
   >
-    <svg className="w-6 h-6 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-    </svg>
-    <span>{label}</span>
-  </a>
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+          <Calendar className="w-6 h-6" />
+        </div>
+        <span className="text-[10px] font-black uppercase tracking-wider text-blue-700 bg-blue-50/80 px-3.5 py-1.5 rounded-full border border-blue-100/50">
+          TA 2026/2027
+        </span>
+      </div>
+      
+      <h3 className="text-2xl font-black text-slate-900 tracking-tight mb-3">
+        {kelas}
+      </h3>
+      <p className="text-slate-500 text-sm font-semibold leading-relaxed mb-8">
+        {description}
+      </p>
+    </div>
+
+    <a 
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-full bg-slate-900 hover:bg-blue-600 text-white font-black py-4 px-5 rounded-2xl flex items-center justify-center space-x-2.5 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-md hover:shadow-lg hover:shadow-blue-500/10 group-hover:translate-y-[-2px]"
+    >
+      <FolderOpen className="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" />
+      <span>Buka Folder Jadwal</span>
+      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+    </a>
+  </motion.div>
 );
 
 export default Students;
