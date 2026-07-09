@@ -28,7 +28,7 @@ interface ScheduleImage {
   title: string;
 }
 
-const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII', ScheduleImage[]> = {
+const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'MASTER', ScheduleImage[]> = {
   X: [
     {
       originalUrl: "https://drive.google.com/file/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ/view?usp=drive_link",
@@ -98,6 +98,13 @@ const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII', ScheduleImage[]> = {
       originalUrl: "https://drive.google.com/file/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy/view?usp=drive_link",
       directUrl: "https://lh3.googleusercontent.com/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy",
       title: "Halaman 4 • Jadwal KBM Kelas XII"
+    }
+  ],
+  MASTER: [
+    {
+      originalUrl: "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU",
+      title: "Jadwal KBM Utama TA 2026/2027"
     }
   ]
 };
@@ -501,8 +508,8 @@ const Students: React.FC = () => {
             </div>
             
             {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
-            <div className="flex bg-slate-900/50 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20">
-              {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
+            <div className="flex bg-slate-900/50 p-1.5 rounded-[2rem] max-w-xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20">
+              {['Kelas X', 'Kelas XI', 'Kelas XII', 'Jadwal KBM'].map((label, idx) => (
                 <button
                   key={label}
                   onClick={() => handleClassChange(idx)}
@@ -519,7 +526,7 @@ const Students: React.FC = () => {
 
             {/* Interactive Slideshow viewport for Schedule Images */}
             {(() => {
-              const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
+              const classKeys: ('X' | 'XI' | 'XII' | 'MASTER')[] = ['X', 'XI', 'XII', 'MASTER'];
               const activeClassKey = classKeys[activeScheduleIndex];
               const activeImages = SCHEDULE_IMAGES[activeClassKey];
               const totalImages = activeImages.length;
@@ -633,18 +640,18 @@ const Students: React.FC = () => {
                           Akses Dokumen Utama
                         </span>
                         <span className="text-sm font-black text-slate-800">
-                          Folder Drive Jadwal KBM {activeClassKey} TA 2026/2027
+                          {activeClassKey === 'MASTER' ? 'Berkas Dokumen Jadwal KBM Master' : `Folder Drive Jadwal KBM ${activeClassKey}`} TA 2026/2027
                         </span>
                       </div>
                       
                       <a
-                        href={activeScheduleIndex === 0 ? scheduleLinks.x : activeScheduleIndex === 1 ? scheduleLinks.xi : scheduleLinks.xii}
+                        href={activeScheduleIndex === 0 ? scheduleLinks.x : activeScheduleIndex === 1 ? scheduleLinks.xi : activeScheduleIndex === 2 ? scheduleLinks.xii : "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-slate-900 hover:bg-blue-600 text-white font-black py-3.5 px-5 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-sm hover:shadow-md"
                       >
                         <FolderOpen className="w-4 h-4 text-blue-400" />
-                        <span>Buka Folder Drive Utama</span>
+                        <span>{activeClassKey === 'MASTER' ? 'Buka Berkas Google Drive' : 'Buka Folder Drive Utama'}</span>
                         <ExternalLink className="w-3.5 h-3.5 opacity-60" />
                       </a>
                     </div>
@@ -652,7 +659,7 @@ const Students: React.FC = () => {
 
                   {/* Dot Indicators for Outer Class Navigation */}
                   <div className="flex justify-center space-x-3 mt-8">
-                    {['Kelas X', 'Kelas XI', 'Kelas XII'].map((cl, idx) => (
+                    {['Kelas X', 'Kelas XI', 'Kelas XII', 'Jadwal KBM'].map((cl, idx) => (
                       <button
                         key={idx}
                         onClick={() => handleClassChange(idx)}

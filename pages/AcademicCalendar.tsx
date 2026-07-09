@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Calendar as CalendarIcon, 
   Download, 
@@ -19,7 +20,10 @@ import {
   TrendingUp,
   Map,
   Award,
-  BookMarked
+  BookMarked,
+  X,
+  ZoomIn,
+  ExternalLink
 } from 'lucide-react';
 
 // Type definitions for calendar items
@@ -42,6 +46,7 @@ const AcademicCalendar: React.FC = () => {
   const [selectedSemester, setSelectedSemester] = useState<'GANJIL' | 'GENAP'>('GANJIL');
   const [activeFilter, setActiveFilter] = useState<CategoryType | 'ALL'>('ALL');
   const [hoveredDayInfo, setHoveredDayInfo] = useState<{ month: string; date: number; label: string; type: string } | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
 
   const teacherDriveLink = "https://drive.google.com/drive/folders/1HxQQYr6xHylifV_ry07JH1vM3Bw2m5Bk?usp=drive_link";
   const usPrakLink = "https://s.id/UsPrak25-26";
@@ -54,6 +59,13 @@ const AcademicCalendar: React.FC = () => {
       size: '1.4 MB', 
       icon: <CalendarIcon className="w-6 h-6 text-indigo-600" />,
       url: 'https://drive.google.com/file/d/1uFnH7dkIHS6-JWC7H3Q7dHd5V93wqAJ2/view?usp=drive_link'
+    },
+    { 
+      name: 'Jadwal KBM SMK Tanjung Priok 1 TA 2026/2027', 
+      type: 'Gambar Utama', 
+      size: '1.8 MB', 
+      icon: <FileText className="w-6 h-6 text-orange-600" />,
+      url: 'https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link'
     },
     { 
       name: 'Format Pembelajaran Jarak Jauh (PJJ) & Blended Learning', 
@@ -627,6 +639,96 @@ const AcademicCalendar: React.FC = () => {
           </div>
         </div>
 
+        {/* Jadwal KBM Master Section - Premium Interactive Showcase */}
+        <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-xl border border-slate-100 mb-16 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+          
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10">
+            {/* Text description on Left */}
+            <div className="flex-1 space-y-6">
+              <span className="inline-flex items-center space-x-2 bg-amber-100 text-amber-800 border border-amber-200/50 px-4 py-1.5 rounded-full text-[10px] font-black tracking-wider uppercase shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                <span>Dokumen Akademik Utama</span>
+              </span>
+              
+              <div className="space-y-3">
+                <h3 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
+                  Jadwal Kegiatan Belajar Mengajar (KBM) <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">
+                    SMK Tanjung Priok 1 TA 2026/2027
+                  </span>
+                </h3>
+                <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-semibold">
+                  Berikut merupakan bagan matriks jadwal Kegiatan Belajar Mengajar (KBM) resmi yang berlaku di SMK Tanjung Priok 1 Jakarta Utara untuk Tahun Pelajaran 2026/2027. Bagan ini memetakan seluruh alokasi jam pelajaran, perpindahan ruang kelas (moving class), serta jadwal mengajar efektif untuk seluruh mata pelajaran umum, kejuruan, koding, dan muatan lokal.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-2">
+                <div className="flex items-start space-x-3 text-xs text-slate-500 font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                  <span><strong>Transparansi Akademik:</strong> Memudahkan siswa, guru, dan orang tua memantau jadwal harian secara terintegrasi.</span>
+                </div>
+                <div className="flex items-start space-x-3 text-xs text-slate-500 font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                  <span><strong>Responsif & Tajam:</strong> Gambar jadwal KBM dapat diperbesar langsung lewat fitur lighbox resolusi tinggi.</span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                <button
+                  onClick={() => setLightboxImage({ 
+                    url: "https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU", 
+                    title: "Jadwal KBM SMK Tanjung Priok 1 TA 2026/2027" 
+                  })}
+                  className="bg-[#0f172a] hover:bg-amber-600 text-white font-black py-4 px-6 rounded-2xl text-xs uppercase tracking-widest transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center space-x-2 shadow-md cursor-pointer"
+                >
+                  <ZoomIn className="w-4.5 h-4.5" />
+                  <span>Perbesar Jadwal</span>
+                </button>
+                
+                <a
+                  href="https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-black py-4 px-6 rounded-2xl text-xs uppercase tracking-widest transition-all duration-300 flex items-center space-x-2 border border-slate-200 cursor-pointer"
+                >
+                  <ExternalLink className="w-4.5 h-4.5 text-slate-600" />
+                  <span>Buka di Google Drive</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Interactive Image Box on Right */}
+            <div className="w-full lg:w-[450px] shrink-0">
+              <div 
+                className="bg-slate-50 rounded-[2rem] p-4 border border-slate-100 shadow-lg relative group/stage overflow-hidden cursor-zoom-in"
+                onClick={() => setLightboxImage({ 
+                  url: "https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU", 
+                  title: "Jadwal KBM SMK Tanjung Priok 1 TA 2026/2027" 
+                })}
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 flex items-center justify-center">
+                  <img 
+                    src="https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU" 
+                    alt="Jadwal KBM SMK Tanjung Priok 1 TA 2026/2027"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-contain transition-all duration-500 group-hover/stage:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  {/* Overlay Dark */}
+                  <div className="absolute inset-0 bg-slate-950/0 group-hover/stage:bg-slate-950/20 transition-all duration-300" />
+                  
+                  {/* Floating badge */}
+                  <div className="absolute bottom-4 right-4 bg-slate-950/80 text-white px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest backdrop-blur-md flex items-center space-x-1.5 shadow-md">
+                    <ZoomIn className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Klik Untuk Memperbesar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Double-Panel: Download and Upload Portal */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           
@@ -861,6 +963,81 @@ const AcademicCalendar: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Lightbox Modal for KBM/Calendar Schedule */}
+        <AnimatePresence>
+          {lightboxImage && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setLightboxImage(null)}
+                className="absolute inset-0 bg-slate-950/95 backdrop-blur-md"
+              />
+
+              {/* Modal Box */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-slate-900 rounded-[2.5rem] overflow-hidden max-w-5xl w-full max-h-[90vh] flex flex-col border border-slate-800 shadow-2xl z-10"
+              >
+                {/* Header */}
+                <div className="px-6 py-4 border-b border-slate-800/80 flex justify-between items-center bg-slate-950/40">
+                  <div className="text-left">
+                    <h4 className="text-white font-black text-sm uppercase tracking-wider">
+                      {lightboxImage.title}
+                    </h4>
+                    <p className="text-xs text-slate-400 font-medium">Tahun Ajaran 2026/2027 • SMK Tanjung Priok 1</p>
+                  </div>
+                  <button
+                    onClick={() => setLightboxImage(null)}
+                    className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+                    title="Tutup"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Image Stage */}
+                <div className="flex-1 overflow-auto bg-slate-950 p-6 flex items-center justify-center min-h-[300px]">
+                  <img
+                    src={lightboxImage.url}
+                    alt={lightboxImage.title}
+                    referrerPolicy="no-referrer"
+                    className="max-w-full max-h-[70vh] object-contain"
+                  />
+                </div>
+
+                {/* Footer Actions */}
+                <div className="px-6 py-4 border-t border-slate-800/80 bg-slate-950/40 flex flex-wrap gap-4 items-center justify-between">
+                  <p className="text-xs text-slate-400 font-medium">
+                    Sistem Penyelarasan Kalender Akademik Resmi • Hubungi Tata Usaha Sekolah bila terdapat perbedaan data.
+                  </p>
+                  <div className="flex items-center space-x-3">
+                    <a
+                      href={lightboxImage.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-5 rounded-xl text-xs uppercase tracking-wider flex items-center space-x-2 transition cursor-pointer"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Buka Tab Baru</span>
+                    </a>
+                    <button
+                      onClick={() => setLightboxImage(null)}
+                      className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-black py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition cursor-pointer"
+                    >
+                      Tutup
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>
