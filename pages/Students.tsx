@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -21,6 +21,86 @@ interface AuthorizedUser {
   password: string;
   nama: string;
 }
+
+interface ScheduleImage {
+  originalUrl: string;
+  directUrl: string;
+  title: string;
+}
+
+const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII', ScheduleImage[]> = {
+  X: [
+    {
+      originalUrl: "https://drive.google.com/file/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ",
+      title: "Halaman 1 • Jadwal KBM Kelas X"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1rnduZL9sr7u1EaV5zBEUL5ffgnHyJfhJ/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1rnduZL9sr7u1EaV5zBEUL5ffgnHyJfhJ",
+      title: "Halaman 2 • Jadwal KBM Kelas X"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/12MxWLhNqXZA_DVndRfibwGSXvdyxF9K2/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/12MxWLhNqXZA_DVndRfibwGSXvdyxF9K2",
+      title: "Halaman 3 • Jadwal KBM Kelas X"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1sv5PLyebS6Aalb4sssoU9Eu76S4KxBhI/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1sv5PLyebS6Aalb4sssoU9Eu76S4KxBhI",
+      title: "Halaman 4 • Jadwal KBM Kelas X"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1zxZLVy6k8ZAtYTdCdM4N9JMAas-tLWhZ/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1zxZLVy6k8ZAtYTdCdM4N9JMAas-tLWhZ",
+      title: "Halaman 5 • Jadwal KBM Kelas X"
+    }
+  ],
+  XI: [
+    {
+      originalUrl: "https://drive.google.com/file/d/13VrgMS65Nm3iEXWi_dlN6rxjnn7rbTOU/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/13VrgMS65Nm3iEXWi_dlN6rxjnn7rbTOU",
+      title: "Halaman 1 • Jadwal KBM Kelas XI"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1kIqAB_WWz0VUbOpxhowHIfNiW75CZBhg/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1kIqAB_WWz0VUbOpxhowHIfNiW75CZBhg",
+      title: "Halaman 2 • Jadwal KBM Kelas XI"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1pKHe78yDLIsa_pAda7_iRDsNYn2_Zlwv/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1pKHe78yDLIsa_pAda7_iRDsNYn2_Zlwv",
+      title: "Halaman 3 • Jadwal KBM Kelas XI"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1ddlnimSnF0HOjkt62CAwSflClMc1gslD/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1ddlnimSnF0HOjkt62CAwSflClMc1gslD",
+      title: "Halaman 4 • Jadwal KBM Kelas XI"
+    }
+  ],
+  XII: [
+    {
+      originalUrl: "https://drive.google.com/file/d/1iFA39x_n2R0H11n9h0kWK-ih1ia5jB6t/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1iFA39x_n2R0H11n9h0kWK-ih1ia5jB6t",
+      title: "Halaman 1 • Jadwal KBM Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/18PnY9oahXQh6pJzCIg05tEYij9cdEOpd/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/18PnY9oahXQh6pJzCIg05tEYij9cdEOpd",
+      title: "Halaman 2 • Jadwal KBM Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1K0ViEwC9ueV5wUoLuX9gvdrpUFQ4i320/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1K0ViEwC9ueV5wUoLuX9gvdrpUFQ4i320",
+      title: "Halaman 3 • Jadwal KBM Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy",
+      title: "Halaman 4 • Jadwal KBM Kelas XII"
+    }
+  ]
+};
 
 const AUTHORIZED_USERS: AuthorizedUser[] = [
   { id: "Andri@Kval.com", password: "123456", nama: "H. Andri Susanto, ST" },
@@ -119,6 +199,8 @@ const Students: React.FC = () => {
   // States for Schedule Slideshow
   const [activeScheduleIndex, setActiveScheduleIndex] = useState<number>(0);
   const [slideDirection, setSlideDirection] = useState<number>(1);
+  const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+  const [lightboxImage, setLightboxImage] = useState<ScheduleImage | null>(null);
   const [students, setStudents] = useState<StudentData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -126,6 +208,12 @@ const Students: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState<'all' | 'lunas' | 'tunggakan'>('all');
   const [selectedStudent, setSelectedStudent] = useState<StudentData | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
+
+  const handleClassChange = (idx: number) => {
+    setSlideDirection(idx > activeScheduleIndex ? 1 : -1);
+    setActiveScheduleIndex(idx);
+    setActiveImageIndex(0);
+  };
 
   // Fetch GSheet data
   useEffect(() => {
@@ -402,25 +490,22 @@ const Students: React.FC = () => {
           </div>
           
           <div className="relative z-10">
-            <div className="text-center md:text-left mb-10">
+            <div className="text-center md:text-left mb-8">
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase mb-4 inline-block shadow-sm">
                 Tahun Ajaran 2026/2027
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Jadwal Mata Pelajaran</h2>
-              <p className="text-blue-100/80 font-medium text-base md:text-lg leading-relaxed max-w-2xl">
-                Akses folder Google Drive resmi sekolah yang berisi seluruh jadwal lengkap kegiatan belajar mengajar (KBM) terbaru sesuai tingkatan kelas Anda.
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight">Jadwal Mata Pelajaran</h2>
+              <p className="text-blue-100/80 font-medium text-base leading-relaxed max-w-2xl">
+                Akses lembar cetak jadwal resmi sekolah Tahun Ajaran 2026/2027 sesuai tingkatan kelas Anda secara praktis melalui slide interaktif di bawah ini.
               </p>
             </div>
             
             {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
-            <div className="flex bg-slate-900/50 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-700/30 mb-10 shadow-inner relative z-20">
+            <div className="flex bg-slate-900/50 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20">
               {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
                 <button
                   key={label}
-                  onClick={() => {
-                    setSlideDirection(idx > activeScheduleIndex ? 1 : -1);
-                    setActiveScheduleIndex(idx);
-                  }}
+                  onClick={() => handleClassChange(idx)}
                   className={`flex-1 py-3 text-xs md:text-sm font-black rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                     activeScheduleIndex === idx
                       ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
@@ -432,106 +517,158 @@ const Students: React.FC = () => {
               ))}
             </div>
 
-            {/* Interactive Slideshow viewport */}
-            <div className="relative max-w-2xl mx-auto px-4 py-2">
-              {/* Desktop Arrow Controls */}
-              <button
-                onClick={() => {
-                  const prevIdx = (activeScheduleIndex - 1 + 3) % 3;
-                  setSlideDirection(-1);
-                  setActiveScheduleIndex(prevIdx);
-                }}
-                className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 text-white hover:text-blue-400 rounded-full flex items-center justify-center transition border border-white/10 hover:border-blue-400/30 backdrop-blur-sm cursor-pointer shadow-lg group"
-                aria-label="Previous Slide"
-              >
-                <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
-              </button>
+            {/* Interactive Slideshow viewport for Schedule Images */}
+            {(() => {
+              const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
+              const activeClassKey = classKeys[activeScheduleIndex];
+              const activeImages = SCHEDULE_IMAGES[activeClassKey];
+              const totalImages = activeImages.length;
+              const currentImage = activeImages[activeImageIndex] || activeImages[0];
+              
+              return (
+                <div className="relative max-w-3xl mx-auto">
+                  {/* Outer description */}
+                  <div className="text-center mb-5">
+                    <p className="text-blue-200/90 text-sm font-bold tracking-wide uppercase flex items-center justify-center gap-2">
+                      <Calendar className="w-4.5 h-4.5 text-blue-400" />
+                      {currentImage.title}
+                    </p>
+                  </div>
 
-              <button
-                onClick={() => {
-                  const nextIdx = (activeScheduleIndex + 1) % 3;
-                  setSlideDirection(1);
-                  setActiveScheduleIndex(nextIdx);
-                }}
-                className="absolute -right-4 md:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 text-white hover:text-blue-400 rounded-full flex items-center justify-center transition border border-white/10 hover:border-blue-400/30 backdrop-blur-sm cursor-pointer shadow-lg group"
-                aria-label="Next Slide"
-              >
-                <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
-              </button>
+                  {/* Main Image Stage Card */}
+                  <div className="bg-white rounded-[2.5rem] p-4 md:p-6 border border-slate-100 shadow-2xl relative group overflow-hidden">
+                    {/* Image Display Panel */}
+                    <div className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden rounded-2xl bg-slate-950 flex items-center justify-center group/stage">
+                      <AnimatePresence mode="wait">
+                        <motion.img
+                          key={`${activeClassKey}-${activeImageIndex}`}
+                          src={currentImage.directUrl}
+                          alt={currentImage.title}
+                          referrerPolicy="no-referrer"
+                          initial={{ opacity: 0, scale: 0.98 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.98 }}
+                          transition={{ duration: 0.3 }}
+                          className="max-w-full max-h-full object-contain cursor-zoom-in transition-all duration-300 hover:scale-[1.01]"
+                          onClick={() => setLightboxImage(currentImage)}
+                        />
+                      </AnimatePresence>
 
-              {/* Slide Transition Container */}
-              <div className="overflow-hidden p-2 rounded-[2.5rem]">
-                <AnimatePresence mode="wait" initial={false} custom={slideDirection}>
-                  <motion.div
-                    key={activeScheduleIndex}
-                    custom={slideDirection}
-                    variants={{
-                      enter: (dir: number) => ({
-                        x: dir > 0 ? 150 : -150,
-                        opacity: 0,
-                        scale: 0.95
-                      }),
-                      center: {
-                        x: 0,
-                        opacity: 1,
-                        scale: 1
-                      },
-                      exit: (dir: number) => ({
-                        x: dir < 0 ? 150 : -150,
-                        opacity: 0,
-                        scale: 0.95
-                      })
-                    }}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="w-full"
-                  >
-                    {activeScheduleIndex === 0 && (
-                      <ScheduleCard 
-                        kelas="Kelas X" 
-                        description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas X Tahun Ajaran 2026/2027." 
-                        link={scheduleLinks.x} 
-                      />
-                    )}
-                    {activeScheduleIndex === 1 && (
-                      <ScheduleCard 
-                        kelas="Kelas XI" 
-                        description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XI Tahun Ajaran 2026/2027." 
-                        link={scheduleLinks.xi} 
-                      />
-                    )}
-                    {activeScheduleIndex === 2 && (
-                      <ScheduleCard 
-                        kelas="Kelas XII" 
-                        description="Kurikulum Merdeka • Folder berisi file dokumen jadwal KBM, pembagian ruang, serta mata pelajaran terbaru untuk seluruh siswa Kelas XII Tahun Ajaran 2026/2027." 
-                        link={scheduleLinks.xii} 
-                      />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                      {/* Dark gradient overlay */}
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/40 via-transparent to-transparent z-10" />
 
-              {/* Progress Dots Indicators */}
-              <div className="flex justify-center space-x-2.5 mt-8 z-10 relative">
-                {[0, 1, 2].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => {
-                      setSlideDirection(idx > activeScheduleIndex ? 1 : -1);
-                      setActiveScheduleIndex(idx);
-                    }}
-                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeScheduleIndex === idx 
-                        ? 'w-8 bg-blue-500' 
-                        : 'w-2.5 bg-slate-600 hover:bg-slate-500'
-                    }`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+                      {/* Quick Action Overlays inside image stage */}
+                      <div className="absolute bottom-4 right-4 z-20 flex items-center space-x-2 opacity-90 group-hover/stage:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => setLightboxImage(currentImage)}
+                          className="bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-xl backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-md flex items-center space-x-1.5 text-xs font-bold cursor-pointer"
+                          title="Perbesar Gambar"
+                        >
+                          <ZoomIn className="w-4 h-4" />
+                          <span className="hidden sm:inline">Perbesar</span>
+                        </button>
+
+                        <a
+                          href={currentImage.originalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-slate-900/80 hover:bg-slate-800 text-white p-3 rounded-xl backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-md flex items-center space-x-1.5 text-xs font-bold cursor-pointer"
+                          title="Buka di Google Drive"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span className="hidden sm:inline">Buka Drive</span>
+                        </a>
+                      </div>
+
+                      {/* Image Navigation Arrows Overlaid on Stage */}
+                      <button
+                        onClick={() => {
+                          const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
+                          setActiveImageIndex(prevIdx);
+                        }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-slate-900/60 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
+                        aria-label="Halaman Sebelumnya"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          const nextIdx = (activeImageIndex + 1) % totalImages;
+                          setActiveImageIndex(nextIdx);
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-slate-900/60 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
+                        aria-label="Halaman Berikutnya"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+
+                      {/* Floating Indicator of Current Slide */}
+                      <div className="absolute top-4 left-4 z-20 bg-slate-900/70 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
+                        Halaman {activeImageIndex + 1} / {totalImages}
+                      </div>
+                    </div>
+
+                    {/* Thumbnail Strip / Navigation Indicator */}
+                    <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                      {activeImages.map((img, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveImageIndex(idx)}
+                          className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer border ${
+                            activeImageIndex === idx
+                              ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20 scale-105'
+                              : 'bg-slate-50 border-slate-100 text-slate-500 hover:bg-slate-100 hover:text-slate-800'
+                          }`}
+                        >
+                          Hal {idx + 1}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Drive Folder Direct Access Button below the slideshow */}
+                    <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="text-left">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                          Akses Dokumen Utama
+                        </span>
+                        <span className="text-sm font-black text-slate-800">
+                          Folder Drive Jadwal KBM {activeClassKey} TA 2026/2027
+                        </span>
+                      </div>
+                      
+                      <a
+                        href={activeScheduleIndex === 0 ? scheduleLinks.x : activeScheduleIndex === 1 ? scheduleLinks.xi : scheduleLinks.xii}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-slate-900 hover:bg-blue-600 text-white font-black py-3.5 px-5 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-sm hover:shadow-md"
+                      >
+                        <FolderOpen className="w-4 h-4 text-blue-400" />
+                        <span>Buka Folder Drive Utama</span>
+                        <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Dot Indicators for Outer Class Navigation */}
+                  <div className="flex justify-center space-x-3 mt-8">
+                    {['Kelas X', 'Kelas XI', 'Kelas XII'].map((cl, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleClassChange(idx)}
+                        className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                          activeScheduleIndex === idx
+                            ? 'w-8 bg-blue-500'
+                            : 'w-2.5 bg-slate-600 hover:bg-slate-500'
+                        }`}
+                        title={`Pilih Jadwal ${cl}`}
+                        aria-label={`Pilih Jadwal ${cl}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </div>
       </div>
@@ -1075,50 +1212,120 @@ const Students: React.FC = () => {
             </motion.div>
           </div>
         )}
+
+        {/* Schedule Image Lightbox Modal */}
+        {lightboxImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLightboxImage(null)}
+              className="absolute inset-0 bg-slate-950/95 backdrop-blur-md"
+            />
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-slate-900 rounded-[2.5rem] overflow-hidden max-w-5xl w-full max-h-[90vh] flex flex-col border border-slate-800 shadow-2xl z-10"
+            >
+              {/* Header */}
+              <div className="px-6 py-4 border-b border-slate-800/80 flex justify-between items-center bg-slate-950/40">
+                <div className="text-left">
+                  <h4 className="text-white font-black text-sm uppercase tracking-wider">
+                    {lightboxImage.title}
+                  </h4>
+                  <p className="text-xs text-slate-400 font-medium">Tahun Ajaran 2026/2027 • SMK Tanjung Priok 1</p>
+                </div>
+                <button
+                  onClick={() => setLightboxImage(null)}
+                  className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+                  title="Tutup"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Image View Stage */}
+              <div className="p-6 flex-1 flex items-center justify-center bg-slate-950 overflow-hidden relative group">
+                <img
+                  src={lightboxImage.directUrl}
+                  alt={lightboxImage.title}
+                  referrerPolicy="no-referrer"
+                  className="max-w-full max-h-[65vh] object-contain rounded-lg"
+                />
+
+                {/* Left/Right controls within lightbox */}
+                {(() => {
+                  const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
+                  const activeClassKey = classKeys[activeScheduleIndex];
+                  const activeImages = SCHEDULE_IMAGES[activeClassKey];
+                  const totalImages = activeImages.length;
+                  
+                  return (
+                    <>
+                      <button
+                        onClick={() => {
+                          const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
+                          setActiveImageIndex(prevIdx);
+                          setLightboxImage(activeImages[prevIdx]);
+                        }}
+                        className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                        aria-label="Halaman Sebelumnya"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          const nextIdx = (activeImageIndex + 1) % totalImages;
+                          setActiveImageIndex(nextIdx);
+                          setLightboxImage(activeImages[nextIdx]);
+                        }}
+                        className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                        aria-label="Halaman Berikutnya"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                    </>
+                  );
+                })()}
+              </div>
+
+              {/* Action bar */}
+              <div className="px-6 py-4 bg-slate-950/60 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider text-left">
+                  Tips: Gunakan cubit layar (zoom) pada perangkat seluler untuk memperbesar detail teks.
+                </span>
+                
+                <div className="flex items-center space-x-3 w-full sm:w-auto justify-end">
+                  <a
+                    href={lightboxImage.originalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center space-x-2 cursor-pointer"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Buka Resolusi Asli</span>
+                  </a>
+                  
+                  <button
+                    onClick={() => setLightboxImage(null)}
+                    className="flex-1 sm:flex-initial bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-6 rounded-xl text-xs uppercase tracking-wider transition cursor-pointer"
+                  >
+                    Selesai
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </AnimatePresence>
     </div>
   );
 };
-
-const ScheduleCard: React.FC<{ 
-  kelas: string; 
-  description: string; 
-  link: string; 
-}> = ({ kelas, description, link }) => (
-  <motion.div 
-    whileHover={{ y: -8, scale: 1.02 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-slate-100 shadow-xl flex flex-col justify-between h-full relative group hover:border-blue-300 transition-all duration-300"
-  >
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
-          <Calendar className="w-6 h-6" />
-        </div>
-        <span className="text-[10px] font-black uppercase tracking-wider text-blue-700 bg-blue-50/80 px-3.5 py-1.5 rounded-full border border-blue-100/50">
-          TA 2026/2027
-        </span>
-      </div>
-      
-      <h3 className="text-2xl font-black text-slate-900 tracking-tight mb-3">
-        {kelas}
-      </h3>
-      <p className="text-slate-500 text-sm font-semibold leading-relaxed mb-8">
-        {description}
-      </p>
-    </div>
-
-    <a 
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-full bg-slate-900 hover:bg-blue-600 text-white font-black py-4 px-5 rounded-2xl flex items-center justify-center space-x-2.5 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-md hover:shadow-lg hover:shadow-blue-500/10 group-hover:translate-y-[-2px]"
-    >
-      <FolderOpen className="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" />
-      <span>Buka Folder Jadwal</span>
-      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-    </a>
-  </motion.div>
-);
 
 export default Students;
