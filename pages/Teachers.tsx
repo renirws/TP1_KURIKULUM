@@ -12,6 +12,7 @@ import {
   BookOpen,
   Clock,
   Download,
+  Printer,
   Award,
   ChevronDown,
   LayoutGrid
@@ -167,6 +168,14 @@ const TEACHER_SCHEDULE_IMAGES: ScheduleImage[] = [
   }
 ];
 
+const KBM_SCHEDULE_IMAGES: ScheduleImage[] = [
+  {
+    originalUrl: "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link",
+    directUrl: "https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU",
+    title: "Jadwal KBM Utama TA 2026/2027"
+  }
+];
+
 const Teachers: React.FC = () => {
   const scheduleLink = "https://drive.google.com/file/d/1KHZ1hRPjJ0gW2JZTFyPhijMphjVFwirD/view?usp=drive_link";
   const adminToolLink = "https://s.id/ToolAjarGuru";
@@ -175,12 +184,102 @@ const Teachers: React.FC = () => {
   const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
 
   // States for Teacher Schedule Slideshow
+  const [activeTab, setActiveTab] = useState<'MENGAJAR' | 'KBM'>('MENGAJAR');
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [lightboxImage, setLightboxImage] = useState<ScheduleImage | null>(null);
   const [showThumbnailGrid, setShowThumbnailGrid] = useState<boolean>(false);
 
-  const totalImages = TEACHER_SCHEDULE_IMAGES.length;
-  const currentImage = TEACHER_SCHEDULE_IMAGES[activeImageIndex];
+  const currentImages = activeTab === 'MENGAJAR' ? TEACHER_SCHEDULE_IMAGES : KBM_SCHEDULE_IMAGES;
+  const totalImages = currentImages.length;
+  const currentImage = currentImages[activeImageIndex] || currentImages[0];
+
+  const handleTabChange = (tab: 'MENGAJAR' | 'KBM') => {
+    setActiveTab(tab);
+    setActiveImageIndex(0);
+    setShowThumbnailGrid(false);
+  };
+
+  const handlePrintSchedule = (imageUrl: string, title: string) => {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    iframe.style.zIndex = '-9999';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow?.document || iframe.contentDocument;
+    if (doc) {
+      doc.write(`
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              @page {
+                size: landscape;
+                margin: 10mm;
+              }
+              body {
+                margin: 0;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: sans-serif;
+                background-color: #fff;
+              }
+              h2 {
+                margin: 0 0 5px 0;
+                color: #0f172a;
+                font-size: 18px;
+                text-align: center;
+              }
+              p {
+                margin: 0 0 15px 0;
+                color: #64748b;
+                font-size: 12px;
+                text-align: center;
+              }
+              img {
+                max-width: 100%;
+                max-height: 80vh;
+                object-fit: contain;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+              }
+            </style>
+          </head>
+          <body>
+            <h2>${title}</h2>
+            <p>SMK Tanjung Priok 1 Jakarta Utara • Tahun Ajaran 2026/2027</p>
+            <img src="${imageUrl}" referrerpolicy="no-referrer" />
+            <script>
+              const img = document.querySelector('img');
+              const doPrint = () => {
+                window.focus();
+                window.print();
+                setTimeout(() => {
+                  if (window.frameElement) {
+                    window.frameElement.remove();
+                  }
+                }, 1000);
+              };
+              if (img.complete) {
+                doPrint();
+              } else {
+                img.onload = doPrint;
+                img.onerror = doPrint;
+              }
+            </script>
+          </body>
+        </html>
+      `);
+      doc.close();
+    }
+  };
 
   const handleNextPage = () => {
     setActiveImageIndex((prev) => (prev + 1) % totalImages);
@@ -240,10 +339,40 @@ const Teachers: React.FC = () => {
                   <span className="bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3.5 py-1.5 rounded-full text-[10px] font-black tracking-wider uppercase mb-3.5 inline-block">
                     Update TA 2026/2027 • Terbaru
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-black mb-3 tracking-tight">Jadwal Mengajar Guru</h2>
+                  <h2 className="text-3xl md:text-4xl font-black mb-3 tracking-tight">
+                    {activeTab === 'MENGAJAR' ? 'Jadwal Mengajar Guru' : 'Jadwal KBM Utama (Master)'}
+                  </h2>
                   <p className="text-slate-300 text-sm md:text-base mb-0 font-semibold opacity-90 max-w-2xl leading-relaxed">
-                    Akses lembar cetak jadwal resmi sekolah Tahun Ajaran 2026/2027 secara praktis melalui slide interaktif di bawah ini. Pastikan kehadiran tepat waktu demi kenyamanan KBM.
+                    {activeTab === 'MENGAJAR'
+                      ? 'Akses lembar cetak jadwal resmi mengajar seluruh guru Tahun Ajaran 2026/2027 secara praktis melalui slide interaktif di bawah ini. Pastikan kehadiran tepat waktu demi kenyamanan KBM.'
+                      : 'Akses lembar cetak jadwal Kegiatan Belajar Mengajar (KBM) Master Tahun Ajaran 2026/2027 secara praktis di bawah ini.'}
                   </p>
+                </div>
+              </div>
+
+              {/* Premium Tab Selector for Scheduling Sections */}
+              <div className="bg-slate-50 px-6 pt-6 border-b border-slate-100/50">
+                <div className="flex bg-slate-200/50 p-1.5 rounded-2xl max-w-md mx-auto border border-slate-300/30 shadow-inner">
+                  <button
+                    onClick={() => handleTabChange('MENGAJAR')}
+                    className={`flex-1 py-3 text-xs md:text-sm font-black rounded-xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                      activeTab === 'MENGAJAR'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-slate-600 hover:text-slate-800 hover:bg-slate-300/30'
+                    }`}
+                  >
+                    Jadwal Mengajar
+                  </button>
+                  <button
+                    onClick={() => handleTabChange('KBM')}
+                    className={`flex-1 py-3 text-xs md:text-sm font-black rounded-xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                      activeTab === 'KBM'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-slate-600 hover:text-slate-800 hover:bg-slate-300/30'
+                    }`}
+                  >
+                    Jadwal KBM Utama
+                  </button>
                 </div>
               </div>
 
@@ -261,34 +390,36 @@ const Teachers: React.FC = () => {
                     </h3>
                   </div>
 
-                  {/* Dropdown Selector for direct jumping (Essential UX for 28 pages!) */}
-                  <div className="flex items-center space-x-2">
-                    <label htmlFor="page-select" className="text-xs font-bold text-slate-500 whitespace-nowrap">
-                      Lompat Ke:
-                    </label>
-                    <div className="relative">
-                      <select
-                        id="page-select"
-                        value={activeImageIndex}
-                        onChange={(e) => setActiveImageIndex(Number(e.target.value))}
-                        className="appearance-none bg-white border border-slate-200 hover:border-blue-500 text-slate-800 font-extrabold text-xs px-4 py-2 pr-10 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm"
-                      >
-                        {TEACHER_SCHEDULE_IMAGES.map((img, idx) => (
-                          <option key={idx} value={idx}>
-                            Halaman {idx + 1}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  {/* Dropdown Selector for direct jumping (Essential UX for multiple pages!) */}
+                  {totalImages > 1 && (
+                    <div className="flex items-center space-x-2">
+                      <label htmlFor="page-select" className="text-xs font-bold text-slate-500 whitespace-nowrap">
+                        Lompat Ke:
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="page-select"
+                          value={activeImageIndex}
+                          onChange={(e) => setActiveImageIndex(Number(e.target.value))}
+                          className="appearance-none bg-white border border-slate-200 hover:border-blue-500 text-slate-800 font-extrabold text-xs px-4 py-2 pr-10 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm"
+                        >
+                          {currentImages.map((img, idx) => (
+                            <option key={idx} value={idx}>
+                              Halaman {idx + 1}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* The main Image Container Frame */}
                 <div className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden rounded-3xl bg-slate-950 flex items-center justify-center border border-slate-200 shadow-inner group/stage">
                   <AnimatePresence mode="wait">
                     <motion.img
-                      key={activeImageIndex}
+                      key={`${activeTab}-${activeImageIndex}`}
                       src={currentImage.directUrl}
                       alt={currentImage.title}
                       referrerPolicy="no-referrer"
@@ -328,88 +459,128 @@ const Teachers: React.FC = () => {
                   </div>
 
                   {/* Navigation Arrows Inside Stage */}
-                  <button
-                    onClick={handlePrevPage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-slate-900/65 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
-                    aria-label="Sebelumnya"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
+                  {totalImages > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevPage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-slate-900/65 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
+                        aria-label="Sebelumnya"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
 
-                  <button
-                    onClick={handleNextPage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-slate-900/65 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
-                    aria-label="Berikutnya"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
+                      <button
+                        onClick={handleNextPage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-slate-900/65 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
+                        aria-label="Berikutnya"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                    </>
+                  )}
 
                   {/* Floating Halaman Badge */}
-                  <div className="absolute top-5 left-5 z-20 bg-slate-900/85 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
-                    Halaman {activeImageIndex + 1} / {totalImages}
-                  </div>
+                  {totalImages > 1 && (
+                    <div className="absolute top-5 left-5 z-20 bg-slate-900/85 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
+                      Halaman {activeImageIndex + 1} / {totalImages}
+                    </div>
+                  )}
                 </div>
 
                 {/* Desktop and Mobile Thumbnail / Page Selector Strip */}
-                <div className="mt-6">
-                  <div className="flex items-center justify-between mb-3.5">
-                    <span className="text-xs font-black text-slate-400 uppercase tracking-wider">
-                      Semua Lembar Jadwal ({totalImages} Halaman)
-                    </span>
-                    <button
-                      onClick={() => setShowThumbnailGrid(!showThumbnailGrid)}
-                      className="text-xs font-black text-blue-600 hover:text-blue-800 transition flex items-center gap-1.5"
-                    >
-                      <LayoutGrid className="w-4 h-4" />
-                      <span>{showThumbnailGrid ? "Sembunyikan Grid" : "Tampilkan Semua Halaman"}</span>
-                    </button>
-                  </div>
-
-                  {/* Grid of buttons for pages */}
-                  <AnimatePresence>
-                    {showThumbnailGrid ? (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="bg-slate-100 rounded-2xl p-4 grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 gap-2 mb-4 overflow-hidden border border-slate-200"
+                {totalImages > 1 && (
+                  <div className="mt-6">
+                    <div className="flex items-center justify-between mb-3.5">
+                      <span className="text-xs font-black text-slate-400 uppercase tracking-wider">
+                        Semua Lembar Jadwal ({totalImages} Halaman)
+                      </span>
+                      <button
+                        onClick={() => setShowThumbnailGrid(!showThumbnailGrid)}
+                        className="text-xs font-black text-blue-600 hover:text-blue-800 transition flex items-center gap-1.5"
                       >
-                        {TEACHER_SCHEDULE_IMAGES.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => {
-                              setActiveImageIndex(idx);
-                              setShowThumbnailGrid(false);
-                            }}
-                            className={`py-2 rounded-xl text-xs font-black transition-all border ${
-                              activeImageIndex === idx
-                                ? 'bg-blue-600 border-blue-600 text-white shadow-md'
-                                : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
-                            }`}
-                          >
-                            P{idx + 1}
-                          </button>
-                        ))}
-                      </motion.div>
-                    ) : (
-                      // Compact Horizontal Scrolling Strip
-                      <div className="flex items-center space-x-2 overflow-x-auto pb-3 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
-                        {TEACHER_SCHEDULE_IMAGES.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => setActiveImageIndex(idx)}
-                            className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 shrink-0 border ${
-                              activeImageIndex === idx
-                                ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/25 scale-105'
-                                : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700'
-                            }`}
-                          >
-                            Hal {idx + 1}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </AnimatePresence>
+                        <LayoutGrid className="w-4 h-4" />
+                        <span>{showThumbnailGrid ? "Sembunyikan Grid" : "Tampilkan Semua Halaman"}</span>
+                      </button>
+                    </div>
+
+                    {/* Grid of buttons for pages */}
+                    <AnimatePresence>
+                      {showThumbnailGrid ? (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="bg-slate-100 rounded-2xl p-4 grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 gap-2 mb-4 overflow-hidden border border-slate-200"
+                        >
+                          {currentImages.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => {
+                                setActiveImageIndex(idx);
+                                setShowThumbnailGrid(false);
+                              }}
+                              className={`py-2 rounded-xl text-xs font-black transition-all border ${
+                                activeImageIndex === idx
+                                  ? 'bg-blue-600 border-blue-600 text-white shadow-md'
+                                  : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                              }`}
+                            >
+                              P{idx + 1}
+                            </button>
+                          ))}
+                        </motion.div>
+                      ) : (
+                        // Compact Horizontal Scrolling Strip
+                        <div className="flex items-center space-x-2 overflow-x-auto pb-3 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
+                          {currentImages.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setActiveImageIndex(idx)}
+                              className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 shrink-0 border ${
+                                activeImageIndex === idx
+                                  ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/25 scale-105'
+                                  : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+                              }`}
+                            >
+                              Hal {idx + 1}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
+
+                {/* Print / Save PDF Quick Actions Panel */}
+                <div className="mt-5 p-4 bg-slate-100 rounded-2xl border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="text-left">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Fitur Cetak Mandiri
+                    </span>
+                    <span className="text-xs font-bold text-slate-600">
+                      Ingin mencetak halaman jadwal ini atau menyimpannya sebagai berkas PDF?
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end">
+                    <button
+                      onClick={() => handlePrintSchedule(currentImage.directUrl, currentImage.title)}
+                      className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm hover:shadow-md"
+                      title="Cetak Jadwal Pelajaran"
+                    >
+                      <Printer className="w-4 h-4" />
+                      <span>Cetak / PDF</span>
+                    </button>
+                    <a
+                      href={currentImage.originalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 sm:flex-initial bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm hover:shadow-md"
+                      title="Unduh Berkas Gambar"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Unduh File</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -426,13 +597,13 @@ const Teachers: React.FC = () => {
 
                 <div className="flex md:justify-end">
                   <a 
-                    href={scheduleLink}
+                    href={activeTab === 'MENGAJAR' ? scheduleLink : "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto bg-slate-900 hover:bg-blue-600 text-white font-black py-4 px-6 rounded-2xl flex items-center justify-center space-x-2.5 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-md hover:shadow-lg"
                   >
                     <FolderOpen className="w-4.5 h-4.5 text-blue-400" />
-                    <span>Buka Folder Drive Utama</span>
+                    <span>{activeTab === 'MENGAJAR' ? 'Buka Folder Drive Utama' : 'Buka Berkas Google Drive'}</span>
                     <ExternalLink className="w-3.5 h-3.5 opacity-60" />
                   </a>
                 </div>
@@ -630,29 +801,33 @@ const Teachers: React.FC = () => {
                 />
 
                 {/* Left/Right Controls inside Lightbox */}
-                <button
-                  onClick={() => {
-                    const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
-                    setActiveImageIndex(prevIdx);
-                    setLightboxImage(TEACHER_SCHEDULE_IMAGES[prevIdx]);
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
-                  aria-label="Sebelumnya"
-                >
-                  <ChevronLeft className="w-7 h-7" />
-                </button>
+                {totalImages > 1 && (
+                  <>
+                    <button
+                      onClick={() => {
+                        const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
+                        setActiveImageIndex(prevIdx);
+                        setLightboxImage(currentImages[prevIdx]);
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                      aria-label="Sebelumnya"
+                    >
+                      <ChevronLeft className="w-7 h-7" />
+                    </button>
 
-                <button
-                  onClick={() => {
-                    const nextIdx = (activeImageIndex + 1) % totalImages;
-                    setActiveImageIndex(nextIdx);
-                    setLightboxImage(TEACHER_SCHEDULE_IMAGES[nextIdx]);
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
-                  aria-label="Berikutnya"
-                >
-                  <ChevronRight className="w-7 h-7" />
-                </button>
+                    <button
+                      onClick={() => {
+                        const nextIdx = (activeImageIndex + 1) % totalImages;
+                        setActiveImageIndex(nextIdx);
+                        setLightboxImage(currentImages[nextIdx]);
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                      aria-label="Berikutnya"
+                    >
+                      <ChevronRight className="w-7 h-7" />
+                    </button>
+                  </>
+                )}
               </div>
 
               {/* Action Bar */}
@@ -662,6 +837,14 @@ const Teachers: React.FC = () => {
                 </span>
                 
                 <div className="flex items-center space-x-3 w-full sm:w-auto justify-end">
+                  <button
+                    onClick={() => handlePrintSchedule(lightboxImage.directUrl, lightboxImage.title)}
+                    className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
+                  >
+                    <Printer className="w-4 h-4" />
+                    <span>Cetak / PDF</span>
+                  </button>
+
                   <a
                     href={lightboxImage.originalUrl}
                     target="_blank"

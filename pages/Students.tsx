@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, Download, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -28,7 +28,7 @@ interface ScheduleImage {
   title: string;
 }
 
-const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'MASTER', ScheduleImage[]> = {
+const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII', ScheduleImage[]> = {
   X: [
     {
       originalUrl: "https://drive.google.com/file/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ/view?usp=drive_link",
@@ -98,13 +98,6 @@ const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'MASTER', ScheduleImage[]> = 
       originalUrl: "https://drive.google.com/file/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy/view?usp=drive_link",
       directUrl: "https://lh3.googleusercontent.com/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy",
       title: "Halaman 4 • Jadwal KBM Kelas XII"
-    }
-  ],
-  MASTER: [
-    {
-      originalUrl: "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU",
-      title: "Jadwal KBM Utama TA 2026/2027"
     }
   ]
 };
@@ -473,6 +466,88 @@ const Students: React.FC = () => {
     }, 500);
   };
 
+  const handlePrintSchedule = (imageUrl: string, title: string) => {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    iframe.style.zIndex = '-9999';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow?.document || iframe.contentDocument;
+    if (doc) {
+      doc.write(`
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              @page {
+                size: landscape;
+                margin: 10mm;
+              }
+              body {
+                margin: 0;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: sans-serif;
+                background-color: #fff;
+              }
+              h2 {
+                margin: 0 0 5px 0;
+                color: #0f172a;
+                font-size: 18px;
+                text-align: center;
+              }
+              p {
+                margin: 0 0 15px 0;
+                color: #64748b;
+                font-size: 12px;
+                text-align: center;
+              }
+              img {
+                max-width: 100%;
+                max-height: 80vh;
+                object-fit: contain;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+              }
+            </style>
+          </head>
+          <body>
+            <h2>${title}</h2>
+            <p>SMK Tanjung Priok 1 Jakarta Utara • Tahun Ajaran 2026/2027</p>
+            <img src="${imageUrl}" referrerpolicy="no-referrer" />
+            <script>
+              const img = document.querySelector('img');
+              const doPrint = () => {
+                window.focus();
+                window.print();
+                setTimeout(() => {
+                  if (window.frameElement) {
+                    window.frameElement.remove();
+                  }
+                }, 1000);
+              };
+              if (img.complete) {
+                doPrint();
+              } else {
+                img.onload = doPrint;
+                img.onerror = doPrint;
+              }
+            </script>
+          </body>
+        </html>
+      `);
+      doc.close();
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <SEO 
@@ -509,7 +584,7 @@ const Students: React.FC = () => {
             
             {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
             <div className="flex bg-slate-900/50 p-1.5 rounded-[2rem] max-w-xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20">
-              {['Kelas X', 'Kelas XI', 'Kelas XII', 'Jadwal KBM'].map((label, idx) => (
+              {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
                 <button
                   key={label}
                   onClick={() => handleClassChange(idx)}
@@ -526,7 +601,7 @@ const Students: React.FC = () => {
 
             {/* Interactive Slideshow viewport for Schedule Images */}
             {(() => {
-              const classKeys: ('X' | 'XI' | 'XII' | 'MASTER')[] = ['X', 'XI', 'XII', 'MASTER'];
+              const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
               const activeClassKey = classKeys[activeScheduleIndex];
               const activeImages = SCHEDULE_IMAGES[activeClassKey];
               const totalImages = activeImages.length;
@@ -633,6 +708,38 @@ const Students: React.FC = () => {
                       ))}
                     </div>
 
+                    {/* Print / Save PDF Quick Actions Panel */}
+                    <div className="mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="text-left">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                          Fitur Cetak Mandiri
+                        </span>
+                        <span className="text-xs font-bold text-slate-600">
+                          Ingin mencetak halaman jadwal ini atau menyimpannya sebagai berkas PDF?
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end">
+                        <button
+                          onClick={() => handlePrintSchedule(currentImage.directUrl, currentImage.title)}
+                          className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm hover:shadow-md"
+                          title="Cetak Jadwal Pelajaran"
+                        >
+                          <Printer className="w-4 h-4" />
+                          <span>Cetak / PDF</span>
+                        </button>
+                        <a
+                          href={currentImage.originalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 sm:flex-initial bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm hover:shadow-md"
+                          title="Unduh Berkas Gambar"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Unduh File</span>
+                        </a>
+                      </div>
+                    </div>
+
                     {/* Drive Folder Direct Access Button below the slideshow */}
                     <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="text-left">
@@ -640,18 +747,18 @@ const Students: React.FC = () => {
                           Akses Dokumen Utama
                         </span>
                         <span className="text-sm font-black text-slate-800">
-                          {activeClassKey === 'MASTER' ? 'Berkas Dokumen Jadwal KBM Master' : `Folder Drive Jadwal KBM ${activeClassKey}`} TA 2026/2027
+                          Folder Drive Jadwal KBM {activeClassKey} TA 2026/2027
                         </span>
                       </div>
                       
                       <a
-                        href={activeScheduleIndex === 0 ? scheduleLinks.x : activeScheduleIndex === 1 ? scheduleLinks.xi : activeScheduleIndex === 2 ? scheduleLinks.xii : "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link"}
+                        href={activeScheduleIndex === 0 ? scheduleLinks.x : activeScheduleIndex === 1 ? scheduleLinks.xi : scheduleLinks.xii}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-slate-900 hover:bg-blue-600 text-white font-black py-3.5 px-5 rounded-xl flex items-center justify-center space-x-2 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-sm hover:shadow-md"
                       >
                         <FolderOpen className="w-4 h-4 text-blue-400" />
-                        <span>{activeClassKey === 'MASTER' ? 'Buka Berkas Google Drive' : 'Buka Folder Drive Utama'}</span>
+                        <span>Buka Folder Drive Utama</span>
                         <ExternalLink className="w-3.5 h-3.5 opacity-60" />
                       </a>
                     </div>
@@ -659,7 +766,7 @@ const Students: React.FC = () => {
 
                   {/* Dot Indicators for Outer Class Navigation */}
                   <div className="flex justify-center space-x-3 mt-8">
-                    {['Kelas X', 'Kelas XI', 'Kelas XII', 'Jadwal KBM'].map((cl, idx) => (
+                    {['Kelas X', 'Kelas XI', 'Kelas XII'].map((cl, idx) => (
                       <button
                         key={idx}
                         onClick={() => handleClassChange(idx)}
@@ -1309,6 +1416,14 @@ const Students: React.FC = () => {
                 </span>
                 
                 <div className="flex items-center space-x-3 w-full sm:w-auto justify-end">
+                  <button
+                    onClick={() => handlePrintSchedule(lightboxImage.directUrl, lightboxImage.title)}
+                    className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-5 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
+                  >
+                    <Printer className="w-4 h-4" />
+                    <span>Cetak / PDF</span>
+                  </button>
+
                   <a
                     href={lightboxImage.originalUrl}
                     target="_blank"
