@@ -14,6 +14,7 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Fitur Cetak & Simpan PDF** | ✅ Selesai | Penambahan tombol cetak instan landscape & download file. | Siswa (`/siswa`) & Guru (`/guru`) |
 | **Migrasi Jadwal KBM Master** | ✅ Selesai | Pemindahan Jadwal KBM Master dari siswa ke guru demi efisiensi UX. | Siswa & Guru |
 | **Optimasi Mobile Friendly** | ✅ Selesai | Desain Bottom Nav ergonomis & Sheet Menu untuk pengalaman seluler. | Global (`App.tsx`) |
+| **Pembaruan Jadwal KBM & Zoom** | ✅ Selesai | Pembaruan Jadwal KBM Utama TA 2026/2027 serta sistem zoom & seret interaktif. | Siswa & Guru |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
 
 ---
@@ -73,6 +74,19 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
     * Memberikan efek perpindahan halaman yang halus, bebas flicktring (*fast response*), serta mengeliminasi kesan kaku pada browser smartphone.
   * **Ajustment Layout & Padding**:
     * Menambahkan padding bawah (`pb-16 md:pb-0`) pada elemen utama untuk menghindari tumpang tindih elemen halaman dengan Bottom Nav mobile.
+
+---
+
+### 6. Pembaruan Jadwal KBM Utama & Zoom Interaktif Premium
+* **Tujuan**: Memperbarui berkas jadwal KBM utama menggunakan materi kurikulum terbaru, serta mengimplementasikan fitur pembesaran gambar (*active zoom & pan*) tingkat tinggi demi kemudahan membaca detail jadwal pelajaran yang sangat padat pada HP / Smartphone maupun Desktop.
+* **Tautan Sumber Terbaru**: `https://drive.google.com/file/d/1flgflS4Bg_oVYBUudsSjYJ24QwtkJp-0/view?usp=drive_link`
+* **Implementasi**:
+  * **Pembalikan Kualitas Gambar & Resolusi**: Mengganti berkas lama dengan gambar resolusi tinggi (`directUrl` Google Drive menggunakan parameter `=s0` untuk memuat ukuran asli tanpa kompresi).
+  * **Sistem Zoom & Panning Dinamis**:
+    * Menambahkan tombol Zoom In (`+`), Zoom Out (`-`), dan Reset Zoom di bagian atas layar lightbox modal.
+    * Menyediakan navigasi seret (*drag-and-pan*) menggunakan mouse maupun sapuan jari (*touch gesture*) untuk menggeser gambar saat dizoom secara responsif dan bebas hambatan.
+    * Otomatis mereset tingkat pembesaran ketika berpindah slide halaman atau menutup lightbox untuk menjaga kenyamanan penggunaan (*UX flow*).
+  * **Cakupan Pengalaman**: Fitur ini diimplementasikan secara identik pada slideshow halaman **Guru** (`/guru`) serta halaman **Siswa** (`/siswa`).
 
 ---
 

@@ -4,6 +4,8 @@ import {
   ChevronLeft, 
   ChevronRight, 
   ZoomIn, 
+  ZoomOut,
+  RotateCcw,
   ExternalLink, 
   FolderOpen, 
   X, 
@@ -170,8 +172,8 @@ const TEACHER_SCHEDULE_IMAGES: ScheduleImage[] = [
 
 const KBM_SCHEDULE_IMAGES: ScheduleImage[] = [
   {
-    originalUrl: "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU",
+    originalUrl: "https://drive.google.com/file/d/1flgflS4Bg_oVYBUudsSjYJ24QwtkJp-0/view?usp=drive_link",
+    directUrl: "https://lh3.googleusercontent.com/d/1flgflS4Bg_oVYBUudsSjYJ24QwtkJp-0=s0",
     title: "Jadwal KBM Utama TA 2026/2027"
   }
 ];
@@ -188,6 +190,57 @@ const Teachers: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [lightboxImage, setLightboxImage] = useState<ScheduleImage | null>(null);
   const [showThumbnailGrid, setShowThumbnailGrid] = useState<boolean>(false);
+
+  // States for Lightbox Zoom & Pan
+  const [zoomScale, setZoomScale] = useState<number>(1);
+  const [panOffset, setPanOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleResetZoom = () => {
+    setZoomScale(1);
+    setPanOffset({ x: 0, y: 0 });
+    setIsDragging(false);
+  };
+
+  const openLightbox = (image: ScheduleImage) => {
+    setLightboxImage(image);
+    handleResetZoom();
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (zoomScale <= 1) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setPanOffset({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (zoomScale <= 1) return;
+    setIsDragging(true);
+    const touch = e.touches[0];
+    setDragStart({ x: touch.clientX - panOffset.x, y: touch.clientY - panOffset.y });
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    setPanOffset({
+      x: touch.clientX - dragStart.x,
+      y: touch.clientY - dragStart.y
+    });
+  };
 
   const currentImages = activeTab === 'MENGAJAR' ? TEACHER_SCHEDULE_IMAGES : KBM_SCHEDULE_IMAGES;
   const totalImages = currentImages.length;
@@ -428,7 +481,7 @@ const Teachers: React.FC = () => {
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.25 }}
                       className="max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
-                      onClick={() => setLightboxImage(currentImage)}
+                      onClick={() => openLightbox(currentImage)}
                     />
                   </AnimatePresence>
 
@@ -438,7 +491,7 @@ const Teachers: React.FC = () => {
                   {/* Image Overlaid Actions */}
                   <div className="absolute bottom-5 right-5 z-20 flex items-center space-x-2.5 opacity-90 group-hover/stage:opacity-100 transition-opacity">
                     <button
-                      onClick={() => setLightboxImage(currentImage)}
+                      onClick={() => openLightbox(currentImage)}
                       className="bg-slate-900/80 hover:bg-blue-600 text-white p-3.5 rounded-xl backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-md flex items-center space-x-1.5 text-xs font-bold cursor-pointer border border-white/10"
                       title="Perbesar Jadwal"
                     >
@@ -597,7 +650,7 @@ const Teachers: React.FC = () => {
 
                 <div className="flex md:justify-end">
                   <a 
-                    href={activeTab === 'MENGAJAR' ? scheduleLink : "https://drive.google.com/file/d/1uTrdPi4q_V3eZNlgHEnfSXTQcetX3PVU/view?usp=drive_link"}
+                    href={activeTab === 'MENGAJAR' ? scheduleLink : "https://drive.google.com/file/d/1flgflS4Bg_oVYBUudsSjYJ24QwtkJp-0/view?usp=drive_link"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto bg-slate-900 hover:bg-blue-600 text-white font-black py-4 px-6 rounded-2xl flex items-center justify-center space-x-2.5 transition-all duration-300 text-xs uppercase tracking-wider cursor-pointer shadow-md hover:shadow-lg"
@@ -791,14 +844,71 @@ const Teachers: React.FC = () => {
                 </button>
               </div>
 
-              {/* Image View Stage */}
-              <div className="p-6 flex-1 flex items-center justify-center bg-slate-950 overflow-hidden relative">
-                <img
-                  src={lightboxImage.directUrl}
-                  alt={lightboxImage.title}
-                  referrerPolicy="no-referrer"
-                  className="max-w-full max-h-[60vh] object-contain rounded-xl"
-                />
+              {/* Image View Stage with Interactive Zoom and Panning */}
+              <div 
+                className="p-6 flex-1 flex items-center justify-center bg-slate-950 overflow-hidden relative select-none"
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleMouseUp}
+              >
+                {/* Floating Zoom Controls Overlay */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-slate-900/90 border border-slate-700/60 rounded-full px-4 py-2 flex items-center space-x-3.5 shadow-xl backdrop-blur-md">
+                  <button
+                    onClick={() => {
+                      setZoomScale(prev => Math.max(1, prev - 0.25));
+                      if (zoomScale <= 1.25) setPanOffset({ x: 0, y: 0 });
+                    }}
+                    disabled={zoomScale <= 1}
+                    className="p-1 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:text-slate-400 transition cursor-pointer"
+                    title="Zoom Out"
+                  >
+                    <ZoomOut className="w-4.5 h-4.5" />
+                  </button>
+                  <span className="text-white font-mono text-xs font-bold select-none min-w-[3rem] text-center">
+                    {Math.round(zoomScale * 100)}%
+                  </span>
+                  <button
+                    onClick={() => {
+                      setZoomScale(prev => Math.min(3.5, prev + 0.25));
+                    }}
+                    disabled={zoomScale >= 3.5}
+                    className="p-1 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:text-slate-400 transition cursor-pointer"
+                    title="Zoom In"
+                  >
+                    <ZoomIn className="w-4.5 h-4.5" />
+                  </button>
+                  {zoomScale > 1 && (
+                    <button
+                      onClick={handleResetZoom}
+                      className="p-1 text-blue-400 hover:text-blue-300 transition cursor-pointer border-l border-slate-700 pl-3 flex items-center justify-center"
+                      title="Reset Zoom"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+
+                <div 
+                  className="w-full h-full flex items-center justify-center"
+                  style={{
+                    cursor: zoomScale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+                  }}
+                >
+                  <img
+                    src={lightboxImage.directUrl}
+                    alt={lightboxImage.title}
+                    referrerPolicy="no-referrer"
+                    className="max-w-full max-h-[60vh] object-contain rounded-xl select-none pointer-events-none"
+                    style={{
+                      transform: `scale(${zoomScale}) translate(${panOffset.x / zoomScale}px, ${panOffset.y / zoomScale}px)`,
+                      transition: isDragging ? 'none' : 'transform 0.15s ease-out'
+                    }}
+                  />
+                </div>
 
                 {/* Left/Right Controls inside Lightbox */}
                 {totalImages > 1 && (
@@ -808,8 +918,9 @@ const Teachers: React.FC = () => {
                         const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
                         setActiveImageIndex(prevIdx);
                         setLightboxImage(currentImages[prevIdx]);
+                        handleResetZoom();
                       }}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 z-20"
                       aria-label="Sebelumnya"
                     >
                       <ChevronLeft className="w-7 h-7" />
@@ -820,8 +931,9 @@ const Teachers: React.FC = () => {
                         const nextIdx = (activeImageIndex + 1) % totalImages;
                         setActiveImageIndex(nextIdx);
                         setLightboxImage(currentImages[nextIdx]);
+                        handleResetZoom();
                       }}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 z-20"
                       aria-label="Berikutnya"
                     >
                       <ChevronRight className="w-7 h-7" />
@@ -833,7 +945,7 @@ const Teachers: React.FC = () => {
               {/* Action Bar */}
               <div className="px-6 py-4 bg-slate-950/60 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span className="text-xs text-slate-400 font-bold uppercase tracking-wider text-left">
-                  Tips: Gunakan cubit layar (zoom) pada HP / Smartphone untuk memperbesar detail jadwal.
+                  Tips: Gunakan tombol zoom (+/-) di atas atau seret gambar untuk melihat detail lebih jelas.
                 </span>
                 
                 <div className="flex items-center space-x-3 w-full sm:w-auto justify-end">

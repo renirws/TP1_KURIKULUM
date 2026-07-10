@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, Download, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, Download, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -201,6 +201,58 @@ const Students: React.FC = () => {
   const [slideDirection, setSlideDirection] = useState<number>(1);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [lightboxImage, setLightboxImage] = useState<ScheduleImage | null>(null);
+
+  // States for Lightbox Zoom & Pan
+  const [zoomScale, setZoomScale] = useState<number>(1);
+  const [panOffset, setPanOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleResetZoom = () => {
+    setZoomScale(1);
+    setPanOffset({ x: 0, y: 0 });
+    setIsDragging(false);
+  };
+
+  const openLightbox = (image: ScheduleImage) => {
+    setLightboxImage(image);
+    handleResetZoom();
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (zoomScale <= 1) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setPanOffset({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (zoomScale <= 1) return;
+    setIsDragging(true);
+    const touch = e.touches[0];
+    setDragStart({ x: touch.clientX - panOffset.x, y: touch.clientY - panOffset.y });
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    setPanOffset({
+      x: touch.clientX - dragStart.x,
+      y: touch.clientY - dragStart.y
+    });
+  };
+
   const [students, setStudents] = useState<StudentData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -632,7 +684,7 @@ const Students: React.FC = () => {
                           exit={{ opacity: 0, scale: 0.98 }}
                           transition={{ duration: 0.3 }}
                           className="max-w-full max-h-full object-contain cursor-zoom-in transition-all duration-300 hover:scale-[1.01]"
-                          onClick={() => setLightboxImage(currentImage)}
+                          onClick={() => openLightbox(currentImage)}
                         />
                       </AnimatePresence>
 
@@ -642,7 +694,7 @@ const Students: React.FC = () => {
                       {/* Quick Action Overlays inside image stage */}
                       <div className="absolute bottom-4 right-4 z-20 flex items-center space-x-2 opacity-90 group-hover/stage:opacity-100 transition-opacity">
                         <button
-                          onClick={() => setLightboxImage(currentImage)}
+                          onClick={() => openLightbox(currentImage)}
                           className="bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-xl backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-md flex items-center space-x-1.5 text-xs font-bold cursor-pointer"
                           title="Perbesar Gambar"
                         >
@@ -1335,7 +1387,10 @@ const Students: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setLightboxImage(null)}
+              onClick={() => {
+                setLightboxImage(null);
+                handleResetZoom();
+              }}
               className="absolute inset-0 bg-slate-950/95 backdrop-blur-md"
             />
 
@@ -1355,7 +1410,10 @@ const Students: React.FC = () => {
                   <p className="text-xs text-slate-400 font-medium">Tahun Ajaran 2026/2027 • SMK Tanjung Priok 1</p>
                 </div>
                 <button
-                  onClick={() => setLightboxImage(null)}
+                  onClick={() => {
+                    setLightboxImage(null);
+                    handleResetZoom();
+                  }}
                   className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer"
                   title="Tutup"
                 >
@@ -1363,14 +1421,71 @@ const Students: React.FC = () => {
                 </button>
               </div>
 
-              {/* Image View Stage */}
-              <div className="p-6 flex-1 flex items-center justify-center bg-slate-950 overflow-hidden relative group">
-                <img
-                  src={lightboxImage.directUrl}
-                  alt={lightboxImage.title}
-                  referrerPolicy="no-referrer"
-                  className="max-w-full max-h-[65vh] object-contain rounded-lg"
-                />
+              {/* Image View Stage with Interactive Zoom and Panning */}
+              <div 
+                className="p-6 flex-1 flex items-center justify-center bg-slate-950 overflow-hidden relative select-none"
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleMouseUp}
+              >
+                {/* Floating Zoom Controls Overlay */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-slate-900/90 border border-slate-700/60 rounded-full px-4 py-2 flex items-center space-x-3.5 shadow-xl backdrop-blur-md">
+                  <button
+                    onClick={() => {
+                      setZoomScale(prev => Math.max(1, prev - 0.25));
+                      if (zoomScale <= 1.25) setPanOffset({ x: 0, y: 0 });
+                    }}
+                    disabled={zoomScale <= 1}
+                    className="p-1 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:text-slate-400 transition cursor-pointer"
+                    title="Zoom Out"
+                  >
+                    <ZoomOut className="w-4.5 h-4.5" />
+                  </button>
+                  <span className="text-white font-mono text-xs font-bold select-none min-w-[3rem] text-center">
+                    {Math.round(zoomScale * 100)}%
+                  </span>
+                  <button
+                    onClick={() => {
+                      setZoomScale(prev => Math.min(3.5, prev + 0.25));
+                    }}
+                    disabled={zoomScale >= 3.5}
+                    className="p-1 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:text-slate-400 transition cursor-pointer"
+                    title="Zoom In"
+                  >
+                    <ZoomIn className="w-4.5 h-4.5" />
+                  </button>
+                  {zoomScale > 1 && (
+                    <button
+                      onClick={handleResetZoom}
+                      className="p-1 text-blue-400 hover:text-blue-300 transition cursor-pointer border-l border-slate-700 pl-3 flex items-center justify-center"
+                      title="Reset Zoom"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+
+                <div 
+                  className="w-full h-full flex items-center justify-center"
+                  style={{
+                    cursor: zoomScale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+                  }}
+                >
+                  <img
+                    src={lightboxImage.directUrl}
+                    alt={lightboxImage.title}
+                    referrerPolicy="no-referrer"
+                    className="max-w-full max-h-[65vh] object-contain rounded-lg select-none pointer-events-none"
+                    style={{
+                      transform: `scale(${zoomScale}) translate(${panOffset.x / zoomScale}px, ${panOffset.y / zoomScale}px)`,
+                      transition: isDragging ? 'none' : 'transform 0.15s ease-out'
+                    }}
+                  />
+                </div>
 
                 {/* Left/Right controls within lightbox */}
                 {(() => {
@@ -1386,8 +1501,9 @@ const Students: React.FC = () => {
                           const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
                           setActiveImageIndex(prevIdx);
                           setLightboxImage(activeImages[prevIdx]);
+                          handleResetZoom();
                         }}
-                        className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                        className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 z-20"
                         aria-label="Halaman Sebelumnya"
                       >
                         <ChevronLeft className="w-6 h-6" />
@@ -1398,8 +1514,9 @@ const Students: React.FC = () => {
                           const nextIdx = (activeImageIndex + 1) % totalImages;
                           setActiveImageIndex(nextIdx);
                           setLightboxImage(activeImages[nextIdx]);
+                          handleResetZoom();
                         }}
-                        className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105"
+                        className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-slate-800/80 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 z-20"
                         aria-label="Halaman Berikutnya"
                       >
                         <ChevronRight className="w-6 h-6" />
@@ -1412,7 +1529,7 @@ const Students: React.FC = () => {
               {/* Action bar */}
               <div className="px-6 py-4 bg-slate-950/60 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider text-left">
-                  Tips: Gunakan cubit layar (zoom) pada perangkat seluler untuk memperbesar detail teks.
+                  Tips: Gunakan tombol zoom (+/-) di atas atau seret gambar untuk melihat detail lebih jelas.
                 </span>
                 
                 <div className="flex items-center space-x-3 w-full sm:w-auto justify-end">
@@ -1435,7 +1552,10 @@ const Students: React.FC = () => {
                   </a>
                   
                   <button
-                    onClick={() => setLightboxImage(null)}
+                    onClick={() => {
+                      setLightboxImage(null);
+                      handleResetZoom();
+                    }}
                     className="flex-1 sm:flex-initial bg-blue-600 hover:bg-blue-500 text-white font-black py-3 px-6 rounded-xl text-xs uppercase tracking-wider transition cursor-pointer"
                   >
                     Selesai
