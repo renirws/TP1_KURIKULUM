@@ -13,6 +13,8 @@ import Gallery from './pages/Gallery';
 import ExternalLinks from './pages/ExternalLinks';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { BottomNav } from './components/BottomNav';
+import { PageWrapper } from './components/PageWrapper';
 
 const App: React.FC = () => {
   // Menggunakan thumbnail Google Drive dengan lebar maksimal untuk kualitas lebih baik
@@ -89,21 +91,22 @@ const App: React.FC = () => {
           <Navbar />
         </header>
 
-        <main className="flex-grow">
+        <main className="flex-grow pb-16 md:pb-0">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/warta" element={<News />} />
-            <Route path="/prakerin" element={<Prakerin />} />
-            <Route path="/kurikulum/*" element={<Curriculum />} />
-            <Route path="/siswa" element={<Students />} />
-            <Route path="/guru" element={<Teachers />} />
-            <Route path="/galeri" element={<Gallery />} />
-            <Route path="/tautan" element={<ExternalLinks />} />
-            <Route path="/berkas" element={<AcademicCalendar />} />
+            <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+            <Route path="/warta" element={<PageWrapper><News /></PageWrapper>} />
+            <Route path="/prakerin" element={<PageWrapper><Prakerin /></PageWrapper>} />
+            <Route path="/kurikulum/*" element={<PageWrapper><Curriculum /></PageWrapper>} />
+            <Route path="/siswa" element={<PageWrapper><Students /></PageWrapper>} />
+            <Route path="/guru" element={<PageWrapper><Teachers /></PageWrapper>} />
+            <Route path="/galeri" element={<PageWrapper><Gallery /></PageWrapper>} />
+            <Route path="/tautan" element={<PageWrapper><ExternalLinks /></PageWrapper>} />
+            <Route path="/berkas" element={<PageWrapper><AcademicCalendar /></PageWrapper>} />
           </Routes>
         </main>
 
         <Footer />
+        <BottomNav />
       </div>
     </Router>
   );
