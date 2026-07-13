@@ -273,12 +273,12 @@ const Students: React.FC = () => {
       try {
         setLoading(true);
         // Determine sheet name based on selected class
-        // Class XI uses 'KLS X 25/26' and Class XII uses 'KLS XI 25/26'
-        const sheetName = selectedClass === 'XI' ? 'KLS X 25/26' : 'KLS XI 25/26';
+        // Class XI uses 'KLS XI 26/27' and Class XII uses 'KLS XII 26/27'
+        const sheetName = selectedClass === 'XI' ? 'KLS XI 26/27' : 'KLS XII 26/27';
         const encodedSheetName = encodeURIComponent(sheetName);
         
-        // Fetch columns AC to AJ which contain Class XI / XII administration SPP arrears
-        const res = await fetch(`https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/gviz/tq?tqx=out:json&sheet=${encodedSheetName}&range=AC2:AJ`);
+        // Fetch columns AA to AH which contain Class XI / XII administration SPP arrears
+        const res = await fetch(`https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/gviz/tq?tqx=out:json&sheet=${encodedSheetName}&range=AA2:AH`);
         if (!res.ok) {
           throw new Error("Gagal mengambil data dari Google Sheets. Silakan periksa koneksi internet Anda.");
         }

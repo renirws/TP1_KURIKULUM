@@ -15,6 +15,7 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Migrasi Jadwal KBM Master** | ✅ Selesai | Pemindahan Jadwal KBM Master dari siswa ke guru demi efisiensi UX. | Siswa & Guru |
 | **Optimasi Mobile Friendly** | ✅ Selesai | Desain Bottom Nav ergonomis & Sheet Menu untuk pengalaman seluler. | Global (`App.tsx`) |
 | **Pembaruan Jadwal KBM & Zoom** | ✅ Selesai | Pembaruan Jadwal KBM Utama TA 2026/2027 serta sistem zoom & seret interaktif. | Siswa & Guru |
+| **Sourcing Data Keuangan Siswa** | ✅ Selesai | Pembaruan database keuangan kelas XI & XII bersumber tab baru 2026/2027. | Halaman Siswa (`/siswa`) |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
 
 ---
@@ -87,6 +88,20 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
     * Menyediakan navigasi seret (*drag-and-pan*) menggunakan mouse maupun sapuan jari (*touch gesture*) untuk menggeser gambar saat dizoom secara responsif dan bebas hambatan.
     * Otomatis mereset tingkat pembesaran ketika berpindah slide halaman atau menutup lightbox untuk menjaga kenyamanan penggunaan (*UX flow*).
   * **Cakupan Pengalaman**: Fitur ini diimplementasikan secara identik pada slideshow halaman **Guru** (`/guru`) serta halaman **Siswa** (`/siswa`).
+  
+---
+
+### 7. Pembaruan Sourcing Data Keuangan Siswa Kelas XI & XII TA 2026/2027
+* **Tujuan**: Menghubungkan portal pemeriksaan administrasi keuangan siswa mandiri secara langsung ke database lembar tab terbaru Google Sheets tahun ajaran 2026/2027 untuk menjaga keakuratan, kevalidan, serta kemutakhiran informasi.
+* **Tautan Sumber Database**: `https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/edit`
+* **Implementasi**:
+  * **Penyesuaian Tab Sheet & Kategori**:
+    * **Kelas XI**: Sekarang ditarik dari lembar tab `KLS XI 26/27` (sebelumnya `KLS X 25/26`).
+    * **Kelas XII**: Sekarang ditarik dari lembar tab `KLS XII 26/27` (sebelumnya `KLS XI 25/26`).
+  * **Koreksi Kolom API (Gviz query)**:
+    * Karena struktur baris di tab baru mengalami penyesuaian posisi, rentang query dimigrasikan dari `AC2:AJ` menjadi `AA2:AH`.
+    * Kolom `AA` memuat NO, `AB` memuat NIS, `AC` memuat NAMA, dan dilanjutkan rentang rincian SPP, UTS, UAS, DU, PPDB, hingga Jumlah Tunggakan Terakhir pada kolom `AH`.
+    * Pemetaan indeks cells dipertahankan secara dinamis tanpa merusak fitur slip cetak mandiri.
 
 ---
 
