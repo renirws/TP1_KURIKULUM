@@ -16,7 +16,8 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Optimasi Mobile Friendly** | ✅ Selesai | Desain Bottom Nav ergonomis & Sheet Menu untuk pengalaman seluler. | Global (`App.tsx`) |
 | **Pembaruan Jadwal KBM & Zoom** | ✅ Selesai | Pembaruan Jadwal KBM Utama TA 2026/2027 serta sistem zoom & seret interaktif. | Siswa & Guru |
 | **Sourcing Data Keuangan Siswa** | ✅ Selesai | Pembaruan database keuangan kelas XI & XII bersumber tab baru 2026/2027. | Halaman Siswa (`/siswa`) |
-| **Menu Pembimbing Prakerin** | ✅ Selesai | Slideshow interaktif berisi rincian 14 halaman Pembimbing Prakerin dengan fitur zoom/seret. | Halaman Siswa (`/siswa`) |
+| **Portal Prakerin & Bimbingan** | ✅ Selesai | Pemisahan sub-menu Prakerin secara mandiri, didukung pencarian GSheet live "JUMLAH BIMBINGAN" & penampil slide guru. | Halaman Siswa (`/siswa`) |
+| **SEO & Schema JSON-LD** | ✅ Selesai | Optimasi meta-tag dan injeksi schema JSON-LD terstruktur untuk mendongkrak peringkat pencarian Google. | Global & Halaman Siswa |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
 
 ---
@@ -118,6 +119,28 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
   * **Sistem Zoom & Seret Interaktif**:
     * Didukung penuh oleh fitur *panning & active scaling* modal lightbox sehingga siswa dapat membaca tulisan-tulisan kecil di lembar pembimbing secara mudah dengan gerakan cubit/seret jari (*pinch & pan gesture*) maupun geseran mouse (*click & drag*).
     * Terintegrasi dengan fitur cetak mandiri lanskap (*landscape PDF print support*).
+
+---
+
+### 9. Sub-Menu Mandiri Prakerin & Mesin Pencari Live GSheet "JUMLAH BIMBINGAN"
+* **Tujuan**: Memisahkan lembar Pembimbing Prakerin dari menu Jadwal KBM Utama ke dalam sub-menu tersendiri di Halaman Siswa (`/siswa`) untuk kenyamanan UX, serta menghubungkannya secara live dengan database Google Sheets tab `JUMLAH BIMBINGAN`.
+* **Tautan Sumber Database**: `https://docs.google.com/spreadsheets/d/1crmNzq44st5V7_9x8UJl7rG5z0PwFP3t/edit?usp=sharing`
+* **Implementasi**:
+  * **Pemisahan Navigasi**: Opsi 'Pembimbing Prakerin' dikeluarkan dari tab jadwal KBM utama agar jadwal KBM fokus 100% pada Kelas X, XI, dan XII.
+  * **Sub-Menu Mandiri Prakerin (`#prakerin-bimbingan`)**: Ditambahkan area khusus Prakerin berupa bento-grid berdesain premium dan modern (gradasi gelap, border kontras tinggi, target sentuh 44px+).
+  * **3 Sub-tab Interaktif**:
+    1. **Cari Siswa/Lokasi**: Mesin pencari live real-time. Siswa/guru dapat mengetik Nama Siswa, Kelas, Guru Pembimbing, atau Perusahaan untuk memunculkan kartu penempatan asesi secara instan (fast-response).
+    2. **Kelompok Guru**: Pengelompokan asesi berdasarkan Guru Pembimbing menggunakan kartu lipat (*expandable cards*). Menampilkan jumlah siswa bimbingan per guru dan detail lokasi penempatan masing-masing siswa secara terstruktur.
+    3. **Slide Pembimbing**: Slideshow berisi 14 halaman info Pembimbing Prakerin yang terintegrasi dengan fitur zoom/panning dan cetak PDF mandiri.
+  * **Parsing Google Sheets Tingkat Lanjut**: Mengimplementasikan logika *carry-forward* pada data gviz untuk merapikan sel-sel kosong/hierarkis (khas merged-cells GSheet) menjadi record data flat yang utuh dan akurat saat dicari.
+
+---
+
+### 10. Optimasi SEO Senior & Injeksi Structured Data JSON-LD
+* **Tujuan**: Mendongkrak peringkat keterlihatan dan otoritas website di mesin pencari Google agar portal kurikulum dan SPP sekolah selalu berada di posisi teratas hasil pencarian.
+* **Implementasi**:
+  * **Injeksi JSON-LD Schema Markup**: Membuat script schema terstruktur bertipe `WebPage` dan `EducationalOrganization` yang dinamis di `/components/SEO.tsx` untuk menjelaskan secara semantik tentang SMK Tanjung Priok 1 dan layanan portal SPP serta Prakerin.
+  * **Penyempurnaan Tag Meta**: Mengoptimasi kepadatan kata kunci (*keyword density*) berdaya saing tinggi serta menyusun deskripsi meta yang memikat (*CTR-optimized*) pada halaman beranda dan portal siswa.
 
 ---
 

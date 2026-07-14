@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, CheckCircle, AlertTriangle, Printer, Download, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { Search, CheckCircle, AlertTriangle, Printer, Download, RefreshCw, User, Filter, CreditCard, ChevronRight, ChevronLeft, Info, HelpCircle, X, Lock, Key, LogOut, Eye, EyeOff, ShieldCheck, FolderOpen, ExternalLink, Calendar, Maximize2, ZoomIn, ZoomOut, RotateCcw, MapPin, Briefcase, Users, FileText, ChevronDown, ChevronUp } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 interface StudentData {
@@ -26,6 +26,17 @@ interface ScheduleImage {
   originalUrl: string;
   directUrl: string;
   title: string;
+}
+
+interface PrakerinBimbingan {
+  noGuru: string;
+  namaGuru: string;
+  kelas: string;
+  noSiswa: string;
+  namaSiswa: string;
+  lokasi: string;
+  periode: string;
+  jumlahSiswa: string;
 }
 
 const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'PRAKERIN', ScheduleImage[]> = {
@@ -333,6 +344,16 @@ const Students: React.FC = () => {
   const [selectedStudent, setSelectedStudent] = useState<StudentData | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
 
+  // States for Bimbingan Prakerin GSheet dynamic search & slideshow
+  const [prakerinList, setPrakerinList] = useState<PrakerinBimbingan[]>([]);
+  const [prakerinLoading, setPrakerinLoading] = useState<boolean>(true);
+  const [prakerinError, setPrakerinError] = useState<string | null>(null);
+  const [prakerinSearch, setPrakerinSearch] = useState<string>('');
+  const [prakerinActiveTab, setPrakerinActiveTab] = useState<'pencarian' | 'pembimbing' | 'slideshow'>('pencarian');
+  const [prakerinSlideIndex, setPrakerinSlideIndex] = useState<number>(0);
+  const [prakerinRefreshTrigger, setPrakerinRefreshTrigger] = useState<number>(0);
+  const [expandedTeacher, setExpandedTeacher] = useState<string | null>(null);
+
   const handleClassChange = (idx: number) => {
     setSlideDirection(idx > activeScheduleIndex ? 1 : -1);
     setActiveScheduleIndex(idx);
@@ -424,6 +445,97 @@ const Students: React.FC = () => {
     
     fetchStudentData();
   }, [refreshTrigger, selectedClass]);
+
+  // Fetch Bimbingan Prakerin GSheet data
+  useEffect(() => {
+    const fetchPrakerinData = async () => {
+      try {
+        setPrakerinLoading(true);
+        const encodedSheetName = encodeURIComponent('JUMLAH BIMBINGAN');
+        const res = await fetch(`https://docs.google.com/spreadsheets/d/1crmNzq44st5V7_9x8UJl7rG5z0PwFP3t/gviz/tq?tqx=out:json&sheet=${encodedSheetName}&range=A2:H`);
+        if (!res.ok) {
+          throw new Error("Gagal mengambil data Bimbingan Prakerin dari Google Sheets. Silakan periksa koneksi internet Anda.");
+        }
+        const text = await res.text();
+        
+        // Parse the gviz wrapper
+        const jsonStart = text.indexOf('{');
+        const jsonEnd = text.lastIndexOf('}') + 1;
+        if (jsonStart === -1 || jsonEnd === -1) {
+          throw new Error("Format data Bimbingan tidak valid.");
+        }
+        
+        const jsonString = text.substring(jsonStart, jsonEnd);
+        const data = JSON.parse(jsonString);
+        const rows = data.table?.rows || [];
+        
+        let lastGuru = "";
+        let lastKelas = "";
+        let lastLokasi = "";
+        let lastPeriode = "";
+        let lastJumlah = "";
+
+        const parsed: PrakerinBimbingan[] = rows
+          .map((row: any) => {
+            const cells = row.c;
+            if (!cells) return null;
+            
+            const rawNoGuru = cells[0]?.v !== undefined && cells[0]?.v !== null ? String(cells[0].f || cells[0].v).trim() : "";
+            const rawGuru = cells[1]?.v !== undefined && cells[1]?.v !== null ? String(cells[1].v).trim() : "";
+            const rawKelas = cells[2]?.v !== undefined && cells[2]?.v !== null ? String(cells[2].v).trim() : "";
+            const rawNoSiswa = cells[3]?.v !== undefined && cells[3]?.v !== null ? String(cells[3].f || cells[3].v).trim() : "";
+            const rawNamaSiswa = cells[4]?.v !== undefined && cells[4]?.v !== null ? String(cells[4].v).trim() : "";
+            const rawLokasi = cells[5]?.v !== undefined && cells[5]?.v !== null ? String(cells[5].v).trim() : "";
+            const rawPeriode = cells[6]?.v !== undefined && cells[6]?.v !== null ? String(cells[6].v).trim() : "";
+            const rawJumlah = cells[7]?.v !== undefined && cells[7]?.v !== null ? String(cells[7].f || cells[7].v).trim() : "";
+
+            // Skip total or header rows if any
+            if (rawNamaSiswa && (rawNamaSiswa.toLowerCase().includes("total") || rawNamaSiswa.toLowerCase().includes("jumlah"))) {
+              return null;
+            }
+
+            // Carry-forward logic for hierarchical spreadsheet
+            if (rawGuru) lastGuru = rawGuru;
+            if (rawKelas) lastKelas = rawKelas;
+            if (rawJumlah) lastJumlah = rawJumlah;
+            
+            // If new guru starts, reset or grab lokasi and period
+            if (rawGuru) {
+              lastLokasi = rawLokasi;
+              lastPeriode = rawPeriode;
+            } else {
+              if (rawLokasi) lastLokasi = rawLokasi;
+              if (rawPeriode) lastPeriode = rawPeriode;
+            }
+
+            // If there's no student name and no teacher, skip it (spacer rows)
+            if (!rawNamaSiswa && !rawGuru) return null;
+
+            return {
+              noGuru: rawNoGuru || "",
+              namaGuru: lastGuru,
+              kelas: lastKelas,
+              noSiswa: rawNoSiswa,
+              namaSiswa: rawNamaSiswa,
+              lokasi: lastLokasi || "Belum Ditentukan",
+              periode: lastPeriode || "Belum Ditentukan",
+              jumlahSiswa: lastJumlah
+            };
+          })
+          .filter((item: any): item is PrakerinBimbingan => item !== null && item.namaSiswa !== ""); // Filter out entries without student names
+          
+        setPrakerinList(parsed);
+        setPrakerinError(null);
+      } catch (err: any) {
+        console.error("Error fetching Prakerin sheet:", err);
+        setPrakerinError(err.message || "Gagal memuat data Bimbingan Prakerin.");
+      } finally {
+        setPrakerinLoading(false);
+      }
+    };
+    
+    fetchPrakerinData();
+  }, [prakerinRefreshTrigger]);
 
   // Helper to check if a student has cleared all debts
   const isLunas = (student: StudentData): boolean => {
@@ -675,10 +787,33 @@ const Students: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <SEO 
-        title="Cek SPP Online & Portal Siswa SMK TANJUNG PRIOK 1 | Jadwal Pelajaran"
-        description="Portal Siswa SMK Tanjung Priok 1 Jakarta Utara. Cek tagihan SPP online Kelas XI dan XII secara mandiri dan real-time dari database Google Sheets, unduh jadwal pelajaran KOSP terbaru, dan akses administrasi akademik."
-        keywords="Cek SPP Online SMK Tanjung Priok 1, Portal Siswa SMK Tanjung Priok 1, Pembayaran SPP SMK, Jadwal Pelajaran SMK Tanjung Priok 1, SPP Kelas XI XII, SMK Jakarta Utara"
+        title="Cek SPP Online & Portal Siswa SMK TANJUNG PRIOK 1 | Jadwal Pelajaran & Prakerin"
+        description="Portal Siswa SMK Tanjung Priok 1 Jakarta Utara. Cek tagihan SPP online Kelas XI dan XII secara mandiri & real-time dari database Google Sheets, unduh jadwal pelajaran KBM terbaru, serta akses direktori bimbingan & lokasi Prakerin 2026/2027."
+        keywords="Cek SPP Online SMK Tanjung Priok 1, Portal Siswa SMK Tanjung Priok 1, Pembayaran SPP SMK, Jadwal Pelajaran SMK Tanjung Priok 1, SPP Kelas XI XII, SMK Jakarta Utara, Pembimbing Prakerin, Lokasi Prakerin SMK Tanjung Priok 1, PKL SMK Tanjung Priok 1"
         canonical="https://tp1kurikulum.my.id/siswa"
+        schemaMarkup={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Portal Siswa SMK Tanjung Priok 1 | Cek SPP Online, Jadwal KBM & Prakerin",
+          "description": "Layanan portal akademik siswa resmi SMK Tanjung Priok 1 Jakarta Utara. Dilengkapi fitur cek administrasi keuangan SPP Kelas XI & XII real-time, jadwal pelajaran KBM, serta portal pencarian lokasi & pembimbing Prakerin.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Kurikulum SMK Tanjung Priok 1",
+            "url": "https://tp1kurikulum.my.id/"
+          },
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "SMK Tanjung Priok 1 Jakarta Utara",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Jl. Mangga No.3, Lagoa, Koja",
+              "addressLocality": "Jakarta Utara",
+              "addressRegion": "DKI Jakarta",
+              "postalCode": "14270",
+              "addressCountry": "ID"
+            }
+          }
+        }}
       />
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-[#0f172a]">Portal Siswa</h1>
@@ -707,16 +842,16 @@ const Students: React.FC = () => {
             </div>
             
             {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
-            <div className="grid grid-cols-2 sm:flex bg-slate-900/50 p-1.5 rounded-3xl sm:rounded-[2rem] max-w-2xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20 gap-1.5 sm:gap-0">
-              {['Kelas X', 'Kelas XI', 'Kelas XII', 'Pembimbing Prakerin'].map((label, idx) => (
+            <div className="flex bg-slate-900/50 p-1.5 rounded-[2rem] max-w-xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20 gap-1 sm:gap-0">
+              {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
                 <button
                   key={label}
                   onClick={() => handleClassChange(idx)}
-                  className={`py-3 text-xs md:text-sm font-black rounded-2xl sm:rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  className={`flex-1 py-3 text-xs md:text-sm font-black rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                     activeScheduleIndex === idx
                       ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105 z-10'
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
-                  } ${label === 'Pembimbing Prakerin' ? 'sm:px-4' : 'flex-1'}`}
+                  }`}
                 >
                   {label}
                 </button>
@@ -725,7 +860,7 @@ const Students: React.FC = () => {
 
             {/* Interactive Slideshow viewport for Schedule Images */}
             {(() => {
-              const classKeys: ('X' | 'XI' | 'XII' | 'PRAKERIN')[] = ['X', 'XI', 'XII', 'PRAKERIN'];
+              const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
               const activeClassKey = classKeys[activeScheduleIndex];
               const activeImages = SCHEDULE_IMAGES[activeClassKey];
               const totalImages = activeImages.length;
@@ -907,6 +1042,425 @@ const Students: React.FC = () => {
                 </div>
               );
             })()}
+          </div>
+        </div>
+      </div>
+
+      {/* SECTION: PORTAL BIMBINGAN & LOKASI PRAKERIN */}
+      <div id="prakerin-bimbingan" className="mb-16">
+        <div className="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group border border-slate-800">
+          <div className="absolute top-0 right-0 p-8 opacity-10 transform group-hover:scale-110 transition-transform">
+            <Briefcase className="w-48 h-48 text-white" />
+          </div>
+          
+          <div className="relative z-10">
+            <div className="text-center md:text-left mb-8">
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase mb-4 inline-block shadow-sm">
+                Portal Prakerin TA 2026/2027
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight">Bimbingan & Lokasi Prakerin</h2>
+              <p className="text-slate-300 font-medium text-base leading-relaxed max-w-2xl">
+                Cari informasi pembimbing, instansi/perusahaan lokasi penempatan Prakerin, serta detail jumlah bimbingan asesi secara interaktif dari database resmi.
+              </p>
+            </div>
+
+            {/* Custom Tab Selectors for Bimbingan Prakerin */}
+            <div className="grid grid-cols-3 bg-slate-950/60 p-1.5 rounded-2xl sm:rounded-[2rem] max-w-2xl mx-auto border border-slate-800 mb-8 shadow-inner relative z-20 gap-1 sm:gap-0">
+              {[
+                { id: 'pencarian', label: 'Cari Siswa/Lokasi', icon: Search },
+                { id: 'pembimbing', label: 'Kelompok Guru', icon: Users },
+                { id: 'slideshow', label: 'Slide Pembimbing', icon: FileText },
+              ].map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setPrakerinActiveTab(tab.id as any)}
+                    className={`py-3.5 text-[10px] sm:text-xs font-black rounded-xl sm:rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center justify-center space-x-2 ${
+                      prakerinActiveTab === tab.id
+                        ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 scale-105 z-10'
+                        : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    <IconComponent className="w-4 h-4 hidden sm:inline" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Dynamic Content Views */}
+            {prakerinActiveTab === 'pencarian' && (
+              <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-slate-100 shadow-2xl">
+                {/* Search Inputs and Controls */}
+                <div className="flex flex-col md:flex-row gap-4 mb-6">
+                  <div className="relative flex-1">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+                    <input
+                      type="text"
+                      placeholder="Cari nama siswa, lokasi perusahaan, nama guru pembimbing, atau kelas..."
+                      value={prakerinSearch}
+                      onChange={(e) => setPrakerinSearch(e.target.value)}
+                      className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none text-slate-800 font-medium transition text-sm shadow-inner"
+                    />
+                    {prakerinSearch && (
+                      <button
+                        onClick={() => setPrakerinSearch('')}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 font-bold"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
+                    )}
+                  </div>
+                  
+                  {/* Refresh Button */}
+                  <button
+                    onClick={() => setPrakerinRefreshTrigger(prev => prev + 1)}
+                    className="flex items-center justify-center space-x-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold py-4 px-6 rounded-2xl transition cursor-pointer"
+                    title="Refresh data Prakerin"
+                  >
+                    <RefreshCw className={`w-4 h-4 ${prakerinLoading ? 'animate-spin' : ''}`} />
+                    <span>Refresh</span>
+                  </button>
+                </div>
+
+                {/* Main Data Display for Search tab */}
+                {prakerinLoading ? (
+                  <div className="py-16 flex flex-col items-center justify-center space-y-4">
+                    <RefreshCw className="w-10 h-10 text-emerald-600 animate-spin" />
+                    <p className="text-slate-500 font-bold text-center">Menghubungkan ke Google Sheets resmi sekolah...</p>
+                  </div>
+                ) : prakerinError ? (
+                  <div className="bg-red-50 border border-red-100 rounded-3xl p-8 text-center max-w-lg mx-auto">
+                    <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+                    <h4 className="text-lg font-bold text-red-800 mb-1">Koneksi Gagal</h4>
+                    <p className="text-red-600 text-sm mb-4 leading-relaxed">{prakerinError}</p>
+                    <button
+                      onClick={() => setPrakerinRefreshTrigger(prev => prev + 1)}
+                      className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition"
+                    >
+                      Coba Lagi
+                    </button>
+                  </div>
+                ) : (() => {
+                  const query = prakerinSearch.toLowerCase().trim();
+                  const filtered = prakerinList.filter(item => 
+                    item.namaSiswa.toLowerCase().includes(query) ||
+                    item.namaGuru.toLowerCase().includes(query) ||
+                    item.kelas.toLowerCase().includes(query) ||
+                    item.lokasi.toLowerCase().includes(query)
+                  );
+
+                  if (filtered.length === 0) {
+                    return (
+                      <div className="text-center py-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                        <Search className="w-10 h-10 text-slate-400 mx-auto mb-3" />
+                        <h4 className="text-slate-700 font-bold">Data Tidak Ditemukan</h4>
+                        <p className="text-slate-500 text-xs max-w-md mx-auto mt-1 leading-relaxed">
+                          Tidak ditemukan data bimbingan yang cocok dengan kata kunci "{prakerinSearch}". Periksa kembali ejaan kata kunci Anda.
+                        </p>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div>
+                      {/* Search Results Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[35rem] overflow-y-auto pr-2 scrollbar-thin">
+                        {filtered.map((item, idx) => (
+                          <div key={idx} className="bg-slate-50 border border-slate-100 p-5 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/10 transition duration-300 relative overflow-hidden group">
+                            <div className="flex items-start justify-between mb-4">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-10 h-10 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center font-black text-sm uppercase flex-shrink-0">
+                                  {item.namaSiswa.charAt(0)}
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-slate-800 text-sm leading-tight">{item.namaSiswa}</h4>
+                                  <p className="text-slate-500 text-xs font-semibold mt-0.5">{item.kelas}</p>
+                                </div>
+                              </div>
+                              <span className="bg-slate-200/80 text-slate-700 font-mono text-[10px] font-bold px-2.5 py-1 rounded-full uppercase flex-shrink-0">
+                                NIS {item.noSiswa}
+                              </span>
+                            </div>
+
+                            <div className="space-y-2.5 border-t border-slate-200/60 pt-3.5 text-xs font-semibold text-slate-600">
+                              <div className="flex items-center text-slate-700">
+                                <User className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                                <span className="text-slate-400 font-bold mr-1.5 uppercase tracking-wider text-[9px]">Pembimbing:</span>
+                                <span className="font-extrabold text-slate-800">{item.namaGuru}</span>
+                              </div>
+                              
+                              <div className="flex items-start">
+                                <MapPin className="w-4 h-4 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
+                                <div className="flex-1">
+                                  <span className="text-slate-400 font-bold mr-1.5 uppercase tracking-wider text-[9px] block sm:inline">Lokasi:</span>
+                                  <span className="font-extrabold text-slate-800 leading-tight">{item.lokasi}</span>
+                                </div>
+                              </div>
+
+                              <div className="flex items-start">
+                                <Calendar className="w-4 h-4 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
+                                <div className="flex-1">
+                                  <span className="text-slate-400 font-bold mr-1.5 uppercase tracking-wider text-[9px] block sm:inline">Periode:</span>
+                                  <span className="font-extrabold text-slate-800 whitespace-pre-line leading-tight">{item.periode}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="mt-4 text-right text-xs text-slate-400 font-bold uppercase tracking-wider">
+                        Menampilkan {filtered.length} asesi bimbingan aktif.
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            )}
+
+            {prakerinActiveTab === 'pembimbing' && (
+              <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-slate-100 shadow-2xl">
+                {prakerinLoading ? (
+                  <div className="py-16 flex flex-col items-center justify-center space-y-4">
+                    <RefreshCw className="w-10 h-10 text-emerald-600 animate-spin" />
+                    <p className="text-slate-500 font-bold">Sedang memproses kelompok bimbingan guru...</p>
+                  </div>
+                ) : prakerinError ? (
+                  <div className="bg-red-50 border border-red-100 rounded-3xl p-8 text-center max-w-lg mx-auto">
+                    <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+                    <h4 className="text-lg font-bold text-red-800 mb-1">Koneksi Gagal</h4>
+                    <p className="text-red-600 text-sm mb-4 leading-relaxed">{prakerinError}</p>
+                    <button
+                      onClick={() => setPrakerinRefreshTrigger(prev => prev + 1)}
+                      className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition"
+                    >
+                      Coba Lagi
+                    </button>
+                  </div>
+                ) : (() => {
+                  // Perform grouping by teacher
+                  const teachersMap: Record<string, { namaGuru: string; kelas: string; jumlahSiswa: string; siswa: PrakerinBimbingan[] }> = {};
+                  prakerinList.forEach(item => {
+                    if (!teachersMap[item.namaGuru]) {
+                      teachersMap[item.namaGuru] = {
+                        namaGuru: item.namaGuru,
+                        kelas: item.kelas,
+                        jumlahSiswa: item.jumlahSiswa || '0',
+                        siswa: []
+                      };
+                    }
+                    teachersMap[item.namaGuru].siswa.push(item);
+                  });
+
+                  const teachers = Object.values(teachersMap);
+
+                  return (
+                    <div className="space-y-4 max-h-[35rem] overflow-y-auto pr-2 scrollbar-thin">
+                      {teachers.map((teacher, idx) => {
+                        const isExpanded = expandedTeacher === teacher.namaGuru;
+                        return (
+                          <div key={idx} className="border border-slate-100 bg-slate-50 rounded-2xl overflow-hidden transition-all duration-300">
+                            {/* Header Row */}
+                            <button
+                              onClick={() => setExpandedTeacher(isExpanded ? null : teacher.namaGuru)}
+                              className="w-full p-5 flex flex-col sm:flex-row sm:items-center justify-between text-left cursor-pointer hover:bg-slate-100/60 transition gap-4"
+                            >
+                              <div className="flex items-center space-x-3.5">
+                                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 text-white rounded-xl flex items-center justify-center font-black shadow-md shadow-emerald-500/10 flex-shrink-0">
+                                  <User className="w-5 h-5" />
+                                </div>
+                                <div>
+                                  <h4 className="font-extrabold text-slate-800 text-base leading-snug">{teacher.namaGuru}</h4>
+                                  <p className="text-slate-500 text-xs font-bold mt-0.5">Kelas Terbimbing: <span className="text-emerald-700">{teacher.kelas}</span></p>
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-center justify-between sm:justify-end space-x-4">
+                                <div className="bg-emerald-100 text-emerald-800 font-extrabold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                                  {teacher.siswa.length} Siswa Bimbingan
+                                </div>
+                                {isExpanded ? <ChevronUp className="w-5 h-5 text-slate-500" /> : <ChevronDown className="w-5 h-5 text-slate-500" />}
+                              </div>
+                            </button>
+
+                            {/* Expanded Students List */}
+                            <AnimatePresence>
+                              {isExpanded && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: 'auto', opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.25 }}
+                                  className="border-t border-slate-200/50 bg-white"
+                                >
+                                  <div className="p-5 space-y-3.5">
+                                    <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Daftar Siswa Kelompok:</h5>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                      {teacher.siswa.map((st, sidx) => (
+                                        <div key={sidx} className="bg-slate-50/80 border border-slate-100 p-4 rounded-xl flex flex-col justify-between hover:border-emerald-200 transition">
+                                          <div>
+                                            <div className="flex justify-between items-start mb-2">
+                                              <span className="text-[10px] font-black text-slate-400">NO. {st.noSiswa}</span>
+                                              <span className="text-[10px] bg-slate-200/70 text-slate-700 font-bold px-2 py-0.5 rounded-md uppercase">{st.kelas}</span>
+                                            </div>
+                                            <h5 className="font-extrabold text-slate-800 text-sm">{st.namaSiswa}</h5>
+                                          </div>
+                                          
+                                          <div className="mt-3 pt-3 border-t border-slate-200/50 space-y-1.5 text-xs font-semibold text-slate-500">
+                                            <div className="flex items-start">
+                                              <MapPin className="w-3.5 h-3.5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
+                                              <span className="text-slate-700 font-extrabold">{st.lokasi}</span>
+                                            </div>
+                                            <div className="flex items-start">
+                                              <Calendar className="w-3.5 h-3.5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" />
+                                              <span className="text-slate-600 whitespace-pre-line leading-snug font-bold">{st.periode}</span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+              </div>
+            )}
+
+            {prakerinActiveTab === 'slideshow' && (
+              <div className="bg-white rounded-[2.5rem] p-4 md:p-6 border border-slate-100 shadow-2xl relative overflow-hidden">
+                {/* Embedded Slideshow Viewport for Prakerin Images */}
+                {(() => {
+                  const activeImages = SCHEDULE_IMAGES['PRAKERIN'];
+                  const totalImages = activeImages.length;
+                  const currentImage = activeImages[prakerinSlideIndex] || activeImages[0];
+                  
+                  return (
+                    <div className="relative max-w-3xl mx-auto">
+                      {/* Title banner */}
+                      <div className="text-center mb-5">
+                        <p className="text-[#0f172a] text-sm font-bold tracking-wide uppercase flex items-center justify-center gap-2">
+                          <Calendar className="w-4.5 h-4.5 text-emerald-600" />
+                          {currentImage.title}
+                        </p>
+                      </div>
+
+                      {/* Main Image Stage Card */}
+                      <div className="bg-[#0f172a] rounded-[2rem] p-2 md:p-4 border border-slate-800 shadow-xl relative group/stage overflow-hidden">
+                        {/* Image Display Panel */}
+                        <div className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden rounded-xl bg-slate-950 flex items-center justify-center">
+                          <AnimatePresence mode="wait">
+                            <motion.img
+                              key={`prakerin-${prakerinSlideIndex}`}
+                              src={currentImage.directUrl}
+                              alt={currentImage.title}
+                              referrerPolicy="no-referrer"
+                              className="max-w-full max-h-full object-contain cursor-zoom-in rounded-lg select-none"
+                              initial={{ opacity: 0, scale: 0.98 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.98 }}
+                              transition={{ duration: 0.25 }}
+                              onClick={() => openLightbox(currentImage)}
+                            />
+                          </AnimatePresence>
+
+                          {/* Zoom overlay button */}
+                          <button
+                            onClick={() => openLightbox(currentImage)}
+                            className="absolute bottom-4 right-4 bg-slate-900/80 hover:bg-emerald-600 text-white p-2.5 rounded-xl border border-white/10 backdrop-blur-md cursor-pointer transition shadow hover:scale-105 z-10"
+                            title="Perbesar / Zoom"
+                          >
+                            <Maximize2 className="w-4.5 h-4.5" />
+                          </button>
+
+                          {/* Image Navigation Arrows Overlaid on Stage */}
+                          <button
+                            onClick={() => {
+                              const prevIdx = (prakerinSlideIndex - 1 + totalImages) % totalImages;
+                              setPrakerinSlideIndex(prevIdx);
+                            }}
+                            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-slate-900/60 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
+                            aria-label="Halaman Sebelumnya"
+                          >
+                            <ChevronLeft className="w-5 h-5" />
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              const nextIdx = (prakerinSlideIndex + 1) % totalImages;
+                              setPrakerinSlideIndex(nextIdx);
+                            }}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-slate-900/60 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover/stage:opacity-100 backdrop-blur-md cursor-pointer shadow-lg hover:scale-105"
+                            aria-label="Halaman Berikutnya"
+                          >
+                            <ChevronRight className="w-5 h-5" />
+                          </button>
+
+                          {/* Floating Indicator of Current Slide */}
+                          <div className="absolute top-4 left-4 z-20 bg-slate-900/70 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
+                            Halaman {prakerinSlideIndex + 1} / {totalImages}
+                          </div>
+                        </div>
+
+                        {/* Thumbnail Strip / Navigation Indicator */}
+                        <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5">
+                          {activeImages.map((img, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setPrakerinSlideIndex(idx)}
+                              className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer border ${
+                                prakerinSlideIndex === idx
+                                  ? 'bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/20 scale-105'
+                                  : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white'
+                              }`}
+                            >
+                              Hal {idx + 1}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Quick Actions Panel */}
+                      <div className="mt-5 p-4 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-700">
+                        <div className="text-left">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                            Cetak Mandiri Slide
+                          </span>
+                          <span className="text-xs font-bold text-slate-600">
+                            Cetak lembar Pembimbing Prakerin ini atau simpan sebagai PDF?
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end">
+                          <button
+                            onClick={() => handlePrintSchedule(currentImage.directUrl, currentImage.title)}
+                            className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
+                          >
+                            <Printer className="w-4 h-4" />
+                            <span>Cetak / PDF</span>
+                          </button>
+                          <a
+                            href={currentImage.originalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 sm:flex-initial bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
+                          >
+                            <Download className="w-4 h-4" />
+                            <span>Unduh File</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -1561,17 +2115,22 @@ const Students: React.FC = () => {
 
                 {/* Left/Right controls within lightbox */}
                 {(() => {
-                  const classKeys: ('X' | 'XI' | 'XII' | 'PRAKERIN')[] = ['X', 'XI', 'XII', 'PRAKERIN'];
-                  const activeClassKey = classKeys[activeScheduleIndex];
-                  const activeImages = SCHEDULE_IMAGES[activeClassKey];
+                  const isPrakerinLightbox = lightboxImage.title.includes('Pembimbing Prakerin') || lightboxImage.title.includes('Prakerin');
+                  const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
+                  const activeImages = isPrakerinLightbox ? SCHEDULE_IMAGES['PRAKERIN'] : SCHEDULE_IMAGES[classKeys[activeScheduleIndex]];
                   const totalImages = activeImages.length;
+                  const currentIdx = isPrakerinLightbox ? prakerinSlideIndex : activeImageIndex;
                   
                   return (
                     <>
                       <button
                         onClick={() => {
-                          const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
-                          setActiveImageIndex(prevIdx);
+                          const prevIdx = (currentIdx - 1 + totalImages) % totalImages;
+                          if (isPrakerinLightbox) {
+                            setPrakerinSlideIndex(prevIdx);
+                          } else {
+                            setActiveImageIndex(prevIdx);
+                          }
                           setLightboxImage(activeImages[prevIdx]);
                           handleResetZoom();
                         }}
@@ -1583,8 +2142,12 @@ const Students: React.FC = () => {
 
                       <button
                         onClick={() => {
-                          const nextIdx = (activeImageIndex + 1) % totalImages;
-                          setActiveImageIndex(nextIdx);
+                          const nextIdx = (currentIdx + 1) % totalImages;
+                          if (isPrakerinLightbox) {
+                            setPrakerinSlideIndex(nextIdx);
+                          } else {
+                            setActiveImageIndex(nextIdx);
+                          }
                           setLightboxImage(activeImages[nextIdx]);
                           handleResetZoom();
                         }}

@@ -6,6 +6,7 @@ interface SEOProps {
   keywords?: string;
   canonical?: string;
   ogImage?: string;
+  schemaMarkup?: object;
 }
 
 export const SEO: React.FC<SEOProps> = ({
@@ -13,7 +14,8 @@ export const SEO: React.FC<SEOProps> = ({
   description = "Pusat Informasi Kurikulum SMK TANJUNG PRIOK 1. Akses jadwal pelajaran, kalender akademik, bimbingan PKL, sertifikasi LSP, modul generator PPM, serta cek SPP & keuangan siswa secara mandiri dan real-time.",
   keywords = "SMK Tanjung Priok 1, Kurikulum SMK, Cek SPP Online SMK Tanjung Priok 1, LSP SMK Tanjung Priok 1, Modul Generator PPM, UKK 2026, USBK 2026, SPMB 2026, SMK Jakarta Utara, Pendidikan Vokasi",
   canonical = "https://tp1kurikulum.my.id/",
-  ogImage = "https://tp1kurikulum.my.id/og-image.jpg"
+  ogImage = "https://tp1kurikulum.my.id/og-image.jpg",
+  schemaMarkup
 }) => {
   useEffect(() => {
     // 1. Update Document Title
@@ -61,7 +63,21 @@ export const SEO: React.FC<SEOProps> = ({
       linkCanonical.setAttribute('href', canonical);
       document.head.appendChild(linkCanonical);
     }
-  }, [title, description, keywords, canonical, ogImage]);
+
+    // Update Schema Markup (JSON-LD) dynamically
+    if (schemaMarkup) {
+      let schemaScript = document.getElementById('seo-schema-markup');
+      if (schemaScript) {
+        schemaScript.textContent = JSON.stringify(schemaMarkup);
+      } else {
+        schemaScript = document.createElement('script');
+        schemaScript.setAttribute('id', 'seo-schema-markup');
+        schemaScript.setAttribute('type', 'application/ld+json');
+        schemaScript.textContent = JSON.stringify(schemaMarkup);
+        document.head.appendChild(schemaScript);
+      }
+    }
+  }, [title, description, keywords, canonical, ogImage, schemaMarkup]);
 
   return null;
 };
