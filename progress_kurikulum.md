@@ -16,6 +16,7 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Optimasi Mobile Friendly** | ✅ Selesai | Desain Bottom Nav ergonomis & Sheet Menu untuk pengalaman seluler. | Global (`App.tsx`) |
 | **Pembaruan Jadwal KBM & Zoom** | ✅ Selesai | Pembaruan Jadwal KBM Utama TA 2026/2027 serta sistem zoom & seret interaktif. | Siswa & Guru |
 | **Sourcing Data Keuangan Siswa** | ✅ Selesai | Pembaruan database keuangan kelas XI & XII bersumber tab baru 2026/2027. | Halaman Siswa (`/siswa`) |
+| **Menu Pembimbing Prakerin** | ✅ Selesai | Slideshow interaktif berisi rincian 14 halaman Pembimbing Prakerin dengan fitur zoom/seret. | Halaman Siswa (`/siswa`) |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
 
 ---
@@ -102,6 +103,21 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
     * Karena struktur baris di tab baru mengalami penyesuaian posisi, rentang query dimigrasikan dari `AC2:AJ` menjadi `AA2:AH`.
     * Kolom `AA` memuat NO, `AB` memuat NIS, `AC` memuat NAMA, dan dilanjutkan rentang rincian SPP, UTS, UAS, DU, PPDB, hingga Jumlah Tunggakan Terakhir pada kolom `AH`.
     * Pemetaan indeks cells dipertahankan secara dinamis tanpa merusak fitur slip cetak mandiri.
+  
+---
+
+### 8. Integrasi Menu & Slideshow Pembimbing Prakerin Premium
+* **Tujuan**: Menyediakan menu khusus Pembimbing Prakerin (Praktek Kerja Industri) pada portal siswa, menampilkan rincian nama dan data pembimbing dalam bentuk slideshow interaktif bersumber dari berkas gambar resolusi tinggi (14 halaman) agar mudah diakses secara cepat dan mobile-friendly.
+* **Tautan Sumber Gambar Google Drive**:
+  * Halaman 1 s.d 14 bersumber dari berkas Google Drive resmi sekolah yang dimigrasikan menggunakan parameter direct link `=s0` untuk mempertahankan kualitas visual orisinal tanpa kompresi saat dilakukan pembesaran detail.
+* **Implementasi**:
+  * **Penyediaan Tab Tambahan**: Menambahkan tab pilihan "Pembimbing Prakerin" bersanding secara harmonis di sebelah Kelas X, XI, XII.
+  * **Optimasi Layout Grid Responsif (UI/UX)**:
+    * Mengubah barisan tab pemilih menggunakan format adaptif `grid grid-cols-2 sm:flex` dengan target sentuh (*touch target*) minimal 44px yang sangat ergonomis untuk pengguna HP / Smartphone.
+    * Menyediakan penanda halaman (*indicator slide active*) serta tombol navigasi kiri-kanan berukuran pas di jempol tangan.
+  * **Sistem Zoom & Seret Interaktif**:
+    * Didukung penuh oleh fitur *panning & active scaling* modal lightbox sehingga siswa dapat membaca tulisan-tulisan kecil di lembar pembimbing secara mudah dengan gerakan cubit/seret jari (*pinch & pan gesture*) maupun geseran mouse (*click & drag*).
+    * Terintegrasi dengan fitur cetak mandiri lanskap (*landscape PDF print support*).
 
 ---
 

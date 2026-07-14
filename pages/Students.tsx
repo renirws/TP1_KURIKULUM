@@ -28,7 +28,7 @@ interface ScheduleImage {
   title: string;
 }
 
-const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII', ScheduleImage[]> = {
+const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'PRAKERIN', ScheduleImage[]> = {
   X: [
     {
       originalUrl: "https://drive.google.com/file/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ/view?usp=drive_link",
@@ -98,6 +98,78 @@ const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII', ScheduleImage[]> = {
       originalUrl: "https://drive.google.com/file/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy/view?usp=drive_link",
       directUrl: "https://lh3.googleusercontent.com/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy",
       title: "Halaman 4 • Jadwal KBM Kelas XII"
+    }
+  ],
+  PRAKERIN: [
+    {
+      originalUrl: "https://drive.google.com/file/d/1E7NrOV32Yn8-D_TX8Xi5Ts8MSOaY3hNH/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1E7NrOV32Yn8-D_TX8Xi5Ts8MSOaY3hNH=s0",
+      title: "Halaman 1 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1QLM-W5_4liuSCaYB6BPvMiG36qpaOTNE/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1QLM-W5_4liuSCaYB6BPvMiG36qpaOTNE=s0",
+      title: "Halaman 2 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1XUYPwfIWO1tQSu_gtDUnMK0MTQeYhXMV/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1XUYPwfIWO1tQSu_gtDUnMK0MTQeYhXMV=s0",
+      title: "Halaman 3 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1fY75EQ2XjzS8UlMTHYM66YLyVbwPUjMk/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1fY75EQ2XjzS8UlMTHYM66YLyVbwPUjMk=s0",
+      title: "Halaman 4 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1G5WIU1nbGBulWl4Zp62dtQqCzCZeh5s5/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1G5WIU1nbGBulWl4Zp62dtQqCzCZeh5s5=s0",
+      title: "Halaman 5 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1DJ2wG3xaMl2JA_1cKVqmKfLqiDZQjJj4/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1DJ2wG3xaMl2JA_1cKVqmKfLqiDZQjJj4=s0",
+      title: "Halaman 6 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1f2TYG46zS4YYHGG78PaJ64wpNwMi74pg/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1f2TYG46zS4YYHGG78PaJ64wpNwMi74pg=s0",
+      title: "Halaman 7 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1pCZrO5oCjRM6nEtIbaZtuRmYzzw3adq4/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1pCZrO5oCjRM6nEtIbaZtuRmYzzw3adq4=s0",
+      title: "Halaman 8 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1elEwl7YxqDIUsDHyyiNXQAoEqaxPE9yu/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1elEwl7YxqDIUsDHyyiNXQAoEqaxPE9yu=s0",
+      title: "Halaman 9 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1CEW757wrAyWybLGNnb2ynvAOdUuw9a1M/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1CEW757wrAyWybLGNnb2ynvAOdUuw9a1M=s0",
+      title: "Halaman 10 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1UqctThHNwPtKJySCOStfTJDaHTXcZ8PU/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1UqctThHNwPtKJySCOStfTJDaHTXcZ8PU=s0",
+      title: "Halaman 11 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1z4zyzni50_G3TBvKEsLY_3GZdGEGAa7r/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1z4zyzni50_G3TBvKEsLY_3GZdGEGAa7r=s0",
+      title: "Halaman 12 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1_g2Sk8zXT2aAUmgL1YMxW9s9XkKasKKb/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1_g2Sk8zXT2aAUmgL1YMxW9s9XkKasKKb=s0",
+      title: "Halaman 13 • Pembimbing Prakerin"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1nRloN5unPLv5Xmk9RR8sCDXG-hY3bFCD/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1nRloN5unPLv5Xmk9RR8sCDXG-hY3bFCD=s0",
+      title: "Halaman 14 • Pembimbing Prakerin"
     }
   ]
 };
@@ -635,16 +707,16 @@ const Students: React.FC = () => {
             </div>
             
             {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
-            <div className="flex bg-slate-900/50 p-1.5 rounded-[2rem] max-w-xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20">
-              {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
+            <div className="grid grid-cols-2 sm:flex bg-slate-900/50 p-1.5 rounded-3xl sm:rounded-[2rem] max-w-2xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20 gap-1.5 sm:gap-0">
+              {['Kelas X', 'Kelas XI', 'Kelas XII', 'Pembimbing Prakerin'].map((label, idx) => (
                 <button
                   key={label}
                   onClick={() => handleClassChange(idx)}
-                  className={`flex-1 py-3 text-xs md:text-sm font-black rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  className={`py-3 text-xs md:text-sm font-black rounded-2xl sm:rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                     activeScheduleIndex === idx
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105'
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105 z-10'
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
-                  }`}
+                  } ${label === 'Pembimbing Prakerin' ? 'sm:px-4' : 'flex-1'}`}
                 >
                   {label}
                 </button>
@@ -653,7 +725,7 @@ const Students: React.FC = () => {
 
             {/* Interactive Slideshow viewport for Schedule Images */}
             {(() => {
-              const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
+              const classKeys: ('X' | 'XI' | 'XII' | 'PRAKERIN')[] = ['X', 'XI', 'XII', 'PRAKERIN'];
               const activeClassKey = classKeys[activeScheduleIndex];
               const activeImages = SCHEDULE_IMAGES[activeClassKey];
               const totalImages = activeImages.length;
@@ -1489,7 +1561,7 @@ const Students: React.FC = () => {
 
                 {/* Left/Right controls within lightbox */}
                 {(() => {
-                  const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
+                  const classKeys: ('X' | 'XI' | 'XII' | 'PRAKERIN')[] = ['X', 'XI', 'XII', 'PRAKERIN'];
                   const activeClassKey = classKeys[activeScheduleIndex];
                   const activeImages = SCHEDULE_IMAGES[activeClassKey];
                   const totalImages = activeImages.length;
