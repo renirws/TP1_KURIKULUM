@@ -9,6 +9,8 @@ interface StudentData {
   no: number;
   nis: string;
   nama: string;
+  kelasCode: string;
+  jurusan: 'TPK' | 'TKRO' | 'DKV' | 'MLOG';
   sppBulan: number;
   sppRupiah: string;
   utsUasDu: string;
@@ -277,7 +279,7 @@ const Students: React.FC = () => {
   };
   
   // States for GSheet dynamic search
-  const [selectedClass, setSelectedClass] = useState<'XI' | 'XII'>('XII');
+  const [selectedClass, setSelectedClass] = useState<'X' | 'XI' | 'XII'>('X');
   
   // States for Schedule Slideshow
   const [activeScheduleIndex, setActiveScheduleIndex] = useState<number>(0);
@@ -341,6 +343,7 @@ const Students: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'lunas' | 'tunggakan'>('all');
+  const [jurusanFilter, setJurusanFilter] = useState<'all' | 'TPK' | 'TKRO' | 'DKV' | 'MLOG'>('all');
   const [selectedStudent, setSelectedStudent] = useState<StudentData | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
 
@@ -360,18 +363,33 @@ const Students: React.FC = () => {
     setActiveImageIndex(0);
   };
 
-  // Fetch GSheet data
+  // Fetch GSheet data for Class X, XI, and XII
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
         setLoading(true);
-        // Determine sheet name based on selected class
-        // Class XI uses 'KLS XI 26/27' and Class XII uses 'KLS XII 26/27'
-        const sheetName = selectedClass === 'XI' ? 'KLS XI 26/27' : 'KLS XII 26/27';
+        let sheetName = 'KLS X 26/27';
+        let range = 'A2:AJ';
+        let offset = 28;
+
+        if (selectedClass === 'X') {
+          sheetName = 'KLS X 26/27';
+          range = 'A2:AJ';
+          offset = 28;
+        } else if (selectedClass === 'XI') {
+          sheetName = 'KLS XI 26/27';
+          range = 'A2:AH';
+          offset = 26;
+        } else if (selectedClass === 'XII') {
+          sheetName = 'KLS XII 26/27';
+          range = 'A2:AH';
+          offset = 26;
+        }
+
         const encodedSheetName = encodeURIComponent(sheetName);
         
-        // Fetch columns AA to AH which contain Class XI / XII administration SPP arrears
-        const res = await fetch(`https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/gviz/tq?tqx=out:json&sheet=${encodedSheetName}&range=AA2:AH`);
+        // Fetch financial administration columns from Google Sheets
+        const res = await fetch(`https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/gviz/tq?tqx=out:json&sheet=${encodedSheetName}&range=${range}`);
         if (!res.ok) {
           throw new Error("Gagal mengambil data dari Google Sheets. Silakan periksa koneksi internet Anda.");
         }
@@ -388,14 +406,21 @@ const Students: React.FC = () => {
         const data = JSON.parse(jsonString);
         const rows = data.table?.rows || [];
         
+        let currentKls = `Kelas ${selectedClass}`;
+
         const parsedStudents: StudentData[] = rows
           .map((row: any, idx: number) => {
             const cells = row.c;
-            if (!cells || cells.length < 3) return null;
+            if (!cells || cells.length <= offset) return null;
             
-            const noVal = cells[0]?.v !== undefined ? Number(cells[0].v) : idx + 1;
-            const nisVal = cells[1]?.v !== undefined && cells[1]?.v !== null ? String(cells[1].v).trim() : "-";
-            const namaVal = cells[2]?.v !== undefined && cells[2]?.v !== null ? String(cells[2].v).trim() : "";
+            const rawKls = cells[0]?.v !== undefined && cells[0]?.v !== null ? String(cells[0].v).trim() : "";
+            if (rawKls && rawKls.toUpperCase() !== "KLS") {
+              currentKls = rawKls;
+            }
+
+            const noVal = cells[offset]?.v !== undefined ? Number(cells[offset].v) : idx + 1;
+            const nisVal = cells[offset + 1]?.v !== undefined && cells[offset + 1]?.v !== null ? String(cells[offset + 1].v).trim() : "-";
+            const namaVal = cells[offset + 2]?.v !== undefined && cells[offset + 2]?.v !== null ? String(cells[offset + 2].v).trim() : "";
             
             if (!namaVal) return null;
             
@@ -414,16 +439,31 @@ const Students: React.FC = () => {
               return null;
             }
             
-            const sppBulanVal = cells[3]?.v !== undefined && cells[3]?.v !== null ? Number(cells[3].v) : 0;
-            const sppRupiahVal = cells[4]?.f || (cells[4]?.v !== undefined && cells[4]?.v !== null ? `Rp ${Number(cells[4].v).toLocaleString('id-ID')}` : "Rp -");
-            const utsUasDuVal = cells[5]?.f || (cells[5]?.v !== undefined && cells[5]?.v !== null ? `Rp ${Number(cells[5].v).toLocaleString('id-ID')}` : "Rp -");
-            const ppdbVal = cells[6]?.f || (cells[6]?.v !== undefined && cells[6]?.v !== null ? `Rp ${Number(cells[6].v).toLocaleString('id-ID')}` : "Rp -");
-            const jumlahVal = cells[7]?.f || (cells[7]?.v !== undefined && cells[7]?.v !== null ? `Rp ${Number(cells[7].v).toLocaleString('id-ID')}` : "Rp -");
+            const sppBulanVal = cells[offset + 3]?.v !== undefined && cells[offset + 3]?.v !== null ? Number(cells[offset + 3].v) : 0;
+            const sppRupiahVal = cells[offset + 4]?.f || (cells[offset + 4]?.v !== undefined && cells[offset + 4]?.v !== null ? `Rp ${Number(cells[offset + 4].v).toLocaleString('id-ID')}` : "Rp -");
+            const utsUasDuVal = cells[offset + 5]?.f || (cells[offset + 5]?.v !== undefined && cells[offset + 5]?.v !== null ? `Rp ${Number(cells[offset + 5].v).toLocaleString('id-ID')}` : "Rp -");
+            const ppdbVal = cells[offset + 6]?.f || (cells[offset + 6]?.v !== undefined && cells[offset + 6]?.v !== null ? `Rp ${Number(cells[offset + 6].v).toLocaleString('id-ID')}` : "Rp -");
+            const jumlahVal = cells[offset + 7]?.f || (cells[offset + 7]?.v !== undefined && cells[offset + 7]?.v !== null ? `Rp ${Number(cells[offset + 7].v).toLocaleString('id-ID')}` : "Rp -");
             
+            // Map currentKls to Program Keahlian / Jurusan
+            let jurusan: 'TPK' | 'TKRO' | 'DKV' | 'MLOG' = 'TPK';
+            const upperKls = currentKls.toUpperCase();
+            if (upperKls.includes("MK") || upperKls.includes("TPK")) {
+              jurusan = 'TPK';
+            } else if (upperKls.includes("MO") || upperKls.includes("TKR") || upperKls.includes("TKRO")) {
+              jurusan = 'TKRO';
+            } else if (upperKls.includes("DKV")) {
+              jurusan = 'DKV';
+            } else if (upperKls.includes("TL") || upperKls.includes("LOG") || upperKls.includes("MLOG")) {
+              jurusan = 'MLOG';
+            }
+
             return {
               no: noVal,
               nis: nisVal,
               nama: namaVal,
+              kelasCode: currentKls,
+              jurusan: jurusan,
               sppBulan: sppBulanVal,
               sppRupiah: sppRupiahVal.trim(),
               utsUasDu: utsUasDuVal.trim(),
@@ -544,23 +584,32 @@ const Students: React.FC = () => {
     return totalAmount === 0 || student.jumlah.includes('Rp -') || student.jumlah === '-';
   };
 
-  // Filter students based on search query and status tab
+  // Filter students based on search query, status tab, and jurusan filter
   const filteredStudents = students.filter(student => {
     const matchesSearch = 
       student.nama.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      student.nis.toLowerCase().includes(searchQuery.toLowerCase());
+      student.nis.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.kelasCode.toLowerCase().includes(searchQuery.toLowerCase());
       
     const matchesStatus = 
       statusFilter === 'all' ? true :
       statusFilter === 'lunas' ? isLunas(student) : !isLunas(student);
+
+    const matchesJurusan = 
+      jurusanFilter === 'all' ? true : student.jurusan === jurusanFilter;
       
-    return matchesSearch && matchesStatus;
+    return matchesSearch && matchesStatus && matchesJurusan;
   });
 
-  // Stats Counters
+  // Stats Counters & Jurusan Breakdown
   const totalCount = students.length;
   const lunasCount = students.filter(isLunas).length;
   const tunggakanCount = totalCount - lunasCount;
+
+  const tpkCount = students.filter(s => s.jurusan === 'TPK').length;
+  const tkroCount = students.filter(s => s.jurusan === 'TKRO').length;
+  const dkvCount = students.filter(s => s.jurusan === 'DKV').length;
+  const mlogCount = students.filter(s => s.jurusan === 'MLOG').length;
 
   // Print function
   const handlePrint = (student: StudentData) => {
@@ -631,8 +680,8 @@ const Students: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td class="meta-label">Jenjang / Kelas</td>
-              <td class="meta-value">: Kelas ${selectedClass}</td>
+              <td class="meta-label">Jenjang / Rombel</td>
+              <td class="meta-value">: ${student.kelasCode} (${student.jurusan})</td>
               <td></td>
               <td></td>
             </tr>
@@ -788,14 +837,14 @@ const Students: React.FC = () => {
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <SEO 
         title="Cek SPP Online & Portal Siswa SMK TANJUNG PRIOK 1 | Jadwal Pelajaran & Prakerin"
-        description="Portal Siswa SMK Tanjung Priok 1 Jakarta Utara. Cek tagihan SPP online Kelas XI dan XII secara mandiri & real-time dari database Google Sheets, unduh jadwal pelajaran KBM terbaru, serta akses direktori bimbingan & lokasi Prakerin 2026/2027."
-        keywords="Cek SPP Online SMK Tanjung Priok 1, Portal Siswa SMK Tanjung Priok 1, Pembayaran SPP SMK, Jadwal Pelajaran SMK Tanjung Priok 1, SPP Kelas XI XII, SMK Jakarta Utara, Pembimbing Prakerin, Lokasi Prakerin SMK Tanjung Priok 1, PKL SMK Tanjung Priok 1"
+        description="Portal Siswa SMK Tanjung Priok 1 Jakarta Utara. Cek tagihan SPP online Kelas X, XI dan XII secara mandiri & real-time dari database Google Sheets, unduh jadwal pelajaran KBM terbaru, serta akses direktori bimbingan & lokasi Prakerin 2026/2027."
+        keywords="Cek SPP Online SMK Tanjung Priok 1, Portal Siswa SMK Tanjung Priok 1, Pembayaran SPP SMK, Jadwal Pelajaran SMK Tanjung Priok 1, SPP Kelas X XI XII, Keuangan Siswa SMK, SMK Jakarta Utara, Pembimbing Prakerin, Lokasi Prakerin SMK Tanjung Priok 1, PKL SMK Tanjung Priok 1"
         canonical="https://tp1kurikulum.my.id/siswa"
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Portal Siswa SMK Tanjung Priok 1 | Cek SPP Online, Jadwal KBM & Prakerin",
-          "description": "Layanan portal akademik siswa resmi SMK Tanjung Priok 1 Jakarta Utara. Dilengkapi fitur cek administrasi keuangan SPP Kelas XI & XII real-time, jadwal pelajaran KBM, serta portal pencarian lokasi & pembimbing Prakerin.",
+          "description": "Layanan portal akademik siswa resmi SMK Tanjung Priok 1 Jakarta Utara. Dilengkapi fitur cek administrasi keuangan SPP Kelas X, XI & XII real-time, jadwal pelajaran KBM, serta portal pencarian lokasi & pembimbing Prakerin.",
           "isPartOf": {
             "@type": "WebSite",
             "name": "Kurikulum SMK Tanjung Priok 1",
@@ -1478,9 +1527,9 @@ const Students: React.FC = () => {
             
             <div className="max-w-3xl">
               <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block">Fitur Pencarian Mandiri</span>
-              <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">Cek Keuangan & SPP Real-time Kelas XI & XII</h2>
+              <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">Cek Keuangan & SPP Real-time Kelas X, XI & XII</h2>
               <p className="text-slate-300 font-medium text-base leading-relaxed">
-                Asisten pencarian terpadu siswa Kelas XI & XII. Silakan pilih kelas Anda di bawah, kemudian ketik Nama atau NIS Anda untuk memverifikasi detail tunggakan SPP, UTS, UAS, PPDB secara instan dan 100% valid bersumber langsung dari Google Sheet sekolah.
+                Asisten pencarian terpadu siswa Kelas X, XI & XII. Silakan pilih kelas Anda di bawah, kemudian ketik Nama atau NIS Anda untuk memverifikasi detail tunggakan SPP, UTS, UAS, PPDB secara instan dan 100% valid bersumber langsung dari Google Sheet sekolah.
               </p>
             </div>
           </div>
@@ -1502,7 +1551,7 @@ const Students: React.FC = () => {
                       Akses Terbatas: Tabel Data SPP
                     </h3>
                     <p className="text-slate-600 text-sm mt-2 font-medium leading-relaxed">
-                      Sesuai prosedur keamanan data keuangan, tabel rincian SPP Kelas XI &amp; XII hanya dapat ditampilkan setelah verifikasi wewenang. Silakan masukkan Username &amp; Password akun resmi Anda.
+                      Sesuai prosedur keamanan data keuangan, tabel rincian SPP Kelas X, XI &amp; XII hanya dapat ditampilkan setelah verifikasi wewenang. Silakan masukkan Username &amp; Password akun resmi Anda.
                     </p>
                   </div>
 
@@ -1615,34 +1664,47 @@ const Students: React.FC = () => {
                 </div>
 
                 {/* Class Selection Toggle */}
-                <div className="flex bg-slate-100 p-1.5 rounded-3xl max-w-md mx-auto border border-slate-200 mb-10 shadow-inner">
-              <button
-                onClick={() => {
-                  setSelectedClass('XI');
-                  setSearchQuery('');
-                }}
-                className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all cursor-pointer ${
-                  selectedClass === 'XI'
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <span>KELAS XI</span>
-              </button>
-              <button
-                onClick={() => {
-                  setSelectedClass('XII');
-                  setSearchQuery('');
-                }}
-                className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all cursor-pointer ${
-                  selectedClass === 'XII'
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <span>KELAS XII</span>
-              </button>
-            </div>
+                <div className="grid grid-cols-3 bg-slate-100 p-1.5 rounded-3xl max-w-lg mx-auto border border-slate-200 mb-10 shadow-inner gap-1">
+                  <button
+                    onClick={() => {
+                      setSelectedClass('X');
+                      setSearchQuery('');
+                    }}
+                    className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest transition-all cursor-pointer ${
+                      selectedClass === 'X'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25 scale-102'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
+                    }`}
+                  >
+                    <span>KELAS X</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedClass('XI');
+                      setSearchQuery('');
+                    }}
+                    className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest transition-all cursor-pointer ${
+                      selectedClass === 'XI'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25 scale-102'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
+                    }`}
+                  >
+                    <span>KELAS XI</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedClass('XII');
+                      setSearchQuery('');
+                    }}
+                    className={`flex-1 flex items-center justify-center space-x-2 py-3.5 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest transition-all cursor-pointer ${
+                      selectedClass === 'XII'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-500/25 scale-102'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
+                    }`}
+                  >
+                    <span>KELAS XII</span>
+                  </button>
+                </div>
 
             {/* Stats Summary Panel */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -1677,6 +1739,63 @@ const Students: React.FC = () => {
               </div>
             </div>
 
+            {/* Filter Program Keahlian / Jurusan */}
+            <div className="mb-8 bg-slate-50 border border-slate-200/80 p-5 rounded-3xl shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div className="flex items-center space-x-2">
+                  <Briefcase className="w-4 h-4 text-blue-600" />
+                  <h4 className="text-xs font-black uppercase tracking-wider text-slate-700">
+                    Filter Program Keahlian / Jurusan
+                  </h4>
+                </div>
+                {jurusanFilter !== 'all' && (
+                  <button
+                    onClick={() => setJurusanFilter('all')}
+                    className="text-xs font-bold text-blue-600 hover:text-blue-800 transition underline self-start sm:self-auto cursor-pointer"
+                  >
+                    Tampilkan Semua Jurusan
+                  </button>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                {[
+                  { id: 'all', label: 'SEMUA JURUSAN', subText: `Kelas ${selectedClass}`, count: totalCount, badgeBg: 'bg-blue-100 text-blue-800' },
+                  { id: 'TPK', label: 'TPK', subText: 'Teknik Pemesinan & Kapal', count: tpkCount, badgeBg: 'bg-cyan-100 text-cyan-800' },
+                  { id: 'TKRO', label: 'TKRO', subText: 'Teknik Kendaraan Ringan', count: tkroCount, badgeBg: 'bg-amber-100 text-amber-800' },
+                  { id: 'DKV', label: 'DKV', subText: 'Desain Komunikasi Visual', count: dkvCount, badgeBg: 'bg-indigo-100 text-indigo-800' },
+                  { id: 'MLOG', label: 'MLOG', subText: 'Manajemen Logistik', count: mlogCount, badgeBg: 'bg-emerald-100 text-emerald-800' },
+                ].map((item) => {
+                  const active = jurusanFilter === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => setJurusanFilter(item.id as any)}
+                      className={`flex flex-col justify-between p-3.5 rounded-2xl border transition-all text-left cursor-pointer ${
+                        active
+                          ? 'bg-gradient-to-br from-blue-600 to-indigo-700 text-white border-transparent shadow-md shadow-blue-500/25 scale-102'
+                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-100/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between w-full mb-1">
+                        <span className={`font-black text-xs sm:text-sm tracking-wider ${active ? 'text-white' : 'text-slate-800'}`}>
+                          {item.label}
+                        </span>
+                        <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                          active ? 'bg-white/20 text-white' : item.badgeBg
+                        }`}>
+                          {loading ? '...' : item.count}
+                        </span>
+                      </div>
+                      <span className={`text-[10px] font-medium truncate w-full ${active ? 'text-blue-100' : 'text-slate-400'}`}>
+                        {item.subText}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Filter and Search Bar */}
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-8 pb-6 border-b border-slate-100">
               {/* Search Box */}
@@ -1688,7 +1807,7 @@ const Students: React.FC = () => {
                   type="text" 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Ketik Nama Lengkap atau NIS..." 
+                  placeholder="Ketik Nama, NIS, atau Rombel (mis. X MK)..." 
                   className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"
                 />
                 {searchQuery && (
@@ -1707,7 +1826,7 @@ const Students: React.FC = () => {
                   onClick={() => setStatusFilter('all')}
                   className={`flex-1 lg:flex-none px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition ${statusFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
                 >
-                  Semua
+                  Semua Status
                 </button>
                 <button 
                   onClick={() => setStatusFilter('lunas')}
@@ -1759,7 +1878,7 @@ const Students: React.FC = () => {
                 </div>
                 <h4 className="text-slate-700 font-bold text-lg">Siswa Tidak Ditemukan</h4>
                 <p className="text-slate-500 text-sm mt-1 max-w-md mx-auto leading-relaxed">
-                  Tidak ada data siswa yang cocok dengan pencarian "{searchQuery}" atau filter status yang dipilih. Pastikan ejaan nama atau NIS sudah benar.
+                  Tidak ada data siswa yang cocok dengan kriteria pencarian atau filter jurusan {jurusanFilter !== 'all' ? `[${jurusanFilter}]` : ''} yang dipilih. Pastikan ejaan nama atau NIS sudah benar.
                 </p>
               </div>
             ) : (
@@ -1771,6 +1890,7 @@ const Students: React.FC = () => {
                       <tr className="border-b border-slate-100 text-slate-400 text-xs font-black uppercase tracking-wider">
                         <th className="py-4 px-4 w-12">No</th>
                         <th className="py-4 px-4">Nama Lengkap</th>
+                        <th className="py-4 px-4">Kelas / Jurusan</th>
                         <th className="py-4 px-4">NIS</th>
                         <th className="py-4 px-4">Tunggakan SPP</th>
                         <th className="py-4 px-4">Total Kewajiban</th>
@@ -1785,6 +1905,13 @@ const Students: React.FC = () => {
                           <tr key={idx} className="hover:bg-slate-50/50 transition">
                             <td className="py-4 px-4 text-slate-400 font-bold">{student.no}</td>
                             <td className="py-4 px-4 font-bold text-slate-800">{student.nama}</td>
+                            <td className="py-4 px-4">
+                              <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100/80">
+                                <span>{student.kelasCode}</span>
+                                <span className="text-blue-300">•</span>
+                                <span className="font-black text-blue-800">{student.jurusan}</span>
+                              </span>
+                            </td>
                             <td className="py-4 px-4 text-slate-500 font-mono font-medium">{student.nis}</td>
                             <td className="py-4 px-4">
                               <span className="font-semibold text-slate-700">
@@ -1821,7 +1948,12 @@ const Students: React.FC = () => {
                       <div key={idx} className="bg-slate-50 border border-slate-100 p-5 rounded-2xl flex flex-col justify-between">
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <span className="text-slate-400 font-bold text-xs block mb-1">NO. {student.no}</span>
+                            <div className="flex items-center space-x-2 mb-1">
+                              <span className="text-slate-400 font-bold text-xs">NO. {student.no}</span>
+                              <span className="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-blue-50 text-blue-700 border border-blue-100">
+                                {student.kelasCode} • {student.jurusan}
+                              </span>
+                            </div>
                             <h4 className="font-bold text-slate-800 leading-tight">{student.nama}</h4>
                             <span className="text-slate-500 font-mono text-xs block mt-0.5">NIS: {student.nis}</span>
                           </div>
@@ -1927,7 +2059,7 @@ const Students: React.FC = () => {
                   <span className="text-[10px] font-black uppercase tracking-widest text-blue-200">Kartu Kontrol Keuangan Siswa</span>
                 </div>
                 <h3 className="text-xl font-black leading-tight mt-1">{selectedStudent.nama}</h3>
-                <p className="text-xs text-slate-300 font-mono mt-1">NIS: {selectedStudent.nis} • Kelas {selectedClass}</p>
+                <p className="text-xs text-slate-300 font-mono mt-1">NIS: {selectedStudent.nis} • {selectedStudent.kelasCode} ({selectedStudent.jurusan})</p>
               </div>
 
               {/* Modal Content */}
@@ -1941,6 +2073,17 @@ const Students: React.FC = () => {
                   </div>
 
                   <div className="space-y-4.5">
+                    {/* Item 0: Rombel & Program Keahlian */}
+                    <div className="flex justify-between items-center pb-3 border-b border-slate-100">
+                      <div>
+                        <span className="font-bold text-slate-800 text-sm block">Kelas & Program Keahlian</span>
+                        <span className="text-xs text-slate-400 font-medium">Rombel Resmi Asesi</span>
+                      </div>
+                      <span className="font-bold text-blue-700 text-xs bg-blue-50 px-3 py-1 rounded-lg border border-blue-100">
+                        {selectedStudent.kelasCode} • {selectedStudent.jurusan}
+                      </span>
+                    </div>
+
                     {/* Item 1: SPP */}
                     <div className="flex justify-between items-start pb-3 border-b border-slate-100">
                       <div>

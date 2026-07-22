@@ -15,7 +15,7 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Migrasi Jadwal KBM Master** | ✅ Selesai | Pemindahan Jadwal KBM Master dari siswa ke guru demi efisiensi UX. | Siswa & Guru |
 | **Optimasi Mobile Friendly** | ✅ Selesai | Desain Bottom Nav ergonomis & Sheet Menu untuk pengalaman seluler. | Global (`App.tsx`) |
 | **Pembaruan Jadwal KBM & Zoom** | ✅ Selesai | Pembaruan Jadwal KBM Utama TA 2026/2027 serta sistem zoom & seret interaktif. | Siswa & Guru |
-| **Sourcing Data Keuangan Siswa** | ✅ Selesai | Pembaruan database keuangan kelas XI & XII bersumber tab baru 2026/2027. | Halaman Siswa (`/siswa`) |
+| **Sourcing Data Keuangan Siswa** | ✅ Selesai | Pembaruan database keuangan terpadu Kelas X, XI & XII bersumber tab `KLS X 26/27`, `KLS XI 26/27` & `KLS XII 26/27`. | Halaman Siswa (`/siswa`) |
 | **Portal Prakerin & Bimbingan** | ✅ Selesai | Pemisahan sub-menu Prakerin secara mandiri, didukung pencarian GSheet live "JUMLAH BIMBINGAN" & penampil slide guru. | Halaman Siswa (`/siswa`) |
 | **SEO & Schema JSON-LD** | ✅ Selesai | Optimasi meta-tag dan injeksi schema JSON-LD terstruktur untuk mendongkrak peringkat pencarian Google. | Global & Halaman Siswa |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
@@ -141,6 +141,17 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 * **Implementasi**:
   * **Injeksi JSON-LD Schema Markup**: Membuat script schema terstruktur bertipe `WebPage` dan `EducationalOrganization` yang dinamis di `/components/SEO.tsx` untuk menjelaskan secara semantik tentang SMK Tanjung Priok 1 dan layanan portal SPP serta Prakerin.
   * **Penyempurnaan Tag Meta**: Mengoptimasi kepadatan kata kunci (*keyword density*) berdaya saing tinggi serta menyusun deskripsi meta yang memikat (*CTR-optimized*) pada halaman beranda dan portal siswa.
+
+---
+
+### 11. Integrasi Terpadu Administrasi Keuangan Siswa Kelas X, XI & XII
+* **Tujuan**: Menambahkan database Administrasi Keuangan & SPP Siswa Kelas X dari Google Sheets tab `KLS X 26/27` dan menyatukannya dalam satu modul pencarian terpadu yang mobile friendly untuk Kelas X, XI, dan XII di Halaman Siswa (`/siswa`).
+* **Tautan Sumber Database**: `https://docs.google.com/spreadsheets/d/1ZhVJ7BkCIu9SxIk8QD1Xyjh6kr4MZ7Ps/edit?usp=sharing` (Sheet: `KLS X 26/27`)
+* **Implementasi**:
+  * **Integrasi GSheet Live Range AC2:AJ**: Mengambil data tunggakan SPP, UTS, UAS, DU, PPDB/Dana Rehab, serta Total Kewajiban Kelas X secara otomatis dari Google Sheets.
+  * **Navigasi Terpadu 3 Kelas**: Memperbarui toggle pilihan kelas menjadi 3 tombol presisi (`KELAS X`, `KELAS XI`, `KELAS XII`) berdesain grid responsif & mobile friendly.
+  * **Fitur Pencarian & Filter Status**: Siswa/wali murid dapat memfilter status Lunas/Belum Lunas serta mencari berdasarkan Nama atau NIS secara real-time pada seluruh jenjang kelas (X, XI, XII).
+  * **Penyempurnaan SEO & Schema**: Memperbarui meta tag, keyword, dan JSON-LD Structured Data agar layanan pencarian SPP online sekolah ini mendapat peringkat teratas di pencarian Google.
 
 ---
 
