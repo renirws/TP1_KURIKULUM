@@ -1,9 +1,18 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Globe, BookOpen, Award, Sparkles } from 'lucide-react';
+import { ExternalLink, Globe, BookOpen, Award, Sparkles, FileText } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const ExternalLinks: React.FC = () => {
   const links = [
+    {
+      title: "KOSP SMK TANJUNG PRIOK 1 TAHUN AJARAN 2026-2027",
+      description: "Dokumen Kurikulum Operasional Satuan Pendidikan (KOSP) SMK Tanjung Priok 1 Jakarta Utara Tahun Ajaran 2026-2027 berbasis Kurikulum Merdeka secara lengkap, resmi, dan interaktif (Flipbook).",
+      url: "https://online.fliphtml5.com/hblai/erro/",
+      icon: <FileText className="w-8 h-8" />,
+      color: "from-rose-500 to-red-600",
+      tag: "KOSP 2026-2027"
+    },
     {
       title: "Tefa DKV (Teaching Factory)",
       description: "Portal resmi Teaching Factory Program Keahlian Desain Komunikasi Visual SMK Tanjung Priok 1. Showcase karya siswa dan layanan jasa kreatif.",
@@ -48,6 +57,23 @@ const ExternalLinks: React.FC = () => {
 
   return (
     <main className="min-h-screen bg-gray-50 py-20">
+      <SEO 
+        title="Tautan Penting & KOSP 2026-2027 | SMK TANJUNG PRIOK 1"
+        description="Akses Tautan Resmi KOSP SMK Tanjung Priok 1 Tahun Ajaran 2026-2027, Portal Tefa DKV, SIM Bimbingan PKL, Tes Minat Bakat SPMB, LSP Sertifikasi, dan Modul Generator Kurikulum."
+        keywords="KOSP SMK Tanjung Priok 1, KOSP 2026-2027, Kurikulum Operasional Satuan Pendidikan, Tautan Penting SMK Tanjung Priok 1, Tefa DKV, SIM PKL SMK Tanjung Priok 1, Flipbook KOSP"
+        canonical="https://tp1kurikulum.my.id/tautan"
+        schemaMarkup={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Tautan Penting & KOSP 2026-2027 SMK Tanjung Priok 1",
+          "description": "Kumpulan portal eksternal resmi, dokumen KOSP TA 2026-2027, serta platform akademik SMK Tanjung Priok 1 Jakarta Utara.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Kurikulum SMK Tanjung Priok 1",
+            "url": "https://tp1kurikulum.my.id"
+          }
+        }}
+      />
       <div className="container mx-auto px-4">
         <header className="max-w-4xl mx-auto text-center mb-16">
           <motion.span 

@@ -155,6 +155,15 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 
 ---
 
+### 12. Integrasi Tautan Dokumentasi KOSP TA 2026-2027 (Flipbook)
+* **Tujuan**: Menambahkan akses cepat dokumen resmi Kurikulum Operasional Satuan Pendidikan (KOSP) SMK Tanjung Priok 1 TA 2026-2027 di halaman Tautan Penting (`/tautan`).
+* **Tautan Sumber**: `https://online.fliphtml5.com/hblai/erro/`
+* **Implementasi**:
+  * **Kartu Tautan Interaktif KOSP**: Dibuat kartu tautan visual berdesain merah/rose dengan ikon `FileText` dan label khusus `KOSP 2026-2027` pada halaman `/tautan`.
+  * **Penyempurnaan SEO Meta & JSON-LD**: Menambahkan komponen `<SEO />` pada halaman Tautan Penting dengan target kata kunci "KOSP SMK Tanjung Priok 1", "KOSP 2026-2027", dan "Kurikulum Operasional Satuan Pendidikan" untuk mendongkrak peringkat pencarian Google.
+
+---
+
 ## 📈 Verifikasi Sistem
 
 * **Linter Status**: `tsc --noEmit` berhasil dilewati tanpa error 100% (Hijau/Lolos).
