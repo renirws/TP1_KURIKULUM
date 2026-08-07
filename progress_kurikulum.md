@@ -164,6 +164,16 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 
 ---
 
+### 13. Integrasi Video Dokumentasi 8 Kebiasaan Anak Indonesia Hebat
+* **Tujuan**: Menambahkan video dokumentasi kegiatan "8 Kebiasaan Anak Indonesia Hebat di SMK Tanjung Priok 1" tanggal Jum'at, 7 Agustus 2026 di halaman Galeri (`/galeri`).
+* **Tautan Sumber Video**: `https://drive.google.com/file/d/1hBLuqaYavFFkcrECnNTaOyro3jBPU0dQ/view?usp=drivesdk`
+* **Implementasi**:
+  * **Kartu Video Interaktif**: Ditampilkan paling awal di Galeri dengan thumbnail berkualitas tinggi, badge khusus `Kegiatan`, tanggal pelaksanaan `Jum'at, 7 Agustus 2026`, serta deskripsi lengkap kegiatan.
+  * **Interactive Modal Video Player**: Pemutar video bawaan dalam bentuk pop-up modal interaktif yang dapat memutar video Google Drive preview / YouTube secara langsung tanpa harus keluar dari halaman, lengkap dengan kontrol responsif mobile.
+  * **SEO & Metadata**: Mengintegrasikan komponen `<SEO />` dengan schema `ImageGallery` untuk kata kunci "8 Kebiasaan Anak Indonesia Hebat", "Galeri SMK Tanjung Priok 1", dan "Dokumentasi Kegiatan Siswa".
+
+---
+
 ## 📈 Verifikasi Sistem
 
 * **Linter Status**: `tsc --noEmit` berhasil dilewati tanpa error 100% (Hijau/Lolos).
