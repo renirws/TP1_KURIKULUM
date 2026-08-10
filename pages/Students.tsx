@@ -115,8 +115,8 @@ const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'TKA' | 'PRAKERIN', ScheduleI
   ],
   TKA: [
     {
-      originalUrl: "https://drive.google.com/file/d/1GMDrC4x9i53lyHEXZVwviNPci3tX_14F/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1GMDrC4x9i53lyHEXZVwviNPci3tX_14F=s0",
+      originalUrl: "https://drive.google.com/file/d/1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od=s0",
       title: "Surat & Jadwal Utama Simulasi Ke-1 TKA Kelas XII"
     },
     {
@@ -977,11 +977,23 @@ const Students: React.FC = () => {
                           src={currentImage.directUrl}
                           alt={currentImage.title}
                           referrerPolicy="no-referrer"
-                          initial={{ opacity: 0, scale: 0.98 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.98 }}
-                          transition={{ duration: 0.3 }}
-                          className="max-w-full max-h-full object-contain cursor-zoom-in transition-all duration-300 hover:scale-[1.01]"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.2 }}
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.2}
+                          onDragEnd={(_, info) => {
+                            if (info.offset.x < -40) {
+                              const nextIdx = (activeImageIndex + 1) % totalImages;
+                              setActiveImageIndex(nextIdx);
+                            } else if (info.offset.x > 40) {
+                              const prevIdx = (activeImageIndex - 1 + totalImages) % totalImages;
+                              setActiveImageIndex(prevIdx);
+                            }
+                          }}
+                          className="max-w-full max-h-full object-contain cursor-zoom-in transition-all duration-300 hover:scale-[1.01] active:cursor-grabbing"
                           onClick={() => openLightbox(currentImage)}
                         />
                       </AnimatePresence>

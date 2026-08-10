@@ -13,10 +13,10 @@ const News: React.FC = () => {
   const [tkaSlide, setTkaSlide] = useState(0);
   const tkaSchedules = [
     {
-      id: "1GMDrC4x9i53lyHEXZVwviNPci3tX_14F",
+      id: "1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od",
       title: "Jadwal & Ketentuan Utama TKA",
       subtitle: "Surat Edaran Pelaksanaan Simulasi Ke-1 TKA",
-      driveUrl: "https://drive.google.com/file/d/1GMDrC4x9i53lyHEXZVwviNPci3tX_14F/view?usp=drive_link",
+      driveUrl: "https://drive.google.com/file/d/1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od/view?usp=drive_link",
       badge: "Pengumuman Utama"
     },
     {
@@ -240,29 +240,39 @@ const News: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Main Image Box */}
+                {/* Main Image Box with Touch Swipe */}
                 <div 
-                  className="bg-slate-950 rounded-b-3xl overflow-hidden relative shadow-2xl cursor-zoom-in border-x border-b border-slate-900 group"
+                  className="bg-slate-950 rounded-b-3xl overflow-hidden relative shadow-2xl cursor-zoom-in border-x border-b border-slate-900 group select-none touch-pan-y"
                   onClick={() => handleZoom(`https://lh3.googleusercontent.com/d/${tkaSchedules[tkaSlide].id}=s0`)}
                 >
-                  <div className="aspect-[4/3] md:aspect-[16/11] flex items-center justify-center p-2 bg-slate-950">
+                  <div className="aspect-[4/3] md:aspect-[16/11] flex items-center justify-center p-2 bg-slate-950 overflow-hidden">
                     <AnimatePresence mode="wait">
                       <motion.img 
                         key={tkaSlide}
                         src={`https://lh3.googleusercontent.com/d/${tkaSchedules[tkaSlide].id}=s0`}
                         alt={tkaSchedules[tkaSlide].title}
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
-                        transition={{ duration: 0.25 }}
-                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.2 }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.2}
+                        onDragEnd={(_, info) => {
+                          if (info.offset.x < -40) {
+                            setTkaSlide((prev) => (prev + 1) % tkaSchedules.length);
+                          } else if (info.offset.x > 40) {
+                            setTkaSlide((prev) => (prev - 1 + tkaSchedules.length) % tkaSchedules.length);
+                          }
+                        }}
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.01] active:cursor-grabbing"
                         referrerPolicy="no-referrer"
                       />
                     </AnimatePresence>
                   </div>
 
                   {/* Overlay Hover Prompt */}
-                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4">
+                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4 pointer-events-none">
                     <div className="bg-white text-slate-950 p-3.5 rounded-full shadow-2xl mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
                       <ZoomIn className="w-6 h-6" />
                     </div>
@@ -277,10 +287,10 @@ const News: React.FC = () => {
                       e.stopPropagation();
                       setTkaSlide((prev) => (prev - 1 + tkaSchedules.length) % tkaSchedules.length);
                     }}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105"
+                    className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-blue-600 text-white p-2.5 md:p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105 active:scale-95"
                     aria-label="Slide Sebelumnya"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                   </button>
 
                   <button 
@@ -288,20 +298,25 @@ const News: React.FC = () => {
                       e.stopPropagation();
                       setTkaSlide((prev) => (prev + 1) % tkaSchedules.length);
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105"
+                    className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-blue-600 text-white p-2.5 md:p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105 active:scale-95"
                     aria-label="Slide Berikutnya"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                   </button>
+
+                  {/* Swipe hint banner for mobile */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-slate-900/80 text-slate-300 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider backdrop-blur-md border border-white/10 pointer-events-none sm:hidden flex items-center gap-1">
+                    <span>👈 Usap ke kiri/kanan untuk geser 👉</span>
+                  </div>
                 </div>
 
-                {/* Thumbnail Strip Buttons */}
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+                {/* Mobile Friendly Thumbnail Strip Buttons */}
+                <div className="mt-4 md:mt-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 pt-1 px-1 no-scrollbar">
                   {tkaSchedules.map((item, idx) => (
                     <button
                       key={item.id}
                       onClick={() => setTkaSlide(idx)}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer border ${
+                      className={`px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer border whitespace-nowrap flex-shrink-0 ${
                         tkaSlide === idx
                           ? 'bg-blue-600 text-white border-blue-600 shadow-lg scale-105'
                           : 'bg-white text-slate-600 border-slate-200 hover:bg-blue-50 hover:border-blue-300'
