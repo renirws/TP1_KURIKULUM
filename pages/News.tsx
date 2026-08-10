@@ -139,9 +139,9 @@ const News: React.FC = () => {
   return (
     <main className="min-h-screen bg-gray-50 py-12">
       <SEO 
-        title="Warta Sekolah & Jadwal Simulasi TKA, UKK, ASAS 2026 | SMK TANJUNG PRIOK 1"
-        description="Berita dan pengumuman resmi SMK Tanjung Priok 1 Jakarta Utara. Jadwal Simulasi Ke-1 Tes Kemampuan Akademik (TKA) Kelas XII (26-28 Agustus 2026), Jadwal UKK, USBK, ASAS Genap, serta agenda kurikulum terbaru."
-        keywords="TKA SMK Tanjung Priok 1, Simulasi TKA Kelas XII, Jadwal TKA 2026, Warta SMK Tanjung Priok 1, Berita SMK Tanjung Priok 1, Jadwal UKK 2026, ASAS Genap, Pengumuman Sekolah Jakarta Utara"
+        title="Warta Sekolah & Jadwal Simulasi TKA, UKK, USBK 2026 | SMK TANJUNG PRIOK 1"
+        description="Berita dan pengumuman resmi SMK Tanjung Priok 1 Jakarta Utara. Jadwal Simulasi Ke-1 Tes Kemampuan Akademik (TKA) Kelas XII (26-28 Agustus 2026), Jadwal UKK, USBK, serta agenda kurikulum terbaru."
+        keywords="TKA SMK Tanjung Priok 1, Simulasi TKA Kelas XII, Jadwal TKA 2026, Warta SMK Tanjung Priok 1, Berita SMK Tanjung Priok 1, Jadwal UKK 2026, Pengumuman Sekolah Jakarta Utara"
         canonical="https://tp1kurikulum.my.id/warta"
       />
       <div className="container mx-auto px-4">
@@ -383,119 +383,6 @@ const News: React.FC = () => {
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
                       <span>Membawa kartu ujian / kelengkapan identitas siswa serta alat tulis.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          {/* ASAS Genap Announcement Section */}
-          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
-            <header className="bg-gradient-to-r from-[#065f46] to-[#0d9488] p-8 text-white">
-              <div className="flex items-center space-x-3 mb-4">
-                <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/30">Agenda Akademik</span>
-                <span className="text-white/20">•</span>
-                <span className="text-white/80 text-sm">20 Mei 2026</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold">Asesmen Sumatif Akhir Semester Genap (ASAS Genap)</h2>
-              <p className="mt-4 text-emerald-50 leading-relaxed text-sm md:text-base opacity-90">
-                Pemberitahuan pelaksanaan Asesmen Sumatif Akhir Semester Genap (ASAS Genap) Tahun Pelajaran 2025/2026 untuk Siswa/i Kelas X & XI SMK Tanjung Priok 1 yang akan berlangsung pada tanggal 4 - 10 Juni 2026.
-              </p>
-            </header>
-
-            <div className="p-8 md:p-12 space-y-10">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-[#065f46]">Jadwal Pelaksanaan ASAS Genap</h3>
-                  <p className="text-gray-500 text-sm mt-1">Ketuk tombol zoom atau klik gambar jadwal untuk memperbesar detail resolusi tinggi.</p>
-                </div>
-                <div className="flex flex-wrap gap-2.5">
-                  <a 
-                    href="https://drive.google.com/file/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s/view?usp=drive_link" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-full text-sm shadow transition duration-300"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Google Drive</span>
-                  </a>
-                  <button 
-                    onClick={() => handleZoom("https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s")}
-                    className="inline-flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-full text-sm shadow transition duration-300 cursor-pointer"
-                  >
-                    <ZoomIn className="w-4 h-4 text-emerald-400" />
-                    <span>Zoom Jadwal</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Cover Schedule Interactive Viewport */}
-              <div className="relative max-w-2xl mx-auto group">
-                <div 
-                  className="bg-slate-950 rounded-[2rem] overflow-hidden relative shadow-lg cursor-zoom-in border border-slate-100 transition duration-500"
-                  onClick={() => handleZoom("https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s")}
-                >
-                  <div className="absolute top-6 left-6 z-10">
-                    <span className="bg-emerald-600 text-white px-5 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg">
-                      Tahun Pelajaran 2025/2026
-                    </span>
-                  </div>
-                  <div className="aspect-[3/4] md:aspect-[4/5] flex items-center justify-center bg-slate-950 overflow-hidden p-2">
-                    <img 
-                      src="https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s"
-                      alt="Jadwal ASAS Genap Kelas X XI"
-                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-103"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
-                    <div className="bg-white/90 p-3 rounded-full shadow-lg text-slate-900 mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
-                      <ZoomIn className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs font-black uppercase tracking-wider">Buka & Zoom Jadwal Lengkap</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Information Cards Grid */}
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-emerald-50/50 border border-emerald-120 p-8 rounded-[2rem]">
-                  <h3 className="text-lg font-black text-emerald-900 mb-4 flex items-center">
-                    <Calendar className="w-5.5 h-5.5 mr-2 text-emerald-600" />
-                    Sesi & Tanggal Penting
-                  </h3>
-                  <p className="text-emerald-800 font-bold leading-relaxed mb-4">
-                    Pelaksanaan ujian berlangsung dari tanggal <span className="underline">Kamis, 4 Juni s.d. Rabu, 10 Juni 2026</span>.
-                  </p>
-                  <ul className="text-sm font-medium text-emerald-700 space-y-2.5">
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
-                      <span>Diikuti oleh seluruh peserta didik Kelas X dan XI SMK Tanjung Priok 1.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
-                      <span>Konfigurasi sesi dan pengaturan ruangan dapat dikoordinasikan melalui wali kelas masing-masing.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="bg-teal-50/50 border border-teal-120 p-8 rounded-[2rem]">
-                  <h3 className="text-lg font-black text-teal-900 mb-4 flex items-center">
-                    <Clock className="w-5.5 h-5.5 mr-2 text-teal-600" />
-                    Persiapan Mandiri Siswa
-                  </h3>
-                  <p className="text-teal-800 font-bold leading-relaxed mb-4">
-                    Harap mempersiapkan diri dengan menjaga <span className="underline">kedisiplinan, seragam resmi sekolah, dan fisik</span>.
-                  </p>
-                  <ul className="text-sm font-medium text-teal-700 space-y-2.5">
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-teal-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
-                      <span>Wajib membawa alat tulis secara mandiri (tidak diperkenankan saling meminjam saat ujian).</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-teal-500 rounded-full mr-2.5 mt-1.5 flex-shrink-0"></span>
-                      <span>Hadir paling lambat 15 menit sebelum bel masuk untuk mengikuti pengarahan awal panitia.</span>
                     </li>
                   </ul>
                 </div>

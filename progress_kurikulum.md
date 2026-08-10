@@ -19,6 +19,7 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Portal Prakerin & Bimbingan** | ✅ Selesai | Pemisahan sub-menu Prakerin secara mandiri, didukung pencarian GSheet live "JUMLAH BIMBINGAN" & penampil slide guru. | Halaman Siswa (`/siswa`) |
 | **SEO & Schema JSON-LD** | ✅ Selesai | Optimasi meta-tag dan injeksi schema JSON-LD terstruktur untuk mendongkrak peringkat pencarian Google. | Global & Halaman Siswa |
 | **Simulasi Ke-1 TKA Kelas XII** | ✅ Selesai | Pelaksanaan Simulasi Ke-1 TKA (26-28 Agustus 2026) lengkap dengan 8 lembar jadwal & sesi, slider interaktif, zoom, cetak PDF, dan tautan Google Drive. | Warta (`/warta`) & Siswa (`/siswa`) |
+| **Pembersihan Informasi ASAS** | ✅ Selesai | Penghapusan seksi informasi ASAS Genap pada Warta Kurikulum sesuai permintaan. | Warta (`/warta`) |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
 
 ---
