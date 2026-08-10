@@ -18,6 +18,7 @@ Laporan ini disusun secara sistematis, terukur, dan valid untuk memantau seluruh
 | **Sourcing Data Keuangan Siswa** | ✅ Selesai | Pembaruan database keuangan terpadu Kelas X, XI & XII bersumber tab `KLS X 26/27`, `KLS XI 26/27` & `KLS XII 26/27`. | Halaman Siswa (`/siswa`) |
 | **Portal Prakerin & Bimbingan** | ✅ Selesai | Pemisahan sub-menu Prakerin secara mandiri, didukung pencarian GSheet live "JUMLAH BIMBINGAN" & penampil slide guru. | Halaman Siswa (`/siswa`) |
 | **SEO & Schema JSON-LD** | ✅ Selesai | Optimasi meta-tag dan injeksi schema JSON-LD terstruktur untuk mendongkrak peringkat pencarian Google. | Global & Halaman Siswa |
+| **Simulasi Ke-1 TKA Kelas XII** | ✅ Selesai | Pelaksanaan Simulasi Ke-1 TKA (26-28 Agustus 2026) lengkap dengan 8 lembar jadwal & sesi, slider interaktif, zoom, cetak PDF, dan tautan Google Drive. | Warta (`/warta`) & Siswa (`/siswa`) |
 | **Fast-Response Animation** | ✅ Selesai | Transisi halaman mulus menggunakan Framer Motion. | Seluruh Router |
 
 ---

@@ -2,11 +2,73 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { SEO } from '../components/SEO';
+import { Calendar, Clock, ZoomIn, ExternalLink, ChevronLeft, ChevronRight, CheckCircle2, Sparkles, FileText, Layers, Download, Printer } from 'lucide-react';
 
 const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
   const [zoomScale, setZoomScale] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // TKA Data
+  const [tkaSlide, setTkaSlide] = useState(0);
+  const tkaSchedules = [
+    {
+      id: "1GMDrC4x9i53lyHEXZVwviNPci3tX_14F",
+      title: "Jadwal & Ketentuan Utama TKA",
+      subtitle: "Surat Edaran Pelaksanaan Simulasi Ke-1 TKA",
+      driveUrl: "https://drive.google.com/file/d/1GMDrC4x9i53lyHEXZVwviNPci3tX_14F/view?usp=drive_link",
+      badge: "Pengumuman Utama"
+    },
+    {
+      id: "13gmYelKKtinBgqzzfXIQPV5WKV5OXJP8",
+      title: "Pembagian Sesi 1 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 1",
+      driveUrl: "https://drive.google.com/file/d/13gmYelKKtinBgqzzfXIQPV5WKV5OXJP8/view?usp=drive_link",
+      badge: "Sesi 1"
+    },
+    {
+      id: "1FVe3uTAV8apy4jA5zzpewQbwDKtEa9B6",
+      title: "Pembagian Sesi 2 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 2",
+      driveUrl: "https://drive.google.com/file/d/1FVe3uTAV8apy4jA5zzpewQbwDKtEa9B6/view?usp=drive_link",
+      badge: "Sesi 2"
+    },
+    {
+      id: "1EFKBqFtDx3XTyxz4uV1DG-_ZMFeR_90C",
+      title: "Pembagian Sesi 3 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 3",
+      driveUrl: "https://drive.google.com/file/d/1EFKBqFtDx3XTyxz4uV1DG-_ZMFeR_90C/view?usp=drive_link",
+      badge: "Sesi 3"
+    },
+    {
+      id: "1L3XIXBciuCSUvMloX2lGZ41RNMDy97nO",
+      title: "Pembagian Sesi 4 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 4",
+      driveUrl: "https://drive.google.com/file/d/1L3XIXBciuCSUvMloX2lGZ41RNMDy97nO/view?usp=drive_link",
+      badge: "Sesi 4"
+    },
+    {
+      id: "1NFHzpIPkkjlH3rRAZk-n_FR5MRW00J1A",
+      title: "Pembagian Sesi 5 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 5",
+      driveUrl: "https://drive.google.com/file/d/1NFHzpIPkkjlH3rRAZk-n_FR5MRW00J1A/view?usp=drive_link",
+      badge: "Sesi 5"
+    },
+    {
+      id: "1DE1dHikvJbUcLo96eQVWN-cREBQ6n8vA",
+      title: "Pembagian Sesi 6 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 6",
+      driveUrl: "https://drive.google.com/file/d/1DE1dHikvJbUcLo96eQVWN-cREBQ6n8vA/view?usp=drive_link",
+      badge: "Sesi 6"
+    },
+    {
+      id: "1LzOZClaMIkkBt7Ar9AHjtC3VYIzgK0ZM",
+      title: "Pembagian Sesi 7 • TKA Kelas XII",
+      subtitle: "Daftar Peserta & Ruangan Sesi 7",
+      driveUrl: "https://drive.google.com/file/d/1LzOZClaMIkkBt7Ar9AHjtC3VYIzgK0ZM/view?usp=drive_link",
+      badge: "Sesi 7"
+    }
+  ];
 
   // UKK Data
   const ukkSchedules = [
@@ -28,15 +90,58 @@ const News: React.FC = () => {
     setZoomImageUrl(url);
     setZoomScale(1);
   };
-  // Menggunakan ukuran thumbnail yang lebih besar untuk kejelasan (w4000)
-  const usbkImageUrl = "https://drive.google.com/thumbnail?id=1Ot3cnGnmRfueWIq8_Y6bharn-aecpN-l&sz=w4000";
+
+  const handlePrintImage = (imageUrl: string, title: string) => {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    iframe.style.zIndex = '-9999';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow?.document || iframe.contentDocument;
+    if (doc) {
+      doc.write(`
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              @page { size: portrait; margin: 10mm; }
+              body { margin: 0; padding: 10px; text-align: center; font-family: sans-serif; }
+              h2 { color: #0f172a; margin-bottom: 4px; font-size: 18px; }
+              p { color: #64748b; margin-bottom: 12px; font-size: 12px; }
+              img { max-width: 100%; max-height: 82vh; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; }
+            </style>
+          </head>
+          <body>
+            <h2>${title}</h2>
+            <p>SMK Tanjung Priok 1 Jakarta Utara • Warta Kurikulum</p>
+            <img src="${imageUrl}" referrerpolicy="no-referrer" />
+            <script>
+              const img = document.querySelector('img');
+              const doPrint = () => {
+                window.focus();
+                window.print();
+                setTimeout(() => { if (window.frameElement) window.frameElement.remove(); }, 1000);
+              };
+              if (img.complete) doPrint(); else img.onload = doPrint;
+            </script>
+          </body>
+        </html>
+      `);
+      doc.close();
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gray-50 py-12">
       <SEO 
-        title="Warta Sekolah & Jadwal Ujian UKK/USBK 2026 | SMK TANJUNG PRIOK 1"
-        description="Berita dan pengumuman terbaru SMK Tanjung Priok 1 Jakarta Utara. Jadwal Ujian Kompetensi Keahlian (UKK), Ujian Sekolah Berbasis Komputer (USBK), ASAS Genap, serta kegiatan akademik sekolah."
-        keywords="Warta SMK Tanjung Priok 1, Berita SMK Tanjung Priok 1, Jadwal UKK 2026, USBK SMK 2026, ASAS Genap, Pengumuman Sekolah Jakarta Utara"
+        title="Warta Sekolah & Jadwal Simulasi TKA, UKK, ASAS 2026 | SMK TANJUNG PRIOK 1"
+        description="Berita dan pengumuman resmi SMK Tanjung Priok 1 Jakarta Utara. Jadwal Simulasi Ke-1 Tes Kemampuan Akademik (TKA) Kelas XII (26-28 Agustus 2026), Jadwal UKK, USBK, ASAS Genap, serta agenda kurikulum terbaru."
+        keywords="TKA SMK Tanjung Priok 1, Simulasi TKA Kelas XII, Jadwal TKA 2026, Warta SMK Tanjung Priok 1, Berita SMK Tanjung Priok 1, Jadwal UKK 2026, ASAS Genap, Pengumuman Sekolah Jakarta Utara"
         canonical="https://tp1kurikulum.my.id/warta"
       />
       <div className="container mx-auto px-4">
@@ -47,10 +152,243 @@ const News: React.FC = () => {
         >
           <header>
             <Link to="/" className="inline-flex items-center text-[#3b82f6] font-black mb-4 hover:underline group text-sm uppercase tracking-widest">
-              <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+              <ChevronLeft className="w-5 h-5 mr-1 transform group-hover:-translate-x-1 transition" />
               Kembali ke Beranda
             </Link>
           </header>
+
+          {/* TKA SIMULATION SECTION - KELAS XII (NEW) */}
+          <article className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-100/80">
+            <header className="bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-8 md:p-12 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                <FileText className="w-64 h-64 text-white" />
+              </div>
+              <div className="relative z-10">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <span className="bg-amber-400 text-slate-950 font-black px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 fill-current" />
+                    <span>AGENDA RESMI KELAS XII</span>
+                  </span>
+                  <span className="text-white/40">•</span>
+                  <span className="bg-white/10 backdrop-blur-md text-blue-100 border border-white/20 px-3.5 py-1 rounded-full text-xs font-bold flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-amber-300" />
+                    <span>26 - 28 AGUSTUS 2026</span>
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight mb-4">
+                  Pelaksanaan Simulasi Ke-1 Tes Kemampuan Akademik (TKA)
+                </h2>
+                <p className="text-blue-100/90 leading-relaxed text-base md:text-lg max-w-3xl font-medium">
+                  Pengumuman resmi, jadwal lengkap, dan daftar pembagian sesi bagi seluruh peserta didik <strong className="text-amber-300">Kelas XII (Jurusan TPK, TKRO, DKV, MLOG)</strong> dalam rangka Simulasi Ke-1 Tes Kemampuan Akademik (TKA) SMK Tanjung Priok 1 Jakarta Utara.
+                </p>
+              </div>
+            </header>
+
+            <div className="p-6 md:p-12 space-y-10">
+              {/* Header Action Control */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                <div>
+                  <h3 className="text-2xl font-black text-[#0f172a] flex items-center gap-2">
+                    <Layers className="w-6 h-6 text-blue-600" />
+                    <span>Jadwal & Lembar Pembagian Sesi TKA</span>
+                  </h3>
+                  <p className="text-slate-500 text-xs md:text-sm mt-1">
+                    Slide atau ketuk tombol nomor sesi di bawah untuk mengecek ruang & waktu sesi Anda.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <a 
+                    href={tkaSchedules[tkaSlide].driveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Buka Google Drive</span>
+                  </a>
+                  <button 
+                    onClick={() => handleZoom(`https://lh3.googleusercontent.com/d/${tkaSchedules[tkaSlide].id}=s0`)}
+                    className="inline-flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer"
+                  >
+                    <ZoomIn className="w-4 h-4 text-blue-400" />
+                    <span>Zoom Resolusi Tinggi</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* TKA Interactive Slide Stage Viewport */}
+              <div className="relative max-w-3xl mx-auto">
+                {/* Active Slide Info Header */}
+                <div className="bg-slate-900 text-white p-4 rounded-t-3xl flex items-center justify-between gap-3 border-b border-slate-800">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-amber-400 text-slate-950 font-black px-3 py-1 rounded-lg text-xs uppercase tracking-wider">
+                      {tkaSchedules[tkaSlide].badge}
+                    </span>
+                    <div>
+                      <h4 className="font-black text-sm md:text-base text-white leading-tight">
+                        {tkaSchedules[tkaSlide].title}
+                      </h4>
+                      <p className="text-slate-400 text-xs hidden sm:block">
+                        {tkaSchedules[tkaSlide].subtitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  <span className="text-xs font-mono text-slate-400 bg-slate-800 px-3 py-1 rounded-full border border-slate-700">
+                    {tkaSlide + 1} / {tkaSchedules.length}
+                  </span>
+                </div>
+
+                {/* Main Image Box */}
+                <div 
+                  className="bg-slate-950 rounded-b-3xl overflow-hidden relative shadow-2xl cursor-zoom-in border-x border-b border-slate-900 group"
+                  onClick={() => handleZoom(`https://lh3.googleusercontent.com/d/${tkaSchedules[tkaSlide].id}=s0`)}
+                >
+                  <div className="aspect-[4/3] md:aspect-[16/11] flex items-center justify-center p-2 bg-slate-950">
+                    <AnimatePresence mode="wait">
+                      <motion.img 
+                        key={tkaSlide}
+                        src={`https://lh3.googleusercontent.com/d/${tkaSchedules[tkaSlide].id}=s0`}
+                        alt={tkaSchedules[tkaSlide].title}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.25 }}
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                        referrerPolicy="no-referrer"
+                      />
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Overlay Hover Prompt */}
+                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4">
+                    <div className="bg-white text-slate-950 p-3.5 rounded-full shadow-2xl mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
+                      <ZoomIn className="w-6 h-6" />
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-wider bg-slate-900/90 px-4 py-1.5 rounded-full border border-white/20">
+                      Klik untuk Zoom & Perbesar Gambar
+                    </span>
+                  </div>
+
+                  {/* Left & Right Nav Arrows */}
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setTkaSlide((prev) => (prev - 1 + tkaSchedules.length) % tkaSchedules.length);
+                    }}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105"
+                    aria-label="Slide Sebelumnya"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setTkaSlide((prev) => (prev + 1) % tkaSchedules.length);
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105"
+                    aria-label="Slide Berikutnya"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {/* Thumbnail Strip Buttons */}
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+                  {tkaSchedules.map((item, idx) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setTkaSlide(idx)}
+                      className={`px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer border ${
+                        tkaSlide === idx
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-lg scale-105'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-blue-50 hover:border-blue-300'
+                      }`}
+                    >
+                      {item.badge}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Print & Action Bar */}
+                <div className="mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="text-left">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Aksi Cepat Berkas TKA
+                    </span>
+                    <span className="text-xs font-bold text-slate-700">
+                      Cetak lembar sesi ini atau unduh gambar resolusi tinggi.
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
+                    <button
+                      onClick={() => handlePrintImage(`https://lh3.googleusercontent.com/d/${tkaSchedules[tkaSlide].id}=s0`, tkaSchedules[tkaSlide].title)}
+                      className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-black py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition duration-300 flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm"
+                    >
+                      <Printer className="w-4 h-4" />
+                      <span>Cetak / PDF</span>
+                    </button>
+
+                    <a
+                      href={tkaSchedules[tkaSlide].driveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 sm:flex-initial bg-blue-600 hover:bg-blue-500 text-white font-black py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition duration-300 flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Unduh File</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* TKA Important Information Cards Grid */}
+              <div className="grid md:grid-cols-2 gap-6 pt-4">
+                <div className="bg-blue-50/70 border border-blue-100 p-6 md:p-8 rounded-[2rem]">
+                  <h4 className="text-lg font-black text-blue-900 mb-3 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-blue-600" />
+                    <span>Jadwal & Tempat Pelaksanaan</span>
+                  </h4>
+                  <p className="text-blue-900 font-bold text-sm mb-3">
+                    Pelaksanaan Simulasi Ke-1 TKA berlangsung dari tanggal <span className="underline">Rabu, 26 s.d. Jumat, 28 Agustus 2026</span>.
+                  </p>
+                  <ul className="text-xs md:text-sm font-medium text-blue-800 space-y-2">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>Wajib diikuti oleh seluruh siswa/i Kelas XII SMK Tanjung Priok 1.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>Lokasi: Laboratorium Komputer SMK Tanjung Priok 1 Jakarta.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-amber-50/70 border border-amber-100 p-6 md:p-8 rounded-[2rem]">
+                  <h4 className="text-lg font-black text-amber-900 mb-3 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-amber-600" />
+                    <span>Tata Tertib & Tata Cara Sesi</span>
+                  </h4>
+                  <p className="text-amber-900 font-bold text-sm mb-3">
+                    Peserta wajib hadir paling lambat <span className="underline">15 menit sebelum sesi dimulai</span>.
+                  </p>
+                  <ul className="text-xs md:text-sm font-medium text-amber-800 space-y-2">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <span>Menggunakan seragam sekolah lengkap dan rapi sesuai ketentuan harian.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <span>Membawa kartu ujian / kelengkapan identitas siswa serta alat tulis.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
 
           {/* ASAS Genap Announcement Section */}
           <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-emerald-100">
@@ -79,18 +417,14 @@ const News: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-full text-sm shadow transition duration-300"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+                    <ExternalLink className="w-4 h-4" />
                     <span>Google Drive</span>
                   </a>
                   <button 
                     onClick={() => handleZoom("https://lh3.googleusercontent.com/d/1Vs2fltSLib7V059965X0ilFRNceNA_4s")}
                     className="inline-flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-full text-sm shadow transition duration-300 cursor-pointer"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                    </svg>
+                    <ZoomIn className="w-4 h-4 text-emerald-400" />
                     <span>Zoom Jadwal</span>
                   </button>
                 </div>
@@ -117,9 +451,7 @@ const News: React.FC = () => {
                   </div>
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
                     <div className="bg-white/90 p-3 rounded-full shadow-lg text-slate-900 mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                      </svg>
+                      <ZoomIn className="w-6 h-6" />
                     </div>
                     <span className="text-xs font-black uppercase tracking-wider">Buka & Zoom Jadwal Lengkap</span>
                   </div>
@@ -130,9 +462,7 @@ const News: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-emerald-50/50 border border-emerald-120 p-8 rounded-[2rem]">
                   <h3 className="text-lg font-black text-emerald-900 mb-4 flex items-center">
-                    <svg className="w-5.5 h-5.5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
+                    <Calendar className="w-5.5 h-5.5 mr-2 text-emerald-600" />
                     Sesi & Tanggal Penting
                   </h3>
                   <p className="text-emerald-800 font-bold leading-relaxed mb-4">
@@ -152,9 +482,7 @@ const News: React.FC = () => {
 
                 <div className="bg-teal-50/50 border border-teal-120 p-8 rounded-[2rem]">
                   <h3 className="text-lg font-black text-teal-900 mb-4 flex items-center">
-                    <svg className="w-5.5 h-5.5 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                    </svg>
+                    <Clock className="w-5.5 h-5.5 mr-2 text-teal-600" />
                     Persiapan Mandiri Siswa
                   </h3>
                   <p className="text-teal-800 font-bold leading-relaxed mb-4">
@@ -219,9 +547,7 @@ const News: React.FC = () => {
                       />
                       <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <div className="bg-white/80 p-3 rounded-full shadow-lg">
-                          <svg className="w-8 h-8 text-[#1a3a5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                          </svg>
+                          <ZoomIn className="w-8 h-8 text-[#1a3a5a]" />
                         </div>
                       </div>
                     </motion.div>
@@ -229,15 +555,15 @@ const News: React.FC = () => {
 
                   <button 
                     onClick={prevSlide}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all z-20 group-hover:scale-110"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all z-20 group-hover:scale-110 cursor-pointer"
                   >
-                    <svg className="w-6 h-6 text-[#1a3a5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7"></path></svg>
+                    <ChevronLeft className="w-6 h-6 text-[#1a3a5a]" />
                   </button>
                   <button 
                     onClick={nextSlide}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all z-20 group-hover:scale-110"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all z-20 group-hover:scale-110 cursor-pointer"
                   >
-                    <svg className="w-6 h-6 text-[#1a3a5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
+                    <ChevronRight className="w-6 h-6 text-[#1a3a5a]" />
                   </button>
                 </div>
               </div>
@@ -245,7 +571,7 @@ const News: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-orange-50 border border-orange-100 p-8 rounded-[2rem]">
                   <h3 className="text-xl font-black text-orange-900 mb-4 flex items-center">
-                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <Calendar className="w-6 h-6 mr-2 text-orange-600" />
                     Waktu Pelaksanaan
                   </h3>
                   <p className="text-orange-800 font-bold leading-relaxed mb-4">
@@ -259,7 +585,7 @@ const News: React.FC = () => {
 
                 <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2rem]">
                   <h3 className="text-xl font-black text-blue-900 mb-4 flex items-center">
-                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <CheckCircle2 className="w-6 h-6 mr-2 text-blue-600" />
                     Ketentuan Seragam
                   </h3>
                   <p className="text-blue-800 font-bold leading-relaxed mb-4">
@@ -275,7 +601,7 @@ const News: React.FC = () => {
           </article>
         </motion.div>
       </div>
- 
+
       {/* Zoom Modal - Supporting any image URL with Interactive controls */}
       {zoomImageUrl && (
         <div 
@@ -285,7 +611,7 @@ const News: React.FC = () => {
           {/* Top Info Panel */}
           <div className="absolute top-0 inset-x-0 p-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent z-[110]">
             <div className="text-left">
-              <h4 className="text-white font-bold text-base">Detail Jadwal Resmi</h4>
+              <h4 className="text-white font-bold text-base">Detail Berkas & Jadwal Resmi</h4>
               <p className="text-gray-400 text-xs mt-0.5">Tekan tombol di bawah untuk perbesar/perkecil atau seret gambar untuk menjelajah detail.</p>
             </div>
             <button 
@@ -305,9 +631,7 @@ const News: React.FC = () => {
               drag={zoomScale > 1}
               dragElastic={0.15}
               dragTransition={{ bounceStiffness: 600, bounceDamping: 30 }}
-              animate={{ 
-                scale: zoomScale,
-              }}
+              animate={{ scale: zoomScale }}
               className="max-w-full max-h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
               onClick={(e) => e.stopPropagation()}
             >
@@ -325,7 +649,6 @@ const News: React.FC = () => {
             className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-[#1e293b]/90 border border-slate-700/60 px-6 py-3 rounded-full flex items-center space-x-5 shadow-2xl backdrop-blur-md z-[110]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Zoom Out */}
             <button 
               onClick={() => setZoomScale(prev => Math.max(prev - 0.5, 1))}
               disabled={zoomScale <= 1}
@@ -337,12 +660,10 @@ const News: React.FC = () => {
               </svg>
             </button>
 
-            {/* Scale Value */}
             <span className="text-white font-mono text-sm font-black min-w-[55px] text-center">
               {Math.round(zoomScale * 100)}%
             </span>
 
-            {/* Zoom In */}
             <button 
               onClick={() => setZoomScale(prev => Math.min(prev + 0.5, 4.0))}
               disabled={zoomScale >= 4}
@@ -356,7 +677,6 @@ const News: React.FC = () => {
 
             <span className="w-[1px] h-5 bg-slate-600/60"></span>
 
-            {/* Reset */}
             <button 
               onClick={() => setZoomScale(1)}
               disabled={zoomScale === 1}

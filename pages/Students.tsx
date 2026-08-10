@@ -41,7 +41,7 @@ interface PrakerinBimbingan {
   jumlahSiswa: string;
 }
 
-const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'PRAKERIN', ScheduleImage[]> = {
+const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'TKA' | 'PRAKERIN', ScheduleImage[]> = {
   X: [
     {
       originalUrl: "https://drive.google.com/file/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ/view?usp=drive_link",
@@ -111,6 +111,48 @@ const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'PRAKERIN', ScheduleImage[]> 
       originalUrl: "https://drive.google.com/file/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy/view?usp=drive_link",
       directUrl: "https://lh3.googleusercontent.com/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy",
       title: "Halaman 4 • Jadwal KBM Kelas XII"
+    }
+  ],
+  TKA: [
+    {
+      originalUrl: "https://drive.google.com/file/d/1GMDrC4x9i53lyHEXZVwviNPci3tX_14F/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1GMDrC4x9i53lyHEXZVwviNPci3tX_14F=s0",
+      title: "Surat & Jadwal Utama Simulasi Ke-1 TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/13gmYelKKtinBgqzzfXIQPV5WKV5OXJP8/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/13gmYelKKtinBgqzzfXIQPV5WKV5OXJP8=s0",
+      title: "Pembagian Sesi 1 • TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1FVe3uTAV8apy4jA5zzpewQbwDKtEa9B6/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1FVe3uTAV8apy4jA5zzpewQbwDKtEa9B6=s0",
+      title: "Pembagian Sesi 2 • TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1EFKBqFtDx3XTyxz4uV1DG-_ZMFeR_90C/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1EFKBqFtDx3XTyxz4uV1DG-_ZMFeR_90C=s0",
+      title: "Pembagian Sesi 3 • TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1L3XIXBciuCSUvMloX2lGZ41RNMDy97nO/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1L3XIXBciuCSUvMloX2lGZ41RNMDy97nO=s0",
+      title: "Pembagian Sesi 4 • TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1NFHzpIPkkjlH3rRAZk-n_FR5MRW00J1A/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1NFHzpIPkkjlH3rRAZk-n_FR5MRW00J1A=s0",
+      title: "Pembagian Sesi 5 • TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1DE1dHikvJbUcLo96eQVWN-cREBQ6n8vA/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1DE1dHikvJbUcLo96eQVWN-cREBQ6n8vA=s0",
+      title: "Pembagian Sesi 6 • TKA Kelas XII"
+    },
+    {
+      originalUrl: "https://drive.google.com/file/d/1LzOZClaMIkkBt7Ar9AHjtC3VYIzgK0ZM/view?usp=drive_link",
+      directUrl: "https://lh3.googleusercontent.com/d/1LzOZClaMIkkBt7Ar9AHjtC3VYIzgK0ZM=s0",
+      title: "Pembagian Sesi 7 • TKA Kelas XII"
     }
   ],
   PRAKERIN: [
@@ -891,12 +933,12 @@ const Students: React.FC = () => {
             </div>
             
             {/* Custom Tab Selectors with Premium Glassmorphism & High Contrast */}
-            <div className="flex bg-slate-900/50 p-1.5 rounded-[2rem] max-w-xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20 gap-1 sm:gap-0">
-              {['Kelas X', 'Kelas XI', 'Kelas XII'].map((label, idx) => (
+            <div className="flex bg-slate-900/50 p-1.5 rounded-[2rem] max-w-2xl mx-auto border border-slate-700/30 mb-8 shadow-inner relative z-20 gap-1 sm:gap-1.5 flex-wrap sm:flex-nowrap">
+              {['Kelas X', 'Kelas XI', 'Kelas XII', 'Simulasi TKA XII'].map((label, idx) => (
                 <button
                   key={label}
                   onClick={() => handleClassChange(idx)}
-                  className={`flex-1 py-3 text-xs md:text-sm font-black rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  className={`flex-1 py-3 px-2 text-xs md:text-sm font-black rounded-2xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                     activeScheduleIndex === idx
                       ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 scale-105 z-10'
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -909,9 +951,9 @@ const Students: React.FC = () => {
 
             {/* Interactive Slideshow viewport for Schedule Images */}
             {(() => {
-              const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
-              const activeClassKey = classKeys[activeScheduleIndex];
-              const activeImages = SCHEDULE_IMAGES[activeClassKey];
+              const classKeys: ('X' | 'XI' | 'XII' | 'TKA')[] = ['X', 'XI', 'XII', 'TKA'];
+              const activeClassKey = classKeys[activeScheduleIndex] || 'X';
+              const activeImages = SCHEDULE_IMAGES[activeClassKey] || SCHEDULE_IMAGES['X'];
               const totalImages = activeImages.length;
               const currentImage = activeImages[activeImageIndex] || activeImages[0];
               
@@ -2259,8 +2301,8 @@ const Students: React.FC = () => {
                 {/* Left/Right controls within lightbox */}
                 {(() => {
                   const isPrakerinLightbox = lightboxImage.title.includes('Pembimbing Prakerin') || lightboxImage.title.includes('Prakerin');
-                  const classKeys: ('X' | 'XI' | 'XII')[] = ['X', 'XI', 'XII'];
-                  const activeImages = isPrakerinLightbox ? SCHEDULE_IMAGES['PRAKERIN'] : SCHEDULE_IMAGES[classKeys[activeScheduleIndex]];
+                  const classKeys: ('X' | 'XI' | 'XII' | 'TKA')[] = ['X', 'XI', 'XII', 'TKA'];
+                  const activeImages = isPrakerinLightbox ? SCHEDULE_IMAGES['PRAKERIN'] : (SCHEDULE_IMAGES[classKeys[activeScheduleIndex]] || SCHEDULE_IMAGES['X']);
                   const totalImages = activeImages.length;
                   const currentIdx = isPrakerinLightbox ? prakerinSlideIndex : activeImageIndex;
                   
