@@ -1,10 +1,18 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Globe, BookOpen, Award, Sparkles, FileText } from 'lucide-react';
+import { ExternalLink, Globe, BookOpen, Award, Sparkles, FileText, Upload } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 const ExternalLinks: React.FC = () => {
   const links = [
+    {
+      title: "UNGGAH SOAL STS GANJIL TA 2026-2027",
+      description: "Portal resmi pengiriman dan penyerahan naskah soal Sumatif Tengah Semester (STS) Ganjil Tahun Pelajaran 2026-2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.",
+      url: "https://s.id/UploadSoalSTSGanjil26-27",
+      icon: <Upload className="w-8 h-8" />,
+      color: "from-amber-500 to-orange-600",
+      tag: "Pengumpulan Soal"
+    },
     {
       title: "KOSP SMK TANJUNG PRIOK 1 TAHUN AJARAN 2026-2027",
       description: "Dokumen Kurikulum Operasional Satuan Pendidikan (KOSP) SMK Tanjung Priok 1 Jakarta Utara Tahun Ajaran 2026-2027 berbasis Kurikulum Merdeka secara lengkap, resmi, dan interaktif (Flipbook).",

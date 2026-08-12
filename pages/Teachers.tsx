@@ -17,7 +17,8 @@ import {
   Printer,
   Award,
   ChevronDown,
-  LayoutGrid
+  LayoutGrid,
+  Upload
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
@@ -184,6 +185,7 @@ const Teachers: React.FC = () => {
   const permissionFormLink = "https://forms.gle/FMQBg8EemZeRpwdT6";
   const rakerLink = "https://s.id/RAKER_TP01";
   const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
+  const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
 
   // States for Teacher Schedule Slideshow
   const [activeTab, setActiveTab] = useState<'MENGAJAR' | 'KBM'>('MENGAJAR');
@@ -695,6 +697,30 @@ const Teachers: React.FC = () => {
 
           {/* Sidebar Cards */}
           <div className="space-y-8">
+            {/* Unggah Soal STS Ganjil Card */}
+            <div className="bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-amber-300/40">
+              <div className="absolute top-0 right-0 p-4 opacity-10 transform group-hover:scale-110 transition-transform">
+                <Upload className="w-32 h-32 text-amber-100" />
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-white/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-amber-100 mb-3 border border-white/20">
+                <span>PRIORITAS GURU</span>
+              </div>
+              <h3 className="text-2xl font-black mb-3">Unggah Soal STS Ganjil</h3>
+              <p className="text-amber-100 text-sm font-medium mb-6 leading-relaxed">
+                Portal resmi pengiriman naskah soal Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.
+              </p>
+              <a 
+                href={uploadSoalStsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-black rounded-2xl transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-amber-800 flex items-center justify-center space-x-2 cursor-pointer"
+              >
+                <Upload className="w-4 h-4 text-yellow-300" />
+                <span>UNGGAH SOAL STS GANJIL</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              </a>
+            </div>
+
             {/* SK Mengajar Card */}
             <div className="bg-gradient-to-br from-purple-900 to-indigo-950 p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-purple-500/30">
               <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform">

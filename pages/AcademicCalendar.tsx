@@ -51,8 +51,16 @@ const AcademicCalendar: React.FC = () => {
   const teacherDriveLink = "https://drive.google.com/drive/folders/1HxQQYr6xHylifV_ry07JH1vM3Bw2m5Bk?usp=drive_link";
   const usPrakLink = "https://s.id/UsPrak25-26";
   const dispensasiUploadLink = "https://forms.gle/ADw1HZ3FYqqu68Jd8";
+  const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
   
   const downloadableFiles = [
+    { 
+      name: 'Formulir Unggah Soal STS Ganjil TA 2026/2027', 
+      type: 'Tautan Google Form (s.id)', 
+      size: 'Portal Guru', 
+      icon: <Upload className="w-6 h-6 text-amber-500" />,
+      url: 'https://s.id/UploadSoalSTSGanjil26-27'
+    },
     { 
       name: 'Kalender Pendidikan SMK Tanjung Priok 1 TA 2026/2027', 
       type: 'PDF Resmi', 
@@ -795,38 +803,67 @@ const AcademicCalendar: React.FC = () => {
                   PORTAL AKADEMIK TERPADU
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xl font-black">Pengiriman Berkas, Tugas & Perizinan</h4>
+                  <h4 className="text-xl font-black">Pengiriman Berkas, Soal Ujian & Perizinan</h4>
                   <p className="text-indigo-200/80 font-medium text-xs leading-relaxed">
-                    Unggah tugas praktik mandiri, dokumen pendukung perizinan siswa, atau laporan guru ke server sekolah. Gunakan akun email institusi resmi Anda.
+                    Unggah naskah soal STS Ganjil, tugas praktik mandiri, dokumen pendukung perizinan siswa, atau laporan guru ke server sekolah. Gunakan akun email institusi resmi Anda.
                   </p>
                 </div>
 
-                <div className="flex flex-col space-y-3 pt-2">
+                <div className="flex flex-col space-y-3.5 pt-2">
+                  {/* Primary Highlighted Button for Upload Soal STS Ganjil 26-27 */}
+                  <a 
+                    href={uploadSoalStsLink}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group relative block w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-white p-4 sm:p-5 rounded-2xl font-black transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-[0.98] border-b-4 border-amber-800"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center space-x-3 min-w-0">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 shadow-inner">
+                          <Upload className="w-5 h-5 text-yellow-100" />
+                        </div>
+                        <div className="text-left min-w-0">
+                          <div className="flex items-center space-x-2">
+                            <span className="bg-white/20 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Prioritas Utama</span>
+                            <span className="text-[10px] text-amber-100 font-bold uppercase tracking-wider">TA 2026/2027</span>
+                          </div>
+                          <h5 className="text-xs sm:text-sm md:text-base font-black truncate text-white leading-tight mt-0.5">
+                            UNGGAH SOAL STS GANJIL TA 2026/2027
+                          </h5>
+                        </div>
+                      </div>
+                      <ExternalLink className="w-5 h-5 text-yellow-100 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </a>
+
                   <a 
                     href={teacherDriveLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-indigo-600 hover:bg-indigo-700 py-4 rounded-2xl font-black text-center text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-indigo-900"
+                    className="block w-full bg-indigo-600 hover:bg-indigo-700 py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-indigo-900 flex items-center justify-center space-x-2"
                   >
-                    AKSES PORTAL GURU (GOOGLE DRIVE)
+                    <School className="w-4.5 h-4.5 text-indigo-200 shrink-0" />
+                    <span>AKSES PORTAL GURU (GOOGLE DRIVE)</span>
                   </a>
                   
                   <a 
                     href={usPrakLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-white text-slate-900 hover:bg-slate-50 py-4 rounded-2xl font-black text-center text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-slate-300"
+                    className="block w-full bg-white text-slate-900 hover:bg-slate-50 py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-slate-300 flex items-center justify-center space-x-2"
                   >
-                    KIRIM DATA USPRAK TA 2026/2027
+                    <FileText className="w-4.5 h-4.5 text-blue-600 shrink-0" />
+                    <span>KIRIM DATA USPRAK TA 2026/2027</span>
                   </a>
 
                   <a 
                     href={dispensasiUploadLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-4 rounded-2xl font-black text-center text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-emerald-900"
+                    className="block w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-emerald-900 flex items-center justify-center space-x-2"
                   >
-                    UNGGAH SURAT DISPENSASI & IZIN SISWA
+                    <BookMarked className="w-4.5 h-4.5 text-emerald-200 shrink-0" />
+                    <span>UNGGAH SURAT DISPENSASI & IZIN SISWA</span>
                   </a>
                 </div>
 
