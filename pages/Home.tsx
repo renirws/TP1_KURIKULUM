@@ -82,7 +82,7 @@ const Home: React.FC = () => {
     },
     {
       question: "Apa saja Program Keahlian / Jurusan unggulan di SMK Tanjung Priok 1?",
-      answer: "Kami menyelenggarakan 4 konsentrasi keahlian berstandar industri nasional: Teknik Pemesinan Kapal (TPK), Teknik Kendaraan Ringan Otomotif (TKRO) yang bermitra dengan industri otomotif resmi, Desain Komunikasi Visual (DKV) dengan unit produksi PriokArt, serta Manajemen Logistik (MLOG) untuk manajemen supply chain modern."
+      answer: "Kami menyelenggarakan 4 konsentrasi keahlian berstandar industri nasional: Teknik Pemesinan Kapal (TPK), Teknik Kendaraan Ringan Otomotif (TKRO) yang bermitra dengan industri otomotif resmi, Desain Komunikasi Visual (DKV) dengan unit produksi PriokArt, serta Teknik Logistik (TL) untuk manajemen supply chain dan pergudangan modern."
     },
     {
       question: "Di mana lokasi kampus fisik SMK Tanjung Priok 1 Jakarta Utara?",
@@ -137,8 +137,8 @@ const Home: React.FC = () => {
       icon: <Tv className="w-8 h-8 text-blue-600" />
     },
     mlog: {
-      title: "Manajemen Logistik (MLOG)",
-      tagline: "Pusat keunggulan rantai pasok, manajemen pergudangan & pelabuhan.",
+      title: "Teknik Logistik (TL)",
+      tagline: "Pusat keunggulan rantai pasok, manajemen pergudangan & logistik pelabuhan.",
       description: "Mempersiapkan tenaga ahli dalam pengelolaan inventory control, supply chain management, sistem administrasi ekspor-impor, pergudangan digital, dan operasional logistik pelabuhan internasional Tanjung Priok Jakarta Utara.",
       highlights: [
         "Berada di episentrum kawasan pelabuhan logistik Tanjung Priok",
@@ -217,7 +217,7 @@ const Home: React.FC = () => {
                 <span className="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-300">⚓ Pemesinan Kapal</span>
                 <span className="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-300">⚙️ Otomotif TKRO</span>
                 <span className="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-300">🎨 Multimedia DKV</span>
-                <span className="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-300">📦 Manajemen Logistik</span>
+                <span className="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-300">📦 Teknik Logistik</span>
               </motion.div>
 
               <motion.div 
@@ -546,7 +546,7 @@ const Home: React.FC = () => {
                   <Truck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-black text-xs md:text-sm">Manajemen Logistik</h4>
+                  <h4 className="font-black text-xs md:text-sm">Teknik Logistik</h4>
                   <span className={`text-[10px] uppercase tracking-wider font-bold ${activeMajorTab === 'mlog' ? 'text-blue-300' : 'text-slate-400'}`}>Rantai Pasok Maritim</span>
                 </div>
               </button>

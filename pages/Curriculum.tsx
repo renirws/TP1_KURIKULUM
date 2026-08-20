@@ -1532,9 +1532,9 @@ const Curriculum: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <SEO 
-        title="Kurikulum Merdeka & Konsentrasi Keahlian SMK TANJUNG PRIOK 1 | TPK, TKRO, DKV, MLOG"
-        description="Struktur Kurikulum Operasional Sekolah (KOSP) SMK Tanjung Priok 1 Jakarta Utara. Alokasi jam pelajaran, modul ajar, dan spesialisasi kejuruan berstandar industri: Pemesinan Kapal, Otomotif TKRO Astra, Desain Komunikasi Visual (DKV), & Manajemen Logistik."
-        keywords="Kurikulum SMK Tanjung Priok 1, KOSP SMK, Struktur Kurikulum Merdeka SMK, Teknik Pemesinan Kapal, TKRO Otomotif Astra, DKV PriokArt, Manajemen Logistik, Modul Generator PPM Guru"
+        title="Kurikulum Merdeka & Konsentrasi Keahlian SMK TANJUNG PRIOK 1 | TPK, TKRO, DKV, TL"
+        description="Struktur Kurikulum Operasional Sekolah (KOSP) SMK Tanjung Priok 1 Jakarta Utara. Alokasi jam pelajaran, modul ajar, dan spesialisasi kejuruan berstandar industri: Pemesinan Kapal, Otomotif TKRO Astra, Desain Komunikasi Visual (DKV), & Teknik Logistik."
+        keywords="Kurikulum SMK Tanjung Priok 1, KOSP SMK, Struktur Kurikulum Merdeka SMK, Teknik Pemesinan Kapal, TKRO Otomotif Astra, DKV PriokArt, Teknik Logistik, Modul Generator PPM Guru"
         canonical="https://tp1kurikulum.my.id/kurikulum"
       />
       <div className="mb-16 text-center">
@@ -1758,7 +1758,7 @@ const Curriculum: React.FC = () => {
                   </div>
                   <h3 className="text-lg font-black text-white mb-2">1. Kurikulum Industri Selaras</h3>
                   <p className="text-slate-400 text-xs font-semibold leading-relaxed">
-                    Setiap program keahlian mulai dari Teknik Pemesinan Kapal, TKRO, DKV, hingga Manajemen Logistik, menyusun kurikulum operasional yang disahkan langsung oleh mitra diler, industri pelabuhan, dan galangan kapal resmi nasional.
+                    Setiap program keahlian mulai dari Teknik Pemesinan Kapal, TKRO, DKV, hingga Teknik Logistik, menyusun kurikulum operasional yang disahkan langsung oleh mitra diler, industri pelabuhan, dan galangan kapal resmi nasional.
                   </p>
                 </div>
 

@@ -10,7 +10,7 @@ interface StudentData {
   nis: string;
   nama: string;
   kelasCode: string;
-  jurusan: 'TPK' | 'TKRO' | 'DKV' | 'MLOG';
+  jurusan: 'TPK' | 'TKRO' | 'DKV' | 'TL';
   sppBulan: number;
   sppRupiah: string;
   utsUasDu: string;
@@ -374,7 +374,7 @@ const Students: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'lunas' | 'tunggakan'>('all');
-  const [jurusanFilter, setJurusanFilter] = useState<'all' | 'TPK' | 'TKRO' | 'DKV' | 'MLOG'>('all');
+  const [jurusanFilter, setJurusanFilter] = useState<'all' | 'TPK' | 'TKRO' | 'DKV' | 'TL'>('all');
   const [selectedStudent, setSelectedStudent] = useState<StudentData | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
 
@@ -470,7 +470,7 @@ const Students: React.FC = () => {
             const jumlahVal = cells[offset + 7]?.f || (cells[offset + 7]?.v !== undefined && cells[offset + 7]?.v !== null ? `Rp ${Number(cells[offset + 7].v).toLocaleString('id-ID')}` : "Rp -");
             
             // Map currentKls to Program Keahlian / Jurusan
-            let jurusan: 'TPK' | 'TKRO' | 'DKV' | 'MLOG' = 'TPK';
+            let jurusan: 'TPK' | 'TKRO' | 'DKV' | 'TL' = 'TPK';
             const upperKls = currentKls.toUpperCase();
             if (upperKls.includes("MK") || upperKls.includes("TPK")) {
               jurusan = 'TPK';
@@ -478,8 +478,8 @@ const Students: React.FC = () => {
               jurusan = 'TKRO';
             } else if (upperKls.includes("DKV")) {
               jurusan = 'DKV';
-            } else if (upperKls.includes("TL") || upperKls.includes("LOG") || upperKls.includes("MLOG")) {
-              jurusan = 'MLOG';
+            } else if (upperKls.includes("TL") || upperKls.includes("LOG") || upperKls.includes("MLOG") || upperKls.includes("TEKNIK LOGISTIK") || upperKls.includes("MANAJEMEN LOGISTIK")) {
+              jurusan = 'TL';
             }
 
             return {
@@ -542,7 +542,7 @@ const Students: React.FC = () => {
   const tpkCount = students.filter(s => s.jurusan === 'TPK').length;
   const tkroCount = students.filter(s => s.jurusan === 'TKRO').length;
   const dkvCount = students.filter(s => s.jurusan === 'DKV').length;
-  const mlogCount = students.filter(s => s.jurusan === 'MLOG').length;
+  const tlCount = students.filter(s => s.jurusan === 'TL').length;
 
   // Print function
   const handlePrint = (student: StudentData) => {
@@ -1487,7 +1487,7 @@ const Students: React.FC = () => {
                   { id: 'TPK', label: 'TPK', subText: 'Teknik Pemesinan & Kapal', count: tpkCount, badgeBg: 'bg-cyan-100 text-cyan-800' },
                   { id: 'TKRO', label: 'TKRO', subText: 'Teknik Kendaraan Ringan', count: tkroCount, badgeBg: 'bg-amber-100 text-amber-800' },
                   { id: 'DKV', label: 'DKV', subText: 'Desain Komunikasi Visual', count: dkvCount, badgeBg: 'bg-indigo-100 text-indigo-800' },
-                  { id: 'MLOG', label: 'MLOG', subText: 'Manajemen Logistik', count: mlogCount, badgeBg: 'bg-emerald-100 text-emerald-800' },
+                  { id: 'TL', label: 'TL', subText: 'Teknik Logistik', count: tlCount, badgeBg: 'bg-emerald-100 text-emerald-800' },
                 ].map((item) => {
                   const active = jurusanFilter === item.id;
                   return (
