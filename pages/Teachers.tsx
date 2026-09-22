@@ -18,7 +18,12 @@ import {
   Award,
   ChevronDown,
   LayoutGrid,
-  Upload
+  Upload,
+  Globe,
+  ArrowUpRight,
+  Sparkles,
+  ShieldCheck,
+  FileText
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
@@ -183,7 +188,7 @@ const Teachers: React.FC = () => {
   const scheduleLink = "https://drive.google.com/file/d/1KHZ1hRPjJ0gW2JZTFyPhijMphjVFwirD/view?usp=drive_link";
   const adminToolLink = "https://s.id/ToolAjarGuru";
   const permissionFormLink = "https://forms.gle/FMQBg8EemZeRpwdT6";
-  const rakerLink = "https://s.id/RAKER_TP01";
+  const ruangGuruLink = "https://kurikulum.smktanjungpriok1.sch.id/login";
   const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
   const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
 
@@ -345,47 +350,132 @@ const Teachers: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen overflow-x-hidden w-full">
       <SEO 
-        title="Jadwal Mengajar Guru SMK Tanjung Priok 1 TA 2026/2027 | Portal Pendidik"
-        description="Portal resmi khusus tenaga pendidik SMK Tanjung Priok 1 Jakarta Utara. Dapatkan update instan Jadwal Mengajar Guru TA 2026/2027 terlengkap, sistem penugasan piket, administrasi kelas, form izin guru, serta link Rapat Kerja (RAKER)."
-        keywords="Jadwal Mengajar Guru, SMK Tanjung Priok 1, Ruang Guru SMK Tanjung Priok 1, Kurikulum SMK Tanjung Priok 1, Raker Guru TP01, Administrasi Guru, Perangkat Pembelajaran, Portal Pendidik Vokasi"
+        title="Ruang Guru & Jadwal Mengajar Guru SMK Tanjung Priok 1 TA 2026/2027 | Portal Pendidik"
+        description="Portal resmi khusus tenaga pendidik SMK Tanjung Priok 1 Jakarta Utara. Akses portal login Ruang Guru (kurikulum.smktanjungpriok1.sch.id/login), Jadwal Mengajar Guru TA 2026/2027 terlengkap, sistem penugasan piket, administrasi kelas, SK mengajar, serta form izin guru."
+        keywords="Ruang Guru SMK Tanjung Priok 1, Jadwal Mengajar Guru, SMK Tanjung Priok 1, Kurikulum SMK Tanjung Priok 1, kurikulum.smktanjungpriok1.sch.id, Administrasi Guru, Perangkat Pembelajaran, Portal Pendidik Vokasi"
       />
 
-      {/* Header Section */}
-      <div className="bg-[#0f172a] text-white pt-20 pb-32 relative overflow-hidden">
+      {/* Header Section with 2-Column Responsive Layout */}
+      <div className="bg-[#0f172a] text-white pt-16 md:pt-20 pb-28 md:pb-32 relative overflow-hidden w-full">
         {/* Ambient background glows */}
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] md:w-[600px] h-[500px] md:h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl">
-            <span className="bg-blue-600 text-white px-4.5 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-6 inline-block shadow-lg border border-blue-400/20">
-              Portal Pendidik • Official
-            </span>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight text-white tracking-tight">
-              Ruang Guru <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
-                SMK Tanjung Priok 1
+        <div className="container mx-auto px-4 relative z-10 w-full max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
+            
+            {/* Left Column: Heading and Portal Overview */}
+            <div className="lg:col-span-7">
+              <span className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-5 inline-flex items-center gap-2 shadow-lg border border-blue-400/20">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Portal Pendidik • Official
               </span>
-            </h1>
-            <p className="text-blue-100/70 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
-              Pusat kendali administrasi pembelajaran, jadwal mengajar terlengkap, dan media koordinasi kurikulum terpadu bagi seluruh Tenaga Pendidik Profesional.
-            </p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-5 leading-tight text-white tracking-tight">
+                Ruang Guru <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
+                  SMK Tanjung Priok 1
+                </span>
+              </h1>
+              <p className="text-blue-100/80 text-base md:text-lg font-medium max-w-2xl leading-relaxed mb-6">
+                Pusat kendali administrasi pembelajaran, jadwal mengajar terlengkap, dan media koordinasi kurikulum terpadu bagi seluruh Tenaga Pendidik Profesional.
+              </p>
+
+              {/* Badges / Quick stats */}
+              <div className="flex flex-wrap gap-2.5 pt-1">
+                <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-300">
+                  <Calendar className="w-3.5 h-3.5 text-blue-400" />
+                  <span>TA 2026/2027</span>
+                </div>
+                <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-300">
+                  <BookOpen className="w-3.5 h-3.5 text-sky-400" />
+                  <span>28 Lembar Jadwal Guru</span>
+                </div>
+                <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-300">
+                  <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>KBM Utama Master</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column (Bagian Kanan Atas): Portal Ruang Guru Card */}
+            <div className="lg:col-span-5 w-full">
+              <div className="bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-blue-950/95 backdrop-blur-xl border-2 border-blue-400/30 rounded-3xl p-6 sm:p-7 shadow-2xl relative overflow-hidden group hover:border-blue-400/60 transition-all duration-300 w-full">
+                <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none transform group-hover:scale-110 transition-transform">
+                  <Globe className="w-40 h-40 text-blue-300" />
+                </div>
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">
+                      <Globe className="w-3 h-3 text-blue-400" />
+                      Website Resmi Kurikulum
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                      Aktif
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-1.5">
+                    Portal Ruang Guru
+                  </h3>
+                  
+                  <a 
+                    href={ruangGuruLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-bold text-sky-300 hover:text-white transition-colors break-all mb-3 bg-sky-950/70 px-3 py-1.5 rounded-xl border border-sky-500/30"
+                  >
+                    <span>kurikulum.smktanjungpriok1.sch.id/login</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-sky-400" />
+                  </a>
+
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 font-medium">
+                    Akses login terpadu sistem kurikulum, administrasi nilai, silabus pembelajaran vokasi, jurnal mengajar, dan modul ajar SMK Tanjung Priok 1 secara praktis.
+                  </p>
+
+                  <a 
+                    href={ruangGuruLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 sm:py-4 px-6 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black rounded-2xl text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2 transition-all transform active:scale-98 border border-blue-300/30 cursor-pointer"
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span>LOGIN RUANG GURU</span>
+                    <ExternalLink className="w-4 h-4 ml-1" />
+                  </a>
+
+                  {/* Fast Shortcut Links */}
+                  <div className="mt-4 pt-4 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+                    <span>Akses Cepat:</span>
+                    <div className="flex items-center space-x-2.5 sm:space-x-3">
+                      <a href={adminToolLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Tool Ajar</a>
+                      <span>•</span>
+                      <a href={uploadSoalStsLink} target="_blank" rel="noopener noreferrer" className="hover:text-amber-300 transition-colors">Soal STS</a>
+                      <span>•</span>
+                      <a href={skMengajarLink} target="_blank" rel="noopener noreferrer" className="hover:text-purple-300 transition-colors">SK Mengajar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
       {/* Main Content Area */}
-      <div className="container mx-auto px-4 -mt-20 pb-24 relative z-20">
-        <div className="grid lg:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 -mt-16 md:-mt-20 pb-24 relative z-20 w-full max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
           
           {/* Featured Schedule Card - MAIN ATTRACTION WITH SLIDESHOW */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-100/80 transition-all hover:shadow-blue-500/5">
+          <div className="lg:col-span-2 space-y-8 w-full min-w-0">
+            <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-100/80 transition-all hover:shadow-blue-500/5 w-full">
               
               {/* Header Gradient Panel of Slideshow */}
-              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950 p-8 md:p-12 text-white relative overflow-hidden">
+              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950 p-6 sm:p-8 md:p-12 text-white relative overflow-hidden w-full">
                 <div className="absolute top-0 right-0 p-8 opacity-10 transform scale-110 pointer-events-none">
                   <Calendar className="w-56 h-56 text-blue-400" />
                 </div>
@@ -406,8 +496,8 @@ const Teachers: React.FC = () => {
               </div>
 
               {/* Premium Tab Selector for Scheduling Sections */}
-              <div className="bg-slate-50 px-6 pt-6 border-b border-slate-100/50">
-                <div className="flex bg-slate-200/50 p-1.5 rounded-2xl max-w-md mx-auto border border-slate-300/30 shadow-inner">
+              <div className="bg-slate-50 px-4 sm:px-6 pt-5 sm:pt-6 border-b border-slate-100/50 w-full">
+                <div className="flex bg-slate-200/50 p-1.5 rounded-2xl max-w-md w-full mx-auto border border-slate-300/30 shadow-inner">
                   <button
                     onClick={() => handleTabChange('MENGAJAR')}
                     className={`flex-1 py-3 text-xs md:text-sm font-black rounded-xl uppercase tracking-wider transition-all duration-300 cursor-pointer ${
@@ -432,7 +522,7 @@ const Teachers: React.FC = () => {
               </div>
 
               {/* Interactive Photo Stage of teaching schedule */}
-              <div className="p-6 md:p-10 bg-slate-50 border-b border-slate-100">
+              <div className="p-4 sm:p-6 md:p-10 bg-slate-50 border-b border-slate-100 w-full max-w-full overflow-hidden">
                 {/* Meta details of active page */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                   <div className="text-left">
@@ -471,7 +561,7 @@ const Teachers: React.FC = () => {
                 </div>
 
                 {/* The main Image Container Frame */}
-                <div className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden rounded-3xl bg-slate-950 flex items-center justify-center border border-slate-200 shadow-inner group/stage">
+                <div className="relative aspect-[4/3] md:aspect-[16/10] w-full max-w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 flex items-center justify-center border border-slate-200 shadow-inner group/stage">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={`${activeTab}-${activeImageIndex}`}
@@ -696,16 +786,46 @@ const Teachers: React.FC = () => {
           </div>
 
           {/* Sidebar Cards */}
-          <div className="space-y-8">
+          <div className="space-y-8 w-full min-w-0">
+            {/* Portal Ruang Guru Card */}
+            <div className="bg-gradient-to-br from-blue-700 via-blue-800 to-slate-900 p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-blue-400/40">
+              <div className="absolute top-0 right-0 p-4 opacity-10 transform group-hover:scale-110 transition-transform pointer-events-none">
+                <Globe className="w-32 h-32 text-blue-200" />
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-white/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-blue-100 mb-3 border border-white/20">
+                <Sparkles className="w-3 h-3 text-yellow-300" />
+                <span>LINK UTAMA KURIKULUM</span>
+              </div>
+              <h3 className="text-2xl font-black mb-2 tracking-tight">Portal Ruang Guru</h3>
+              <div className="mb-3">
+                <span className="font-mono text-xs text-sky-200 break-all bg-black/25 px-2.5 py-1 rounded-lg border border-white/10 inline-block">
+                  kurikulum.smktanjungpriok1.sch.id/login
+                </span>
+              </div>
+              <p className="text-blue-100/90 text-sm font-medium mb-6 leading-relaxed">
+                Pusat layanan login kurikulum, administrasi nilai, koordinasi tenaga pendidik, dan modul pembelajaran digital SMK Tanjung Priok 1.
+              </p>
+              <a 
+                href={ruangGuruLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 bg-white text-blue-900 hover:bg-blue-50 font-black rounded-2xl transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-blue-300 flex items-center justify-center space-x-2 cursor-pointer"
+              >
+                <Globe className="w-4 h-4 text-blue-600" />
+                <span>LOGIN RUANG GURU</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              </a>
+            </div>
+
             {/* Unggah Soal STS Ganjil Card */}
-            <div className="bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-amber-300/40">
-              <div className="absolute top-0 right-0 p-4 opacity-10 transform group-hover:scale-110 transition-transform">
+            <div className="bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-amber-300/40">
+              <div className="absolute top-0 right-0 p-4 opacity-10 transform group-hover:scale-110 transition-transform pointer-events-none">
                 <Upload className="w-32 h-32 text-amber-100" />
               </div>
               <div className="inline-flex items-center space-x-1.5 bg-white/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-amber-100 mb-3 border border-white/20">
                 <span>PRIORITAS GURU</span>
               </div>
-              <h3 className="text-2xl font-black mb-3">Unggah Soal STS Ganjil</h3>
+              <h3 className="text-2xl font-black mb-3 tracking-tight">Unggah Soal STS Ganjil</h3>
               <p className="text-amber-100 text-sm font-medium mb-6 leading-relaxed">
                 Portal resmi pengiriman naskah soal Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.
               </p>
@@ -722,14 +842,14 @@ const Teachers: React.FC = () => {
             </div>
 
             {/* SK Mengajar Card */}
-            <div className="bg-gradient-to-br from-purple-900 to-indigo-950 p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-purple-500/30">
-              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform">
+            <div className="bg-gradient-to-br from-purple-900 to-indigo-950 p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-purple-500/30">
+              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform pointer-events-none">
                 <Award className="w-32 h-32 text-purple-400" />
               </div>
               <div className="inline-flex items-center space-x-1.5 bg-purple-500/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-purple-300 mb-3 border border-purple-400/30">
                 <span>DOKUMEN UTAMA</span>
               </div>
-              <h3 className="text-2xl font-black mb-3">SK Mengajar TA 2026/2027</h3>
+              <h3 className="text-2xl font-black mb-3 tracking-tight">SK Mengajar TA 2026/2027</h3>
               <p className="text-purple-100/70 text-sm font-medium mb-6 leading-relaxed">
                 Unduh Surat Keputusan (SK) Mengajar resmi untuk kelengkapan administrasi, pemberkasan, dan sertifikasi pendidik tahun pelajaran 2026/2027.
               </p>
@@ -744,13 +864,16 @@ const Teachers: React.FC = () => {
             </div>
 
             {/* Tool Ajar Guru Card */}
-            <div className="bg-[#0f172a] p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-blue-500/30">
-              <div className="absolute bottom-0 right-0 p-4 opacity-5 transform group-hover:-rotate-12 transition-transform">
+            <div className="bg-[#0f172a] p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-blue-500/30">
+              <div className="absolute bottom-0 right-0 p-4 opacity-5 transform group-hover:-rotate-12 transition-transform pointer-events-none">
                 <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-black mb-3">Tool Ajar Guru</h3>
+              <div className="inline-flex items-center space-x-1.5 bg-blue-500/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-blue-300 mb-3 border border-blue-400/30">
+                <span>PERANGKAT AJAR</span>
+              </div>
+              <h3 className="text-2xl font-black mb-3 tracking-tight">Tool Ajar Guru</h3>
               <p className="text-blue-100/70 text-sm font-medium mb-6 leading-relaxed">
                 Akses cepat perangkat pembelajaran, administrasi kelas, jurnal digital, dan laporan kinerja guru terpadu.
               </p>
@@ -764,48 +887,28 @@ const Teachers: React.FC = () => {
               </a>
             </div>
 
-            {/* RAKER Guru Card */}
-            <div className="bg-gradient-to-br from-blue-900 to-[#0f172a] p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-blue-400/40">
-              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform">
-                <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                </svg>
+            {/* Form Izin Guru Card - Neat & Easy to Use */}
+            <div className="bg-white p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-[#0f172a] relative overflow-hidden group border border-slate-200/80 hover:border-blue-400 transition-all">
+              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform pointer-events-none">
+                <FileText className="w-32 h-32 text-slate-800" />
               </div>
-              <div className="inline-flex items-center space-x-1.5 bg-blue-500/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-blue-300 mb-3 border border-blue-400/30">
-                <span>AGENDA RESMI</span>
+              <div className="inline-flex items-center space-x-1.5 bg-blue-50 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-blue-700 mb-3 border border-blue-200">
+                <ShieldCheck className="w-3 h-3 text-blue-600" />
+                <span>LAYANAN RESMI</span>
               </div>
-              <h3 className="text-2xl font-black mb-3">RAKER Guru TP01</h3>
-              <p className="text-blue-100/70 text-sm font-medium mb-6 leading-relaxed">
-                Akses dokumen keputusan rapat, pembagian beban jam mengajar, dan program strategis Rapat Kerja (RAKER) Guru SMK Tanjung Priok 1.
-              </p>
-              <a 
-                href={rakerLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full py-4 bg-blue-500 text-center text-white font-black rounded-2xl hover:bg-blue-400 transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-blue-700"
-              >
-                BUKA LINK RAKER
-              </a>
-            </div>
-
-            {/* Form Izin Guru Card */}
-            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl text-[#0f172a] relative overflow-hidden group border border-gray-100 hover:border-blue-200 transition-all">
-              <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform">
-                <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
-                </svg>
-              </div>
-              <h3 className="text-2xl font-black mb-3">Form Izin Guru</h3>
-              <p className="text-gray-500 text-sm font-medium mb-6 leading-relaxed">
-                Isi formulir resmi pengajuan izin meninggalkan jam pelajaran atau ketidakhadiran bagi tenaga pendidik secara daring.
+              <h3 className="text-2xl font-black mb-3 tracking-tight text-slate-900">Form Izin Guru</h3>
+              <p className="text-slate-600 text-sm font-medium mb-6 leading-relaxed">
+                Isi formulir daring pengajuan izin meninggalkan jam pelajaran atau ketidakhadiran bagi tenaga pendidik SMK Tanjung Priok 1.
               </p>
               <a 
                 href={permissionFormLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-4 bg-[#0f172a] text-center text-white font-black rounded-2xl hover:bg-slate-800 transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-blue-500"
+                className="block w-full py-4 bg-[#0f172a] text-center text-white font-black rounded-2xl hover:bg-slate-800 transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-blue-600 flex items-center justify-center space-x-2 cursor-pointer"
               >
-                ISI FORM IZIN
+                <FileText className="w-4 h-4 text-sky-400" />
+                <span>ISI FORM IZIN GURU</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
               </a>
             </div>
           </div>

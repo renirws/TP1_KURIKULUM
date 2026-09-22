@@ -14,6 +14,14 @@ const ExternalLinks: React.FC = () => {
       tag: "Pengumpulan Soal"
     },
     {
+      title: "PORTAL RUANG GURU (LOGIN KURIKULUM)",
+      description: "Portal resmi login sistem informasi kurikulum, manajemen administrasi guru, silabus pembelajaran, dan penilaian terpadu SMK Tanjung Priok 1.",
+      url: "https://kurikulum.smktanjungpriok1.sch.id/login",
+      icon: <Globe className="w-8 h-8" />,
+      color: "from-blue-600 to-indigo-700",
+      tag: "Ruang Guru"
+    },
+    {
       title: "KOSP SMK TANJUNG PRIOK 1 TAHUN AJARAN 2026-2027",
       description: "Dokumen Kurikulum Operasional Satuan Pendidikan (KOSP) SMK Tanjung Priok 1 Jakarta Utara Tahun Ajaran 2026-2027 berbasis Kurikulum Merdeka secara lengkap, resmi, dan interaktif (Flipbook).",
       url: "https://online.fliphtml5.com/hblai/erro/",

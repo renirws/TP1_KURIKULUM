@@ -19,6 +19,8 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 8 | **Migrasi Jadwal KBM Master ke Portal Guru** | ✅ Selesai | Pemindahan lembar KBM Master dari siswa ke guru dengan tabs selector dinamis demi kenyamanan UX. | Siswa (`/siswa`) & Guru (`/guru`) |
 | 9 | **Menu Unduh SK Mengajar 2026/2027** | ✅ Selesai | Penambahan tautan folder Google Drive SK Mengajar resmi pada Kalender Berkas dan Portal Guru. | Berkas (`/berkas`) & Guru (`/guru`) |
 | 10 | **Dokumentasi KOSP & Galeri Video Kegiatan** | ✅ Selesai | Integrasi Flipbook KOSP 2026-2027 pada Tautan Penting dan Video Kegiatan 8 Kebiasaan Anak Indonesia Hebat. | Tautan (`/tautan`) & Galeri (`/galeri`) |
+| 11 | **Redesain Halaman Guru & Integrasi Ruang Guru** | ✅ Selesai | Menambahkan link Ruang Guru (`www.kurikulumsmktanjungpriok1.sch.id`), menghapus link RAKER, merapikan bagian kanan atas, dan mengoptimalkan responsivitas smartphone. | Halaman Guru (`/guru`) |
+| 12 | **Pembaruan Link Login Ruang Guru** | ✅ Selesai | Memperbarui tautan portal Ruang Guru menjadi link login resmi `https://kurikulum.smktanjungpriok1.sch.id/login` pada seluruh kartu, SEO, dan direktori tautan penting. | Halaman Guru (`/guru`) & Tautan (`/tautan`) |
 
 ---
 
@@ -85,6 +87,41 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
   * Menggunakan Framer Motion (`motion/react`) untuk transisi antar-halaman yang halus tanpa *flicker*.
 * **Area Sentuh (Touch Targets)**:
   * Seluruh tombol dan kontrol navigasi dirancang dengan tinggi minimum 44px agar nyaman dioperasikan satu tangan di smartphone.
+
+---
+
+### 7. Perbaikan Halaman Guru: Integrasi Portal Ruang Guru, Penghapusan Link Raker, & Optimasi Mobile
+* **Permintaan**: Perbaiki halaman guru, bagian kanan atas (yang berwarna putih) mohon diperbaiki dengan desain yg bagus sehingga rapih dan easy use. Bagian link raker juga dihilangkan. Tambahkan link ruang guru yaitu `www.kurikulumsmktanjungpriok1.sch.id`. Buat responsif dan kompatibel untuk smartphone. Simpan semua perubahan pada log `progress.md`.
+* **Tindakan yang Dilakukan**:
+  * **Integrasi Link Ruang Guru**:
+    * Menambahkan tautan resmi `https://www.kurikulumsmktanjungpriok1.sch.id` sebagai pintu gerbang utama kurikulum, silabus pembelajaran, dan modul pembelajaran daring pendidik.
+    * Menampilkan badge domain resmi ber-styling monospace berlatar kontras dengan tombol aksi langsung `BUKA RUANG GURU`.
+  * **Restrukturisasi Bagian Kanan Atas (Header & Sidebar)**:
+    * Mengganti kartu putih lama dengan kartu modern bergradasi elegan, pencahayaan aksen halus, ikon `Globe` & `ArrowUpRight`, serta indikator status "Aktif" (pulse dot).
+    * Menyediakan tautan pintas (*Akses Cepat*) langsung ke Tool Ajar Guru, Unggah Soal STS, dan SK Mengajar.
+    * Menghadirkan kartu sorotan utama **Portal Ruang Guru** pada urutan pertama di bilah sisi (*sidebar*) lengkap dengan label `LINK UTAMA KURIKULUM`.
+  * **Penghapusan Tautan RAKER**:
+    * Menghapus tuntas kartu tautan "RAKER Guru TP01" (`https://s.id/RAKER_TP01`) dari bilah sisi dan variabel terkait di kode program.
+    * Memperbarui deskripsi SEO dan kata kunci di `Teachers.tsx` agar bersih dari referensi Raker yang sudah ditiadakan.
+  * **Penyempurnaan Form Izin Guru**:
+    * Meremajakan tampilan kartu "Form Izin Guru" dengan batas tegas (*slate-200*), bayangan lembut, badge `LAYANAN RESMI` berikon `ShieldCheck`, serta tombol ramah sentuhan `ISI FORM IZIN GURU`.
+  * **Responsivitas & Kompatibilitas Smartphone**:
+    * Menambahkan kelas pelindung `overflow-x-hidden`, `w-full`, dan `min-w-0` pada grid induk dan seluruh kartu kolom untuk mencegah distorsi atau *horizontal scrolling* di layar kecil (320px–480px).
+    * Mengoptimalkan ukuran *touch target* (min. 44px–48px) pada tombol aksi, navigasi slide, dan selector halaman agar sangat ergonomis bagi jempol pengguna ponsel (*easy-to-use*).
+
+---
+
+### 8. Pembaruan Tautan Ruang Guru ke Portal Login Resmi
+* **Permintaan**: Perbaiki ruang guru dengan link `https://kurikulum.smktanjungpriok1.sch.id/login`.
+* **Tindakan yang Dilakukan**:
+  * **Pembaruan Endpoint URL Utama**:
+    * Mengganti URL `ruangGuruLink` di `pages/Teachers.tsx` menjadi `https://kurikulum.smktanjungpriok1.sch.id/login`.
+    * Memperbarui label teks domain/link pada kartu header kanan atas dan bilah sisi (*sidebar*) menjadi `kurikulum.smktanjungpriok1.sch.id/login`.
+    * Mengubah teks tombol aksi menjadi `LOGIN RUANG GURU` untuk kejelasan fungsional bahwa halaman ini mengarahkan langsung ke portal autentikasi kurikulum.
+  * **Sinkronisasi Metadata SEO**:
+    * Memperbarui `description` dan `keywords` pada komponen `<SEO />` di `Teachers.tsx` agar mengacu pada endpoint login resmi `kurikulum.smktanjungpriok1.sch.id/login`.
+  * **Integrasi pada Halaman Tautan Penting (`/tautan`)**:
+    * Menambahkan entri kartu `PORTAL RUANG GURU (LOGIN KURIKULUM)` di `pages/ExternalLinks.tsx` dengan tautan langsung ke `https://kurikulum.smktanjungpriok1.sch.id/login` guna mempermudah akses cepat bagi guru dan staf.
 
 ---
 
