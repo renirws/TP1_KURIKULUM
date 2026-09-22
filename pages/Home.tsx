@@ -55,7 +55,7 @@ const Home: React.FC = () => {
 
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
-    { title: "Cek SPP Online Kelas XI & XII", category: "Keuangan Siswa", icon: <CreditCard className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Pantau tunggakan SPP, dana pembangunan (PPDB), dan uang ujian akhir secara real-time dari database Google Sheets.", keywords: "spp keuangan bayar tunggakan administrasi kelas xi xii siswa murid tagihan ujian uas uts" },
+    { title: "Portal Siswa & Jadwal KBM", category: "Layanan Siswa", icon: <Calendar className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Akses lembar jadwal pelajaran resmi Kelas X, XI, XII & Simulasi TKA serta direktori bimbingan & penempatan Prakerin.", keywords: "jadwal kbm pelajaran prakerin pkl bimbingan siswa kelas x xi xii kalender akademik dokumen" },
     { title: "Jadwal Pelajaran KOSP & JP", category: "Kurikulum Merdeka", icon: <BookOpen className="w-6 h-6 text-blue-600" />, link: "/kurikulum", desc: "Unduh struktur kurikulum, alokasi jam pelajaran (JP), dan jadwal pembelajaran aktif untuk semua kelas.", keywords: "jadwal pelajaran kosp kurikulum merdeka jam jp unduh dokumen guru jadwal aktif" },
     { title: "LSP-P1 Lisensi BNSP", category: "Sertifikasi Profesi", icon: <ShieldCheck className="w-6 h-6 text-amber-600" />, link: "https://lspsmktanjungpriok1.netlify.app/", desc: "Uji kompetensi keahlian bersertifikat Garuda Emas BNSP untuk jaminan daya saing tinggi di industri.", keywords: "lsp bnsp sertifikasi profesi kompetensi garuda emas ujian lisensi nasional" },
     { title: "Modul Generator PPM Guru", category: "Layanan Guru", icon: <FileText className="w-6 h-6 text-purple-600" />, link: "https://sites.google.com/view/modulgeneratesmktp1/moodul-generator", desc: "Akses dan generate modul ajar interaktif sesuai standar pemodelan pembelajaran bagi guru vokasi.", keywords: "modul generator ppm guru ajar mengajar administrasi perangkat mengajar rpp" },
@@ -77,8 +77,8 @@ const Home: React.FC = () => {
   // SEO-friendly FAQ Data to capture target search queries
   const faqData = [
     {
-      question: "Bagaimana cara melakukan pengecekan administrasi & SPP secara real-time?",
-      answer: "Siswa dan orang tua dapat mengecek status pembayaran SPP Kelas XI dan Kelas XII secara langsung melalui Portal Siswa di website ini. Cukup masukkan nama siswa di kolom pencarian untuk melihat data rincian tunggakan, uts, uas, dan status administrasi lainnya yang bersumber valid dari Google Spreadsheet tim keuangan sekolah."
+      question: "Bagaimana cara mengakses jadwal pelajaran KBM dan direktori bimbingan Prakerin?",
+      answer: "Siswa dan orang tua dapat mengakses jadwal pelajaran resmi Kelas X, XI, XII & Simulasi TKA serta direktori 14 halaman pembimbing dan lokasi Prakerin secara langsung melalui menu Siswa di website ini dengan fitur penampil interaktif, zoom, cetak, dan unduh dokumen resolusi tinggi."
     },
     {
       question: "Apa saja Program Keahlian / Jurusan unggulan di SMK Tanjung Priok 1?",
@@ -204,7 +204,7 @@ const Home: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
               >
-                Pusat integrasi akademik resmi yang memfasilitasi administrasi keuangan SPP, bimbingan PKL industri, jadwal ujian, modul kurikulum merdeka, dan lisensi BNSP terlengkap untuk mencetak lulusan siap kerja.
+                Pusat integrasi akademik resmi yang memfasilitasi jadwal pembelajaran KBM, bimbingan PKL industri, kalender ujian, modul kurikulum merdeka, dan lisensi BNSP terlengkap untuk mencetak lulusan siap kerja.
               </motion.p>
 
               {/* Badges for majors directly in hero */}
@@ -237,7 +237,7 @@ const Home: React.FC = () => {
                   to="/siswa" 
                   className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-2xl font-black transition-all text-center cursor-pointer"
                 >
-                  Portal SPP & Keuangan Siswa
+                  Portal Siswa &amp; Jadwal KBM
                 </Link>
               </motion.div>
             </div>
@@ -363,10 +363,10 @@ const Home: React.FC = () => {
               <span>Portal Akses & Layanan Digital Terpadu</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-              Cari Informasi, Layanan SPP & Dokumen Akademik
+              Cari Informasi, Jadwal KBM & Dokumen Akademik
             </h2>
             <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto font-medium">
-              Ketik kata kunci (misal: <span className="font-bold text-blue-600">SPP</span>, <span className="font-bold text-blue-600">Jadwal</span>, <span className="font-bold text-blue-600">PKL</span>, <span className="font-bold text-blue-600">LSP BNSP</span>, atau <span className="font-bold text-blue-600">PPDB</span>) untuk menuju layanan yang Anda butuhkan secara instan.
+              Ketik kata kunci (misal: <span className="font-bold text-blue-600">Jadwal</span>, <span className="font-bold text-blue-600">PKL</span>, <span className="font-bold text-blue-600">Kurikulum</span>, <span className="font-bold text-blue-600">LSP BNSP</span>, atau <span className="font-bold text-blue-600">PPDB</span>) untuk menuju layanan yang Anda butuhkan secara instan.
             </p>
 
             {/* Quick Interactive Search Bar */}
@@ -377,7 +377,7 @@ const Home: React.FC = () => {
                   type="text"
                   value={quickSearch}
                   onChange={(e) => setQuickSearch(e.target.value)}
-                  placeholder="Ketik layanan yang dicari: SPP, Jadwal Pelajaran, BNSP, Modul..."
+                  placeholder="Ketik layanan yang dicari: Jadwal Pelajaran, Prakerin, BNSP, Modul..."
                   className="w-full pl-12 pr-10 py-4 bg-white border-2 border-slate-200 rounded-2xl text-slate-800 placeholder-slate-400 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 shadow-sm transition-all"
                 />
                 {quickSearch && (
@@ -461,7 +461,7 @@ const Home: React.FC = () => {
                 <Search className="w-10 h-10 text-slate-300 mx-auto" />
                 <h4 className="font-black text-slate-700 text-base">Layanan "{quickSearch}" Tidak Ditemukan</h4>
                 <p className="text-xs text-slate-500 max-w-md mx-auto">
-                  Cobalah gunakan kata kunci lain seperti <button onClick={() => setQuickSearch('SPP')} className="underline font-bold text-blue-600">SPP</button>, <button onClick={() => setQuickSearch('Jadwal')} className="underline font-bold text-blue-600">Jadwal</button>, atau <button onClick={() => setQuickSearch('BNSP')} className="underline font-bold text-blue-600">BNSP</button>.
+                  Cobalah gunakan kata kunci lain seperti <button onClick={() => setQuickSearch('Jadwal')} className="underline font-bold text-blue-600">Jadwal</button>, <button onClick={() => setQuickSearch('Prakerin')} className="underline font-bold text-blue-600">Prakerin</button>, atau <button onClick={() => setQuickSearch('BNSP')} className="underline font-bold text-blue-600">BNSP</button>.
                 </p>
               </div>
             )}
@@ -619,20 +619,20 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* SPP Portal Card */}
+            {/* Portal Siswa & Jadwal Card */}
             <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
               <div className="space-y-4">
                 <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <CreditCard className="w-6 h-6" />
+                  <Calendar className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-black text-slate-900">Cek SPP Real-time Kelas XI & XII</h3>
+                <h3 className="text-xl font-black text-slate-900">Portal Siswa & Jadwal KBM</h3>
                 <p className="text-slate-500 text-xs md:text-sm font-medium leading-relaxed">
-                  Pengecekan mandiri tunggakan SPP, dana pembangunan (PPDB), dan uang ujian akhir secara aman, transparan, dan terhubung langsung dari database keuangan sekolah.
+                  Akses lembar jadwal pelajaran resmi Kelas X, XI, XII &amp; Simulasi TKA serta direktori 14 halaman bimbingan &amp; lokasi penempatan Prakerin TA 2026/2027.
                 </p>
               </div>
               <div className="pt-6 mt-6 border-t border-slate-50">
                 <Link to="/siswa" className="inline-flex items-center text-xs font-black text-blue-600 hover:text-blue-800 uppercase tracking-widest cursor-pointer">
-                  <span>Mulai Cek Keuangan</span>
+                  <span>Buka Portal Siswa</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Link>
               </div>
@@ -788,7 +788,7 @@ const Home: React.FC = () => {
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-3">
             <span className="bg-slate-200 text-slate-800 px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase">F.A.Q & Pusat Bantuan</span>
             <h2 className="text-4xl font-black text-slate-900 tracking-tight">Pertanyaan yang Sering Diajukan</h2>
-            <p className="text-gray-500 font-medium">Temukan jawaban cepat seputar kurikulum, keuangan siswa, pendaftaran PPDB, dan kemitraan industri.</p>
+            <p className="text-gray-500 font-medium">Temukan jawaban cepat seputar kurikulum, kegiatan siswa, pendaftaran PPDB, dan kemitraan industri.</p>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-4">
@@ -852,7 +852,7 @@ const Home: React.FC = () => {
                 </div>
                 
                 <p className="text-slate-500 text-xs md:text-sm font-medium leading-relaxed">
-                  "Sistem informasi kurikulum digital ini didesain guna meningkatkan transparansi akademik dan memudahkan akses cek SPP secara mandiri oleh siswa dan wali kelas secara real-time."
+                  "Sistem informasi kurikulum digital ini didesain guna meningkatkan transparansi akademik dan memudahkan akses jadwal KBM serta bimbingan Prakerin bagi seluruh civitas sekolah."
                 </p>
 
                 <div className="space-y-2 pt-2 text-left">

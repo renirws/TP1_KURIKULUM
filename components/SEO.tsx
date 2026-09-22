@@ -10,9 +10,9 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = "Sistem Informasi Kurikulum SMK TANJUNG PRIOK 1 | Portal Akademik & SPP Online",
-  description = "Pusat Informasi Kurikulum SMK TANJUNG PRIOK 1. Akses jadwal pelajaran, kalender akademik, bimbingan PKL, sertifikasi LSP, modul generator PPM, serta cek SPP & keuangan siswa secara mandiri dan real-time.",
-  keywords = "SMK Tanjung Priok 1, Kurikulum SMK, Cek SPP Online SMK Tanjung Priok 1, LSP SMK Tanjung Priok 1, Modul Generator PPM, UKK 2026, USBK 2026, SPMB 2026, SMK Jakarta Utara, Pendidikan Vokasi",
+  title = "Sistem Informasi Kurikulum SMK TANJUNG PRIOK 1 | Portal Akademik & Jadwal KBM",
+  description = "Pusat Informasi Kurikulum SMK TANJUNG PRIOK 1. Akses jadwal pelajaran, kalender akademik, bimbingan PKL Prakerin, sertifikasi LSP-P1 BNSP, modul generator PPM, serta layanan akademik siswa resmi.",
+  keywords = "SMK Tanjung Priok 1, Kurikulum SMK, Portal Siswa SMK Tanjung Priok 1, Jadwal Pelajaran SMK, LSP SMK Tanjung Priok 1, Modul Generator PPM, UKK 2026, USBK 2026, SPMB 2026, SMK Jakarta Utara, Pendidikan Vokasi",
   canonical = "https://tp1kurikulum.my.id/",
   ogImage = "https://tp1kurikulum.my.id/og-image.jpg",
   schemaMarkup
