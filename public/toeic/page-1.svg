@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1130" width="100%" height="100%" style="background:#ffffff; font-family: 'Times New Roman', Times, serif;">
+  <rect width="800" height="1130" fill="#ffffff" />
+  
+  <!-- Kop Surat -->
+  <g id="kop">
+    <g transform="translate(55, 25)">
+      <circle cx="36" cy="36" r="34" fill="#0284c7" />
+      <polygon points="36,8 64,56 8,56" fill="#facc15" stroke="#0369a1" stroke-width="2"/>
+      <circle cx="36" cy="38" r="16" fill="#0284c7" />
+      <text x="36" y="42" font-size="9" font-family="Arial, sans-serif" font-weight="bold" fill="#ffffff" text-anchor="middle">SMK TP 1</text>
+      <path d="M16,62 Q36,70 56,62" fill="none" stroke="#facc15" stroke-width="4"/>
+      <text x="36" y="67" font-size="7" font-family="Arial, sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle">DIKANTARA</text>
+    </g>
+
+    <text x="440" y="36" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle" letter-spacing="0.5">YAYASAN PENDIDIKAN JAKARTA UTARA</text>
+    <text x="440" y="56" font-size="16" font-weight="bold" fill="#1e3a8a" text-anchor="middle">SEKOLAH MENENGAH KEJURUAN (SMK) “ TANJUNG PRIOK “ 1</text>
+    <text x="440" y="72" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">STATUS : AKREDITASI A</text>
+    <text x="440" y="86" font-size="10" fill="#334155" text-anchor="middle">Jl. Mangga No.3, Kel. Lagoa , Kec. Koja , Jakarta Utara Telpon : (021) 430 1192 Fax. 43905182</text>
+    <text x="440" y="98" font-size="10" fill="#2563eb" text-anchor="middle">website : smktanjungpriok1.sch.id</text>
+
+    <line x1="50" y1="108" x2="750" y2="108" stroke="#1e3a8a" stroke-width="2.5" />
+    <line x1="50" y1="112" x2="750" y2="112" stroke="#1e3a8a" stroke-width="1" />
+  </g>
+
+  <!-- Surat Meta -->
+  <g transform="translate(60, 135)" font-size="12" fill="#0f172a">
+    <text x="0" y="0" font-weight="bold">No</text>
+    <text x="60" y="0">: 08/SE/SMKTP01/IX/2026</text>
+    
+    <text x="0" y="22" font-weight="bold">Hal</text>
+    <text x="60" y="22" font-weight="bold">: Pelaksanaan Seleksi Toeic Murid Kelas XI &amp; XII TA 2026/2027</text>
+
+    <text x="0" y="55" font-weight="bold">Yth.</text>
+    <text x="25" y="75">1. Bapak/Ibu Guru dan Wali Kelas XI &amp; XII</text>
+    <text x="25" y="95">2. Orang Tua / Wali Murid Kelas XI &amp; XII</text>
+    <text x="25" y="115">3. Murid Kelas XI &amp; XII (Semua Program Keahlian)</text>
+    
+    <text x="0" y="140">SMK Tanjung Priok 1 Jakarta</text>
+    <text x="0" y="158">di Tempat</text>
+
+    <text x="0" y="195">Dengan Hormat,</text>
+    <text x="0" y="220" font-style="italic">Assallamuallaikum Warahmatullahi Wabarakatuh,</text>
+
+    <text x="0" y="255">Dalam rangka pemetaan dan peningkatan kompetensi bahasa Inggris siswa, sekolah akan menyelenggarakan</text>
+    <text x="0" y="275" font-weight="bold">Seleksi TOEIC (Test of English for International Communication) <tspan font-weight="normal">yang akan dilaksanakan pada:</tspan></text>
+    
+    <circle cx="30" cy="305" r="3" fill="#0f172a" />
+    <text x="45" y="309" font-weight="bold">Hari, Tanggal: <tspan font-weight="bold" fill="#1e3a8a">Kamis &amp; Jum'at, 24 - 25 September 2026</tspan></text>
+
+    <text x="0" y="340">Berkenaan dengan hal tersebut, berikut ketentuan pelaksanaan bagi masing-masing jenjang:</text>
+
+    <text x="20" y="370" font-weight="bold">1. Siswa Kelas XII (Pelaksanaan Luring di Sekolah)</text>
+    <circle cx="45" cy="395" r="2.5" fill="#475569" />
+    <text x="60" y="399">Pelaksanaan tes bertempat di laboratorium/ruang yang telah ditentukan di sekolah. Dengan jadwal</text>
+    <text x="60" y="417">yaitu <tspan font-weight="bold">Kamis, 24 September 2026</tspan> dengan dibagi 2 sesi sebagai berikut ini:</text>
+    
+    <circle cx="90" cy="442" r="2.5" fill="#1e293b" />
+    <text x="105" y="446" font-weight="bold">Sesi 1 : Jam 07.00 – 09.00 WIB</text>
+    
+    <circle cx="90" cy="466" r="2.5" fill="#1e293b" />
+    <text x="105" y="470" font-weight="bold">Sesi 2 : Jam 09.30 – 11.30 WIB</text>
+
+    <circle cx="45" cy="498" r="2.5" fill="#475569" />
+    <text x="60" y="502">Siswa <tspan font-weight="bold">wajib membawa earphone/headset pribadi</tspan> yang dapat berfungsi dengan baik untuk sesi</text>
+    <text x="60" y="520"><tspan font-style="italic" font-weight="bold">Listening</tspan> &amp; hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
+
+    <text x="20" y="555" font-weight="bold">2. Siswa Kelas XI (Pelaksanaan Luring di Sekolah)</text>
+    <circle cx="45" cy="580" r="2.5" fill="#475569" />
+    <text x="60" y="584">Pelaksanaan tes bertempat di laboratorium/ruang yang telah ditentukan di sekolah. Dengan jadwal</text>
+    <text x="60" y="602">yaitu <tspan font-weight="bold">Jum'at, 25 September 2026</tspan> dengan dibagi 2 sesi sebagai berikut ini:</text>
+
+    <circle cx="90" cy="627" r="2.5" fill="#1e293b" />
+    <text x="105" y="631" font-weight="bold">Sesi 1 : Jam 07.00 – 09.00 WIB</text>
+
+    <circle cx="90" cy="651" r="2.5" fill="#1e293b" />
+    <text x="105" y="655" font-weight="bold">Sesi 2 : Jam 09.30 – 11.30 WIB</text>
+
+    <circle cx="45" cy="683" r="2.5" fill="#475569" />
+    <text x="60" y="687">Siswa <tspan font-weight="bold">wajib membawa earphone/headset pribadi</tspan> yang dapat berfungsi dengan baik untuk sesi</text>
+    <text x="60" y="705"><tspan font-style="italic" font-weight="bold">Listening</tspan> &amp; hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
+
+    <circle cx="45" cy="733" r="2.5" fill="#475569" />
+    <text x="60" y="737">Hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
+
+    <text x="20" y="775">Demikian Surat Edaran ini disampaikan. Mohon dukungan Orang Tua/Wali Murid agar pelaksanaan tes</text>
+    <text x="0" y="795">berjalan dengan lancar dan tertib. Atas perhatian dan kerja samanya, kami ucapkan terima kasih.</text>
+
+    <text x="0" y="840">Jakarta, 22 September 2026</text>
+    <text x="0" y="860">Ka. SMK Tanjung Priok 1</text>
+
+    <g transform="translate(-10, 875)">
+      <ellipse cx="65" cy="35" rx="55" ry="32" fill="none" stroke="#1d4ed8" stroke-width="2.5" stroke-dasharray="3 1" opacity="0.85" />
+      <ellipse cx="65" cy="35" rx="51" ry="28" fill="none" stroke="#1d4ed8" stroke-width="1.2" opacity="0.85" />
+      <text x="65" y="26" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle" opacity="0.9">YAYASAN PENDIDIKAN</text>
+      <text x="65" y="38" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle" opacity="0.9">SMK TANJUNG PRIOK 1</text>
+      <text x="65" y="50" font-size="7" font-family="Arial, sans-serif" fill="#1d4ed8" text-anchor="middle" opacity="0.9">JAKARTA UTARA</text>
+      <path d="M60,35 Q100,20 120,40 Q135,15 170,40 L180,35" fill="none" stroke="#0f172a" stroke-width="2.5" />
+    </g>
+
+    <text x="0" y="970" font-weight="bold" text-decoration="underline">Andri Susanto, ST</text>
+  </g>
+</svg>

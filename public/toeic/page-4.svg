@@ -1,0 +1,852 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1130" width="100%" height="100%" style="background:#ffffff; font-family: Arial, sans-serif;">
+  <rect width="800" height="1130" fill="#ffffff" />
+
+  <!-- Title Header -->
+  <text x="400" y="45" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">Daftar Siswa Kelas XI</text>
+  <text x="400" y="68" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Jum’at, 25 September 2026</text>
+  <text x="50" y="95" font-size="13" font-weight="bold" fill="#0f172a">Sesi 1 :</text>
+
+  <!-- Table Header -->
+  <g transform="translate(50, 110)">
+    <rect x="0" y="0" width="700" height="24" fill="#0284c7" />
+    <line x1="280" y1="0" x2="280" y2="24" stroke="#ffffff" stroke-width="1"/>
+    <line x1="390" y1="0" x2="390" y2="24" stroke="#ffffff" stroke-width="1"/>
+    <line x1="450" y1="0" x2="450" y2="24" stroke="#ffffff" stroke-width="1"/>
+    <line x1="560" y1="0" x2="560" y2="24" stroke="#ffffff" stroke-width="1"/>
+    <line x1="650" y1="0" x2="650" y2="24" stroke="#ffffff" stroke-width="1"/>
+
+    <text x="140" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Name</text>
+    <text x="335" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">NISN</text>
+    <text x="420" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Kelas</text>
+    <text x="505" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Kode Peserta</text>
+    <text x="605" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">LAB</text>
+    <text x="675" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">SESI</text>
+  
+    <rect x="0" y="24.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="24.0" x2="280" y2="39.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="24.0" x2="390" y2="39.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="24.0" x2="450" y2="39.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="24.0" x2="560" y2="39.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="24.0" x2="650" y2="39.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="34.9" font-size="8" font-weight="bold" fill="#0f172a">ACHMAD GALIH AL MAGHZUMY</text>
+    <text x="335" y="34.9" font-size="8" fill="#334155" text-anchor="middle">0098610075</text>
+    <text x="420" y="34.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="34.9" font-size="8" fill="#334155" text-anchor="middle">0098610075</text>
+    <text x="605" y="34.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="34.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="39.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="39.5" x2="280" y2="55.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="39.5" x2="390" y2="55.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="39.5" x2="450" y2="55.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="39.5" x2="560" y2="55.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="39.5" x2="650" y2="55.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="50.4" font-size="8" font-weight="bold" fill="#0f172a">ADITYA BINTANG FADILLAH</text>
+    <text x="335" y="50.4" font-size="8" fill="#334155" text-anchor="middle">0097555983</text>
+    <text x="420" y="50.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="50.4" font-size="8" fill="#334155" text-anchor="middle">0097555983</text>
+    <text x="605" y="50.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="50.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="55.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="55.0" x2="280" y2="70.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="55.0" x2="390" y2="70.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="55.0" x2="450" y2="70.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="55.0" x2="560" y2="70.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="55.0" x2="650" y2="70.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="65.8" font-size="8" font-weight="bold" fill="#0f172a">ADLI NOVENDRI PRATAMA</text>
+    <text x="335" y="65.8" font-size="8" fill="#334155" text-anchor="middle">0099565453</text>
+    <text x="420" y="65.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="65.8" font-size="8" fill="#334155" text-anchor="middle">0099565453</text>
+    <text x="605" y="65.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="65.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="70.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="70.5" x2="280" y2="86.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="70.5" x2="390" y2="86.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="70.5" x2="450" y2="86.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="70.5" x2="560" y2="86.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="70.5" x2="650" y2="86.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="81.3" font-size="8" font-weight="bold" fill="#0f172a">ADLY FAIZI</text>
+    <text x="335" y="81.3" font-size="8" fill="#334155" text-anchor="middle">0108669026</text>
+    <text x="420" y="81.3" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="81.3" font-size="8" fill="#334155" text-anchor="middle">0108669026</text>
+    <text x="605" y="81.3" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="81.3" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="86.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="86.0" x2="280" y2="101.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="86.0" x2="390" y2="101.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="86.0" x2="450" y2="101.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="86.0" x2="560" y2="101.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="86.0" x2="650" y2="101.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="96.8" font-size="8" font-weight="bold" fill="#0f172a">AHMAD AL FAJRI</text>
+    <text x="335" y="96.8" font-size="8" fill="#334155" text-anchor="middle">0093913695</text>
+    <text x="420" y="96.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="96.8" font-size="8" fill="#334155" text-anchor="middle">0093913695</text>
+    <text x="605" y="96.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="96.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="101.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="101.5" x2="280" y2="117.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="101.5" x2="390" y2="117.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="101.5" x2="450" y2="117.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="101.5" x2="560" y2="117.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="101.5" x2="650" y2="117.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="112.3" font-size="8" font-weight="bold" fill="#0f172a">AHMAD FIRDIYAN</text>
+    <text x="335" y="112.3" font-size="8" fill="#334155" text-anchor="middle">0094648843</text>
+    <text x="420" y="112.3" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="112.3" font-size="8" fill="#334155" text-anchor="middle">0094648843</text>
+    <text x="605" y="112.3" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="112.3" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="117.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="117.0" x2="280" y2="132.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="117.0" x2="390" y2="132.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="117.0" x2="450" y2="132.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="117.0" x2="560" y2="132.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="117.0" x2="650" y2="132.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="127.8" font-size="8" font-weight="bold" fill="#0f172a">AHMAD ROHMAN</text>
+    <text x="335" y="127.8" font-size="8" fill="#334155" text-anchor="middle">0089684684</text>
+    <text x="420" y="127.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="127.8" font-size="8" fill="#334155" text-anchor="middle">0089684684</text>
+    <text x="605" y="127.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="127.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="132.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="132.5" x2="280" y2="148.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="132.5" x2="390" y2="148.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="132.5" x2="450" y2="148.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="132.5" x2="560" y2="148.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="132.5" x2="650" y2="148.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="143.3" font-size="8" font-weight="bold" fill="#0f172a">AHMAD SAPUTRA PRATAMA PRIYONO</text>
+    <text x="335" y="143.3" font-size="8" fill="#334155" text-anchor="middle">0096032711</text>
+    <text x="420" y="143.3" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="143.3" font-size="8" fill="#334155" text-anchor="middle">0096032711</text>
+    <text x="605" y="143.3" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="143.3" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="148.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="148.0" x2="280" y2="163.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="148.0" x2="390" y2="163.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="148.0" x2="450" y2="163.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="148.0" x2="560" y2="163.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="148.0" x2="650" y2="163.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="158.8" font-size="8" font-weight="bold" fill="#0f172a">AIRA PUTRI</text>
+    <text x="335" y="158.8" font-size="8" fill="#334155" text-anchor="middle">0097182451</text>
+    <text x="420" y="158.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="158.8" font-size="8" fill="#334155" text-anchor="middle">0097182451</text>
+    <text x="605" y="158.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="158.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="163.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="163.5" x2="280" y2="179.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="163.5" x2="390" y2="179.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="163.5" x2="450" y2="179.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="163.5" x2="560" y2="179.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="163.5" x2="650" y2="179.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="174.3" font-size="8" font-weight="bold" fill="#0f172a">ALFIAN AKBARUDDIN</text>
+    <text x="335" y="174.3" font-size="8" fill="#334155" text-anchor="middle">0096443990</text>
+    <text x="420" y="174.3" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="174.3" font-size="8" fill="#334155" text-anchor="middle">0096443990</text>
+    <text x="605" y="174.3" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="174.3" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="179.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="179.0" x2="280" y2="194.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="179.0" x2="390" y2="194.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="179.0" x2="450" y2="194.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="179.0" x2="560" y2="194.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="179.0" x2="650" y2="194.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="189.8" font-size="8" font-weight="bold" fill="#0f172a">ALIF HIDAYAH TULLAH</text>
+    <text x="335" y="189.8" font-size="8" fill="#334155" text-anchor="middle">0102771016</text>
+    <text x="420" y="189.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="189.8" font-size="8" fill="#334155" text-anchor="middle">0102771016</text>
+    <text x="605" y="189.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="189.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="194.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="194.5" x2="280" y2="210.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="194.5" x2="390" y2="210.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="194.5" x2="450" y2="210.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="194.5" x2="560" y2="210.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="194.5" x2="650" y2="210.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="205.3" font-size="8" font-weight="bold" fill="#0f172a">ALIF NAUFAL SETIADI</text>
+    <text x="335" y="205.3" font-size="8" fill="#334155" text-anchor="middle">0097901389</text>
+    <text x="420" y="205.3" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="205.3" font-size="8" fill="#334155" text-anchor="middle">0097901389</text>
+    <text x="605" y="205.3" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="205.3" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="210.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="210.0" x2="280" y2="225.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="210.0" x2="390" y2="225.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="210.0" x2="450" y2="225.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="210.0" x2="560" y2="225.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="210.0" x2="650" y2="225.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="220.8" font-size="8" font-weight="bold" fill="#0f172a">ALPINO RAMADON</text>
+    <text x="335" y="220.8" font-size="8" fill="#334155" text-anchor="middle">0092730634</text>
+    <text x="420" y="220.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="220.8" font-size="8" fill="#334155" text-anchor="middle">0092730634</text>
+    <text x="605" y="220.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="220.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="225.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="225.5" x2="280" y2="241.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="225.5" x2="390" y2="241.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="225.5" x2="450" y2="241.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="225.5" x2="560" y2="241.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="225.5" x2="650" y2="241.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="236.3" font-size="8" font-weight="bold" fill="#0f172a">ANDRI PARSAORAN SIMBOLON</text>
+    <text x="335" y="236.3" font-size="8" fill="#334155" text-anchor="middle">0099112632</text>
+    <text x="420" y="236.3" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="236.3" font-size="8" fill="#334155" text-anchor="middle">0099112632</text>
+    <text x="605" y="236.3" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="236.3" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="241.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="241.0" x2="280" y2="256.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="241.0" x2="390" y2="256.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="241.0" x2="450" y2="256.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="241.0" x2="560" y2="256.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="241.0" x2="650" y2="256.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="251.8" font-size="8" font-weight="bold" fill="#0f172a">ANDRIAN PRATAMA</text>
+    <text x="335" y="251.8" font-size="8" fill="#334155" text-anchor="middle">0094001024</text>
+    <text x="420" y="251.8" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="251.8" font-size="8" fill="#334155" text-anchor="middle">0094001024</text>
+    <text x="605" y="251.8" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
+    <text x="675" y="251.8" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="256.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="256.5" x2="280" y2="272.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="256.5" x2="390" y2="272.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="256.5" x2="450" y2="272.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="256.5" x2="560" y2="272.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="256.5" x2="650" y2="272.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="267.4" font-size="8" font-weight="bold" fill="#0f172a">ANGGARA</text>
+    <text x="335" y="267.4" font-size="8" fill="#334155" text-anchor="middle">0097477374</text>
+    <text x="420" y="267.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="267.4" font-size="8" fill="#334155" text-anchor="middle">0097477374</text>
+    <text x="605" y="267.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="267.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="272.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="272.0" x2="280" y2="287.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="272.0" x2="390" y2="287.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="272.0" x2="450" y2="287.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="272.0" x2="560" y2="287.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="272.0" x2="650" y2="287.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="282.9" font-size="8" font-weight="bold" fill="#0f172a">ARIF RAHMAN HAKIM</text>
+    <text x="335" y="282.9" font-size="8" fill="#334155" text-anchor="middle">0088599620</text>
+    <text x="420" y="282.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="282.9" font-size="8" fill="#334155" text-anchor="middle">0088599620</text>
+    <text x="605" y="282.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="282.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="287.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="287.5" x2="280" y2="303.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="287.5" x2="390" y2="303.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="287.5" x2="450" y2="303.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="287.5" x2="560" y2="303.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="287.5" x2="650" y2="303.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="298.4" font-size="8" font-weight="bold" fill="#0f172a">ARIFIN ILHAM</text>
+    <text x="335" y="298.4" font-size="8" fill="#334155" text-anchor="middle">0093433967</text>
+    <text x="420" y="298.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="298.4" font-size="8" fill="#334155" text-anchor="middle">0093433967</text>
+    <text x="605" y="298.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="298.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="303.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="303.0" x2="280" y2="318.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="303.0" x2="390" y2="318.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="303.0" x2="450" y2="318.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="303.0" x2="560" y2="318.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="303.0" x2="650" y2="318.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="313.9" font-size="8" font-weight="bold" fill="#0f172a">ATHAYA IKHSAN</text>
+    <text x="335" y="313.9" font-size="8" fill="#334155" text-anchor="middle">0106258705</text>
+    <text x="420" y="313.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="313.9" font-size="8" fill="#334155" text-anchor="middle">0106258705</text>
+    <text x="605" y="313.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="313.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="318.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="318.5" x2="280" y2="334.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="318.5" x2="390" y2="334.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="318.5" x2="450" y2="334.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="318.5" x2="560" y2="334.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="318.5" x2="650" y2="334.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="329.4" font-size="8" font-weight="bold" fill="#0f172a">AUREL CAHYA DININGRUM</text>
+    <text x="335" y="329.4" font-size="8" fill="#334155" text-anchor="middle">0096762346</text>
+    <text x="420" y="329.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="329.4" font-size="8" fill="#334155" text-anchor="middle">0096762346</text>
+    <text x="605" y="329.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="329.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="334.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="334.0" x2="280" y2="349.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="334.0" x2="390" y2="349.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="334.0" x2="450" y2="349.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="334.0" x2="560" y2="349.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="334.0" x2="650" y2="349.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="344.9" font-size="8" font-weight="bold" fill="#0f172a">AZKA ARDIANSYAH</text>
+    <text x="335" y="344.9" font-size="8" fill="#334155" text-anchor="middle">0095596099</text>
+    <text x="420" y="344.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="344.9" font-size="8" fill="#334155" text-anchor="middle">0095596099</text>
+    <text x="605" y="344.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="344.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="349.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="349.5" x2="280" y2="365.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="349.5" x2="390" y2="365.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="349.5" x2="450" y2="365.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="349.5" x2="560" y2="365.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="349.5" x2="650" y2="365.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="360.4" font-size="8" font-weight="bold" fill="#0f172a">BALKAN HARDIYANSYACH</text>
+    <text x="335" y="360.4" font-size="8" fill="#334155" text-anchor="middle">0092078961</text>
+    <text x="420" y="360.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="360.4" font-size="8" fill="#334155" text-anchor="middle">0092078961</text>
+    <text x="605" y="360.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="360.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="365.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="365.0" x2="280" y2="380.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="365.0" x2="390" y2="380.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="365.0" x2="450" y2="380.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="365.0" x2="560" y2="380.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="365.0" x2="650" y2="380.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="375.9" font-size="8" font-weight="bold" fill="#0f172a">BAYU RIZKY PRASETYO</text>
+    <text x="335" y="375.9" font-size="8" fill="#334155" text-anchor="middle">0103913398</text>
+    <text x="420" y="375.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="375.9" font-size="8" fill="#334155" text-anchor="middle">0103913398</text>
+    <text x="605" y="375.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="375.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="380.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="380.5" x2="280" y2="396.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="380.5" x2="390" y2="396.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="380.5" x2="450" y2="396.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="380.5" x2="560" y2="396.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="380.5" x2="650" y2="396.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="391.4" font-size="8" font-weight="bold" fill="#0f172a">BAYU TIRTA MAULANA</text>
+    <text x="335" y="391.4" font-size="8" fill="#334155" text-anchor="middle">0092153475</text>
+    <text x="420" y="391.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="391.4" font-size="8" fill="#334155" text-anchor="middle">0092153475</text>
+    <text x="605" y="391.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="391.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="396.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="396.0" x2="280" y2="411.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="396.0" x2="390" y2="411.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="396.0" x2="450" y2="411.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="396.0" x2="560" y2="411.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="396.0" x2="650" y2="411.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="406.9" font-size="8" font-weight="bold" fill="#0f172a">BRYAN PRATAMA MA&#x27;AFI</text>
+    <text x="335" y="406.9" font-size="8" fill="#334155" text-anchor="middle">0101437672</text>
+    <text x="420" y="406.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="406.9" font-size="8" fill="#334155" text-anchor="middle">0101437672</text>
+    <text x="605" y="406.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="406.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="411.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="411.5" x2="280" y2="427.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="411.5" x2="390" y2="427.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="411.5" x2="450" y2="427.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="411.5" x2="560" y2="427.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="411.5" x2="650" y2="427.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="422.4" font-size="8" font-weight="bold" fill="#0f172a">CHRISTIAN MARKUS JOHARI SIMANGUNSON</text>
+    <text x="335" y="422.4" font-size="8" fill="#334155" text-anchor="middle">0091187863</text>
+    <text x="420" y="422.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="422.4" font-size="8" fill="#334155" text-anchor="middle">0091187863</text>
+    <text x="605" y="422.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="422.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="427.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="427.0" x2="280" y2="442.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="427.0" x2="390" y2="442.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="427.0" x2="450" y2="442.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="427.0" x2="560" y2="442.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="427.0" x2="650" y2="442.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="437.9" font-size="8" font-weight="bold" fill="#0f172a">DALVIN OKTAVIAN ZULISMAN</text>
+    <text x="335" y="437.9" font-size="8" fill="#334155" text-anchor="middle">3096204378</text>
+    <text x="420" y="437.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="437.9" font-size="8" fill="#334155" text-anchor="middle">3096204378</text>
+    <text x="605" y="437.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="437.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="442.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="442.5" x2="280" y2="458.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="442.5" x2="390" y2="458.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="442.5" x2="450" y2="458.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="442.5" x2="560" y2="458.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="442.5" x2="650" y2="458.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="453.4" font-size="8" font-weight="bold" fill="#0f172a">DARRELL AKMAL ZAHWAN</text>
+    <text x="335" y="453.4" font-size="8" fill="#334155" text-anchor="middle">0098615139</text>
+    <text x="420" y="453.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="453.4" font-size="8" fill="#334155" text-anchor="middle">0098615139</text>
+    <text x="605" y="453.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="453.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="458.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="458.0" x2="280" y2="473.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="458.0" x2="390" y2="473.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="458.0" x2="450" y2="473.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="458.0" x2="560" y2="473.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="458.0" x2="650" y2="473.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="468.9" font-size="8" font-weight="bold" fill="#0f172a">DHAFA RADHITYANSYAH</text>
+    <text x="335" y="468.9" font-size="8" fill="#334155" text-anchor="middle">0094768155</text>
+    <text x="420" y="468.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="468.9" font-size="8" fill="#334155" text-anchor="middle">0094768155</text>
+    <text x="605" y="468.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
+    <text x="675" y="468.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="473.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="473.5" x2="280" y2="489.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="473.5" x2="390" y2="489.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="473.5" x2="450" y2="489.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="473.5" x2="560" y2="489.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="473.5" x2="650" y2="489.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="484.4" font-size="8" font-weight="bold" fill="#0f172a">DIFAH USDIANSYAH</text>
+    <text x="335" y="484.4" font-size="8" fill="#334155" text-anchor="middle">0095795551</text>
+    <text x="420" y="484.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="484.4" font-size="8" fill="#334155" text-anchor="middle">0095795551</text>
+    <text x="605" y="484.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="484.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="489.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="489.0" x2="280" y2="504.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="489.0" x2="390" y2="504.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="489.0" x2="450" y2="504.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="489.0" x2="560" y2="504.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="489.0" x2="650" y2="504.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="499.9" font-size="8" font-weight="bold" fill="#0f172a">ENDA FRIYANSAH</text>
+    <text x="335" y="499.9" font-size="8" fill="#334155" text-anchor="middle">0084405530</text>
+    <text x="420" y="499.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="499.9" font-size="8" fill="#334155" text-anchor="middle">0084405530</text>
+    <text x="605" y="499.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="499.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="504.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="504.5" x2="280" y2="520.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="504.5" x2="390" y2="520.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="504.5" x2="450" y2="520.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="504.5" x2="560" y2="520.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="504.5" x2="650" y2="520.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="515.4" font-size="8" font-weight="bold" fill="#0f172a">FACHREL HARDIANSYAH</text>
+    <text x="335" y="515.4" font-size="8" fill="#334155" text-anchor="middle">0093292004</text>
+    <text x="420" y="515.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="515.4" font-size="8" fill="#334155" text-anchor="middle">0093292004</text>
+    <text x="605" y="515.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="515.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="520.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="520.0" x2="280" y2="535.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="520.0" x2="390" y2="535.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="520.0" x2="450" y2="535.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="520.0" x2="560" y2="535.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="520.0" x2="650" y2="535.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="530.9" font-size="8" font-weight="bold" fill="#0f172a">FACHRI AULIA AZRA</text>
+    <text x="335" y="530.9" font-size="8" fill="#334155" text-anchor="middle">0086557307</text>
+    <text x="420" y="530.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="530.9" font-size="8" fill="#334155" text-anchor="middle">0086557307</text>
+    <text x="605" y="530.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="530.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="535.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="535.5" x2="280" y2="551.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="535.5" x2="390" y2="551.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="535.5" x2="450" y2="551.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="535.5" x2="560" y2="551.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="535.5" x2="650" y2="551.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="546.4" font-size="8" font-weight="bold" fill="#0f172a">FAHRI EKA GUNAWAN</text>
+    <text x="335" y="546.4" font-size="8" fill="#334155" text-anchor="middle">0092538205</text>
+    <text x="420" y="546.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="546.4" font-size="8" fill="#334155" text-anchor="middle">0092538205</text>
+    <text x="605" y="546.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="546.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="551.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="551.0" x2="280" y2="566.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="551.0" x2="390" y2="566.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="551.0" x2="450" y2="566.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="551.0" x2="560" y2="566.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="551.0" x2="650" y2="566.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="561.9" font-size="8" font-weight="bold" fill="#0f172a">FARHAN PUTRA RAMADHAN</text>
+    <text x="335" y="561.9" font-size="8" fill="#334155" text-anchor="middle">0091089379</text>
+    <text x="420" y="561.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="561.9" font-size="8" fill="#334155" text-anchor="middle">0091089379</text>
+    <text x="605" y="561.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="561.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="566.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="566.5" x2="280" y2="582.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="566.5" x2="390" y2="582.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="566.5" x2="450" y2="582.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="566.5" x2="560" y2="582.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="566.5" x2="650" y2="582.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="577.4" font-size="8" font-weight="bold" fill="#0f172a">FATHAN NUGROHO</text>
+    <text x="335" y="577.4" font-size="8" fill="#334155" text-anchor="middle">0101231159</text>
+    <text x="420" y="577.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="577.4" font-size="8" fill="#334155" text-anchor="middle">0101231159</text>
+    <text x="605" y="577.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="577.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="582.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="582.0" x2="280" y2="597.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="582.0" x2="390" y2="597.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="582.0" x2="450" y2="597.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="582.0" x2="560" y2="597.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="582.0" x2="650" y2="597.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="592.9" font-size="8" font-weight="bold" fill="#0f172a">FATHIR</text>
+    <text x="335" y="592.9" font-size="8" fill="#334155" text-anchor="middle">3091077926</text>
+    <text x="420" y="592.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="592.9" font-size="8" fill="#334155" text-anchor="middle">3091077926</text>
+    <text x="605" y="592.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="592.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="597.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="597.5" x2="280" y2="613.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="597.5" x2="390" y2="613.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="597.5" x2="450" y2="613.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="597.5" x2="560" y2="613.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="597.5" x2="650" y2="613.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="608.4" font-size="8" font-weight="bold" fill="#0f172a">FATTAN RIZQI SONDAKH</text>
+    <text x="335" y="608.4" font-size="8" fill="#334155" text-anchor="middle">0092975912</text>
+    <text x="420" y="608.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="608.4" font-size="8" fill="#334155" text-anchor="middle">0092975912</text>
+    <text x="605" y="608.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="608.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="613.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="613.0" x2="280" y2="628.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="613.0" x2="390" y2="628.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="613.0" x2="450" y2="628.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="613.0" x2="560" y2="628.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="613.0" x2="650" y2="628.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="623.9" font-size="8" font-weight="bold" fill="#0f172a">FERDIANSYAH PUTRA SUSILO</text>
+    <text x="335" y="623.9" font-size="8" fill="#334155" text-anchor="middle">0085881952</text>
+    <text x="420" y="623.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="623.9" font-size="8" fill="#334155" text-anchor="middle">0085881952</text>
+    <text x="605" y="623.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="623.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="628.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="628.5" x2="280" y2="644.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="628.5" x2="390" y2="644.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="628.5" x2="450" y2="644.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="628.5" x2="560" y2="644.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="628.5" x2="650" y2="644.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="639.4" font-size="8" font-weight="bold" fill="#0f172a">FIRJATULLAH PRATAMA</text>
+    <text x="335" y="639.4" font-size="8" fill="#334155" text-anchor="middle">0093452477</text>
+    <text x="420" y="639.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="639.4" font-size="8" fill="#334155" text-anchor="middle">0093452477</text>
+    <text x="605" y="639.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="639.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="644.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="644.0" x2="280" y2="659.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="644.0" x2="390" y2="659.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="644.0" x2="450" y2="659.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="644.0" x2="560" y2="659.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="644.0" x2="650" y2="659.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="654.9" font-size="8" font-weight="bold" fill="#0f172a">GALANG RAMADHAN</text>
+    <text x="335" y="654.9" font-size="8" fill="#334155" text-anchor="middle">0072801642</text>
+    <text x="420" y="654.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="654.9" font-size="8" fill="#334155" text-anchor="middle">0072801642</text>
+    <text x="605" y="654.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="654.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="659.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="659.5" x2="280" y2="675.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="659.5" x2="390" y2="675.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="659.5" x2="450" y2="675.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="659.5" x2="560" y2="675.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="659.5" x2="650" y2="675.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="670.4" font-size="8" font-weight="bold" fill="#0f172a">HEKMAYAR SYAH MASOOD</text>
+    <text x="335" y="670.4" font-size="8" fill="#334155" text-anchor="middle">0099496824</text>
+    <text x="420" y="670.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="670.4" font-size="8" fill="#334155" text-anchor="middle">0099496824</text>
+    <text x="605" y="670.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="670.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="675.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="675.0" x2="280" y2="690.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="675.0" x2="390" y2="690.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="675.0" x2="450" y2="690.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="675.0" x2="560" y2="690.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="675.0" x2="650" y2="690.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="685.9" font-size="8" font-weight="bold" fill="#0f172a">JATMIKO DWI HESTIAN</text>
+    <text x="335" y="685.9" font-size="8" fill="#334155" text-anchor="middle">0096857903</text>
+    <text x="420" y="685.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="685.9" font-size="8" fill="#334155" text-anchor="middle">0096857903</text>
+    <text x="605" y="685.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="685.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="690.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="690.5" x2="280" y2="706.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="690.5" x2="390" y2="706.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="690.5" x2="450" y2="706.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="690.5" x2="560" y2="706.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="690.5" x2="650" y2="706.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="701.4" font-size="8" font-weight="bold" fill="#0f172a">KANYA ARTHA MOLY</text>
+    <text x="335" y="701.4" font-size="8" fill="#334155" text-anchor="middle">0095651031</text>
+    <text x="420" y="701.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="701.4" font-size="8" fill="#334155" text-anchor="middle">0095651031</text>
+    <text x="605" y="701.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 4 - DKV</text>
+    <text x="675" y="701.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="706.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="706.0" x2="280" y2="721.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="706.0" x2="390" y2="721.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="706.0" x2="450" y2="721.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="706.0" x2="560" y2="721.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="706.0" x2="650" y2="721.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="716.9" font-size="8" font-weight="bold" fill="#0f172a">KEVIN APRILIO CORNELIUS</text>
+    <text x="335" y="716.9" font-size="8" fill="#334155" text-anchor="middle">0103875760</text>
+    <text x="420" y="716.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="716.9" font-size="8" fill="#334155" text-anchor="middle">0103875760</text>
+    <text x="605" y="716.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="716.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="721.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="721.5" x2="280" y2="737.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="721.5" x2="390" y2="737.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="721.5" x2="450" y2="737.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="721.5" x2="560" y2="737.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="721.5" x2="650" y2="737.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="732.4" font-size="8" font-weight="bold" fill="#0f172a">KEVIN PUTRA PRATAMA JUMASTAN</text>
+    <text x="335" y="732.4" font-size="8" fill="#334155" text-anchor="middle">0109613986</text>
+    <text x="420" y="732.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="732.4" font-size="8" fill="#334155" text-anchor="middle">0109613986</text>
+    <text x="605" y="732.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="732.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="737.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="737.0" x2="280" y2="752.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="737.0" x2="390" y2="752.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="737.0" x2="450" y2="752.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="737.0" x2="560" y2="752.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="737.0" x2="650" y2="752.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="747.9" font-size="8" font-weight="bold" fill="#0f172a">LINGGA MAHARDIKA</text>
+    <text x="335" y="747.9" font-size="8" fill="#334155" text-anchor="middle">0098471977</text>
+    <text x="420" y="747.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="747.9" font-size="8" fill="#334155" text-anchor="middle">0098471977</text>
+    <text x="605" y="747.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="747.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="752.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="752.5" x2="280" y2="768.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="752.5" x2="390" y2="768.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="752.5" x2="450" y2="768.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="752.5" x2="560" y2="768.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="752.5" x2="650" y2="768.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="763.4" font-size="8" font-weight="bold" fill="#0f172a">MARVEL HAMONONGAN</text>
+    <text x="335" y="763.4" font-size="8" fill="#334155" text-anchor="middle">0092868414</text>
+    <text x="420" y="763.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="763.4" font-size="8" fill="#334155" text-anchor="middle">0092868414</text>
+    <text x="605" y="763.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="763.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="768.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="768.0" x2="280" y2="783.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="768.0" x2="390" y2="783.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="768.0" x2="450" y2="783.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="768.0" x2="560" y2="783.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="768.0" x2="650" y2="783.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="778.9" font-size="8" font-weight="bold" fill="#0f172a">MERSI</text>
+    <text x="335" y="778.9" font-size="8" fill="#334155" text-anchor="middle">0073901066</text>
+    <text x="420" y="778.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="778.9" font-size="8" fill="#334155" text-anchor="middle">0073901066</text>
+    <text x="605" y="778.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="778.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="783.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="783.5" x2="280" y2="799.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="783.5" x2="390" y2="799.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="783.5" x2="450" y2="799.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="783.5" x2="560" y2="799.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="783.5" x2="650" y2="799.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="794.4" font-size="8" font-weight="bold" fill="#0f172a">MOCHAMMAD REYVAN FACHRI GUNAWAN</text>
+    <text x="335" y="794.4" font-size="8" fill="#334155" text-anchor="middle">0083775913</text>
+    <text x="420" y="794.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="794.4" font-size="8" fill="#334155" text-anchor="middle">0083775913</text>
+    <text x="605" y="794.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="794.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="799.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="799.0" x2="280" y2="814.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="799.0" x2="390" y2="814.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="799.0" x2="450" y2="814.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="799.0" x2="560" y2="814.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="799.0" x2="650" y2="814.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="809.9" font-size="8" font-weight="bold" fill="#0f172a">MOHAMMAD BILAL SUBIAKTO</text>
+    <text x="335" y="809.9" font-size="8" fill="#334155" text-anchor="middle">0098016568</text>
+    <text x="420" y="809.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="809.9" font-size="8" fill="#334155" text-anchor="middle">0098016568</text>
+    <text x="605" y="809.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="809.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="814.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="814.5" x2="280" y2="830.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="814.5" x2="390" y2="830.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="814.5" x2="450" y2="830.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="814.5" x2="560" y2="830.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="814.5" x2="650" y2="830.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="825.4" font-size="8" font-weight="bold" fill="#0f172a">MUGIONO PUTRA HARTANTO</text>
+    <text x="335" y="825.4" font-size="8" fill="#334155" text-anchor="middle">0105750453</text>
+    <text x="420" y="825.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="825.4" font-size="8" fill="#334155" text-anchor="middle">0105750453</text>
+    <text x="605" y="825.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="825.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="830.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="830.0" x2="280" y2="845.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="830.0" x2="390" y2="845.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="830.0" x2="450" y2="845.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="830.0" x2="560" y2="845.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="830.0" x2="650" y2="845.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="840.9" font-size="8" font-weight="bold" fill="#0f172a">MUHAMMAD AKBAR SUMADI</text>
+    <text x="335" y="840.9" font-size="8" fill="#334155" text-anchor="middle">0092857131</text>
+    <text x="420" y="840.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="840.9" font-size="8" fill="#334155" text-anchor="middle">0092857131</text>
+    <text x="605" y="840.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="840.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="845.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="845.5" x2="280" y2="861.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="845.5" x2="390" y2="861.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="845.5" x2="450" y2="861.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="845.5" x2="560" y2="861.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="845.5" x2="650" y2="861.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="856.4" font-size="8" font-weight="bold" fill="#0f172a">MUHAMAD ADITYA HARAHAP</text>
+    <text x="335" y="856.4" font-size="8" fill="#334155" text-anchor="middle">0105904342</text>
+    <text x="420" y="856.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="856.4" font-size="8" fill="#334155" text-anchor="middle">0105904342</text>
+    <text x="605" y="856.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="856.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="861.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="861.0" x2="280" y2="876.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="861.0" x2="390" y2="876.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="861.0" x2="450" y2="876.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="861.0" x2="560" y2="876.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="861.0" x2="650" y2="876.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="871.9" font-size="8" font-weight="bold" fill="#0f172a">MUHAMAD ADRIAN AL BASRI</text>
+    <text x="335" y="871.9" font-size="8" fill="#334155" text-anchor="middle">0096254884</text>
+    <text x="420" y="871.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="871.9" font-size="8" fill="#334155" text-anchor="middle">0096254884</text>
+    <text x="605" y="871.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="871.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="876.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="876.5" x2="280" y2="892.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="876.5" x2="390" y2="892.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="876.5" x2="450" y2="892.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="876.5" x2="560" y2="892.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="876.5" x2="650" y2="892.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="887.4" font-size="8" font-weight="bold" fill="#0f172a">MUHAMAD DAVIN</text>
+    <text x="335" y="887.4" font-size="8" fill="#334155" text-anchor="middle">0086603374</text>
+    <text x="420" y="887.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="887.4" font-size="8" fill="#334155" text-anchor="middle">0086603374</text>
+    <text x="605" y="887.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="887.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="892.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="892.0" x2="280" y2="907.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="892.0" x2="390" y2="907.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="892.0" x2="450" y2="907.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="892.0" x2="560" y2="907.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="892.0" x2="650" y2="907.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="902.9" font-size="8" font-weight="bold" fill="#0f172a">MUHAMAD FAUZAN RAMADHAN</text>
+    <text x="335" y="902.9" font-size="8" fill="#334155" text-anchor="middle">0091090341</text>
+    <text x="420" y="902.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="902.9" font-size="8" fill="#334155" text-anchor="middle">0091090341</text>
+    <text x="605" y="902.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="902.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="907.5" width="700" height="15.5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="907.5" x2="280" y2="923.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="907.5" x2="390" y2="923.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="907.5" x2="450" y2="923.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="907.5" x2="560" y2="923.0" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="907.5" x2="650" y2="923.0" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="918.4" font-size="8" font-weight="bold" fill="#0f172a">MUHAMAD PASHA</text>
+    <text x="335" y="918.4" font-size="8" fill="#334155" text-anchor="middle">0089216653</text>
+    <text x="420" y="918.4" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="918.4" font-size="8" fill="#334155" text-anchor="middle">0089216653</text>
+    <text x="605" y="918.4" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="918.4" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+    <rect x="0" y="923.0" width="700" height="15.5" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="280" y1="923.0" x2="280" y2="938.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="390" y1="923.0" x2="390" y2="938.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="450" y1="923.0" x2="450" y2="938.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="560" y1="923.0" x2="560" y2="938.5" stroke="#cbd5e1" stroke-width="0.6"/>
+    <line x1="650" y1="923.0" x2="650" y2="938.5" stroke="#cbd5e1" stroke-width="0.6"/>
+
+    <text x="10" y="933.9" font-size="8" font-weight="bold" fill="#0f172a">MUHAMAD REVAN RAMADHAN</text>
+    <text x="335" y="933.9" font-size="8" fill="#334155" text-anchor="middle">0096512318</text>
+    <text x="420" y="933.9" font-size="8" fill="#334155" text-anchor="middle">XI</text>
+    <text x="505" y="933.9" font-size="8" fill="#334155" text-anchor="middle">0096512318</text>
+    <text x="605" y="933.9" font-size="8" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB TL</text>
+    <text x="675" y="933.9" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">1</text>
+        
+  </g>
+</svg>

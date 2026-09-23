@@ -21,6 +21,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 10 | **Dokumentasi KOSP & Galeri Video Kegiatan** | ✅ Selesai | Integrasi Flipbook KOSP 2026-2027 pada Tautan Penting dan Video Kegiatan 8 Kebiasaan Anak Indonesia Hebat. | Tautan (`/tautan`) & Galeri (`/galeri`) |
 | 11 | **Redesain Halaman Guru & Integrasi Ruang Guru** | ✅ Selesai | Menambahkan link Ruang Guru (`www.kurikulumsmktanjungpriok1.sch.id`), menghapus link RAKER, merapikan bagian kanan atas, dan mengoptimalkan responsivitas smartphone. | Halaman Guru (`/guru`) |
 | 12 | **Pembaruan Link Login Ruang Guru** | ✅ Selesai | Memperbarui tautan portal Ruang Guru menjadi link login resmi `https://kurikulum.smktanjungpriok1.sch.id/login` pada seluruh kartu, SEO, dan direktori tautan penting. | Halaman Guru (`/guru`) & Tautan (`/tautan`) |
+| 13 | **Slide Slider & Sistem Pencarian Seleksi TOEIC** | ✅ Selesai | Implementasi slider 5 lembar edaran & jadwal sesi TOEIC (24-25 September 2026), filter nama siswa/ruangan/sesi interaktif, peringatan wajib earphone, serta optimasi SEO & smartphone. | Warta (`/warta`) & Home (`/`) |
 
 ---
 
@@ -122,6 +123,41 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
     * Memperbarui `description` dan `keywords` pada komponen `<SEO />` di `Teachers.tsx` agar mengacu pada endpoint login resmi `kurikulum.smktanjungpriok1.sch.id/login`.
   * **Integrasi pada Halaman Tautan Penting (`/tautan`)**:
     * Menambahkan entri kartu `PORTAL RUANG GURU (LOGIN KURIKULUM)` di `pages/ExternalLinks.tsx` dengan tautan langsung ke `https://kurikulum.smktanjungpriok1.sch.id/login` guna mempermudah akses cepat bagi guru dan staf.
+
+---
+
+### 9. Implementasi Slide Slider Berita Pelaksanaan Seleksi TOEIC (24-25 September 2026)
+* **Permintaan**: Buatkan slide slider untuk gambar terlampir sebagai isi di warta kurikulum. Berita tentang pelaksanaan TOEIC (nama siswa, sesi & Ruangan). Pelaksanaan tgl 24 September 2026 untuk kelas XII dan 25 September 2026 untuk kelas XI. Murid hadir tepat waktu dan membawa earphone pribadi. Tampilan clean, rapih, easy use dan compatible for smartphone. Simpan semua perubahan pada log `progress.md`.
+* **Tindakan yang Dilakukan**:
+  * **Penyusunan Data & Aset Vektor Berkualitas Tinggi**:
+    * Mengonversi dokumen fisik edaran resmi dan 4 lembar lampiran daftar hadir peserta ujian menjadi aset SVG vektor mandiri (`/public/toeic/page-1.svg` s.d. `page-5.svg`) yang tajam, ringan, serta dapat di-zoom tanpa pecah.
+    * Membangun modul data `services/toeicData.ts` yang mendata secara lengkap 5 slide dokumen dan seluruh 187 data siswa peserta TOEIC (nama, kelas, NISN, hari, tanggal, sesi, waktu tes, dan laboratorium).
+  * **Komponen Slide Slider Interaktif (`pages/News.tsx`)**:
+    * Menampilkan slider geser interaktif beranimasi halus (`motion/react` & `AnimatePresence`) untuk 5 lembar dokumen:
+      * **Lembar 1**: Surat Edaran Resmi Seleksi TOEIC TA 2026/2027 (No. 08/SE/SMKTP01/IX/2026).
+      * **Lembar 2**: Lampiran Pembagian Ruangan & Sesi 1 Kelas XII (Kamis, 24 Sept 2026 • 07.00 - 09.00 WIB).
+      * **Lembar 3**: Lampiran Pembagian Ruangan & Sesi 2 Kelas XII (Kamis, 24 Sept 2026 • 09.30 - 11.30 WIB).
+      * **Lembar 4**: Lampiran Pembagian Ruangan & Sesi 1 Kelas XI (Jum'at, 25 Sept 2026 • 07.00 - 09.00 WIB).
+      * **Lembar 5**: Lampiran Pembagian Ruangan & Sesi 2 Kelas XI (Jum'at, 25 Sept 2026 • 09.30 - 11.30 WIB).
+    * Mendukung gesture geser layar sentuh (*touch swipe*), tombol navigasi panah kiri/kanan, thumbnail lompat cepat (*quick jump pill buttons*), dan indikator lembar aktif (`1 / 5`).
+    * Fitur **Zoom Resolusi Tinggi** interaktif (*modal lightbox*) dengan pembesaran 100% hingga 400%, navigasi seret (*drag & pan*), dan reset ukuran.
+    * Fitur **Cetak / PDF Otomatis** menggunakan modul sandboxed printing iframe berorientasi portrait rapi dengan judul dan identitas resmi sekolah.
+  * **Highlight Informasi Penting & Kebijakan Ujian**:
+    * **Peringatan Wajib Earphone**: Banner sorotan merah muda (*rose*) dan kartu aturan yang mengingatkan murid wajib membawa earphone/headset pribadi yang berfungsi normal untuk sesi *Listening*.
+    * **Jadwal Per Jenjang**:
+      * Kamis, 24 September 2026: Khusus Siswa/i Kelas XII.
+      * Jum'at, 25 September 2026: Khusus Siswa/i Kelas XI.
+    * **Ketepatan Waktu**: Wajib hadir 15 menit sebelum sesi dimulai (Sesi 1: 07.00 - 09.00 WIB, Sesi 2: 09.30 - 11.30 WIB).
+    * **Lokasi Ujian**: Laboratorium Komputer SMK Tanjung Priok 1 (LAB 1, LAB 2, LAB 3, LAB 4, dan LAB TL).
+  * **Alat Pencarian Interaktif Peserta ("Cek Sesi, Ruangan & Jadwal Anda")**:
+    * Pencarian nama siswa secara instan (*real-time live filter*) berdasarkan nama atau NISN.
+    * Filter cerdas per jenjang (Kelas XII / Kelas XI) dan per sesi (Sesi 1 / Sesi 2).
+    * Tampilan kartu mobile-friendly yang ringkas dan tabel desktop yang memuat nama, kelas, sesi, waktu, ruangan LAB, dan status earphone.
+  * **Sorotan Berita di Beranda (`pages/Home.tsx`)**:
+    * Menambahkan kartu pengumuman featured "Pelaksanaan Seleksi TOEIC Kelas XI & XII" pada grid Warta Akademik Beranda yang langsung terhubung ke jangkar `/warta#toeic`.
+  * **Optimasi SEO Senior & Aksesibilitas Smartphone**:
+    * Sinkronisasi meta title, keywords, dan meta description Google Search Engine dengan istilah pencarian kunci: *Seleksi TOEIC SMK Tanjung Priok 1*, *Jadwal TOEIC 24-25 September 2026*, *Ruangan Lab TOEIC*, *Wajib Earphone Pribadi*.
+    * Struktur antarmuka bebas distorsi, *zero horizontal overflow*, ramah jempol (*touch-friendly*), dan kontras teks memenuhi standar WCAG AA.
 
 ---
 

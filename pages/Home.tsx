@@ -755,7 +755,15 @@ const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
-              category="Utama"
+              category="TOEIC 2026"
+              title="Pelaksanaan Seleksi TOEIC Kelas XI &amp; XII"
+              date="24 - 25 September 2026"
+              excerpt="Pelaksanaan Seleksi TOEIC tgl 24 Sept (Kelas XII) &amp; 25 Sept (Kelas XI). Seluruh murid wajib membawa earphone pribadi &amp; hadir tepat waktu."
+              imageUrl="/toeic/page-1.svg"
+              link="/warta#toeic"
+            />
+            <AnnouncementCard 
+              category="TKA &amp; UKK"
               title="Jadwal Pelaksanaan UKK Mandiri Kelas XII"
               date="19 April 2026"
               excerpt="Pelaksanaan Uji Kompetensi Keahlian (UKK) Mandiri SMK Tanjung Priok 1 dilaksanakan tanggal 20 - 24 April 2026. Persiapkan diri Anda dengan maksimal."
@@ -769,14 +777,6 @@ const Home: React.FC = () => {
               excerpt="Evaluasi akhir Praktik Kerja Industri melalui paparan laporan dan tanya jawab lisan tgl 13 - 15 April 2026."
               imageUrl="https://drive.google.com/thumbnail?id=1Ya27lfM7idDYTs1RbCl_rR3Nm2Zu8UBo&sz=w1600"
               link="/prakerin"
-            />
-            <AnnouncementCard 
-              category="SPMB"
-              title="Tes Minat & Bakat Calon Siswa Baru"
-              date="Mei 2026"
-              excerpt="Bagi calon murid baru yang telah mendaftar, silakan mengikuti rangkaian Tes Minat Bakat secara online melalui portal resmi kami."
-              imageUrl="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80"
-              link="https://tesminatbakatsmktp01.netlify.app/"
             />
           </div>
         </div>
