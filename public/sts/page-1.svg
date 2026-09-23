@@ -1,0 +1,598 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 900" width="100%" height="100%" style="background:#ffffff; font-family: 'Segoe UI', Arial, sans-serif;">
+  <rect width="1300" height="900" fill="#ffffff" />
+
+  <!-- Outer Border Frame -->
+  <rect x="25" y="25" width="1250" height="850" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+
+  <!-- Header Section -->
+  <g id="kop-sts">
+    <!-- Logo Dikantara -->
+    <g transform="translate(55, 45)">
+      <circle cx="32" cy="32" r="30" fill="#0284c7" />
+      <polygon points="32,10 54,48 10,48" fill="#facc15" stroke="#0369a1" stroke-width="1.5"/>
+      <circle cx="32" cy="34" r="14" fill="#0284c7" />
+      <text x="32" y="38" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">SMK TP 1</text>
+      <path d="M14,54 Q32,60 50,54" fill="none" stroke="#facc15" stroke-width="3"/>
+      <text x="32" y="58" font-size="6" font-weight="bold" fill="#0f172a" text-anchor="middle">DIKANTARA</text>
+    </g>
+
+    <!-- Header Text -->
+    <text x="650" y="60" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle" letter-spacing="1">YAYASAN PENDIDIKAN JAKARTA UTARA</text>
+    <text x="650" y="82" font-size="18" font-weight="900" fill="#0f172a" text-anchor="middle" letter-spacing="0.5">SEKOLAH MENENGAH KEJURUAN (SMK) "TANJUNG PRIOK 1"</text>
+    <text x="650" y="99" font-size="11" font-weight="bold" fill="#0284c7" text-anchor="middle">STATUS : AKREDITASI A</text>
+    <text x="650" y="115" font-size="10" fill="#475569" text-anchor="middle">Jl. Mangga No.3, Kel. Lagoa, Kec. Koja, Jakarta Utara Telpon : (021) 430 1192 Fax. 43905182 • website : https://smktanjungpriok1.sch.id</text>
+
+    <!-- Page Badge -->
+    <rect x="1150" y="50" width="100" height="34" rx="6" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="1200" y="65" font-size="9" fill="#64748b" text-anchor="middle" font-weight="bold">HALAMAN</text>
+    <text x="1200" y="79" font-size="12" fill="#0f172a" text-anchor="middle" font-weight="900">1 dari 2</text>
+
+    <line x1="55" y1="130" x2="1245" y2="130" stroke="#0f172a" stroke-width="2" />
+  </g>
+
+  <!-- Title Section -->
+  <text x="650" y="156" font-size="16" font-weight="900" fill="#0f172a" text-anchor="middle" letter-spacing="0.5">JADWAL PENGAWAS STS KLS X - XII</text>
+  <text x="650" y="174" font-size="13" font-weight="bold" fill="#1e3a8a" text-anchor="middle">SMK TANJUNG PRIOK 1 SEMESTER GANJIL</text>
+  <text x="650" y="190" font-size="11" font-weight="bold" fill="#64748b" text-anchor="middle">TP. 2026-2027</text>
+
+  <!-- Table Container (x: 55, y: 205, width: 1190, height: 620) -->
+  <g id="table-schedule" transform="translate(55, 205)" font-size="10">
+    <!-- Outer Table Border -->
+    <rect x="0" y="0" width="1190" height="600" fill="#ffffff" stroke="#1e293b" stroke-width="1.5" />
+
+    <!-- Table Header Row 1 -->
+    <rect x="0" y="0" width="1190" height="30" fill="#f8fafc" stroke="#1e293b" stroke-width="1" />
+    <!-- Col: Hari (width: 60) -->
+    <rect x="0" y="0" width="60" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="1" />
+    <text x="30" y="35" font-weight="bold" text-anchor="middle" fill="#0f172a">HARI</text>
+
+    <!-- Col: Tanggal (width: 75) -->
+    <rect x="60" y="0" width="75" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="1" />
+    <text x="97" y="35" font-weight="bold" text-anchor="middle" fill="#0f172a">TANGGAL</text>
+
+    <!-- Col: Jam (width: 35) -->
+    <rect x="135" y="0" width="35" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="1" />
+    <text x="152" y="35" font-weight="bold" text-anchor="middle" fill="#0f172a">JAM</text>
+
+    <!-- Col: Waktu (width: 90) -->
+    <rect x="170" y="0" width="90" height="60" fill="#f8fafc" stroke="#1e293b" stroke-width="1" />
+    <text x="215" y="35" font-weight="bold" text-anchor="middle" fill="#0f172a">WAKTU</text>
+
+    <!-- Col: Kelas X (width: 175) -->
+    <rect x="260" y="0" width="175" height="25" fill="#e0e7ff" stroke="#1e293b" stroke-width="1" />
+    <text x="347" y="17" font-weight="bold" text-anchor="middle" fill="#1e3a8a">KELAS X</text>
+
+    <!-- Col: Kelas XI (width: 140) -->
+    <rect x="435" y="0" width="140" height="25" fill="#fef3c7" stroke="#1e293b" stroke-width="1" />
+    <text x="505" y="17" font-weight="bold" text-anchor="middle" fill="#92400e">KELAS XI</text>
+
+    <!-- Col: Kelas XII (width: 140) -->
+    <rect x="575" y="0" width="140" height="25" fill="#f3e8ff" stroke="#1e293b" stroke-width="1" />
+    <text x="645" y="17" font-weight="bold" text-anchor="middle" fill="#6b21a8">KELAS XII</text>
+
+    <!-- Col: Kode Pengawas (width: 475) -->
+    <rect x="715" y="0" width="475" height="25" fill="#f1f5f9" stroke="#1e293b" stroke-width="1" />
+    <text x="952" y="17" font-weight="bold" text-anchor="middle" fill="#0f172a">KODE PENGAWAS (RUANG 1 - 13)</text>
+
+    <!-- Table Header Row 2 (Sub-columns) -->
+    <!-- KODE MATPEL bar: x: 260 to 715 -->
+    <rect x="260" y="25" width="455" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" />
+    <text x="487" y="36" font-size="8" font-weight="bold" text-anchor="middle" fill="#475569">KODE MATPEL</text>
+
+    <!-- Classes headers (y: 40 to 60) -->
+    <!-- Kelas X: X-DKV-1, X-MK-1, X-MO-1, X-MO-2, X-TL-1 (35 each) -->
+    <g transform="translate(260, 40)" font-size="8" font-weight="bold" fill="#0f172a">
+      <rect x="0" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="17" y="14" text-anchor="middle">X-DKV-1</text>
+      <rect x="35" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="52" y="14" text-anchor="middle">X-MK-1</text>
+      <rect x="70" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="87" y="14" text-anchor="middle">X-MO-1</text>
+      <rect x="105" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="122" y="14" text-anchor="middle">X-MO-2</text>
+      <rect x="140" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="157" y="14" text-anchor="middle">X-TL-1</text>
+    </g>
+
+    <!-- Kelas XI: XI-DKV-1, XI-MK-1, XI-MO-1, XI-TL-1 (35 each) -->
+    <g transform="translate(435, 40)" font-size="8" font-weight="bold" fill="#0f172a">
+      <rect x="0" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="17" y="14" text-anchor="middle">XI-DKV-1</text>
+      <rect x="35" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="52" y="14" text-anchor="middle">XI-MK-1</text>
+      <rect x="70" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="87" y="14" text-anchor="middle">XI-MO-1</text>
+      <rect x="105" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="122" y="14" text-anchor="middle">XI-TL-1</text>
+    </g>
+
+    <!-- Kelas XII: XII-DKV-1, XII-MK-1, XII-MO-1, XII-TL-1 (35 each) -->
+    <g transform="translate(575, 40)" font-size="8" font-weight="bold" fill="#0f172a">
+      <rect x="0" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="17" y="14" text-anchor="middle">XII-DKV</text>
+      <rect x="35" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="52" y="14" text-anchor="middle">XII-MK</text>
+      <rect x="70" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="87" y="14" text-anchor="middle">XII-MO</text>
+      <rect x="105" y="0" width="35" height="20" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="122" y="14" text-anchor="middle">XII-TL</text>
+    </g>
+
+    <!-- Rooms 1 to 13 subheaders (x: 715, width: 475 / 13 ~= 36.5) -->
+    <!-- We will render 13 rooms with room number (y:25 h:15) and class label (y:40 h:20) -->
+    <g transform="translate(715, 25)" font-size="8" font-weight="bold" text-anchor="middle" fill="#0f172a">
+      <!-- 13 rooms -->
+      <!-- R1: X-DKV-1 -->
+      <rect x="0" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="18" y="11">1</text>
+      <rect x="0" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="18" y="28" font-size="6.5">X-DKV</text>
+
+      <!-- R2: X-MK-1 -->
+      <rect x="36.5" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="55" y="11">2</text>
+      <rect x="36.5" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="55" y="28" font-size="6.5">X-MK</text>
+
+      <!-- R3: X-MO-1 -->
+      <rect x="73" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="91" y="11">3</text>
+      <rect x="73" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="91" y="28" font-size="6.5">X-MO1</text>
+
+      <!-- R4: X-MO-2 -->
+      <rect x="109.5" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="128" y="11">4</text>
+      <rect x="109.5" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="128" y="28" font-size="6.5">X-MO2</text>
+
+      <!-- R5: X-TL-1 -->
+      <rect x="146" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="164" y="11">5</text>
+      <rect x="146" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="164" y="28" font-size="6.5">X-TL</text>
+
+      <!-- R6: XI-DKV-1 -->
+      <rect x="182.5" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="201" y="11">6</text>
+      <rect x="182.5" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="201" y="28" font-size="6.5">XI-DKV</text>
+
+      <!-- R7: XI-MK-1 -->
+      <rect x="219" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="237" y="11">7</text>
+      <rect x="219" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="237" y="28" font-size="6.5">XI-MK</text>
+
+      <!-- R8: XI-MO-1 -->
+      <rect x="255.5" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="274" y="11">8</text>
+      <rect x="255.5" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="274" y="28" font-size="6.5">XI-MO</text>
+
+      <!-- R9: XI-TL-1 -->
+      <rect x="292" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="310" y="11">9</text>
+      <rect x="292" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="310" y="28" font-size="6.5">XI-TL</text>
+
+      <!-- R10: XII-DKV-1 -->
+      <rect x="328.5" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="347" y="11">10</text>
+      <rect x="328.5" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="347" y="28" font-size="6.5">XII-DKV</text>
+
+      <!-- R11: XII-MK-1 -->
+      <rect x="365" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="383" y="11">11</text>
+      <rect x="365" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="383" y="28" font-size="6.5">XII-MK</text>
+
+      <!-- R12: XII-MO-1 -->
+      <rect x="401.5" y="0" width="36.5" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="420" y="11">12</text>
+      <rect x="401.5" y="15" width="36.5" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="420" y="28" font-size="6.5">XII-MO</text>
+
+      <!-- R13: XII-TL-1 -->
+      <rect x="438" y="0" width="37" height="15" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" /><text x="456" y="11">13</text>
+      <rect x="438" y="15" width="37" height="20" fill="#f1f5f9" stroke="#1e293b" stroke-width="0.8" /><text x="456" y="28" font-size="6.5">XII-TL</text>
+    </g>
+
+    <!-- ==================== SENIN (HARI 1) ==================== -->
+    <!-- Background band light blue -->
+    <g transform="translate(0, 60)">
+      <rect x="0" y="0" width="1190" height="98" fill="#e0f2fe" fill-opacity="0.35" stroke="#1e293b" stroke-width="0.8" />
+      <!-- Day cell -->
+      <rect x="0" y="0" width="60" height="98" fill="#bae6fd" stroke="#1e293b" stroke-width="0.8" />
+      <text x="30" y="45" font-weight="900" fill="#0369a1" text-anchor="middle">SENIN</text>
+      <text x="30" y="60" font-size="8" fill="#0284c7" text-anchor="middle">Hari 1</text>
+
+      <!-- Date cell -->
+      <rect x="60" y="0" width="75" height="98" fill="#f0f9ff" stroke="#1e293b" stroke-width="0.8" />
+      <text x="97" y="52" font-weight="bold" fill="#0f172a" text-anchor="middle" font-size="9">28/09/2026</text>
+
+      <!-- Row 1: Jam 1 (07:00 - 08:30) -->
+      <g transform="translate(135, 0)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">1</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">07:00 - 08:30</text>
+        <!-- Mapel: 07 across all -->
+        <!-- X: 5 cols -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">07</text><text x="177" y="16" font-weight="bold" text-anchor="middle">07</text><text x="212" y="16" font-weight="bold" text-anchor="middle">07</text><text x="247" y="16" font-weight="bold" text-anchor="middle">07</text><text x="282" y="16" font-weight="bold" text-anchor="middle">07</text>
+        <!-- XI: 4 cols -->
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">07</text><text x="352" y="16" font-weight="bold" text-anchor="middle">07</text><text x="387" y="16" font-weight="bold" text-anchor="middle">07</text><text x="422" y="16" font-weight="bold" text-anchor="middle">07</text>
+        <!-- XII: 4 cols -->
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">07</text><text x="492" y="16" font-weight="bold" text-anchor="middle">07</text><text x="527" y="16" font-weight="bold" text-anchor="middle">07</text><text x="562" y="16" font-weight="bold" text-anchor="middle">07</text>
+        <!-- Proctors: 03, 13, 05, 21, 10, 14, 01, 20, 07, 11, 18, 08, 17 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">03</text><text x="55">13</text><text x="91">05</text><text x="128">21</text><text x="164">10</text><text x="201">14</text><text x="237">01</text><text x="274">20</text><text x="310">07</text><text x="347">11</text><text x="383">18</text><text x="420">08</text><text x="456">17</text>
+        </g>
+      </g>
+
+      <!-- Row 2: Jam 2 (08:40 - 10:00) -->
+      <g transform="translate(135, 24)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">2</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">08:40 - 10:00</text>
+        <!-- Mapel: X=02, XI=09, XII=14 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">02</text><text x="177" y="16" font-weight="bold" text-anchor="middle">02</text><text x="212" y="16" font-weight="bold" text-anchor="middle">02</text><text x="247" y="16" font-weight="bold" text-anchor="middle">02</text><text x="282" y="16" font-weight="bold" text-anchor="middle">02</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">09</text><text x="352" y="16" font-weight="bold" text-anchor="middle">09</text><text x="387" y="16" font-weight="bold" text-anchor="middle">09</text><text x="422" y="16" font-weight="bold" text-anchor="middle">09</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">14</text><text x="492" y="16" font-weight="bold" text-anchor="middle">14</text><text x="527" y="16" font-weight="bold" text-anchor="middle">14</text><text x="562" y="16" font-weight="bold" text-anchor="middle">14</text>
+        <!-- Proctors: same 03, 13, 05... -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">03</text><text x="55">13</text><text x="91">05</text><text x="128">21</text><text x="164">10</text><text x="201">14</text><text x="237">01</text><text x="274">20</text><text x="310">07</text><text x="347">11</text><text x="383">18</text><text x="420">08</text><text x="456">17</text>
+        </g>
+      </g>
+
+      <!-- Row: Istirahat (10:00 - 10:15) -->
+      <g transform="translate(135, 48)">
+        <rect x="0" y="0" width="125" height="18" fill="#fef08a" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="62" y="13" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#854d0e">10:00 - 10:15</text>
+        <rect x="125" y="0" width="930" height="18" fill="#fef9c3" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="590" y="13" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#a16207">☕ ISTIRAHAT (10:00 - 10:15 WIB) ☕</text>
+      </g>
+
+      <!-- Row 3: Jam 3 (10:30 - 12:00) -->
+      <g transform="translate(135, 66)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">3</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">10:30 - 12:00</text>
+        <!-- Mapel: X=03, XI=10, XII=15 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">03</text><text x="177" y="16" font-weight="bold" text-anchor="middle">03</text><text x="212" y="16" font-weight="bold" text-anchor="middle">03</text><text x="247" y="16" font-weight="bold" text-anchor="middle">03</text><text x="282" y="16" font-weight="bold" text-anchor="middle">03</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">10</text><text x="352" y="16" font-weight="bold" text-anchor="middle">10</text><text x="387" y="16" font-weight="bold" text-anchor="middle">10</text><text x="422" y="16" font-weight="bold" text-anchor="middle">10</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">15</text><text x="492" y="16" font-weight="bold" text-anchor="middle">15</text><text x="527" y="16" font-weight="bold" text-anchor="middle">15</text><text x="562" y="16" font-weight="bold" text-anchor="middle">15</text>
+        <!-- Proctors: 07, 03, 13, 05, 21, 10, 14, 01, 20, 18, 11, 17, 08 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">07</text><text x="55">03</text><text x="91">13</text><text x="128">05</text><text x="164">21</text><text x="201">10</text><text x="237">14</text><text x="274">01</text><text x="310">20</text><text x="347">18</text><text x="383">11</text><text x="420">17</text><text x="456">08</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- ==================== SELASA (HARI 2) ==================== -->
+    <g transform="translate(0, 158)">
+      <rect x="0" y="0" width="1190" height="90" fill="#f0fdf4" fill-opacity="0.4" stroke="#1e293b" stroke-width="0.8" />
+      <rect x="0" y="0" width="60" height="90" fill="#dcfce7" stroke="#1e293b" stroke-width="0.8" />
+      <text x="30" y="42" font-weight="900" fill="#15803d" text-anchor="middle">SELASA</text>
+      <text x="30" y="57" font-size="8" fill="#16a34a" text-anchor="middle">Hari 2</text>
+      <rect x="60" y="0" width="75" height="90" fill="#f0fdf4" stroke="#1e293b" stroke-width="0.8" />
+      <text x="97" y="48" font-weight="bold" fill="#0f172a" text-anchor="middle" font-size="9">29/09/2026</text>
+
+      <!-- Row 1: Jam 1 (07:00 - 08:30) -->
+      <g transform="translate(135, 0)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">1</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">07:00 - 08:30</text>
+        <!-- Mapel: X=16, XI=20, XII=22 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">16</text><text x="177" y="16" font-weight="bold" text-anchor="middle">16</text><text x="212" y="16" font-weight="bold" text-anchor="middle">16</text><text x="247" y="16" font-weight="bold" text-anchor="middle">16</text><text x="282" y="16" font-weight="bold" text-anchor="middle">16</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">20</text><text x="352" y="16" font-weight="bold" text-anchor="middle">20</text><text x="387" y="16" font-weight="bold" text-anchor="middle">20</text><text x="422" y="16" font-weight="bold" text-anchor="middle">20</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">22</text><text x="492" y="16" font-weight="bold" text-anchor="middle">22</text><text x="527" y="16" font-weight="bold" text-anchor="middle">22</text><text x="562" y="16" font-weight="bold" text-anchor="middle">22</text>
+        <!-- Proctors: 12, 22, 16, 21, 17, 01, 04, 20, 07, 03, 11, 06, 09 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">12</text><text x="55">22</text><text x="91">16</text><text x="128">21</text><text x="164">17</text><text x="201">01</text><text x="237">04</text><text x="274">20</text><text x="310">07</text><text x="347">03</text><text x="383">11</text><text x="420">06</text><text x="456">09</text>
+        </g>
+      </g>
+
+      <!-- Row 2: Jam 2 (08:30 - 10:00) -->
+      <g transform="translate(135, 24)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">2</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">08:30 - 10:00</text>
+        <!-- Mapel: X=05, XI=12, XII=- -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">05</text><text x="177" y="16" font-weight="bold" text-anchor="middle">05</text><text x="212" y="16" font-weight="bold" text-anchor="middle">05</text><text x="247" y="16" font-weight="bold" text-anchor="middle">05</text><text x="282" y="16" font-weight="bold" text-anchor="middle">05</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">12</text><text x="352" y="16" font-weight="bold" text-anchor="middle">12</text><text x="387" y="16" font-weight="bold" text-anchor="middle">12</text><text x="422" y="16" font-weight="bold" text-anchor="middle">12</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" text-anchor="middle">-</text><text x="492" y="16" text-anchor="middle">-</text><text x="527" y="16" text-anchor="middle">-</text><text x="562" y="16" text-anchor="middle">-</text>
+        <!-- Proctors: 12, 22, 16, 21, 17, 01, 04, 20, 07, -, -, -, - -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">12</text><text x="55">22</text><text x="91">16</text><text x="128">21</text><text x="164">17</text><text x="201">01</text><text x="237">04</text><text x="274">20</text><text x="310">07</text><text x="347">-</text><text x="383">-</text><text x="420">-</text><text x="456">-</text>
+        </g>
+      </g>
+
+      <!-- Row: Istirahat -->
+      <g transform="translate(135, 48)">
+        <rect x="0" y="0" width="125" height="18" fill="#fef08a" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="62" y="13" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#854d0e">10:00 - 10:15</text>
+        <rect x="125" y="0" width="930" height="18" fill="#fef9c3" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="590" y="13" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#a16207">☕ ISTIRAHAT (10:00 - 10:15 WIB) ☕</text>
+      </g>
+
+      <!-- Row 3: Jam 3 (10:30 - 12:00) -->
+      <g transform="translate(135, 66)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">3</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">10:30 - 12:00</text>
+        <!-- Mapel: X=17, XI=21, XII=23 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">17</text><text x="177" y="16" font-weight="bold" text-anchor="middle">17</text><text x="212" y="16" font-weight="bold" text-anchor="middle">17</text><text x="247" y="16" font-weight="bold" text-anchor="middle">17</text><text x="282" y="16" font-weight="bold" text-anchor="middle">17</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">21</text><text x="352" y="16" font-weight="bold" text-anchor="middle">21</text><text x="387" y="16" font-weight="bold" text-anchor="middle">21</text><text x="422" y="16" font-weight="bold" text-anchor="middle">21</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">23</text><text x="492" y="16" font-weight="bold" text-anchor="middle">23</text><text x="527" y="16" font-weight="bold" text-anchor="middle">23</text><text x="562" y="16" font-weight="bold" text-anchor="middle">23</text>
+        <!-- Proctors: 07, 12, 22, 16, 21, 17, 01, 04, 20, 09, 06, 03, 11 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">07</text><text x="55">12</text><text x="91">22</text><text x="128">16</text><text x="164">21</text><text x="201">17</text><text x="237">01</text><text x="274">04</text><text x="310">20</text><text x="347">09</text><text x="383">06</text><text x="420">03</text><text x="456">11</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- ==================== RABU (HARI 3) ==================== -->
+    <g transform="translate(0, 248)">
+      <rect x="0" y="0" width="1190" height="114" fill="#fefce8" fill-opacity="0.4" stroke="#1e293b" stroke-width="0.8" />
+      <rect x="0" y="0" width="60" height="114" fill="#fef08a" stroke="#1e293b" stroke-width="0.8" />
+      <text x="30" y="52" font-weight="900" fill="#a16207" text-anchor="middle">RABU</text>
+      <text x="30" y="67" font-size="8" fill="#ca8a04" text-anchor="middle">Hari 3</text>
+      <rect x="60" y="0" width="75" height="114" fill="#fefce8" stroke="#1e293b" stroke-width="0.8" />
+      <text x="97" y="60" font-weight="bold" fill="#0f172a" text-anchor="middle" font-size="9">30/09/2026</text>
+
+      <!-- Row 1: Jam 1 (07:00 - 08:30) -->
+      <g transform="translate(135, 0)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">1</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">07:00 - 08:30</text>
+        <!-- Mapel: X=06, XI=11, XII=64 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">06</text><text x="177" y="16" font-weight="bold" text-anchor="middle">06</text><text x="212" y="16" font-weight="bold" text-anchor="middle">06</text><text x="247" y="16" font-weight="bold" text-anchor="middle">06</text><text x="282" y="16" font-weight="bold" text-anchor="middle">06</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">11</text><text x="352" y="16" font-weight="bold" text-anchor="middle">11</text><text x="387" y="16" font-weight="bold" text-anchor="middle">11</text><text x="422" y="16" font-weight="bold" text-anchor="middle">11</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">64</text><text x="492" y="16" font-weight="bold" text-anchor="middle">64</text><text x="527" y="16" font-weight="bold" text-anchor="middle">64</text><text x="562" y="16" font-weight="bold" text-anchor="middle">64</text>
+        <!-- Proctors: 14, 08, 13, 12, 22, 15, 16, 18, 06, 09, 20, 04, 10 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">14</text><text x="55">08</text><text x="91">13</text><text x="128">12</text><text x="164">22</text><text x="201">15</text><text x="237">16</text><text x="274">18</text><text x="310">06</text><text x="347">09</text><text x="383">20</text><text x="420">04</text><text x="456">10</text>
+        </g>
+      </g>
+
+      <!-- Row 2: Jam 2 (08:30 - 10:00) -->
+      <g transform="translate(135, 24)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">2</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">08:30 - 10:00</text>
+        <!-- Mapel: X=04, XI=63, XII=- -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">04</text><text x="177" y="16" font-weight="bold" text-anchor="middle">04</text><text x="212" y="16" font-weight="bold" text-anchor="middle">04</text><text x="247" y="16" font-weight="bold" text-anchor="middle">04</text><text x="282" y="16" font-weight="bold" text-anchor="middle">04</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">63</text><text x="352" y="16" font-weight="bold" text-anchor="middle">63</text><text x="387" y="16" font-weight="bold" text-anchor="middle">63</text><text x="422" y="16" font-weight="bold" text-anchor="middle">63</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" text-anchor="middle">-</text><text x="492" y="16" text-anchor="middle">-</text><text x="527" y="16" text-anchor="middle">-</text><text x="562" y="16" text-anchor="middle">-</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">14</text><text x="55">08</text><text x="91">13</text><text x="128">12</text><text x="164">22</text><text x="201">15</text><text x="237">16</text><text x="274">18</text><text x="310">06</text><text x="347">09</text><text x="383">20</text><text x="420">04</text><text x="456">10</text>
+        </g>
+      </g>
+
+      <!-- Row: Istirahat -->
+      <g transform="translate(135, 48)">
+        <rect x="0" y="0" width="125" height="18" fill="#fef08a" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="62" y="13" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#854d0e">10:00 - 10:15</text>
+        <rect x="125" y="0" width="930" height="18" fill="#fef9c3" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="590" y="13" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#a16207">☕ ISTIRAHAT (10:00 - 10:15 WIB) ☕</text>
+      </g>
+
+      <!-- Row 3: Jam 3 (10:15 - 11:30) -->
+      <g transform="translate(135, 66)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">3</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">10:15 - 11:30</text>
+        <!-- Mapel: X=18, XI=(29,48,39,57), XII=(32,51,42,60) -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">18</text><text x="177" y="16" font-weight="bold" text-anchor="middle">18</text><text x="212" y="16" font-weight="bold" text-anchor="middle">18</text><text x="247" y="16" font-weight="bold" text-anchor="middle">18</text><text x="282" y="16" font-weight="bold" text-anchor="middle">18</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">29</text><text x="352" y="16" font-weight="bold" text-anchor="middle">48</text><text x="387" y="16" font-weight="bold" text-anchor="middle">39</text><text x="422" y="16" font-weight="bold" text-anchor="middle">57</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">32</text><text x="492" y="16" font-weight="bold" text-anchor="middle">51</text><text x="527" y="16" font-weight="bold" text-anchor="middle">42</text><text x="562" y="16" font-weight="bold" text-anchor="middle">60</text>
+        <!-- Proctors: 06, 14, 08, 13, 12, 22, 15, 16, 18, 20, 10, 09, 04 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">06</text><text x="55">14</text><text x="91">08</text><text x="128">13</text><text x="164">12</text><text x="201">22</text><text x="237">15</text><text x="274">16</text><text x="310">18</text><text x="347">20</text><text x="383">10</text><text x="420">09</text><text x="456">04</text>
+        </g>
+      </g>
+
+      <!-- Row 4: Jam 4 (11:30 - 12:30) -->
+      <g transform="translate(135, 90)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">4</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">11:30 - 12:30</text>
+        <!-- Mapel: X-DKV=28, others - -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">28</text><text x="177" y="16" text-anchor="middle">-</text><text x="212" y="16" text-anchor="middle">-</text><text x="247" y="16" text-anchor="middle">-</text><text x="282" y="16" text-anchor="middle">-</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" text-anchor="middle">-</text><text x="352" y="16" text-anchor="middle">-</text><text x="387" y="16" text-anchor="middle">-</text><text x="422" y="16" text-anchor="middle">-</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" text-anchor="middle">-</text><text x="492" y="16" text-anchor="middle">-</text><text x="527" y="16" text-anchor="middle">-</text><text x="562" y="16" text-anchor="middle">-</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">06</text><text x="55">-</text><text x="91">-</text><text x="128">-</text><text x="164">-</text><text x="201">-</text><text x="237">-</text><text x="274">-</text><text x="310">-</text><text x="347">-</text><text x="383">-</text><text x="420">-</text><text x="456">-</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- ==================== KAMIS (HARI 4) ==================== -->
+    <g transform="translate(0, 362)">
+      <rect x="0" y="0" width="1190" height="114" fill="#faf5ff" fill-opacity="0.4" stroke="#1e293b" stroke-width="0.8" />
+      <rect x="0" y="0" width="60" height="114" fill="#f3e8ff" stroke="#1e293b" stroke-width="0.8" />
+      <text x="30" y="52" font-weight="900" fill="#7e22ce" text-anchor="middle">KAMIS</text>
+      <text x="30" y="67" font-size="8" fill="#9333ea" text-anchor="middle">Hari 4</text>
+      <rect x="60" y="0" width="75" height="114" fill="#faf5ff" stroke="#1e293b" stroke-width="0.8" />
+      <text x="97" y="60" font-weight="bold" fill="#0f172a" text-anchor="middle" font-size="9">01/10/2026</text>
+
+      <!-- Row 1: Jam 1 (07:00 - 08:30) -->
+      <g transform="translate(135, 0)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">1</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">07:00 - 08:30</text>
+        <!-- Mapel: X=19, XI=68, XII=69 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">19</text><text x="177" y="16" font-weight="bold" text-anchor="middle">19</text><text x="212" y="16" font-weight="bold" text-anchor="middle">19</text><text x="247" y="16" font-weight="bold" text-anchor="middle">19</text><text x="282" y="16" font-weight="bold" text-anchor="middle">19</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">68</text><text x="352" y="16" font-weight="bold" text-anchor="middle">68</text><text x="387" y="16" font-weight="bold" text-anchor="middle">68</text><text x="422" y="16" font-weight="bold" text-anchor="middle">68</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">69</text><text x="492" y="16" font-weight="bold" text-anchor="middle">69</text><text x="527" y="16" font-weight="bold" text-anchor="middle">69</text><text x="562" y="16" font-weight="bold" text-anchor="middle">69</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">19</text><text x="55">08</text><text x="91">02</text><text x="128">04</text><text x="164">17</text><text x="201">15</text><text x="237">03</text><text x="274">07</text><text x="310">21</text><text x="347">09</text><text x="383">11</text><text x="420">18</text><text x="456">10</text>
+        </g>
+      </g>
+
+      <!-- Row 2: Jam 2 (08:40 - 10:00) -->
+      <g transform="translate(135, 24)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">2</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">08:40 - 10:00</text>
+        <!-- Mapel: X=(26,47,37,37,54), XI=(30,49,40,58), XII=(33,52,43,61) -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">26</text><text x="177" y="16" font-weight="bold" text-anchor="middle">47</text><text x="212" y="16" font-weight="bold" text-anchor="middle">37</text><text x="247" y="16" font-weight="bold" text-anchor="middle">37</text><text x="282" y="16" font-weight="bold" text-anchor="middle">54</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">30</text><text x="352" y="16" font-weight="bold" text-anchor="middle">49</text><text x="387" y="16" font-weight="bold" text-anchor="middle">40</text><text x="422" y="16" font-weight="bold" text-anchor="middle">58</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">33</text><text x="492" y="16" font-weight="bold" text-anchor="middle">52</text><text x="527" y="16" font-weight="bold" text-anchor="middle">43</text><text x="562" y="16" font-weight="bold" text-anchor="middle">61</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">19</text><text x="55">08</text><text x="91">02</text><text x="128">04</text><text x="164">17</text><text x="201">15</text><text x="237">03</text><text x="274">07</text><text x="310">21</text><text x="347">09</text><text x="383">11</text><text x="420">18</text><text x="456">10</text>
+        </g>
+      </g>
+
+      <!-- Row: Istirahat -->
+      <g transform="translate(135, 48)">
+        <rect x="0" y="0" width="125" height="18" fill="#fef08a" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="62" y="13" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#854d0e">10:00 - 10:15</text>
+        <rect x="125" y="0" width="930" height="18" fill="#fef9c3" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="590" y="13" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#a16207">☕ ISTIRAHAT (10:00 - 10:15 WIB) ☕</text>
+      </g>
+
+      <!-- Row 3: Jam 3 (10:15 - 11:30) -->
+      <g transform="translate(135, 66)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">3</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">10:15 - 11:30</text>
+        <!-- Mapel: X=(27,01,38,38,54), XI=(31,50,41,59), XII=(34,53,44,62) -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">27</text><text x="177" y="16" font-weight="bold" text-anchor="middle">01</text><text x="212" y="16" font-weight="bold" text-anchor="middle">38</text><text x="247" y="16" font-weight="bold" text-anchor="middle">38</text><text x="282" y="16" font-weight="bold" text-anchor="middle">54</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">31</text><text x="352" y="16" font-weight="bold" text-anchor="middle">50</text><text x="387" y="16" font-weight="bold" text-anchor="middle">41</text><text x="422" y="16" font-weight="bold" text-anchor="middle">59</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">34</text><text x="492" y="16" font-weight="bold" text-anchor="middle">53</text><text x="527" y="16" font-weight="bold" text-anchor="middle">44</text><text x="562" y="16" font-weight="bold" text-anchor="middle">62</text>
+        <!-- Proctors: 21, 19, 08, 02, 04, 17, 15, 03, 07, 11, 09, 10, 18 -->
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">21</text><text x="55">19</text><text x="91">08</text><text x="128">02</text><text x="164">04</text><text x="201">17</text><text x="237">15</text><text x="274">03</text><text x="310">07</text><text x="347">11</text><text x="383">09</text><text x="420">10</text><text x="456">18</text>
+        </g>
+      </g>
+
+      <!-- Row 4: Jam 4 (11:30 - 12:30) -->
+      <g transform="translate(135, 90)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">4</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">11:30 - 12:30</text>
+        <!-- Mapel: X=(01, -, 01, 01, -) -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">01</text><text x="177" y="16" text-anchor="middle">-</text><text x="212" y="16" font-weight="bold" text-anchor="middle">01</text><text x="247" y="16" font-weight="bold" text-anchor="middle">01</text><text x="282" y="16" text-anchor="middle">-</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" text-anchor="middle">-</text><text x="352" y="16" text-anchor="middle">-</text><text x="387" y="16" text-anchor="middle">-</text><text x="422" y="16" text-anchor="middle">-</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" text-anchor="middle">-</text><text x="492" y="16" text-anchor="middle">-</text><text x="527" y="16" text-anchor="middle">-</text><text x="562" y="16" text-anchor="middle">-</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">21</text><text x="55">-</text><text x="91">08</text><text x="128">02</text><text x="164">04</text><text x="201">-</text><text x="237">-</text><text x="274">-</text><text x="310">-</text><text x="347">-</text><text x="383">-</text><text x="420">-</text><text x="456">-</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- ==================== JUMAT (HARI 5) ==================== -->
+    <g transform="translate(0, 476)">
+      <rect x="0" y="0" width="1190" height="90" fill="#fff1f2" fill-opacity="0.4" stroke="#1e293b" stroke-width="0.8" />
+      <rect x="0" y="0" width="60" height="90" fill="#fecdd3" stroke="#1e293b" stroke-width="0.8" />
+      <text x="30" y="42" font-weight="900" fill="#be123c" text-anchor="middle">JUMAT</text>
+      <text x="30" y="57" font-size="8" fill="#e11d48" text-anchor="middle">Hari 5</text>
+      <rect x="60" y="0" width="75" height="90" fill="#fff1f2" stroke="#1e293b" stroke-width="0.8" />
+      <text x="97" y="48" font-weight="bold" fill="#0f172a" text-anchor="middle" font-size="9">02/10/2026</text>
+
+      <!-- Row 1: Jam 1 (07:00 - 08:30) -->
+      <g transform="translate(135, 0)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">1</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">07:00 - 08:30</text>
+        <!-- Mapel: X=(25,46,36,36,56), XI=65, XII=66 -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">25</text><text x="177" y="16" font-weight="bold" text-anchor="middle">46</text><text x="212" y="16" font-weight="bold" text-anchor="middle">36</text><text x="247" y="16" font-weight="bold" text-anchor="middle">36</text><text x="282" y="16" font-weight="bold" text-anchor="middle">56</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" font-weight="bold" text-anchor="middle">65</text><text x="352" y="16" font-weight="bold" text-anchor="middle">65</text><text x="387" y="16" font-weight="bold" text-anchor="middle">65</text><text x="422" y="16" font-weight="bold" text-anchor="middle">65</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" font-weight="bold" text-anchor="middle">66</text><text x="492" y="16" font-weight="bold" text-anchor="middle">66</text><text x="527" y="16" font-weight="bold" text-anchor="middle">66</text><text x="562" y="16" font-weight="bold" text-anchor="middle">66</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">19</text><text x="55">02</text><text x="91">06</text><text x="128">16</text><text x="164">22</text><text x="201">15</text><text x="237">12</text><text x="274">20</text><text x="310">10</text><text x="347">03</text><text x="383">01</text><text x="420">08</text><text x="456">17</text>
+        </g>
+      </g>
+
+      <!-- Row 2: Jam 2 (08:30 - 10:00) -->
+      <g transform="translate(135, 24)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">2</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">08:30 - 10:00</text>
+        <!-- Mapel: X=67, XI=-, XII=- -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">67</text><text x="177" y="16" font-weight="bold" text-anchor="middle">67</text><text x="212" y="16" font-weight="bold" text-anchor="middle">67</text><text x="247" y="16" font-weight="bold" text-anchor="middle">67</text><text x="282" y="16" font-weight="bold" text-anchor="middle">67</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" text-anchor="middle">-</text><text x="352" y="16" text-anchor="middle">-</text><text x="387" y="16" text-anchor="middle">-</text><text x="422" y="16" text-anchor="middle">-</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" text-anchor="middle">-</text><text x="492" y="16" text-anchor="middle">-</text><text x="527" y="16" text-anchor="middle">-</text><text x="562" y="16" text-anchor="middle">-</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">19</text><text x="55">02</text><text x="91">06</text><text x="128">16</text><text x="164">22</text><text x="201">-</text><text x="237">-</text><text x="274">-</text><text x="310">-</text><text x="347">-</text><text x="383">-</text><text x="420">-</text><text x="456">-</text>
+        </g>
+      </g>
+
+      <!-- Row: Istirahat -->
+      <g transform="translate(135, 48)">
+        <rect x="0" y="0" width="125" height="18" fill="#fef08a" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="62" y="13" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#854d0e">10:00 - 10:15</text>
+        <rect x="125" y="0" width="930" height="18" fill="#fef9c3" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="590" y="13" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#a16207">☕ ISTIRAHAT (10:00 - 10:15 WIB) ☕</text>
+      </g>
+
+      <!-- Row 3: Jam 3 (10:15 - 11:30) -->
+      <g transform="translate(135, 66)">
+        <rect x="0" y="0" width="35" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="17" y="16" font-weight="bold" text-anchor="middle">3</text>
+        <rect x="35" y="0" width="90" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" /><text x="80" y="16" font-size="8" text-anchor="middle">10:15 - 11:30</text>
+        <!-- Mapel: X=(24,45,35,35,-), XI=-, XII=- -->
+        <rect x="125" y="0" width="175" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="142" y="16" font-weight="bold" text-anchor="middle">24</text><text x="177" y="16" font-weight="bold" text-anchor="middle">45</text><text x="212" y="16" font-weight="bold" text-anchor="middle">35</text><text x="247" y="16" font-weight="bold" text-anchor="middle">35</text><text x="282" y="16" text-anchor="middle">-</text>
+        <rect x="300" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="317" y="16" text-anchor="middle">-</text><text x="352" y="16" text-anchor="middle">-</text><text x="387" y="16" text-anchor="middle">-</text><text x="422" y="16" text-anchor="middle">-</text>
+        <rect x="440" y="0" width="140" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6" />
+        <text x="457" y="16" text-anchor="middle">-</text><text x="492" y="16" text-anchor="middle">-</text><text x="527" y="16" text-anchor="middle">-</text><text x="562" y="16" text-anchor="middle">-</text>
+        <rect x="580" y="0" width="475" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6" />
+        <g transform="translate(580, 16)" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#0f172a">
+          <text x="18">10</text><text x="55">19</text><text x="91">02</text><text x="128">06</text><text x="164">-</text><text x="201">-</text><text x="237">-</text><text x="274">-</text><text x="310">-</text><text x="347">-</text><text x="383">-</text><text x="420">-</text><text x="456">-</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Table Bottom Total Row (y: 566, height: 34) -->
+    <g transform="translate(0, 566)">
+      <rect x="0" y="0" width="260" height="34" fill="#fef08a" stroke="#1e293b" stroke-width="1" />
+      <text x="130" y="22" font-size="10" font-weight="900" text-anchor="middle" fill="#854d0e">JUMLAH MATPEL UJI PERKELAS</text>
+
+      <!-- Kelas X counts (17, 15, 16, 16, 15) -->
+      <g transform="translate(260, 0)" font-size="10" font-weight="900" text-anchor="middle" fill="#0f172a">
+        <rect x="0" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="17" y="22">17</text>
+        <rect x="35" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="52" y="22">15</text>
+        <rect x="70" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="87" y="22">16</text>
+        <rect x="105" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="122" y="22">16</text>
+        <rect x="140" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="157" y="22">15</text>
+      </g>
+
+      <!-- Kelas XI counts (13, 13, 13, 13) -->
+      <g transform="translate(435, 0)" font-size="10" font-weight="900" text-anchor="middle" fill="#0f172a">
+        <rect x="0" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="17" y="22">13</text>
+        <rect x="35" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="52" y="22">13</text>
+        <rect x="70" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="87" y="22">13</text>
+        <rect x="105" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="122" y="22">13</text>
+      </g>
+
+      <!-- Kelas XII counts (11, 11, 11, 11) -->
+      <g transform="translate(575, 0)" font-size="10" font-weight="900" text-anchor="middle" fill="#0f172a">
+        <rect x="0" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="17" y="22">11</text>
+        <rect x="35" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="52" y="22">11</text>
+        <rect x="70" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="87" y="22">11</text>
+        <rect x="105" y="0" width="35" height="34" fill="#fef9c3" stroke="#1e293b" stroke-width="0.8" /><text x="122" y="22">11</text>
+      </g>
+
+      <!-- Empty footer for proctor columns -->
+      <rect x="715" y="0" width="475" height="34" fill="#f8fafc" stroke="#1e293b" stroke-width="0.8" />
+    </g>
+  </g>
+
+  <!-- Footnote -->
+  <text x="55" y="835" font-size="10" font-style="italic" fill="#64748b">* Daftar lengkap Kode &amp; Nama Pengawas serta Kode Mata Pelajaran tercantum pada Lembar Lampiran (Halaman 2).</text>
+  <text x="1245" y="835" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">Halaman 1 dari 2</text>
+</svg>

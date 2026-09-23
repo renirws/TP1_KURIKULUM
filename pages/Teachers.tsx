@@ -189,6 +189,7 @@ const Teachers: React.FC = () => {
   const adminToolLink = "https://s.id/ToolAjarGuru";
   const permissionFormLink = "https://forms.gle/FMQBg8EemZeRpwdT6";
   const ruangGuruLink = "https://kurikulum.smktanjungpriok1.sch.id/login";
+  const websiteKurikulumLink = "https://www.kurikulumsmktanjungpriok1.sch.id";
   const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
   const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
 
@@ -401,54 +402,60 @@ const Teachers: React.FC = () => {
 
             {/* Right Column (Bagian Kanan Atas): Portal Ruang Guru Card */}
             <div className="lg:col-span-5 w-full">
-              <div className="bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-blue-950/95 backdrop-blur-xl border-2 border-blue-400/30 rounded-3xl p-6 sm:p-7 shadow-2xl relative overflow-hidden group hover:border-blue-400/60 transition-all duration-300 w-full">
+              <div className="bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-blue-950/95 backdrop-blur-xl border-2 border-blue-400/30 rounded-3xl p-5 sm:p-7 shadow-2xl relative overflow-hidden group hover:border-blue-400/60 transition-all duration-300 w-full">
                 <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none transform group-hover:scale-110 transition-transform">
                   <Globe className="w-40 h-40 text-blue-300" />
                 </div>
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-2 mb-3">
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">
                       <Globe className="w-3 h-3 text-blue-400" />
                       Website Resmi Kurikulum
                     </span>
                     <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                      Aktif
+                      Aktif Online
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-1.5">
-                    Portal Ruang Guru
-                  </h3>
-                  
-                  <a 
-                    href={ruangGuruLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-bold text-sky-300 hover:text-white transition-colors break-all mb-3 bg-sky-950/70 px-3 py-1.5 rounded-xl border border-sky-500/30"
-                  >
-                    <span>kurikulum.smktanjungpriok1.sch.id/login</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-sky-400" />
-                  </a>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-1">
+                      Portal Ruang Guru
+                    </h3>
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-medium">
+                      Akses login terpadu sistem kurikulum, modul ajar, administrasi nilai, silabus pembelajaran vokasi, dan jurnal mengajar SMK Tanjung Priok 1 secara praktis.
+                    </p>
+                  </div>
 
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 font-medium">
-                    Akses login terpadu sistem kurikulum, administrasi nilai, silabus pembelajaran vokasi, jurnal mengajar, dan modul ajar SMK Tanjung Priok 1 secara praktis.
-                  </p>
+                  {/* Dual Action Buttons: Login Ruang Guru & Website Kurikulum */}
+                  <div className="space-y-2.5 pt-1">
+                    {/* Primary Button: Direct Login */}
+                    <a 
+                      href={ruangGuruLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 px-5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black rounded-2xl text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2 transition-all transform active:scale-98 border border-blue-300/30 cursor-pointer"
+                    >
+                      <Globe className="w-4 h-4" />
+                      <span>LOGIN RUANG GURU</span>
+                      <ExternalLink className="w-4 h-4 ml-1" />
+                    </a>
 
-                  <a 
-                    href={ruangGuruLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 sm:py-4 px-6 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black rounded-2xl text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2 transition-all transform active:scale-98 border border-blue-300/30 cursor-pointer"
-                  >
-                    <Globe className="w-4 h-4" />
-                    <span>LOGIN RUANG GURU</span>
-                    <ExternalLink className="w-4 h-4 ml-1" />
-                  </a>
+                    {/* Secondary Link: Website Kurikulum SMK Tanjung Priok 1 */}
+                    <a 
+                      href={websiteKurikulumLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 px-4 bg-slate-800/80 hover:bg-slate-700/80 text-sky-300 hover:text-white font-mono text-xs font-bold rounded-xl border border-sky-500/30 hover:border-sky-400 flex items-center justify-between transition-colors break-all"
+                    >
+                      <span className="truncate">www.kurikulumsmktanjungpriok1.sch.id</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-sky-400 ml-2" />
+                    </a>
+                  </div>
 
                   {/* Fast Shortcut Links */}
-                  <div className="mt-4 pt-4 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+                  <div className="pt-3 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
                     <span>Akses Cepat:</span>
                     <div className="flex items-center space-x-2.5 sm:space-x-3">
                       <a href={adminToolLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Tool Ajar</a>

@@ -22,6 +22,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 11 | **Redesain Halaman Guru & Integrasi Ruang Guru** | ✅ Selesai | Menambahkan link Ruang Guru (`www.kurikulumsmktanjungpriok1.sch.id`), menghapus link RAKER, merapikan bagian kanan atas, dan mengoptimalkan responsivitas smartphone. | Halaman Guru (`/guru`) |
 | 12 | **Pembaruan Link Login Ruang Guru** | ✅ Selesai | Memperbarui tautan portal Ruang Guru menjadi link login resmi `https://kurikulum.smktanjungpriok1.sch.id/login` pada seluruh kartu, SEO, dan direktori tautan penting. | Halaman Guru (`/guru`) & Tautan (`/tautan`) |
 | 13 | **Slide Slider & Sistem Pencarian Seleksi TOEIC** | ✅ Selesai | Implementasi slider 5 lembar edaran & jadwal sesi TOEIC (24-25 September 2026), filter nama siswa/ruangan/sesi interaktif, peringatan wajib earphone, serta optimasi SEO & smartphone. | Warta (`/warta`) & Home (`/`) |
+| 14 | **Slide Slider & Jadwal Asesmen STS Ganjil 2026/2027** | ✅ Selesai | Implementasi slide slider 4 lembar matriks jadwal, kode pengawas (01-22), kode mapel (KD 01-69), filter jadwal interaktif siswa/ruang, peringatan wajib hadir tepat waktu, bawa alat tulis pribadi & kartu ujian (28 Sept - 2 Okt 2026). | Warta (`/warta`), Home (`/`), Guru (`/guru`) |
 
 ---
 
@@ -158,6 +159,38 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
   * **Optimasi SEO Senior & Aksesibilitas Smartphone**:
     * Sinkronisasi meta title, keywords, dan meta description Google Search Engine dengan istilah pencarian kunci: *Seleksi TOEIC SMK Tanjung Priok 1*, *Jadwal TOEIC 24-25 September 2026*, *Ruangan Lab TOEIC*, *Wajib Earphone Pribadi*.
     * Struktur antarmuka bebas distorsi, *zero horizontal overflow*, ramah jempol (*touch-friendly*), dan kontras teks memenuhi standar WCAG AA.
+
+---
+
+### 9. Implementasi Slide Slider & Sistem Jadwal Interaktif Asesmen STS Ganjil TA 2026/2027
+* **Permintaan**: Buatkan slide slider untuk gambar terlampir sebagai isi di warta kurikulum. Berita tentang pelaksanaan STS Ganjil TA 2026/2027. Pelaksanaan tgl 28 September - 2 Oktober 2026. Seluruh murid kelas X - XII wajib hadir tepat waktu dan membawa Alat tulis pribadi & kartu Ujian. Tampilan clean, rapih, easy use dan compatible for smartphone.
+* **Tindakan yang Dilakukan**:
+  * **Penyusunan Data & Visual Asset SVG Resolusi Tinggi (`/public/sts/`)**:
+    * Mengonversi dokumen jadwal dan lampiran ke 4 lembar SVG vektor super jernih tanpa blur di layar smartphone:
+      * **Lembar 1 (`page-1.svg`)**: Matriks Tabel Jadwal Asesmen STS Ganjil TA 2026/2027 (Jadwal per hari, per jam ujian, per kelas rombel Ruang 1 s.d 13).
+      * **Lembar 2 (`page-2.svg`)**: Lampiran Halaman 2 (Bagian 1): Daftar 22 Kode & Nama Guru Pengawas Ruang (01 s.d 22) dan Kode Mapel Pembuka (01 s.d 06).
+      * **Lembar 3 (`page-3.svg`)**: Lampiran Halaman 2 (Bagian 2): Daftar Kode & Nama Mata Pelajaran Ujian KD 07 s.d KD 52 (DKV, TKRO, TPK, Matematika, B. Inggris, Kejuruan Otomotif & Mesin Kapal).
+      * **Lembar 4 (`page-4.svg`)**: Lampiran Halaman 2 (Bagian 3): Daftar Kode Mata Pelajaran KD 53 s.d KD 69 (Teknik Logistik, Muatan Lokal, PKK/KWH) serta Tanda Tangan Pengesahan Kepala Sekolah & Waka Kurikulum.
+  * **Modul Slider Slide Interaktif di Warta Kurikulum (`pages/News.tsx`)**:
+    * Membangun banner sorotan resmi bernuansa deep indigo modern dengan badge agenda akademik.
+    * Slider interaktif dengan dukungan *touch swipe gesture* (usap kiri/kanan di smartphone menggunakan `motion/react`), tombol panah kiri-kanan, counter nomor lembar, thumbnail 4 kartu lembar, dan kotak deskripsi konten.
+    * Fitur **Zoom Resolusi Tinggi (Modal Lightbox)** dengan zoom in/out dan pan navigasi.
+    * Fitur **Cetak / Unduh PDF Cepat** via sandboxed iframe printing yang rapi.
+  * **Sorotan Kewajiban & Tata Tertib Siswa**:
+    * **Hadir Tepat Waktu**: Sesi jam ke-1 dimulai tepat pukul 07.00 WIB setiap hari (Senin s.d Jum'at). Seluruh murid wajib hadir di sekolah paling lambat pukul 06.45 WIB.
+    * **Wajib Membawa Alat Tulis Pribadi**: Membawa pulpen, pensil 2B, penghapus, dan penggaris sendiri; dilarang keras pinjam-meminjam alat tulis selama asesmen berlangsung.
+    * **Wajib Membawa Kartu Ujian Resmi**: Menunjukkan Kartu Ujian STS Ganjil kepada Pengawas Ruang saat memasuki ruangan (Ruang 1 s.d Ruang 13).
+    * **Target Peserta**: Seluruh siswa/i Kelas X, XI, dan XII dari 4 program keahlian (DKV, TPK, TKRO, dan Teknik Logistik).
+  * **Interactive STS Schedule & Subject Finder (Cek Jadwal & Pengawas Interaktif)**:
+    * Filter dropdown 13 Rombel Kelas (`X-DKV-1`, `X-MK-1`, `X-MO-1`, `X-MO-2`, `X-TL-1`, `XI-DKV-1`, `XI-MK-1`, `XI-MO-1`, `XI-TL-1`, `XII-DKV-1`, `XII-MK-1`, `XII-MO-1`, `XII-TL-1`).
+    * Filter dropdown Hari Pelaksanaan (`Senin 28 Sept`, `Selasa 29 Sept`, `Rabu 30 Sept`, `Kamis 1 Okt`, `Jumat 2 Okt`).
+    * Pencarian instan teks (*live search*) untuk mencari nama mata pelajaran, kode KD, nama guru pengawas, atau nomor ruangan.
+    * Menampilkan nama mata pelajaran lengkap dan nama pengawas lengkap yang otomatis dikonversi dari kode matriks.
+  * **Integrasi Halaman Beranda (`pages/Home.tsx`)**:
+    * Menampilkan kartu pengumuman unggulan STS Ganjil TA 2026/2027 di urutan pertama pada Warta Akademik Beranda yang langsung terhubung ke anchor `#sts`.
+    * Menambahkan entri pintasan "Asesmen STS Ganjil 2026/2027" pada bilah pencarian cepat (*Quick Navigation Shortcuts*) beranda.
+  * **Optimasi SEO & Performa Smartphone**:
+    * Memperbarui SEO title, meta keywords, dan meta description agar halaman terindeks teratas di mesin pencarian untuk pencarian terkait Asesmen STS SMK Tanjung Priok 1 Jakarta Utara.
 
 ---
 

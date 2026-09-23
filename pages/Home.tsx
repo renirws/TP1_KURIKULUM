@@ -55,13 +55,14 @@ const Home: React.FC = () => {
 
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
+    { title: "Asesmen STS Ganjil 2026/2027", category: "Ujian Semester", icon: <FileText className="w-6 h-6 text-indigo-600" />, link: "/warta#sts", desc: "Jadwal resmi STS Ganjil 28 Sept - 2 Okt 2026 seluruh Kelas X-XII. Wajib bawa alat tulis pribadi & kartu ujian.", keywords: "sts ganjil asesmen sumatif tengah semester jadwal kartu ujian alat tulis ruang 1 13 2026 x xi xii pengawas" },
+    { title: "Seleksi TOEIC Kelas XI & XII", category: "Ujian Bahasa", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#toeic", desc: "Jadwal sesi & lab seleksi TOEIC 24-25 September 2026. Peserta wajib hadir tepat waktu dan membawa earphone pribadi.", keywords: "toeic seleksi bahasa inggris lab sesi 1 2 earphone headphone kelas xi xii" },
     { title: "Portal Siswa & Jadwal KBM", category: "Layanan Siswa", icon: <Calendar className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Akses lembar jadwal pelajaran resmi Kelas X, XI, XII & Simulasi TKA serta direktori bimbingan & penempatan Prakerin.", keywords: "jadwal kbm pelajaran prakerin pkl bimbingan siswa kelas x xi xii kalender akademik dokumen" },
     { title: "Jadwal Pelajaran KOSP & JP", category: "Kurikulum Merdeka", icon: <BookOpen className="w-6 h-6 text-blue-600" />, link: "/kurikulum", desc: "Unduh struktur kurikulum, alokasi jam pelajaran (JP), dan jadwal pembelajaran aktif untuk semua kelas.", keywords: "jadwal pelajaran kosp kurikulum merdeka jam jp unduh dokumen guru jadwal aktif" },
     { title: "LSP-P1 Lisensi BNSP", category: "Sertifikasi Profesi", icon: <ShieldCheck className="w-6 h-6 text-amber-600" />, link: "https://lspsmktanjungpriok1.netlify.app/", desc: "Uji kompetensi keahlian bersertifikat Garuda Emas BNSP untuk jaminan daya saing tinggi di industri.", keywords: "lsp bnsp sertifikasi profesi kompetensi garuda emas ujian lisensi nasional" },
     { title: "Modul Generator PPM Guru", category: "Layanan Guru", icon: <FileText className="w-6 h-6 text-purple-600" />, link: "https://sites.google.com/view/modulgeneratesmktp1/moodul-generator", desc: "Akses dan generate modul ajar interaktif sesuai standar pemodelan pembelajaran bagi guru vokasi.", keywords: "modul generator ppm guru ajar mengajar administrasi perangkat mengajar rpp" },
     { title: "Bimbingan & Jurnal PKL Prakerin", category: "Kemitraan Industri", icon: <Compass className="w-6 h-6 text-cyan-600" />, link: "/prakerin", desc: "Panduan penyusunan laporan, jadwal bimbingan, dan info magang di PT Dok Kodja Bahari & Astra.", keywords: "pkl prakerin magang industri dok kodja bahari astra jurnal laporan lisan bimbingan" },
     { title: "Pendaftaran Siswa Baru (SPMB 2026)", category: "PPDB Online", icon: <GraduationCap className="w-6 h-6 text-red-600" />, link: "https://smktanjungpriok1.sch.id/ppdb", desc: "Daftar online sekarang di portal resmi dan ikuti rangkaian tes minat bakat calon murid baru.", keywords: "ppdb spmb daftar baru siswa 2026 tes minat bakat online masuk pendaftaran seleksi" },
-    { title: "Warta & Pengumuman UKK", category: "Berita Sekolah", icon: <Award className="w-6 h-6 text-indigo-600" />, link: "/warta", desc: "Jadwal pelaksanaan UKK Mandiri, ujian lisan, dan update kalender akademik terbaru tahun ini.", keywords: "warta berita pengumuman ukk ujian sekolah jadwal agenda kegiatan kalender libur" },
     { title: "Portfolio Teaching Factory (PriokArt)", category: "Unit Produksi", icon: <Tv className="w-6 h-6 text-pink-600" />, link: "https://www.priokart.my.id", desc: "Eksplorasi karya desain grafis, fotografi industri, dan videografi komersial karya siswa DKV.", keywords: "priokart tefa teaching factory dkv multimedia desain grafis foto video produksi" }
   ];
 
@@ -755,6 +756,14 @@ const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
+              category="Asesmen STS 2026"
+              title="Pelaksanaan STS Ganjil TA 2026/2027 Kelas X - XII"
+              date="28 September - 2 Oktober 2026"
+              excerpt="Pelaksanaan STS Ganjil tgl 28 Sept - 2 Okt 2026. Seluruh murid kelas X - XII wajib hadir tepat waktu dan membawa Alat tulis pribadi & kartu Ujian."
+              imageUrl="/sts/page-1.svg"
+              link="/warta#sts"
+            />
+            <AnnouncementCard 
               category="TOEIC 2026"
               title="Pelaksanaan Seleksi TOEIC Kelas XI &amp; XII"
               date="24 - 25 September 2026"
@@ -769,14 +778,6 @@ const Home: React.FC = () => {
               excerpt="Pelaksanaan Uji Kompetensi Keahlian (UKK) Mandiri SMK Tanjung Priok 1 dilaksanakan tanggal 20 - 24 April 2026. Persiapkan diri Anda dengan maksimal."
               imageUrl="https://drive.google.com/thumbnail?id=1ydNqBuZEleKQ7uutqM4hvBI84CPPXRCw&sz=w1600"
               link="/warta"
-            />
-            <AnnouncementCard 
-              category="Prakerin"
-              title="Ujian Lisan Laporan Prakerin 2026"
-              date="06 April 2026"
-              excerpt="Evaluasi akhir Praktik Kerja Industri melalui paparan laporan dan tanya jawab lisan tgl 13 - 15 April 2026."
-              imageUrl="https://drive.google.com/thumbnail?id=1Ya27lfM7idDYTs1RbCl_rR3Nm2Zu8UBo&sz=w1600"
-              link="/prakerin"
             />
           </div>
         </div>

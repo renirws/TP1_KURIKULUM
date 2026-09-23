@@ -24,11 +24,97 @@ import {
   Filter
 } from 'lucide-react';
 import { toeicSlides, toeicParticipants } from '../services/toeicData';
+import { 
+  stsSlides, 
+  stsScheduleDays, 
+  stsProctors, 
+  stsSubjects, 
+  roomClassMapping, 
+  getProctorNameByCode, 
+  getSubjectNameByCode 
+} from '../services/stsData';
 
 const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
   const [zoomScale, setZoomScale] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // STS State
+  const [stsSlide, setStsSlide] = useState(0);
+  const [stsClassFilter, setStsClassFilter] = useState<string>('Semua');
+  const [stsDayFilter, setStsDayFilter] = useState<string>('Semua');
+  const [stsSearchQuery, setStsSearchQuery] = useState<string>('');
+
+  // Filtered STS Schedule Slots for Interactive Finder
+  const filteredStsSlots = useMemo(() => {
+    const results: Array<{
+      day: string;
+      date: string;
+      hariKe: string;
+      jam: number;
+      time: string;
+      className: string;
+      room: number;
+      jurusan: string;
+      jenjang: string;
+      subjectCode: string;
+      subjectName: string;
+      proctorCode: string;
+      proctorName: string;
+    }> = [];
+
+    stsScheduleDays.forEach(d => {
+      if (stsDayFilter !== 'Semua' && !d.day.toLowerCase().includes(stsDayFilter.toLowerCase())) {
+        return;
+      }
+
+      d.sessions.forEach(sess => {
+        roomClassMapping.forEach(rc => {
+          if (stsClassFilter !== 'Semua' && rc.className !== stsClassFilter) {
+            return;
+          }
+
+          const subjectCode = sess.matpel[rc.className] || '-';
+          const proctorCode = sess.proctors[rc.room] || '-';
+          const subjectName = getSubjectNameByCode(subjectCode);
+          const proctorName = getProctorNameByCode(proctorCode);
+
+          if (stsSearchQuery.trim() !== '') {
+            const query = stsSearchQuery.toLowerCase();
+            const matchesQuery =
+              rc.className.toLowerCase().includes(query) ||
+              rc.jurusan.toLowerCase().includes(query) ||
+              rc.jenjang.toLowerCase().includes(query) ||
+              subjectName.toLowerCase().includes(query) ||
+              proctorName.toLowerCase().includes(query) ||
+              d.day.toLowerCase().includes(query) ||
+              `ruang ${rc.room}`.includes(query) ||
+              `kd ${subjectCode}`.includes(query);
+
+            if (!matchesQuery) return;
+          }
+
+          results.push({
+            day: d.day,
+            date: d.date,
+            hariKe: d.hariKe,
+            jam: sess.jam,
+            time: sess.time,
+            className: rc.className,
+            room: rc.room,
+            jurusan: rc.jurusan,
+            jenjang: rc.jenjang,
+            subjectCode,
+            subjectName,
+            proctorCode,
+            proctorName
+          });
+        });
+      });
+    });
+
+    return results;
+  }, [stsDayFilter, stsClassFilter, stsSearchQuery]);
 
   // TOEIC State
   const [toeicSlide, setToeicSlide] = useState(0);
@@ -182,9 +268,9 @@ const News: React.FC = () => {
   return (
     <main className="min-h-screen bg-gray-50 py-8 md:py-12">
       <SEO 
-        title="Warta Kurikulum: Pelaksanaan Seleksi TOEIC 2026/2027 & Agenda Ujian | SMK TANJUNG PRIOK 1"
-        description="Pengumuman resmi Seleksi TOEIC SMK Tanjung Priok 1 Jakarta Utara tgl 24 September 2026 (Kelas XII) & 25 September 2026 (Kelas XI). Jadwal sesi, ruangan laboratorium, daftar peserta, dan kewajiban membawa earphone pribadi."
-        keywords="TOEIC SMK Tanjung Priok 1, Seleksi TOEIC 2026, Jadwal TOEIC Kelas XI XII, Ruang Lab TOEIC, Earphone Seleksi TOEIC, Warta Kurikulum SMK Tanjung Priok 1, Berita Sekolah Jakarta Utara"
+        title="Warta Kurikulum: Pelaksanaan STS Ganjil TA 2026/2027 & Seleksi TOEIC | SMK TANJUNG PRIOK 1"
+        description="Pengumuman resmi Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 tgl 28 September - 2 Oktober 2026. Seluruh murid kelas X - XII wajib hadir tepat waktu dan membawa Alat Tulis pribadi & Kartu Ujian. Serta Seleksi TOEIC 24 - 25 September 2026."
+        keywords="STS Ganjil SMK Tanjung Priok 1, Jadwal STS 2026, Kartu Ujian STS, Alat Tulis Pribadi STS, Jadwal Ujian Kelas X XI XII, TOEIC SMK Tanjung Priok 1, Seleksi TOEIC 2026, Warta Kurikulum SMK Tanjung Priok 1, Berita Sekolah Jakarta Utara"
         canonical="https://tp1kurikulum.my.id/warta"
       />
       <div className="container mx-auto px-4">
@@ -193,18 +279,482 @@ const News: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-6xl mx-auto space-y-10 md:space-y-12"
         >
-          {/* Breadcrumb Navigation */}
-          <header>
-            <Link to="/" className="inline-flex items-center text-[#3b82f6] font-black mb-2 hover:underline group text-xs md:text-sm uppercase tracking-widest">
+          {/* Breadcrumb Navigation & Fast Jump Pills */}
+          <header className="space-y-3">
+            <Link to="/" className="inline-flex items-center text-[#3b82f6] font-black hover:underline group text-xs md:text-sm uppercase tracking-widest">
               <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 mr-1 transform group-hover:-translate-x-1 transition" />
               Kembali ke Beranda
             </Link>
+
+            {/* Quick In-Page Jump Anchor Bar */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar text-xs">
+              <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <span>Pilih Warta:</span>
+              </span>
+              <a 
+                href="#sts" 
+                className="bg-indigo-600 text-white font-extrabold px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-indigo-700 transition flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>📝 STS Ganjil (28 Sept - 2 Okt)</span>
+              </a>
+              <a 
+                href="#toeic" 
+                className="bg-white text-slate-700 border border-slate-200 font-bold px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>🎧 Seleksi TOEIC (24 - 25 Sept)</span>
+              </a>
+              <a 
+                href="#tka" 
+                className="bg-white text-slate-700 border border-slate-200 font-bold px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>💻 Simulasi TKA</span>
+              </a>
+              <a 
+                href="#ukk" 
+                className="bg-white text-slate-700 border border-slate-200 font-bold px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>⚙️ UKK Mandiri</span>
+              </a>
+            </div>
           </header>
 
           {/* =========================================================================
-              FEATURED SECTION: PELAKSANAAN SELEKSI TOEIC KELAS XI & XII (24-25 SEPT 2026)
+              FEATURED SECTION 1: PELAKSANAAN ASESMEN STS GANJIL TA 2026/2027 (28 SEPT - 2 OKT 2026)
              ========================================================================= */}
-          <article id="toeic" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-200/80">
+          <article id="sts" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-indigo-200/80 scroll-mt-24">
+            {/* Header Banner with Premium Indigo/Navy Gradient */}
+            <header className="bg-gradient-to-br from-[#0a0f1d] via-[#1e1b4b] to-[#312e81] p-6 md:p-12 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
+                <FileText className="w-80 h-80 text-white" />
+              </div>
+              <div className="relative z-10 space-y-4">
+                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                  <span className="bg-amber-400 text-slate-950 font-black px-3.5 py-1 rounded-full text-[11px] md:text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 fill-current" />
+                    <span>AGENDA UTAMA AKADEMIK</span>
+                  </span>
+                  <span className="text-white/40 hidden sm:inline">•</span>
+                  <span className="bg-emerald-500/20 backdrop-blur-md text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>28 SEPTEMBER – 2 OKTOBER 2026</span>
+                  </span>
+                  <span className="bg-purple-500/20 backdrop-blur-md text-purple-200 border border-purple-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <UserCheck className="w-3.5 h-3.5 text-purple-300" />
+                    <span>SELURUH KELAS X, XI &amp; XII</span>
+                  </span>
+                </div>
+
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+                  Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027
+                </h1>
+
+                <p className="text-indigo-100/90 leading-relaxed text-sm md:text-base lg:text-lg max-w-3xl font-medium">
+                  Pengumuman resmi kurikulum pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil Tahun Pelajaran 2026/2027 bagi seluruh murid Kelas X, XI, dan XII SMK Tanjung Priok 1 Jakarta Utara (Ruang 1 s.d Ruang 13).
+                </p>
+
+                {/* Mandatory Requirements Alert Box */}
+                <div className="pt-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 bg-amber-500/20 border border-amber-300/40 rounded-2xl p-3.5 sm:px-5 sm:py-3.5 backdrop-blur-md text-amber-200 text-xs md:text-sm font-semibold">
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <AlertTriangle className="w-5 h-5 text-amber-300 flex-shrink-0" />
+                      <span className="font-black text-amber-100 uppercase tracking-wide">Instruksi Penting:</span>
+                    </div>
+                    <div className="text-amber-100 leading-snug">
+                      Seluruh murid kelas X - XII <strong>wajib hadir tepat waktu</strong> serta <strong>membawa Alat tulis pribadi &amp; kartu Ujian</strong>. Tidak diperkenankan meminjam perlengkapan saat ujian berlangsung.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            {/* Content Body */}
+            <div className="p-5 md:p-10 lg:p-12 space-y-10">
+              {/* 4 Essential Summary Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Card 1: Tanggal Pelaksanaan */}
+                <div className="bg-indigo-50/80 border border-indigo-200/70 p-5 rounded-2xl">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-3 shadow-md shadow-indigo-500/20">
+                    <Calendar className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-indigo-600 block">Jadwal Pelaksanaan</span>
+                  <h4 className="text-base font-black text-slate-900 mt-1">28 Sept – 2 Okt 2026</h4>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Senin s.d Jum'at (5 Hari Ujian). Jam ke-1 dimulai tepat pukul 07.00 WIB setiap hari.
+                  </p>
+                </div>
+
+                {/* Card 2: Seluruh Jenjang X, XI, XII */}
+                <div className="bg-blue-50/80 border border-blue-200/70 p-5 rounded-2xl">
+                  <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-md shadow-blue-500/20">
+                    <UserCheck className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 block">Target Peserta</span>
+                  <h4 className="text-base font-black text-slate-900 mt-1">Kelas X, XI, dan XII</h4>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Wajib bagi seluruh murid jurusan DKV, TPK, TKRO, dan TL (13 Ruang Ujian).
+                  </p>
+                </div>
+
+                {/* Card 3: Alat Tulis Pribadi */}
+                <div className="bg-rose-50/80 border border-rose-200/70 p-5 rounded-2xl">
+                  <div className="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center mb-3 shadow-md shadow-rose-500/20">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-rose-600 block">Perlengkapan Wajib</span>
+                  <h4 className="text-base font-black text-slate-900 mt-1">Alat Tulis Pribadi</h4>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Wajib membawa pulpen, pensil 2B, penghapus &amp; penggaris sendiri. Dilarang pinjam-meminjam.
+                  </p>
+                </div>
+
+                {/* Card 4: Kartu Ujian Resmi */}
+                <div className="bg-emerald-50/80 border border-emerald-200/70 p-5 rounded-2xl">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-3 shadow-md shadow-emerald-500/20">
+                    <CheckCircle2 className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 block">Dokumen Wajib</span>
+                  <h4 className="text-base font-black text-slate-900 mt-1">Kartu Ujian STS</h4>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Wajib dibawa setiap hari dan ditunjukkan kepada Pengawas Ruang (Ruang 1 s.d 13).
+                  </p>
+                </div>
+              </div>
+
+              {/* -------------------------------------------------------------
+                  STS SLIDE SLIDER: SURAT EDARAN, MATRIKS JADWAL & KODE MAPEL (4 LEMBAR)
+                 ------------------------------------------------------------- */}
+              <div className="space-y-4 pt-2">
+                {/* Control bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-black text-[#0f172a] flex items-center gap-2">
+                      <Layers className="w-5 h-5 md:w-6 md:h-6 text-indigo-600" />
+                      <span>Slide Jadwal &amp; Lampiran Resmi STS Ganjil</span>
+                    </h3>
+                    <p className="text-slate-500 text-xs md:text-sm mt-0.5">
+                      Geser atau pilih lembar di bawah untuk melihat matriks jadwal, kode pengawas, dan daftar mata pelajaran.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button 
+                      onClick={() => handleZoom(stsSlides[stsSlide].imageUrl)}
+                      className="inline-flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer"
+                    >
+                      <ZoomIn className="w-4 h-4 text-indigo-400" />
+                      <span>Zoom Resolusi Tinggi</span>
+                    </button>
+
+                    <button 
+                      onClick={() => handlePrintImage(stsSlides[stsSlide].imageUrl, stsSlides[stsSlide].title)}
+                      className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer"
+                    >
+                      <Printer className="w-4 h-4" />
+                      <span>Cetak / PDF</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Slider Viewport Container */}
+                <div className="relative max-w-4xl mx-auto">
+                  {/* Active Slide Info Bar */}
+                  <div className="bg-slate-900 text-white p-3.5 md:p-4 rounded-t-2xl md:rounded-t-3xl flex items-center justify-between gap-3 border-b border-slate-800">
+                    <div className="flex items-center gap-2.5">
+                      <span className="bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 md:py-1 rounded-lg text-[10px] md:text-xs uppercase tracking-wider">
+                        {stsSlides[stsSlide].badge}
+                      </span>
+                      <div className="text-left">
+                        <h4 className="font-black text-xs md:text-sm text-white leading-tight">
+                          {stsSlides[stsSlide].title}
+                        </h4>
+                        <p className="text-slate-400 text-[10px] md:text-xs hidden sm:block">
+                          {stsSlides[stsSlide].subtitle}
+                        </p>
+                      </div>
+                    </div>
+
+                    <span className="text-[11px] md:text-xs font-mono text-slate-300 bg-slate-800 px-3 py-1 rounded-full border border-slate-700 whitespace-nowrap">
+                      Lembar {stsSlide + 1} / {stsSlides.length}
+                    </span>
+                  </div>
+
+                  {/* Main Interactive Document Stage with Touch Swipe */}
+                  <div 
+                    className="bg-slate-950 rounded-b-2xl md:rounded-b-3xl overflow-hidden relative shadow-2xl cursor-zoom-in border-x border-b border-slate-900 group select-none touch-pan-y"
+                    onClick={() => handleZoom(stsSlides[stsSlide].imageUrl)}
+                  >
+                    <div className="aspect-[1/1.38] sm:aspect-[1/1.35] md:aspect-[16/11] max-h-[78vh] flex items-center justify-center p-2 sm:p-4 bg-slate-950 overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        <motion.img 
+                          key={stsSlide}
+                          src={stsSlides[stsSlide].imageUrl}
+                          alt={stsSlides[stsSlide].title}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.2 }}
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.2}
+                          onDragEnd={(_, info) => {
+                            if (info.offset.x < -40) {
+                              setStsSlide((prev) => (prev + 1) % stsSlides.length);
+                            } else if (info.offset.x > 40) {
+                              setStsSlide((prev) => (prev - 1 + stsSlides.length) % stsSlides.length);
+                            }
+                          }}
+                          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.01] active:cursor-grabbing drop-shadow-xl"
+                          referrerPolicy="no-referrer"
+                        />
+                      </AnimatePresence>
+                    </div>
+
+                    {/* Overlay Zoom Hint */}
+                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4 pointer-events-none">
+                      <div className="bg-white text-slate-950 p-3 rounded-full shadow-2xl mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
+                        <ZoomIn className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs font-black uppercase tracking-wider bg-slate-900/90 px-4 py-1.5 rounded-full border border-white/20">
+                        Klik untuk Perbesar Gambar Dokumen
+                      </span>
+                    </div>
+
+                    {/* Left & Right Navigation Buttons */}
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setStsSlide((prev) => (prev - 1 + stsSlides.length) % stsSlides.length);
+                      }}
+                      className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-indigo-600 text-white p-2 sm:p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105 active:scale-95"
+                      aria-label="Lembar Sebelumnya"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setStsSlide((prev) => (prev + 1) % stsSlides.length);
+                      }}
+                      className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-indigo-600 text-white p-2 sm:p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105 active:scale-95"
+                      aria-label="Lembar Berikutnya"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+
+                    {/* Mobile swipe hint banner */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-slate-900/85 text-slate-300 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider backdrop-blur-md border border-white/10 pointer-events-none sm:hidden flex items-center gap-1">
+                      <span>👈 Usap ke kiri/kanan untuk geser 👉</span>
+                    </div>
+                  </div>
+
+                  {/* Thumbnail / Direct Quick-Jump Buttons (4 Lembar) */}
+                  <div className="mt-3 md:mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+                    {stsSlides.map((item, idx) => (
+                      <button
+                        key={item.id}
+                        onClick={() => setStsSlide(idx)}
+                        className={`p-2.5 sm:p-3 rounded-xl text-left transition-all duration-300 cursor-pointer border flex flex-col justify-between ${
+                          stsSlide === idx
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-md scale-[1.02]'
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-indigo-50 hover:border-indigo-300'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className={`w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-black ${
+                            stsSlide === idx ? 'bg-white text-indigo-700' : 'bg-slate-100 text-slate-700'
+                          }`}>
+                            {idx + 1}
+                          </span>
+                          <span className={`text-[10px] font-black uppercase tracking-wider ${
+                            stsSlide === idx ? 'text-indigo-200' : 'text-indigo-600'
+                          }`}>
+                            {item.badge.split(':')[0]}
+                          </span>
+                        </div>
+                        <span className="font-bold text-xs line-clamp-1">
+                          {item.title}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Document description box */}
+                  <div className="mt-3 p-3.5 bg-indigo-50/60 rounded-xl border border-indigo-100 text-xs text-indigo-900 flex items-start gap-2">
+                    <FileText className="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5" />
+                    <p className="font-medium leading-relaxed">
+                      {stsSlides[stsSlide].description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* -------------------------------------------------------------
+                  INTERACTIVE STS SCHEDULE & SUBJECT FINDER FOR SMARTPHONE
+                 ------------------------------------------------------------- */}
+              <div className="bg-slate-50 border border-slate-200/80 rounded-2xl md:rounded-3xl p-5 md:p-8 space-y-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-lg md:text-xl font-black text-slate-900 flex items-center gap-2">
+                      <Search className="w-5 h-5 text-indigo-600" />
+                      <span>Cek Jadwal Asesmen &amp; Pengawas Ruang Anda</span>
+                    </h3>
+                    <p className="text-xs md:text-sm text-slate-500 mt-0.5">
+                      Pilih kelas atau hari untuk melihat rincian mata pelajaran ujian, ruangan (Ruang 1 s.d 13), dan guru pengawas.
+                    </p>
+                  </div>
+
+                  <span className="text-xs font-bold bg-white text-indigo-700 border border-indigo-200 px-3.5 py-1.5 rounded-full shadow-sm self-start md:self-auto">
+                    {filteredStsSlots.length} Sesi Ujian Ditampilkan
+                  </span>
+                </div>
+
+                {/* Filter Controls */}
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                  {/* Search Input */}
+                  <div className="sm:col-span-6 relative">
+                    <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input 
+                      type="text"
+                      placeholder="Cari mapel / guru pengawas / ruang..."
+                      value={stsSearchQuery}
+                      onChange={(e) => setStsSearchQuery(e.target.value)}
+                      className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-xl text-xs md:text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm"
+                    />
+                    {stsSearchQuery && (
+                      <button 
+                        onClick={() => setStsSearchQuery('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Filter Kelas */}
+                  <div className="sm:col-span-3">
+                    <select 
+                      value={stsClassFilter}
+                      onChange={(e) => setStsClassFilter(e.target.value)}
+                      className="w-full py-2.5 px-3 bg-white border border-slate-300 rounded-xl text-xs md:text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm cursor-pointer"
+                    >
+                      <option value="Semua">Semua Kelas (13 Rombel)</option>
+                      {roomClassMapping.map((rc) => (
+                        <option key={rc.className} value={rc.className}>
+                          {rc.className} (Ruang {rc.room})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Filter Hari */}
+                  <div className="sm:col-span-3">
+                    <select 
+                      value={stsDayFilter}
+                      onChange={(e) => setStsDayFilter(e.target.value)}
+                      className="w-full py-2.5 px-3 bg-white border border-slate-300 rounded-xl text-xs md:text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm cursor-pointer"
+                    >
+                      <option value="Semua">Semua Hari (Senin - Jumat)</option>
+                      <option value="Senin">Senin, 28 September 2026</option>
+                      <option value="Selasa">Selasa, 29 September 2026</option>
+                      <option value="Rabu">Rabu, 30 September 2026</option>
+                      <option value="Kamis">Kamis, 1 Oktober 2026</option>
+                      <option value="Jumat">Jumat, 2 Oktober 2026</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Schedule Results Table & Mobile Cards */}
+                <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                  {filteredStsSlots.length === 0 ? (
+                    <div className="p-8 text-center text-slate-400 space-y-2">
+                      <Search className="w-8 h-8 mx-auto text-slate-300" />
+                      <p className="font-bold text-slate-600 text-sm">Tidak ada jadwal asesmen yang cocok dengan filter.</p>
+                      <p className="text-xs">Silakan ubah pilihan kelas, hari, atau kata kunci pencarian.</p>
+                    </div>
+                  ) : (
+                    <div>
+                      {/* Desktop Table Header */}
+                      <div className="hidden md:grid grid-cols-12 gap-2 bg-slate-100 px-4 py-3 text-xs font-black text-slate-700 uppercase tracking-wider border-b border-slate-200">
+                        <div className="col-span-2">Hari &amp; Waktu</div>
+                        <div className="col-span-2 text-center">Kelas &amp; Ruang</div>
+                        <div className="col-span-4">Mata Pelajaran</div>
+                        <div className="col-span-4">Guru Pengawas Ruang</div>
+                      </div>
+
+                      {/* Items List */}
+                      <div className="divide-y divide-slate-100 max-h-[500px] overflow-y-auto">
+                        {filteredStsSlots.map((item, idx) => (
+                          <div 
+                            key={idx}
+                            className="p-3.5 md:px-4 md:py-3 hover:bg-indigo-50/40 transition flex flex-col md:grid md:grid-cols-12 gap-2 text-xs text-slate-700 items-start md:items-center"
+                          >
+                            {/* Hari & Waktu */}
+                            <div className="md:col-span-2 w-full flex items-center justify-between md:block">
+                              <div className="font-black text-slate-900">{item.day}</div>
+                              <div className="text-[11px] text-slate-500 font-medium">{item.time}</div>
+                              <span className="md:hidden bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded text-[10px]">
+                                Jam {item.jam}
+                              </span>
+                            </div>
+
+                            {/* Kelas & Ruang */}
+                            <div className="md:col-span-2 w-full flex items-center justify-between md:justify-center gap-1.5 pt-1 md:pt-0">
+                              <span className="font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200/80 px-2.5 py-1 rounded-lg">
+                                {item.className}
+                              </span>
+                              <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-semibold text-[11px]">
+                                Ruang {item.room}
+                              </span>
+                            </div>
+
+                            {/* Mata Pelajaran */}
+                            <div className="md:col-span-4 w-full pt-1 md:pt-0">
+                              {item.subjectCode === '-' ? (
+                                <span className="text-slate-400 italic">Tidak ada asesmen / Selesai</span>
+                              ) : (
+                                <div className="space-y-0.5">
+                                  <div className="font-black text-slate-900 text-xs sm:text-sm">
+                                    {item.subjectName}
+                                  </div>
+                                  <span className="inline-block text-[10px] font-mono bg-blue-50 text-blue-700 border border-blue-200 px-1.5 py-0.5 rounded">
+                                    Kode KD: {item.subjectCode}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Guru Pengawas */}
+                            <div className="md:col-span-4 w-full pt-1 md:pt-0">
+                              {item.proctorCode === '-' ? (
+                                <span className="text-slate-400 italic">-</span>
+                              ) : (
+                                <div className="flex items-center gap-1.5">
+                                  <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 font-mono text-[10px] font-bold flex items-center justify-center flex-shrink-0">
+                                    {item.proctorCode}
+                                  </span>
+                                  <span className="font-bold text-slate-800">
+                                    {item.proctorName}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+          {/* =========================================================================
+              FEATURED SECTION 2: PELAKSANAAN SELEKSI TOEIC KELAS XI & XII (24-25 SEPT 2026)
+             ========================================================================= */}
+          <article id="toeic" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-200/80 scroll-mt-24">
             {/* Header Banner */}
             <header className="bg-gradient-to-br from-[#0b192c] via-[#1e3a8a] to-[#2563eb] p-6 md:p-12 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
