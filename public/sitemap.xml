@@ -1,23 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.schema.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tp1kurikulum.my.id/</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tp1kurikulum.my.id/warta</loc>
-    <lastmod>2026-04-21</lastmod>
-    <priority>0.8</priority>
+    <loc>https://tp1kurikulum.my.id/tautan</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tp1kurikulum.my.id/galeri</loc>
-    <lastmod>2026-04-21</lastmod>
-    <priority>0.7</priority>
+    <loc>https://tp1kurikulum.my.id/warta</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://tp1kurikulum.my.id/kurikulum</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/siswa</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/guru</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/prakerin</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/berkas</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tp1kurikulum.my.id/galeri</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

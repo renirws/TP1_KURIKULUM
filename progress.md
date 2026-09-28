@@ -23,6 +23,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 12 | **Pembaruan Link Login Ruang Guru** | ✅ Selesai | Memperbarui tautan portal Ruang Guru menjadi link login resmi `https://kurikulum.smktanjungpriok1.sch.id/login` pada seluruh kartu, SEO, dan direktori tautan penting. | Halaman Guru (`/guru`) & Tautan (`/tautan`) |
 | 13 | **Slide Slider & Sistem Pencarian Seleksi TOEIC** | ✅ Selesai | Implementasi slider 5 lembar edaran & jadwal sesi TOEIC (24-25 September 2026), filter nama siswa/ruangan/sesi interaktif, peringatan wajib earphone, serta optimasi SEO & smartphone. | Warta (`/warta`) & Home (`/`) |
 | 14 | **Slide Slider & Jadwal Asesmen STS Ganjil 2026/2027** | ✅ Selesai | Implementasi slide slider 4 lembar matriks jadwal, kode pengawas (01-22), kode mapel (KD 01-69), filter jadwal interaktif siswa/ruang, peringatan wajib hadir tepat waktu, bawa alat tulis pribadi & kartu ujian (28 Sept - 2 Okt 2026). | Warta (`/warta`), Home (`/`), Guru (`/guru`) |
+| 15 | **Integrasi Katalog Buku Kemendikdasmen & Optimasi Mobile SEO Senior** | ✅ Selesai | Menambahkan tautan resmi Katalog Buku Kemendikdasmen RI (`https://buku.kemendikdasmen.go.id/katalog`), pencarian instan & filter kategori, panduan unduh PDF, WebApplication & CollectionPage schema, PWA manifest, dan sitemap sitemap.xml 100% lengkap. | Tautan (`/tautan`), Home (`/`), Global (`index.html`, `manifest.json`, `sitemap.xml`) |
 
 ---
 
@@ -191,6 +192,31 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
     * Menambahkan entri pintasan "Asesmen STS Ganjil 2026/2027" pada bilah pencarian cepat (*Quick Navigation Shortcuts*) beranda.
   * **Optimasi SEO & Performa Smartphone**:
     * Memperbarui SEO title, meta keywords, dan meta description agar halaman terindeks teratas di mesin pencarian untuk pencarian terkait Asesmen STS SMK Tanjung Priok 1 Jakarta Utara.
+
+---
+
+### 15. Integrasi Katalog Buku Kemendikdasmen RI & Optimasi Mobile SEO Senior
+* **Permintaan**: 
+  1. Menambahkan tautan resmi `https://buku.kemendikdasmen.go.id/katalog` pada halaman tautan (`/tautan`).
+  2. Sebagai SEO senior handal, membuat desain web yang ramah mobile, UI/UX menarik, dan informatif sehingga aplikasi web berada di peringkat teratas mesin pencarian.
+* **Tindakan yang Dilakukan**:
+  * **Integrasi Tautan Resmi Katalog Buku Kemendikdasmen RI**:
+    * Menambahkan entri kartu utama dengan judul resmi: **KATALOG BUKU KEMENDIKDASMEN RI (Sistem Informasi Perbukuan Indonesia)**.
+    * Menyertakan deskripsi lengkap perbukuan Kurikulum Merdeka (Buku Teks Utama Siswa & Buku Panduan Guru jenjang SMK, SMA, SMP, dan SD).
+    * Menyediakan tombol aksi utama "Buka Katalog Buku" dan fitur interaktif "Salin Tautan" dengan konfirmasi feedback instan (*copied toast*).
+  * **Pencarian Cepat & Filter Kategori Interaktif (Mobile UX First)**:
+    * Menyediakan input pencarian langsung (*live search*) yang merespons seketika saat mengetik kata kunci seperti *buku, kemendikdasmen, kosp, login, soal, lsp, pkl*.
+    * Menambahkan tombol filter kategori geser (*horizontal swipe pill filter*): *Semua Tautan, Buku & Kurikulum, Ujian & Penilaian, Portal Guru, Siswa & Industri*.
+    * Menampilkan counter jumlah hasil aktif.
+  * **Panduan Edukatif & FAQ Interaktif (Rich Snippet Booster)**:
+    * Menambahkan modul panduan 4 langkah mudah mengunduh buku teks kurikulum merdeka SMK secara gratis dan 100% legal.
+    * Menambahkan akordeon FAQ interaktif dengan pertanyaan seputar lisensi buku Kemendikdasmen, akses portal guru, dan pengumpulan soal.
+  * **Optimasi SEO Senior & Arsitektur Mobile Web App (PWA)**:
+    * Mengintegrasikan Schema.org JSON-LD lengkap (`BreadcrumbList`, `CollectionPage`, `ItemList`, `FAQPage`, `WebApplication`).
+    * Membuat file `manifest.json` PWA lengkap untuk pengalaman instalasi aplikasi mobile (APK web app).
+    * Memperbarui `index.html` dengan meta tag mobile-web-app, tema warna peramban (`theme-color: #2563eb`), serta rel canonical dan hreflang.
+    * Memperbarui `sitemap.xml` mencakup seluruh rute halaman dengan prioritas dan jadwal perayapan mesin pencari (*crawl frequency*).
+    * Menambahkan pintasan "Katalog Buku Kemendikdasmen RI" pada bilah pencarian beranda (`/pages/Home.tsx`).
 
 ---
 

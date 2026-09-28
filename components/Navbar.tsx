@@ -85,8 +85,9 @@ export const Navbar: React.FC = () => {
           {/* Mobile Toggle */}
           <div className="md:hidden">
             <button
+              aria-label="Buka Menu Navigasi"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#0f172a] hover:text-[#3b82f6] focus:outline-none"
+              className="text-[#0f172a] hover:text-[#3b82f6] focus:outline-none p-2 rounded-lg"
             >
               <svg className="h-8 w-8 fill-current" viewBox="0 0 24 24">
                 {isOpen ? (
