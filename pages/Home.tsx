@@ -55,7 +55,7 @@ const Home: React.FC = () => {
 
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
-    { title: "Katalog Buku Kemendikdasmen RI", category: "Buku & Kurikulum", icon: <BookOpen className="w-6 h-6 text-teal-600" />, link: "/tautan", desc: "Akses dan unduh gratis ribuan Buku Teks Utama Kurikulum Merdeka Kemendikdasmen RI resmi untuk siswa & guru SMK.", keywords: "katalog buku kemendikdasmen kurikulum merdeka buku teks siswa modul panduan guru unduh pdf resmi kemdikbud" },
+    { title: "Katalog Buku Kemendikdasmen RI", category: "Buku & Kurikulum", icon: <BookOpen className="w-6 h-6 text-teal-600" />, link: "/warta#katalog-buku", desc: "Akses dan unduh gratis ribuan Buku Teks Utama Kurikulum Merdeka Kemendikdasmen RI resmi untuk siswa & guru SMK.", keywords: "katalog buku kemendikdasmen kurikulum merdeka buku teks siswa modul panduan guru unduh pdf resmi kemdikbud" },
     { title: "Asesmen STS Ganjil 2026/2027", category: "Ujian Semester", icon: <FileText className="w-6 h-6 text-indigo-600" />, link: "/warta#sts", desc: "Jadwal resmi STS Ganjil 28 Sept - 2 Okt 2026 seluruh Kelas X-XII. Wajib bawa alat tulis pribadi & kartu ujian.", keywords: "sts ganjil asesmen sumatif tengah semester jadwal kartu ujian alat tulis ruang 1 13 2026 x xi xii pengawas" },
     { title: "Seleksi TOEIC Kelas XI & XII", category: "Ujian Bahasa", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#toeic", desc: "Jadwal sesi & lab seleksi TOEIC 24-25 September 2026. Peserta wajib hadir tepat waktu dan membawa earphone pribadi.", keywords: "toeic seleksi bahasa inggris lab sesi 1 2 earphone headphone kelas xi xii" },
     { title: "Portal Siswa & Jadwal KBM", category: "Layanan Siswa", icon: <Calendar className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Akses lembar jadwal pelajaran resmi Kelas X, XI, XII & Simulasi TKA serta direktori bimbingan & penempatan Prakerin.", keywords: "jadwal kbm pelajaran prakerin pkl bimbingan siswa kelas x xi xii kalender akademik dokumen" },
@@ -765,20 +765,20 @@ const Home: React.FC = () => {
               link="/warta#sts"
             />
             <AnnouncementCard 
+              category="Buku Kurikulum Merdeka"
+              title="Akses Katalog Buku Kemendikdasmen RI"
+              date="Kemendikdasmen RI"
+              excerpt="Akses & unduh gratis ribuan Buku Teks Siswa SMK (Fase E & F), Buku Panduan Guru, serta Buku Pengayaan resmi dari Kemendikdasmen RI."
+              imageUrl="https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w800"
+              link="/warta#katalog-buku"
+            />
+            <AnnouncementCard 
               category="TOEIC 2026"
               title="Pelaksanaan Seleksi TOEIC Kelas XI &amp; XII"
               date="24 - 25 September 2026"
               excerpt="Pelaksanaan Seleksi TOEIC tgl 24 Sept (Kelas XII) &amp; 25 Sept (Kelas XI). Seluruh murid wajib membawa earphone pribadi &amp; hadir tepat waktu."
               imageUrl="/toeic/page-1.svg"
               link="/warta#toeic"
-            />
-            <AnnouncementCard 
-              category="TKA &amp; UKK"
-              title="Jadwal Pelaksanaan UKK Mandiri Kelas XII"
-              date="19 April 2026"
-              excerpt="Pelaksanaan Uji Kompetensi Keahlian (UKK) Mandiri SMK Tanjung Priok 1 dilaksanakan tanggal 20 - 24 April 2026. Persiapkan diri Anda dengan maksimal."
-              imageUrl="https://drive.google.com/thumbnail?id=1ydNqBuZEleKQ7uutqM4hvBI84CPPXRCw&sz=w1600"
-              link="/warta"
             />
           </div>
         </div>

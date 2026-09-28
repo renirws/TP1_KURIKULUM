@@ -21,7 +21,14 @@ import {
   UserCheck, 
   MapPin, 
   X,
-  Filter
+  Filter,
+  BookOpen,
+  BookMarked,
+  Copy,
+  Check,
+  ArrowRight,
+  ShieldCheck,
+  GraduationCap
 } from 'lucide-react';
 import { toeicSlides, toeicParticipants } from '../services/toeicData';
 import { 
@@ -38,6 +45,7 @@ const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
   const [zoomScale, setZoomScale] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [copiedKatalogLink, setCopiedKatalogLink] = useState(false);
 
   // STS State
   const [stsSlide, setStsSlide] = useState(0);
@@ -268,9 +276,9 @@ const News: React.FC = () => {
   return (
     <main className="min-h-screen bg-gray-50 py-8 md:py-12">
       <SEO 
-        title="Warta Kurikulum: Pelaksanaan STS Ganjil TA 2026/2027 & Seleksi TOEIC | SMK TANJUNG PRIOK 1"
-        description="Pengumuman resmi Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 tgl 28 September - 2 Oktober 2026. Seluruh murid kelas X - XII wajib hadir tepat waktu dan membawa Alat Tulis pribadi & Kartu Ujian. Serta Seleksi TOEIC 24 - 25 September 2026."
-        keywords="STS Ganjil SMK Tanjung Priok 1, Jadwal STS 2026, Kartu Ujian STS, Alat Tulis Pribadi STS, Jadwal Ujian Kelas X XI XII, TOEIC SMK Tanjung Priok 1, Seleksi TOEIC 2026, Warta Kurikulum SMK Tanjung Priok 1, Berita Sekolah Jakarta Utara"
+        title="Warta Kurikulum: Pelaksanaan STS Ganjil TA 2026/2027 & Akses Katalog Buku Kemendikdasmen | SMK TANJUNG PRIOK 1"
+        description="Warta Kurikulum SMK Tanjung Priok 1: Akses Katalog Buku Kurikulum Merdeka Kemendikdasmen RI, Pelaksanaan Asesmen STS Ganjil TA 2026/2027 tgl 28 Sept - 2 Okt 2026, Seleksi TOEIC, dan Simulasi TKA."
+        keywords="Katalog Buku Kemendikdasmen, Akses Katalog Buku Kurikulum Merdeka, Buku Teks Siswa SMK, STS Ganjil SMK Tanjung Priok 1, Jadwal STS 2026, Kartu Ujian STS, TOEIC SMK Tanjung Priok 1, Warta Kurikulum SMK Tanjung Priok 1"
         canonical="https://tp1kurikulum.my.id/warta"
       />
       <div className="container mx-auto px-4">
@@ -297,6 +305,12 @@ const News: React.FC = () => {
                 className="bg-indigo-600 text-white font-extrabold px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-indigo-700 transition flex items-center gap-1.5 cursor-pointer"
               >
                 <span>📝 STS Ganjil (28 Sept - 2 Okt)</span>
+              </a>
+              <a 
+                href="#katalog-buku" 
+                className="bg-teal-600 text-white font-extrabold px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-teal-700 transition flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>📚 Akses Katalog Buku Kemendikdasmen</span>
               </a>
               <a 
                 href="#toeic" 
@@ -752,6 +766,225 @@ const News: React.FC = () => {
           </article>
 
           {/* =========================================================================
+              FEATURED SECTION: AKSES KATALOG BUKU KEMENDIKDASMEN RI
+             ========================================================================= */}
+          <article id="katalog-buku" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-teal-200/80 scroll-mt-24">
+            {/* Header Banner with High-Contrast Emerald & Teal Theme */}
+            <header className="bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#0f172a] p-6 md:p-12 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
+                <BookMarked className="w-80 h-80 text-white" />
+              </div>
+              <div className="relative z-10 space-y-4">
+                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                  <span className="bg-amber-400 text-slate-950 font-black px-3.5 py-1 rounded-full text-[11px] md:text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 fill-current" />
+                    <span>SUMBER BELAJAR RESMI</span>
+                  </span>
+                  <span className="text-white/40 hidden sm:inline">•</span>
+                  <span className="bg-teal-500/20 backdrop-blur-md text-teal-200 border border-teal-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <BookMarked className="w-3.5 h-3.5 text-teal-300" />
+                    <span>KEMENDIKDASMEN RI</span>
+                  </span>
+                  <span className="bg-emerald-500/20 backdrop-blur-md text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>100% GRATIS &amp; LEGAL</span>
+                  </span>
+                </div>
+
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+                  Akses Katalog Buku Kurikulum Merdeka Kemendikdasmen RI
+                </h2>
+
+                <p className="text-teal-100/90 leading-relaxed text-sm md:text-base lg:text-lg max-w-3xl font-medium">
+                  Portal resmi Sistem Informasi Perbukuan Kementerian Pendidikan Dasar dan Menengah RI. Akses dan unduh gratis ribuan <strong>Buku Teks Utama Siswa</strong>, <strong>Buku Panduan Guru</strong>, dan <strong>Buku Nonteks Pengayaan</strong> terverifikasi untuk jenjang SMK (Fase E &amp; F), SMA, SMP, dan SD.
+                </p>
+
+                {/* Primary Action Buttons in Header */}
+                <div className="pt-3 flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://buku.kemendikdasmen.go.id/katalog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 bg-teal-400 hover:bg-teal-300 text-slate-950 font-black px-6 py-3.5 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all duration-200 shadow-lg shadow-teal-500/25 active:scale-95 cursor-pointer"
+                  >
+                    <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-slate-950" />
+                    <span>AKSES KATALOG BUKU</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText("https://buku.kemendikdasmen.go.id/katalog").then(() => {
+                        setCopiedKatalogLink(true);
+                        setTimeout(() => setCopiedKatalogLink(false), 2500);
+                      });
+                    }}
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-5 py-3.5 rounded-2xl text-xs md:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+                  >
+                    {copiedKatalogLink ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span className="text-emerald-300 font-black">Tautan Tersalin!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4 text-teal-300" />
+                        <span>Salin Tautan Resmi</span>
+                      </>
+                    )}
+                  </button>
+
+                  <Link
+                    to="/tautan"
+                    className="inline-flex items-center gap-1.5 text-teal-300 hover:text-white font-bold text-xs md:text-sm px-3 py-2 transition"
+                  >
+                    <span>Lihat di Halaman Tautan</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </header>
+
+            <div className="p-6 md:p-12 space-y-10">
+              {/* Feature 3 Cards Grid */}
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-gradient-to-br from-teal-50/80 to-emerald-50/50 p-6 md:p-8 rounded-3xl border border-teal-100/80 flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-teal-600 text-white flex items-center justify-center mb-5 shadow-md shadow-teal-600/20">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full mb-3 inline-block">
+                      Untuk Siswa SMK
+                    </span>
+                    <h3 className="text-lg font-black text-slate-900 mb-2">Buku Teks Siswa (Fase E &amp; F)</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      Buku teks utama resmi untuk Kelas X (Fase E) dan Kelas XI-XII (Fase F) mencakup mata pelajaran umum serta konsentrasi kejuruan Pemesinan Kapal, Otomotif TKRO, DKV, dan Teknik Logistik.
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-teal-100 text-teal-700 font-bold text-xs flex items-center gap-1">
+                    <CheckCircle2 className="w-4 h-4 text-teal-600" />
+                    <span>Format PDF Full Version</span>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-50/80 to-indigo-50/50 p-6 md:p-8 rounded-3xl border border-blue-100/80 flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-5 shadow-md shadow-blue-600/20">
+                      <GraduationCap className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full mb-3 inline-block">
+                      Untuk Pendidik &amp; Guru
+                    </span>
+                    <h3 className="text-lg font-black text-slate-900 mb-2">Buku Panduan Guru</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      Pedoman mengajar resmi memuat strategi pembelajaran berdiferensiasi, Capaian Pembelajaran (CP), Alur Tujuan Pembelajaran (ATP), dan instrumen asesmen Kurikulum Merdeka.
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-blue-100 text-blue-700 font-bold text-xs flex items-center gap-1">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                    <span>Panduan Modul Ajar</span>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-amber-50/80 to-orange-50/50 p-6 md:p-8 rounded-3xl border border-amber-100/80 flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-amber-600 text-white flex items-center justify-center mb-5 shadow-md shadow-amber-600/20">
+                      <Sparkles className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full mb-3 inline-block">
+                      Literasi Vokasi
+                    </span>
+                    <h3 className="text-lg font-black text-slate-900 mb-2">Buku Nonteks &amp; Pengayaan</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      Buku bacaan interaktif penguat karakter Profil Pelajar Pancasila, wawasan keselamatan kerja K3, budaya industri, dan keterampilan teknologi abad ke-21.
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-amber-100 text-amber-700 font-bold text-xs flex items-center gap-1">
+                    <CheckCircle2 className="w-4 h-4 text-amber-600" />
+                    <span>Bebas Akses Tanpa Registrasi</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step by Step Guide Container */}
+              <div className="bg-slate-900 text-white p-6 md:p-8 rounded-3xl border border-slate-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+                  <div>
+                    <span className="text-teal-400 font-mono text-xs uppercase tracking-widest block font-bold">
+                      Panduan Praktis Smartphone &amp; Komputer
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-black text-white mt-1">
+                      Cara Akses &amp; Unduh Buku Kurikulum Merdeka
+                    </h3>
+                  </div>
+                  <a
+                    href="https://buku.kemendikdasmen.go.id/katalog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition self-start sm:self-auto shrink-0 cursor-pointer"
+                  >
+                    <span>Kunjungi Portal Resmi</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl">
+                    <div className="w-8 h-8 rounded-xl bg-teal-500 text-slate-950 font-black flex items-center justify-center text-sm mb-3">
+                      1
+                    </div>
+                    <div className="font-bold text-white text-sm mb-1">Buka Katalog</div>
+                    <div className="text-xs text-slate-300 leading-relaxed font-mono truncate">
+                      buku.kemendikdasmen.go.id/katalog
+                    </div>
+                  </div>
+
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl">
+                    <div className="w-8 h-8 rounded-xl bg-teal-500 text-slate-950 font-black flex items-center justify-center text-sm mb-3">
+                      2
+                    </div>
+                    <div className="font-bold text-white text-sm mb-1">Pilih Jenjang SMK</div>
+                    <div className="text-xs text-slate-300 leading-relaxed">
+                      Filter ke jenjang <strong>SMK</strong> dan tentukan fase belajar (Fase E atau Fase F).
+                    </div>
+                  </div>
+
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl">
+                    <div className="w-8 h-8 rounded-xl bg-teal-500 text-slate-950 font-black flex items-center justify-center text-sm mb-3">
+                      3
+                    </div>
+                    <div className="font-bold text-white text-sm mb-1">Pilih Mata Pelajaran</div>
+                    <div className="text-xs text-slate-300 leading-relaxed">
+                      Cari buku mapel umum atau dasar kejuruan (DKV, TKRO, TPK, Logistik).
+                    </div>
+                  </div>
+
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl">
+                    <div className="w-8 h-8 rounded-xl bg-teal-500 text-slate-950 font-black flex items-center justify-center text-sm mb-3">
+                      4
+                    </div>
+                    <div className="font-bold text-white text-sm mb-1">Unduh Dokumen PDF</div>
+                    <div className="text-xs text-slate-300 leading-relaxed">
+                      Klik <strong>&quot;Unduh PDF&quot;</strong> atau <strong>&quot;Baca Online&quot;</strong> langsung dari HP.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Kurikulum Team Notice */}
+              <div className="p-4 md:p-5 bg-teal-50 rounded-2xl border border-teal-200/80 flex items-start gap-3.5 text-teal-900">
+                <ShieldCheck className="w-6 h-6 text-teal-700 shrink-0 mt-0.5" />
+                <div className="text-xs md:text-sm leading-relaxed">
+                  <span className="font-black block uppercase tracking-wide text-teal-950 mb-0.5">
+                    Himbauan Tim Kurikulum SMK Tanjung Priok 1:
+                  </span>
+                  Seluruh peserta didik dihimbau mengunduh buku teks digital sesuai jadwal KBM aktif untuk menunjang pembelajaran mandiri di rumah dan persiapan menghadapi asesmen berkala (STS, SAS, dan UKK).
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* =========================================================================
               FEATURED SECTION 2: PELAKSANAAN SELEKSI TOEIC KELAS XI & XII (24-25 SEPT 2026)
              ========================================================================= */}
           <article id="toeic" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-200/80 scroll-mt-24">
@@ -1191,7 +1424,7 @@ const News: React.FC = () => {
           {/* =========================================================================
               TKA SIMULATION SECTION - KELAS XII
              ========================================================================= */}
-          <article className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-100/80">
+          <article id="tka" className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-100/80 scroll-mt-24">
             <header className="bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-8 md:p-12 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                 <FileText className="w-64 h-64 text-white" />
@@ -1441,7 +1674,7 @@ const News: React.FC = () => {
           {/* =========================================================================
               UKK ANNOUNCEMENT SECTION
              ========================================================================= */}
-          <article className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-blue-100">
+          <article id="ukk" className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-blue-100 scroll-mt-24">
             <header className="bg-gradient-to-r from-[#0f172a] to-[#3b82f6] p-8 text-white">
               <div className="flex items-center space-x-3 mb-4">
                 <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/30">Info Kurikulum</span>

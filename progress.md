@@ -24,6 +24,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 13 | **Slide Slider & Sistem Pencarian Seleksi TOEIC** | ✅ Selesai | Implementasi slider 5 lembar edaran & jadwal sesi TOEIC (24-25 September 2026), filter nama siswa/ruangan/sesi interaktif, peringatan wajib earphone, serta optimasi SEO & smartphone. | Warta (`/warta`) & Home (`/`) |
 | 14 | **Slide Slider & Jadwal Asesmen STS Ganjil 2026/2027** | ✅ Selesai | Implementasi slide slider 4 lembar matriks jadwal, kode pengawas (01-22), kode mapel (KD 01-69), filter jadwal interaktif siswa/ruang, peringatan wajib hadir tepat waktu, bawa alat tulis pribadi & kartu ujian (28 Sept - 2 Okt 2026). | Warta (`/warta`), Home (`/`), Guru (`/guru`) |
 | 15 | **Integrasi Katalog Buku Kemendikdasmen & Optimasi Mobile SEO Senior** | ✅ Selesai | Menambahkan tautan resmi Katalog Buku Kemendikdasmen RI (`https://buku.kemendikdasmen.go.id/katalog`), pencarian instan & filter kategori, panduan unduh PDF, WebApplication & CollectionPage schema, PWA manifest, dan sitemap sitemap.xml 100% lengkap. | Tautan (`/tautan`), Home (`/`), Global (`index.html`, `manifest.json`, `sitemap.xml`) |
+| 16 | **Akses Katalog Buku Kemendikdasmen di Warta Kurikulum** | ✅ Selesai | Integrasi seksi unggulan resmi AKSES KATALOG BUKU Kemendikdasmen RI pada Warta Kurikulum (`/warta#katalog-buku`), tombol aksi cepat, salin tautan interaktif, 4 langkah panduan unduh buku di smartphone, serta sinkronisasi kartu pengumuman beranda. | Warta (`/warta`), Home (`/`) |
 
 ---
 
@@ -217,6 +218,27 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
     * Memperbarui `index.html` dengan meta tag mobile-web-app, tema warna peramban (`theme-color: #2563eb`), serta rel canonical dan hreflang.
     * Memperbarui `sitemap.xml` mencakup seluruh rute halaman dengan prioritas dan jadwal perayapan mesin pencari (*crawl frequency*).
     * Menambahkan pintasan "Katalog Buku Kemendikdasmen RI" pada bilah pencarian beranda (`/pages/Home.tsx`).
+
+---
+
+### 16. Integrasi Seksi Unggulan AKSES KATALOG BUKU di Halaman Warta Kurikulum
+* **Permintaan**: Menambahkan informasi dan tombol **AKSES KATALOG BUKU** dengan tautan `https://buku.kemendikdasmen.go.id/katalog` di halaman Warta Kurikulum (`/pages/News.tsx`).
+* **Tindakan yang Dilakukan**:
+  * **Navigasi Cepat Cepat Dalam Halaman (*In-Page Jump Anchors*)**:
+    * Menambahkan pill tombol navigasi cepat `📚 Akses Katalog Buku Kemendikdasmen` yang langsung menggulir mulus ke seksi `#katalog-buku`.
+    * Memastikan seluruh tautan anchor (`#sts`, `#katalog-buku`, `#toeic`, `#tka`, `#ukk`) memiliki atribut `id` dan `scroll-mt-24` agar tidak tertutup navbar atas saat diakses dari smartphone.
+  * **Desain Artikel Utama Berstandar Vokasi & SEO Senior**:
+    * Menggunakan tema visual hijau zamrud (*emerald-teal*) berpadu navy dengan kontras tinggi (WCAG AAA) yang mencerminkan identitas perbukuan nasional.
+    * Menyematkan badge resmi: *SUMBER BELAJAR RESMI*, *KEMENDIKDASMEN RI*, dan *100% GRATIS & LEGAL*.
+    * Menyediakan tombol aksi utama **AKSES KATALOG BUKU** (`https://buku.kemendikdasmen.go.id/katalog`), tombol **Salin Tautan Resmi** dengan feedback animasi "Tersalin!", serta tautan rujukan internal ke `/tautan`.
+  * **3 Pilar Modul Perbukuan Kurikulum Merdeka**:
+    1. *Buku Teks Siswa (Fase E & F)* untuk jenjang Kelas X dan Kelas XI-XII pada mapel umum & kejuruan (DKV, Otomotif TKRO, Pemesinan Kapal, Teknik Logistik).
+    2. *Buku Panduan Guru* mencakup modul ajar, diferensiasi pembelajaran, dan instrumen asesmen.
+    3. *Buku Nonteks & Pengayaan Vokasi* penguat literasi industri, numerasi, dan budaya kerja.
+  * **Panduan 4 Langkah Akses Smartphone**:
+    * Panduan langkah demi langkah cara mencari, memilih jenjang SMK, dan mengunduh berkas PDF resmi dari ponsel maupun laptop.
+  * **Sinkronisasi Beranda (`/pages/Home.tsx`)**:
+    * Menampilkan kartu berita resmi "Akses Katalog Buku Kemendikdasmen RI" pada grid warta akademik beranda serta menghubungkan pintasan pencarian cepat ke `/warta#katalog-buku`.
 
 ---
 
