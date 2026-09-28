@@ -359,7 +359,7 @@ const News: React.FC = () => {
                   </span>
                 </div>
 
-                <h1 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
                   Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027
                 </h1>
 

@@ -25,6 +25,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 14 | **Slide Slider & Jadwal Asesmen STS Ganjil 2026/2027** | ✅ Selesai | Implementasi slide slider 4 lembar matriks jadwal, kode pengawas (01-22), kode mapel (KD 01-69), filter jadwal interaktif siswa/ruang, peringatan wajib hadir tepat waktu, bawa alat tulis pribadi & kartu ujian (28 Sept - 2 Okt 2026). | Warta (`/warta`), Home (`/`), Guru (`/guru`) |
 | 15 | **Integrasi Katalog Buku Kemendikdasmen & Optimasi Mobile SEO Senior** | ✅ Selesai | Menambahkan tautan resmi Katalog Buku Kemendikdasmen RI (`https://buku.kemendikdasmen.go.id/katalog`), pencarian instan & filter kategori, panduan unduh PDF, WebApplication & CollectionPage schema, PWA manifest, dan sitemap sitemap.xml 100% lengkap. | Tautan (`/tautan`), Home (`/`), Global (`index.html`, `manifest.json`, `sitemap.xml`) |
 | 16 | **Akses Katalog Buku Kemendikdasmen di Warta Kurikulum** | ✅ Selesai | Integrasi seksi unggulan resmi AKSES KATALOG BUKU Kemendikdasmen RI pada Warta Kurikulum (`/warta#katalog-buku`), tombol aksi cepat, salin tautan interaktif, 4 langkah panduan unduh buku di smartphone, serta sinkronisasi kartu pengumuman beranda. | Warta (`/warta`), Home (`/`) |
+| 17 | **Penyelarasan Warna Putih Judul STS Ganjil** | ✅ Selesai | Menetapkan kelas warna putih bersih (`text-white`) langsung pada tag judul utama `<h1>` Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 di Warta Kurikulum untuk kontras maksimal di latar belakang gelap. | Warta (`/warta#sts`) |
 
 ---
 
