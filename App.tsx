@@ -64,8 +64,12 @@ const App: React.FC = () => {
               <img 
                 src={topBannerUrl} 
                 alt="Banner Utama SMK Tanjung Priok 1" 
-                className="w-full h-auto max-h-[150px] md:max-h-[300px] object-contain transition-all duration-700"
+                width="1600"
+                height="300"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-auto max-h-[150px] md:max-h-[300px] object-contain transition-all duration-700"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}

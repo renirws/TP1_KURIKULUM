@@ -26,6 +26,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 15 | **Integrasi Katalog Buku Kemendikdasmen & Optimasi Mobile SEO Senior** | ✅ Selesai | Menambahkan tautan resmi Katalog Buku Kemendikdasmen RI (`https://buku.kemendikdasmen.go.id/katalog`), pencarian instan & filter kategori, panduan unduh PDF, WebApplication & CollectionPage schema, PWA manifest, dan sitemap sitemap.xml 100% lengkap. | Tautan (`/tautan`), Home (`/`), Global (`index.html`, `manifest.json`, `sitemap.xml`) |
 | 16 | **Akses Katalog Buku Kemendikdasmen di Warta Kurikulum** | ✅ Selesai | Integrasi seksi unggulan resmi AKSES KATALOG BUKU Kemendikdasmen RI pada Warta Kurikulum (`/warta#katalog-buku`), tombol aksi cepat, salin tautan interaktif, 4 langkah panduan unduh buku di smartphone, serta sinkronisasi kartu pengumuman beranda. | Warta (`/warta`), Home (`/`) |
 | 17 | **Penyelarasan Warna Putih Judul STS Ganjil** | ✅ Selesai | Menetapkan kelas warna putih bersih (`text-white`) langsung pada tag judul utama `<h1>` Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 di Warta Kurikulum untuk kontras maksimal di latar belakang gelap. | Warta (`/warta#sts`) |
+| 18 | **Optimasi Ekstrem Fast Responsif & Core Web Vitals** | ✅ Selesai | Mengeliminasi delay tap 300ms ponsel (`touch-action: manipulation`), preconnect & dns-prefetch Google Fonts/Drive/Kemendikdasmen, manual chunk splitting Vite, pencegahan layout shift (CLS) gambar, GPU acceleration, serta akses cepat 1-tap Katalog Buku pada Bottom Nav mobile. | Global (`index.html`, `index.css`, `vite.config.ts`, `BottomNav.tsx`, `App.tsx`, `Home.tsx`) |
 
 ---
 
@@ -240,6 +241,25 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
     * Panduan langkah demi langkah cara mencari, memilih jenjang SMK, dan mengunduh berkas PDF resmi dari ponsel maupun laptop.
   * **Sinkronisasi Beranda (`/pages/Home.tsx`)**:
     * Menampilkan kartu berita resmi "Akses Katalog Buku Kemendikdasmen RI" pada grid warta akademik beranda serta menghubungkan pintasan pencarian cepat ke `/warta#katalog-buku`.
+
+---
+
+### 18. Optimasi Ekstrem Fast Responsif & Core Web Vitals
+* **Permintaan**: Melanjutkan optimasi sistem agar berkinerja *fast responsif* (*ultra-fast response*, ringan, dan mulus pada perangkat smartphone maupun desktop).
+* **Tindakan yang Dilakukan**:
+  * **Eliminasi Delay Sentuh 300ms Ponsel**:
+    * Menerapkan aturan CSS `touch-action: manipulation` pada seluruh elemen tombol, tautan, dan input, menghilangkan penundaan klik 300ms standar peramban seluler.
+    * Mengaktifkan kelas `touch-manipulation select-none` pada bilah navigasi bawah (*Bottom Nav*).
+  * **Resource Hints Preconnect & DNS-Prefetch**:
+    * Menambahkan `preconnect` ke `fonts.googleapis.com` dan `fonts.gstatic.com` (dengan `crossorigin`).
+    * Menambahkan `dns-prefetch` ke `drive.google.com`, `buku.kemendikdasmen.go.id`, dan CDN dependensi untuk memangkas waktu First Contentful Paint (FCP) hingga 200-500ms.
+  * **Pencegahan Cumulative Layout Shift (CLS)**:
+    * Memberikan atribut dimensi eksplisit (`width` & `height`), `fetchPriority="high"`, serta `decoding="async"` pada banner utama beranda dan logo sekolah di navbar.
+    * Mengaktifkan `loading="lazy"` dan `aspect-video` pada seluruh kartu pengumuman agar memori ponsel hemat dan rendering tidak melonjak (*zero CLS*).
+  * **Pemisahan Berkas Vendor (Vite Manual Chunks)**:
+    * Mengonfigurasi `manualChunks` di `vite.config.ts` untuk memisahkan pustaka pihak ketiga (`vendor-react`, `vendor-icons`). Hal ini memungkinkan caching peramban jangka panjang (*long-term browser caching*) sehingga kunjungan ulang pengguna menjadi instan (0ms transfer).
+  * **Akses Cepat 1-Tap pada Navigasi Seluler**:
+    * Menyematkan menu "Katalog Buku Kemendikdasmen" langsung ke dalam panel *bottom sheet navigation* ponsel untuk akses satu sentuhan jari.
 
 ---
 

@@ -30,10 +30,11 @@ export const BottomNav: React.FC = () => {
   ];
 
   const secondaryMenu = [
+    { name: 'Katalog Buku Kemendikdasmen', path: '/warta#katalog-buku', icon: <BookOpen className="w-5 h-5 text-teal-500" />, desc: 'Buku Teks & Panduan Guru Gratis' },
     { name: 'Kurikulum', path: '/kurikulum', icon: <BookOpen className="w-5 h-5 text-blue-500" />, desc: 'Struktur KBM & Jam Pelajaran' },
-    { name: 'Galeri Kegiatan', path: '/galeri', icon: <Image className="w-5 h-5 text-indigo-500" />, desc: 'Dokumentasi & Portofolio Siswa' },
     { name: 'Tautan Pintar', path: '/tautan', icon: <Link2 className="w-5 h-5 text-amber-500" />, desc: 'Akses Sistem & Aplikasi Eksternal' },
     { name: 'Unduh Berkas', path: '/berkas', icon: <FileText className="w-5 h-5 text-emerald-500" />, desc: 'Kalender Akademik & Administrasi' },
+    { name: 'Galeri Kegiatan', path: '/galeri', icon: <Image className="w-5 h-5 text-indigo-500" />, desc: 'Dokumentasi & Portofolio Siswa' },
   ];
 
   const isActive = (path: string) => {
@@ -59,7 +60,7 @@ export const BottomNav: React.FC = () => {
                 key={tab.path}
                 to={tab.path}
                 onClick={handleLinkClick}
-                className="flex flex-col items-center justify-center flex-grow py-1.5 transition-all duration-200 active:scale-95 cursor-pointer relative"
+                className="flex flex-col items-center justify-center flex-grow py-1.5 transition-all duration-150 active:scale-95 cursor-pointer relative touch-manipulation select-none"
               >
                 <div className={`p-1 rounded-xl transition-all duration-300 ${
                   active 
@@ -86,7 +87,7 @@ export const BottomNav: React.FC = () => {
           {/* Ergonomic Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex flex-col items-center justify-center flex-grow py-1.5 transition-all duration-200 active:scale-95 cursor-pointer"
+            className="flex flex-col items-center justify-center flex-grow py-1.5 transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation select-none"
           >
             <div className={`p-1 rounded-xl transition-all duration-300 ${
               isMenuOpen 

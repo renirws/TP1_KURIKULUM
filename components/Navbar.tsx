@@ -35,6 +35,11 @@ export const Navbar: React.FC = () => {
                <img 
                 src={logoUrl} 
                 alt="Logo SMK Tanjung Priok 1" 
+                width="64"
+                height="64"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "https://via.placeholder.com/64?text=ST1";
