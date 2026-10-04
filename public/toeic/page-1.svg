@@ -23,72 +23,66 @@
   </g>
 
   <!-- Surat Meta -->
-  <g transform="translate(60, 135)" font-size="12" fill="#0f172a">
+  <g transform="translate(60, 135)" font-size="12.5" fill="#0f172a">
     <text x="0" y="0" font-weight="bold">No</text>
-    <text x="60" y="0">: 08/SE/SMKTP01/IX/2026</text>
+    <text x="65" y="0">: 09Rev/SE/SMKTP01/X/2026</text>
     
-    <text x="0" y="22" font-weight="bold">Hal</text>
-    <text x="60" y="22" font-weight="bold">: Pelaksanaan Seleksi Toeic Murid Kelas XI &amp; XII TA 2026/2027</text>
+    <text x="0" y="24" font-weight="bold">Hal</text>
+    <text x="65" y="24" font-weight="bold">: Pelaksanaan Seleksi Toeic Murid Kelas XI &amp; XII Tahap 3 - TA 2026/2027</text>
 
-    <text x="0" y="55" font-weight="bold">Yth.</text>
-    <text x="25" y="75">1. Bapak/Ibu Guru dan Wali Kelas XI &amp; XII</text>
-    <text x="25" y="95">2. Orang Tua / Wali Murid Kelas XI &amp; XII</text>
-    <text x="25" y="115">3. Murid Kelas XI &amp; XII (Semua Program Keahlian)</text>
+    <text x="0" y="58" font-weight="bold">Yth.</text>
+    <text x="25" y="80">1. Bapak/Ibu Guru dan Wali Kelas XI &amp; XII</text>
+    <text x="25" y="102">2. Orang Tua / Wali Murid Kelas XI &amp; XII</text>
+    <text x="25" y="124">3. Murid Kelas XI &amp; XII (Semua Program Keahlian)</text>
     
-    <text x="0" y="140">SMK Tanjung Priok 1 Jakarta</text>
-    <text x="0" y="158">di Tempat</text>
+    <text x="0" y="152">SMK Tanjung Priok 1 Jakarta</text>
+    <text x="0" y="172">di Tempat</text>
 
-    <text x="0" y="195">Dengan Hormat,</text>
-    <text x="0" y="220" font-style="italic">Assallamuallaikum Warahmatullahi Wabarakatuh,</text>
+    <text x="0" y="210">Dengan Hormat,</text>
+    <text x="0" y="235" font-style="italic">Assallamuallaikum Warahmatullahi Wabarakatuh,</text>
 
-    <text x="0" y="255">Dalam rangka pemetaan dan peningkatan kompetensi bahasa Inggris siswa, sekolah akan menyelenggarakan</text>
-    <text x="0" y="275" font-weight="bold">Seleksi TOEIC (Test of English for International Communication) <tspan font-weight="normal">yang akan dilaksanakan pada:</tspan></text>
+    <text x="0" y="270">Dalam rangka pemetaan dan peningkatan kompetensi bahasa Inggris siswa, sekolah akan menyelenggarakan</text>
+    <text x="0" y="292" font-weight="bold">Seleksi TOEIC (Test of English for International Communication) <tspan font-weight="normal">yang akan dilaksanakan dengan rangkaian</tspan></text>
+    <text x="0" y="312">berikut ini :</text>
     
-    <circle cx="30" cy="305" r="3" fill="#0f172a" />
-    <text x="45" y="309" font-weight="bold">Hari, Tanggal: <tspan font-weight="bold" fill="#1e3a8a">Kamis &amp; Jum'at, 24 - 25 September 2026</tspan></text>
-
-    <text x="0" y="340">Berkenaan dengan hal tersebut, berikut ketentuan pelaksanaan bagi masing-masing jenjang:</text>
-
-    <text x="20" y="370" font-weight="bold">1. Siswa Kelas XII (Pelaksanaan Luring di Sekolah)</text>
-    <circle cx="45" cy="395" r="2.5" fill="#475569" />
-    <text x="60" y="399">Pelaksanaan tes bertempat di laboratorium/ruang yang telah ditentukan di sekolah. Dengan jadwal</text>
-    <text x="60" y="417">yaitu <tspan font-weight="bold">Kamis, 24 September 2026</tspan> dengan dibagi 2 sesi sebagai berikut ini:</text>
+    <!-- Poin 1: Siswa Kelas XII -->
+    <circle cx="20" cy="342" r="3" fill="#0f172a" />
+    <text x="35" y="346" font-weight="bold">Siswa Kelas XII (Pelaksanaan Luring di Sekolah)</text>
     
-    <circle cx="90" cy="442" r="2.5" fill="#1e293b" />
-    <text x="105" y="446" font-weight="bold">Sesi 1 : Jam 07.00 – 09.00 WIB</text>
+    <circle cx="55" cy="370" r="2.5" fill="#475569" />
+    <text x="70" y="374">Pelaksanaan tes dilaksanakan pada hari <tspan font-weight="bold">Kamis, 15 Oktober 2026</tspan> dimana Tes dimulai pada :</text>
     
-    <circle cx="90" cy="466" r="2.5" fill="#1e293b" />
-    <text x="105" y="470" font-weight="bold">Sesi 2 : Jam 09.30 – 11.30 WIB</text>
+    <circle cx="105" cy="398" r="2" fill="#1e293b" />
+    <text x="120" y="402" font-weight="bold">Sesi 1 jam 8.00 - 10.00 wib</text>
+    
+    <circle cx="105" cy="422" r="2" fill="#1e293b" />
+    <text x="120" y="426" font-weight="bold">Sesi 2 jam 10.30 - 12.30 wib</text>
 
-    <circle cx="45" cy="498" r="2.5" fill="#475569" />
-    <text x="60" y="502">Siswa <tspan font-weight="bold">wajib membawa earphone/headset pribadi</tspan> yang dapat berfungsi dengan baik untuk sesi</text>
-    <text x="60" y="520"><tspan font-style="italic" font-weight="bold">Listening</tspan> &amp; hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
+    <!-- Poin 2: Guru -->
+    <circle cx="20" cy="458" r="3" fill="#0f172a" />
+    <text x="35" y="462" font-weight="bold">Guru (Pelaksanaan Luring di Sekolah)</text>
+    
+    <circle cx="55" cy="486" r="2.5" fill="#475569" />
+    <text x="70" y="490">Pelaksanaan tes bertempat di laboratorium/ruang yang telah ditentukan di sekolah. Dengan</text>
+    <text x="70" y="510">jadwal yaitu <tspan font-weight="bold">Jum'at, 16 Oktober 2026</tspan> pada <tspan font-weight="bold">Sesi 3 jam 13.00 - 15.30 (Setelah KBM Khusus)</tspan></text>
+    <text x="70" y="530">nama &amp; ruang tes terlampir.</text>
 
-    <text x="20" y="555" font-weight="bold">2. Siswa Kelas XI (Pelaksanaan Luring di Sekolah)</text>
-    <circle cx="45" cy="580" r="2.5" fill="#475569" />
-    <text x="60" y="584">Pelaksanaan tes bertempat di laboratorium/ruang yang telah ditentukan di sekolah. Dengan jadwal</text>
-    <text x="60" y="602">yaitu <tspan font-weight="bold">Jum'at, 25 September 2026</tspan> dengan dibagi 2 sesi sebagai berikut ini:</text>
+    <!-- Poin 3 & 4: Ketentuan Tambahan -->
+    <circle cx="20" cy="564" r="3" fill="#0f172a" />
+    <text x="35" y="568">Siswa &amp; Guru <tspan font-weight="bold">wajib membawa earphone/headset pribadi</tspan> yang dapat berfungsi dengan baik untuk sesi</text>
+    <text x="35" y="588"><tspan font-style="italic" font-weight="bold">Listening</tspan> &amp; hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir</text>
 
-    <circle cx="90" cy="627" r="2.5" fill="#1e293b" />
-    <text x="105" y="631" font-weight="bold">Sesi 1 : Jam 07.00 – 09.00 WIB</text>
+    <circle cx="20" cy="618" r="3" fill="#0f172a" />
+    <text x="35" y="622">Hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
 
-    <circle cx="90" cy="651" r="2.5" fill="#1e293b" />
-    <text x="105" y="655" font-weight="bold">Sesi 2 : Jam 09.30 – 11.30 WIB</text>
+    <text x="35" y="660">Demikian Surat Edaran ini disampaikan. Mohon dukungan Orang Tua/Wali Murid &amp; Guru agar</text>
+    <text x="0" y="682">pelaksanaan tes berjalan dengan lancar dan tertib. Atas perhatian dan kerja samanya, kami ucapkan terima kasih.</text>
 
-    <circle cx="45" cy="683" r="2.5" fill="#475569" />
-    <text x="60" y="687">Siswa <tspan font-weight="bold">wajib membawa earphone/headset pribadi</tspan> yang dapat berfungsi dengan baik untuk sesi</text>
-    <text x="60" y="705"><tspan font-style="italic" font-weight="bold">Listening</tspan> &amp; hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
+    <text x="0" y="730">Jakarta, 5 Oktober 2026</text>
+    <text x="0" y="752">Ka. SMK Tanjung Priok 1</text>
 
-    <circle cx="45" cy="733" r="2.5" fill="#475569" />
-    <text x="60" y="737">Hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.</text>
-
-    <text x="20" y="775">Demikian Surat Edaran ini disampaikan. Mohon dukungan Orang Tua/Wali Murid agar pelaksanaan tes</text>
-    <text x="0" y="795">berjalan dengan lancar dan tertib. Atas perhatian dan kerja samanya, kami ucapkan terima kasih.</text>
-
-    <text x="0" y="840">Jakarta, 22 September 2026</text>
-    <text x="0" y="860">Ka. SMK Tanjung Priok 1</text>
-
-    <g transform="translate(-10, 875)">
+    <!-- Stampel & TTD -->
+    <g transform="translate(-10, 770)">
       <ellipse cx="65" cy="35" rx="55" ry="32" fill="none" stroke="#1d4ed8" stroke-width="2.5" stroke-dasharray="3 1" opacity="0.85" />
       <ellipse cx="65" cy="35" rx="51" ry="28" fill="none" stroke="#1d4ed8" stroke-width="1.2" opacity="0.85" />
       <text x="65" y="26" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="#1d4ed8" text-anchor="middle" opacity="0.9">YAYASAN PENDIDIKAN</text>
@@ -97,6 +91,6 @@
       <path d="M60,35 Q100,20 120,40 Q135,15 170,40 L180,35" fill="none" stroke="#0f172a" stroke-width="2.5" />
     </g>
 
-    <text x="0" y="970" font-weight="bold" text-decoration="underline">Andri Susanto, ST</text>
+    <text x="0" y="875" font-weight="bold" text-decoration="underline">Andri Susanto,ST</text>
   </g>
 </svg>

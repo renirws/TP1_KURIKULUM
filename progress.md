@@ -27,6 +27,7 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 16 | **Akses Katalog Buku Kemendikdasmen di Warta Kurikulum** | ✅ Selesai | Integrasi seksi unggulan resmi AKSES KATALOG BUKU Kemendikdasmen RI pada Warta Kurikulum (`/warta#katalog-buku`), tombol aksi cepat, salin tautan interaktif, 4 langkah panduan unduh buku di smartphone, serta sinkronisasi kartu pengumuman beranda. | Warta (`/warta`), Home (`/`) |
 | 17 | **Penyelarasan Warna Putih Judul STS Ganjil** | ✅ Selesai | Menetapkan kelas warna putih bersih (`text-white`) langsung pada tag judul utama `<h1>` Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 di Warta Kurikulum untuk kontras maksimal di latar belakang gelap. | Warta (`/warta#sts`) |
 | 18 | **Optimasi Ekstrem Fast Responsif & Core Web Vitals** | ✅ Selesai | Mengeliminasi delay tap 300ms ponsel (`touch-action: manipulation`), preconnect & dns-prefetch Google Fonts/Drive/Kemendikdasmen, manual chunk splitting Vite, pencegahan layout shift (CLS) gambar, GPU acceleration, serta akses cepat 1-tap Katalog Buku pada Bottom Nav mobile. | Global (`index.html`, `index.css`, `vite.config.ts`, `BottomNav.tsx`, `App.tsx`, `Home.tsx`) |
+| 19 | **Penggantian Berita STS & Seleksi Lama ke TOEIC Tahap 3 Murid & Guru** | ✅ Selesai | Menghapus berita STS & Seleksi TOEIC lama; menggantinya dengan PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU YANG DILAKSANAKAN PADA 15 - 16 OKTOBER 2026 (DAFTAR TERLAMPIR); judul teks putih bersih; slideshow 8 lembar dimulai SE9REV_TOEIC GURU DAN MURID; fitur zoom interaktif (inline, modal flip slide, double-tap zoom); dan mode kartu/tabel mobile fast-responsive. | Warta (`/warta`), Home (`/`), Layanan Data (`toeicData.ts`) |
 
 ---
 
@@ -260,6 +261,37 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
     * Mengonfigurasi `manualChunks` di `vite.config.ts` untuk memisahkan pustaka pihak ketiga (`vendor-react`, `vendor-icons`). Hal ini memungkinkan caching peramban jangka panjang (*long-term browser caching*) sehingga kunjungan ulang pengguna menjadi instan (0ms transfer).
   * **Akses Cepat 1-Tap pada Navigasi Seluler**:
     * Menyematkan menu "Katalog Buku Kemendikdasmen" langsung ke dalam panel *bottom sheet navigation* ponsel untuk akses satu sentuhan jari.
+
+---
+
+### 19. Penggantian Berita STS & Seleksi Lama ke TOEIC Seleksi Tahap 3 Murid & Guru
+* **Permintaan**:
+  * Menghapus berita *Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027* dan *Pelaksanaan Seleksi TOEIC Murid Kelas XI & XII TA 2026/2027*.
+  * Menggantinya dengan: **PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU YANG DILAKSANAKAN PADA 15 - 16 OKTOBER 2026 (DAFTAR TERLAMPIR)**.
+  * Tampilan dibuat bersih dengan teks judul berwarna putih bersih.
+  * Gambar disajikan dalam format slide show dimulai dari gambar `SE9REV_TOEIC GURU DAN MURID` lalu gambar lembar daftar peserta lainnya.
+  * Gambar dilengkapi fitur zoom.
+  * Tampilan kompatibel optimal untuk *smartphone* & berkinerja *fast response*.
+* **Tindakan yang Dilakukan**:
+  * **Pembersihan Berita Lama**:
+    * Menghapus seluruh seksi, tautan jump anchor `#sts`, dan kartu pengumuman STS & seleksi TOEIC lama di Warta Kurikulum dan Beranda (`pages/Home.tsx`).
+    * Memperbarui kartu pengumuman Beranda menjadi *PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU* yang langsung terhubung ke `/warta#toeic`.
+  * **Judul Bersih & Kontras Tinggi (Pure White)**:
+    * Menerapkan warna putih bersih (`text-white`) pada judul utama `<h1>` di atas kartu header bergradasi navy/indigo elegan (`#071328` s.d `#1e3a8a`).
+  * **Slideshow Dokumen Resmi 8 Lembar**:
+    * **Lembar 1 (Dimulai)**: `SE9REV_TOEIC GURU DAN MURID` (Surat Edaran No. 09Rev/SE/SMKTP01/X/2026).
+    * **Lembar 2 - 6**: Lembar lampiran daftar Murid Kelas XII per ruangan (Lab 1 DKV, Lab 2 DKV, Lab 4 DKV, Lab TL) sesi 1 & 2.
+    * **Lembar 7 - 8**: Lembar lampiran daftar Bapak/Ibu Guru peserta tes TOEIC (Lab 1 & Lab 2 DKV).
+    * Dilengkapi tombol putar otomatis (*auto-play / pause*), navigasi swipe sentuh ponsel, thumbnail tab responsif, dan dropdown lompat cepat (*fast 1-tap jump*) untuk smartphone.
+  * **Fitur Zooming Lengkap**:
+    * Tombol *Zoom Resolusi Tinggi* pada bilah aksi utama dan overlay gambar.
+    * Modal Lightbox resolusi tinggi dengan kontrol perbesar (+ Zoom), perkecil (- Zoom), reset (100%), cetak/PDF, dan fungsi *double-tap* untuk zoom instan 2x.
+    * Navigasi halaman sebelumnya (*Prev*) dan selanjutnya (*Next*) terintegrasi langsung di dalam modal zoom, memungkinkan pembaca memeriksa seluruh lembar tanpa harus menutup modal pembesar.
+  * **Fast Responsif & Mobile Friendly**:
+    * Penyediaan tombol switch tampilan data peserta: **Mode Kartu (Smartphone)** dan **Mode Tabel Detail**.
+    * Filter instan 1-sentuhan untuk Kategori (*Semua 98*, *Murid 69*, *Guru 29*) dan Ruangan (*LAB 1 DKV*, *LAB 2 DKV*, *LAB 4 DKV*, *LAB TL*).
+    * Pencarian instan real-time dengan tombol hapus cepat (`✕`).
+    * Seluruh tombol interaktif menggunakan `touch-manipulation select-none active:scale-95` tanpa delay.
 
 ---
 

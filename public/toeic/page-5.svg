@@ -1,432 +1,145 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1130" width="100%" height="100%" style="background:#ffffff; font-family: Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1130" width="100%" height="100%" style="background:#ffffff; font-family: Calibri, 'Segoe UI', Arial, sans-serif;">
   <rect width="800" height="1130" fill="#ffffff" />
-
-  <!-- Title Header -->
-  <text x="400" y="45" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">Daftar Siswa Kelas XI</text>
-  <text x="400" y="68" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Jum’at, 25 September 2026</text>
-  <text x="50" y="95" font-size="13" font-weight="bold" fill="#0f172a">Sesi 2 :</text>
-
-  <!-- Table Header -->
-  <g transform="translate(50, 110)">
-    <rect x="0" y="0" width="700" height="24" fill="#0284c7" />
-    <line x1="280" y1="0" x2="280" y2="24" stroke="#ffffff" stroke-width="1"/>
-    <line x1="390" y1="0" x2="390" y2="24" stroke="#ffffff" stroke-width="1"/>
-    <line x1="450" y1="0" x2="450" y2="24" stroke="#ffffff" stroke-width="1"/>
-    <line x1="560" y1="0" x2="560" y2="24" stroke="#ffffff" stroke-width="1"/>
-    <line x1="650" y1="0" x2="650" y2="24" stroke="#ffffff" stroke-width="1"/>
-
-    <text x="140" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Name</text>
-    <text x="335" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">NISN</text>
-    <text x="420" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Kelas</text>
-    <text x="505" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Kode Peserta</text>
-    <text x="605" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">LAB</text>
-    <text x="675" y="16" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">SESI</text>
   
-    <rect x="0" y="24" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="24" x2="280" y2="48" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="24" x2="390" y2="48" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="24" x2="450" y2="48" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="24" x2="560" y2="48" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="24" x2="650" y2="48" stroke="#cbd5e1" stroke-width="0.6"/>
+  <!-- Header Text -->
+  <g transform="translate(400, 45)" text-anchor="middle">
+    <text y="0" font-size="20" font-weight="bold" fill="#000000" letter-spacing="0.5">DAFTAR PESERTA TOEIC TAHAP 3</text>
+    <line x1="-340" y1="20" x2="340" y2="20" stroke="#e2e8f0" stroke-width="1"/>
+    <text y="50" font-size="18" font-weight="bold" fill="#000000">KAMIS, 15 OKTOBER 2026</text>
+    <line x1="-340" y1="70" x2="340" y2="70" stroke="#e2e8f0" stroke-width="1"/>
+    <text y="100" font-size="18" font-weight="bold" fill="#000000">LAB TL - SESI 1</text>
+  </g>
 
-    <text x="10" y="40.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD AULYA DHUHAN FAZHRI</text>
-    <text x="335" y="40.8" font-size="9.5" fill="#334155" text-anchor="middle">0099346411</text>
-    <text x="420" y="40.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="40.8" font-size="9.5" fill="#334155" text-anchor="middle">0099346411</text>
-    <text x="605" y="40.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="40.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+  <!-- Table Grid -->
+  <g transform="translate(60, 180)">
+    <!-- Table Header Row -->
+    <rect x="0" y="0" width="680" height="50" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+    <line x1="80" y1="0" x2="80" y2="50" stroke="#000000" stroke-width="1.8"/>
+    <line x1="510" y1="0" x2="510" y2="50" stroke="#000000" stroke-width="1.8"/>
+
+    <text x="40" y="32" font-size="15" font-weight="bold" text-anchor="middle" fill="#000000">NO.</text>
+    <text x="295" y="32" font-size="15" font-weight="bold" text-anchor="middle" fill="#000000">NAMA MURID</text>
+    <text x="595" y="32" font-size="15" font-weight="bold" text-anchor="middle" fill="#000000">PARAF</text>
+    
+    <rect x="0" y="50" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="50" x2="80" y2="102" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="50" x2="510" y2="102" stroke="#000000" stroke-width="1.2"/>
+
+    <text x="40" y="82" font-size="16" fill="#000000" text-anchor="middle">1</text>
+    <text x="95" y="82" font-size="16" fill="#000000" font-weight="500">MUHAMMAD RIZAL ANWAR</text>
+    <text x="525" y="82" font-size="12" fill="#cbd5e1">1</text>
         
-    <rect x="0" y="48" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="48" x2="280" y2="72" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="48" x2="390" y2="72" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="48" x2="450" y2="72" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="48" x2="560" y2="72" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="48" x2="650" y2="72" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="102" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="102" x2="80" y2="154" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="102" x2="510" y2="154" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="64.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD FARREL MAHARDIKA</text>
-    <text x="335" y="64.8" font-size="9.5" fill="#334155" text-anchor="middle">0094080765</text>
-    <text x="420" y="64.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="64.8" font-size="9.5" fill="#334155" text-anchor="middle">0094080765</text>
-    <text x="605" y="64.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="64.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="134" font-size="16" fill="#000000" text-anchor="middle">2</text>
+    <text x="95" y="134" font-size="16" fill="#000000" font-weight="500">MUHAMMAD SAHRUL RAMADHAN</text>
+    <text x="525" y="134" font-size="12" fill="#cbd5e1">2</text>
         
-    <rect x="0" y="72" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="72" x2="280" y2="96" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="72" x2="390" y2="96" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="72" x2="450" y2="96" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="72" x2="560" y2="96" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="72" x2="650" y2="96" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="154" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="154" x2="80" y2="206" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="154" x2="510" y2="206" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="88.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD ICHWAN RADITIYA</text>
-    <text x="335" y="88.8" font-size="9.5" fill="#334155" text-anchor="middle">3101277018</text>
-    <text x="420" y="88.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="88.8" font-size="9.5" fill="#334155" text-anchor="middle">3101277018</text>
-    <text x="605" y="88.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="88.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="186" font-size="16" fill="#000000" text-anchor="middle">3</text>
+    <text x="95" y="186" font-size="16" fill="#000000" font-weight="500">MUHAMMAD SOFIANSYAH</text>
+    <text x="525" y="186" font-size="12" fill="#cbd5e1">3</text>
         
-    <rect x="0" y="96" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="96" x2="280" y2="120" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="96" x2="390" y2="120" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="96" x2="450" y2="120" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="96" x2="560" y2="120" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="96" x2="650" y2="120" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="206" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="206" x2="80" y2="258" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="206" x2="510" y2="258" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="112.8" font-size="9.5" font-weight="bold" fill="#0f172a">Muhammad Khaerul Azzam</text>
-    <text x="335" y="112.8" font-size="9.5" fill="#334155" text-anchor="middle">0104536015</text>
-    <text x="420" y="112.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="112.8" font-size="9.5" fill="#334155" text-anchor="middle">0104536015</text>
-    <text x="605" y="112.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="112.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="238" font-size="16" fill="#000000" text-anchor="middle">4</text>
+    <text x="95" y="238" font-size="16" fill="#000000" font-weight="500">MUHAMMAD ZAHRAN KUSUMA</text>
+    <text x="525" y="238" font-size="12" fill="#cbd5e1">4</text>
         
-    <rect x="0" y="120" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="120" x2="280" y2="144" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="120" x2="390" y2="144" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="120" x2="450" y2="144" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="120" x2="560" y2="144" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="120" x2="650" y2="144" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="258" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="258" x2="80" y2="310" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="258" x2="510" y2="310" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="136.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD LATANDRE ABDULLAH KAMIL</text>
-    <text x="335" y="136.8" font-size="9.5" fill="#334155" text-anchor="middle">0092799002</text>
-    <text x="420" y="136.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="136.8" font-size="9.5" fill="#334155" text-anchor="middle">0092799002</text>
-    <text x="605" y="136.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="136.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="290" font-size="16" fill="#000000" text-anchor="middle">5</text>
+    <text x="95" y="290" font-size="16" fill="#000000" font-weight="500">Muhammad Rizky Ramadhan Labuwatu</text>
+    <text x="525" y="290" font-size="12" fill="#cbd5e1">5</text>
         
-    <rect x="0" y="144" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="144" x2="280" y2="168" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="144" x2="390" y2="168" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="144" x2="450" y2="168" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="144" x2="560" y2="168" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="144" x2="650" y2="168" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="310" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="310" x2="80" y2="362" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="310" x2="510" y2="362" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="160.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD RAEHAN ADHIDTIO</text>
-    <text x="335" y="160.8" font-size="9.5" fill="#334155" text-anchor="middle">0087620797</text>
-    <text x="420" y="160.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="160.8" font-size="9.5" fill="#334155" text-anchor="middle">0087620797</text>
-    <text x="605" y="160.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="160.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="342" font-size="16" fill="#000000" text-anchor="middle">6</text>
+    <text x="95" y="342" font-size="16" fill="#000000" font-weight="500">NABIL AL FAJAR THAHER</text>
+    <text x="525" y="342" font-size="12" fill="#cbd5e1">6</text>
         
-    <rect x="0" y="168" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="168" x2="280" y2="192" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="168" x2="390" y2="192" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="168" x2="450" y2="192" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="168" x2="560" y2="192" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="168" x2="650" y2="192" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="362" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="362" x2="80" y2="414" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="362" x2="510" y2="414" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="184.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD RAFFAN ADLIANSYAH</text>
-    <text x="335" y="184.8" font-size="9.5" fill="#334155" text-anchor="middle">0098099123</text>
-    <text x="420" y="184.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="184.8" font-size="9.5" fill="#334155" text-anchor="middle">0098099123</text>
-    <text x="605" y="184.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="184.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="394" font-size="16" fill="#000000" text-anchor="middle">7</text>
+    <text x="95" y="394" font-size="16" fill="#000000" font-weight="500">NAUFAL DAFFA AZIZ</text>
+    <text x="525" y="394" font-size="12" fill="#cbd5e1">7</text>
         
-    <rect x="0" y="192" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="192" x2="280" y2="216" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="192" x2="390" y2="216" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="192" x2="450" y2="216" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="192" x2="560" y2="216" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="192" x2="650" y2="216" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="414" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="414" x2="80" y2="466" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="414" x2="510" y2="466" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="208.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD RAIHAN</text>
-    <text x="335" y="208.8" font-size="9.5" fill="#334155" text-anchor="middle">0103560917</text>
-    <text x="420" y="208.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="208.8" font-size="9.5" fill="#334155" text-anchor="middle">0103560917</text>
-    <text x="605" y="208.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="208.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="446" font-size="16" fill="#000000" text-anchor="middle">8</text>
+    <text x="95" y="446" font-size="16" fill="#000000" font-weight="500">NAUFAL MUSYAFFA</text>
+    <text x="525" y="446" font-size="12" fill="#cbd5e1">8</text>
         
-    <rect x="0" y="216" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="216" x2="280" y2="240" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="216" x2="390" y2="240" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="216" x2="450" y2="240" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="216" x2="560" y2="240" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="216" x2="650" y2="240" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="466" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="466" x2="80" y2="518" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="466" x2="510" y2="518" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="232.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD RIFAEL HERDYANSYAH</text>
-    <text x="335" y="232.8" font-size="9.5" fill="#334155" text-anchor="middle">0099282628</text>
-    <text x="420" y="232.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="232.8" font-size="9.5" fill="#334155" text-anchor="middle">0099282628</text>
-    <text x="605" y="232.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="232.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="498" font-size="16" fill="#000000" text-anchor="middle">9</text>
+    <text x="95" y="498" font-size="16" fill="#000000" font-weight="500">NAYLA CEASARY ARTI UTOMO</text>
+    <text x="525" y="498" font-size="12" fill="#cbd5e1">9</text>
         
-    <rect x="0" y="240" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="240" x2="280" y2="264" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="240" x2="390" y2="264" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="240" x2="450" y2="264" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="240" x2="560" y2="264" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="240" x2="650" y2="264" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="518" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="518" x2="80" y2="570" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="518" x2="510" y2="570" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="256.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD RIZKY APRIANSYAH</text>
-    <text x="335" y="256.8" font-size="9.5" fill="#334155" text-anchor="middle">0102339197</text>
-    <text x="420" y="256.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="256.8" font-size="9.5" fill="#334155" text-anchor="middle">0102339197</text>
-    <text x="605" y="256.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="256.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="550" font-size="16" fill="#000000" text-anchor="middle">10</text>
+    <text x="95" y="550" font-size="16" fill="#000000" font-weight="500">NAYRA ALMA SHAFIRA</text>
+    <text x="525" y="550" font-size="12" fill="#cbd5e1">10</text>
         
-    <rect x="0" y="264" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="264" x2="280" y2="288" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="264" x2="390" y2="288" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="264" x2="450" y2="288" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="264" x2="560" y2="288" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="264" x2="650" y2="288" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="570" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="570" x2="80" y2="622" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="570" x2="510" y2="622" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="280.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUHAMMAD SYAWALUDDIN NURFADILLAH</text>
-    <text x="335" y="280.8" font-size="9.5" fill="#334155" text-anchor="middle">0086489033</text>
-    <text x="420" y="280.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="280.8" font-size="9.5" fill="#334155" text-anchor="middle">0086489033</text>
-    <text x="605" y="280.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="280.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="602" font-size="16" fill="#000000" text-anchor="middle">11</text>
+    <text x="95" y="602" font-size="16" fill="#000000" font-weight="500">NUR HASIM</text>
+    <text x="525" y="602" font-size="12" fill="#cbd5e1">11</text>
         
-    <rect x="0" y="288" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="288" x2="280" y2="312" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="288" x2="390" y2="312" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="288" x2="450" y2="312" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="288" x2="560" y2="312" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="288" x2="650" y2="312" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="622" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="622" x2="80" y2="674" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="622" x2="510" y2="674" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="304.8" font-size="9.5" font-weight="bold" fill="#0f172a">Mukti Andika Hamzah</text>
-    <text x="335" y="304.8" font-size="9.5" fill="#334155" text-anchor="middle">0099265800</text>
-    <text x="420" y="304.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="304.8" font-size="9.5" fill="#334155" text-anchor="middle">0099265800</text>
-    <text x="605" y="304.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="304.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="654" font-size="16" fill="#000000" text-anchor="middle">12</text>
+    <text x="95" y="654" font-size="16" fill="#000000" font-weight="500">PANGERAN FAADHIL HIZBULLAH</text>
+    <text x="525" y="654" font-size="12" fill="#cbd5e1">12</text>
         
-    <rect x="0" y="312" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="312" x2="280" y2="336" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="312" x2="390" y2="336" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="312" x2="450" y2="336" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="312" x2="560" y2="336" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="312" x2="650" y2="336" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="674" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="674" x2="80" y2="726" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="674" x2="510" y2="726" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="328.8" font-size="9.5" font-weight="bold" fill="#0f172a">MUSTARI AHMAD</text>
-    <text x="335" y="328.8" font-size="9.5" fill="#334155" text-anchor="middle">0099688466</text>
-    <text x="420" y="328.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="328.8" font-size="9.5" fill="#334155" text-anchor="middle">0099688466</text>
-    <text x="605" y="328.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="328.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="706" font-size="16" fill="#000000" text-anchor="middle">13</text>
+    <text x="95" y="706" font-size="16" fill="#000000" font-weight="500">PUTERA FAZAR RAMADHAN</text>
+    <text x="525" y="706" font-size="12" fill="#cbd5e1">13</text>
         
-    <rect x="0" y="336" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="336" x2="280" y2="360" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="336" x2="390" y2="360" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="336" x2="450" y2="360" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="336" x2="560" y2="360" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="336" x2="650" y2="360" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="726" width="680" height="52" fill="#fbfcfd" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="726" x2="80" y2="778" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="726" x2="510" y2="778" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="352.8" font-size="9.5" font-weight="bold" fill="#0f172a">NAUFAL DAFFA TANRYSAU</text>
-    <text x="335" y="352.8" font-size="9.5" fill="#334155" text-anchor="middle">0092408553</text>
-    <text x="420" y="352.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="352.8" font-size="9.5" fill="#334155" text-anchor="middle">0092408553</text>
-    <text x="605" y="352.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="352.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="758" font-size="16" fill="#000000" text-anchor="middle">14</text>
+    <text x="95" y="758" font-size="16" fill="#000000" font-weight="500">PUTRA JANABI NURRISQI</text>
+    <text x="525" y="758" font-size="12" fill="#cbd5e1">14</text>
         
-    <rect x="0" y="360" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="360" x2="280" y2="384" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="360" x2="390" y2="384" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="360" x2="450" y2="384" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="360" x2="560" y2="384" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="360" x2="650" y2="384" stroke="#cbd5e1" stroke-width="0.6"/>
+    <rect x="0" y="778" width="680" height="52" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+    <line x1="80" y1="778" x2="80" y2="830" stroke="#000000" stroke-width="1.2"/>
+    <line x1="510" y1="778" x2="510" y2="830" stroke="#000000" stroke-width="1.2"/>
 
-    <text x="10" y="376.8" font-size="9.5" font-weight="bold" fill="#0f172a">NAUFAL RAFIF AKMAL</text>
-    <text x="335" y="376.8" font-size="9.5" fill="#334155" text-anchor="middle">0083336272</text>
-    <text x="420" y="376.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="376.8" font-size="9.5" fill="#334155" text-anchor="middle">0083336272</text>
-    <text x="605" y="376.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 1 - DKV</text>
-    <text x="675" y="376.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="384" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="384" x2="280" y2="408" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="384" x2="390" y2="408" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="384" x2="450" y2="408" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="384" x2="560" y2="408" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="384" x2="650" y2="408" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="400.8" font-size="9.5" font-weight="bold" fill="#0f172a">NEVILLE OKTAVIANUS POLLO</text>
-    <text x="335" y="400.8" font-size="9.5" fill="#334155" text-anchor="middle">0096576330</text>
-    <text x="420" y="400.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="400.8" font-size="9.5" fill="#334155" text-anchor="middle">0096576330</text>
-    <text x="605" y="400.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="400.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="408" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="408" x2="280" y2="432" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="408" x2="390" y2="432" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="408" x2="450" y2="432" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="408" x2="560" y2="432" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="408" x2="650" y2="432" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="424.8" font-size="9.5" font-weight="bold" fill="#0f172a">NIKITA RIANA</text>
-    <text x="335" y="424.8" font-size="9.5" fill="#334155" text-anchor="middle">0097052216</text>
-    <text x="420" y="424.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="424.8" font-size="9.5" fill="#334155" text-anchor="middle">0097052216</text>
-    <text x="605" y="424.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="424.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="432" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="432" x2="280" y2="456" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="432" x2="390" y2="456" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="432" x2="450" y2="456" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="432" x2="560" y2="456" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="432" x2="650" y2="456" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="448.8" font-size="9.5" font-weight="bold" fill="#0f172a">RAFA BINTANG PRATAMA</text>
-    <text x="335" y="448.8" font-size="9.5" fill="#334155" text-anchor="middle">3139988141</text>
-    <text x="420" y="448.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="448.8" font-size="9.5" fill="#334155" text-anchor="middle">3139988141</text>
-    <text x="605" y="448.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="448.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="456" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="456" x2="280" y2="480" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="456" x2="390" y2="480" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="456" x2="450" y2="480" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="456" x2="560" y2="480" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="456" x2="650" y2="480" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="472.8" font-size="9.5" font-weight="bold" fill="#0f172a">RAFKA FABRIANSYAH PUTRA</text>
-    <text x="335" y="472.8" font-size="9.5" fill="#334155" text-anchor="middle">0101719545</text>
-    <text x="420" y="472.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="472.8" font-size="9.5" fill="#334155" text-anchor="middle">0101719545</text>
-    <text x="605" y="472.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="472.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="480" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="480" x2="280" y2="504" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="480" x2="390" y2="504" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="480" x2="450" y2="504" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="480" x2="560" y2="504" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="480" x2="650" y2="504" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="496.8" font-size="9.5" font-weight="bold" fill="#0f172a">RAFLY SUTRISTA</text>
-    <text x="335" y="496.8" font-size="9.5" fill="#334155" text-anchor="middle">0075597019</text>
-    <text x="420" y="496.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="496.8" font-size="9.5" fill="#334155" text-anchor="middle">0075597019</text>
-    <text x="605" y="496.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="496.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="504" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="504" x2="280" y2="528" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="504" x2="390" y2="528" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="504" x2="450" y2="528" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="504" x2="560" y2="528" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="504" x2="650" y2="528" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="520.8" font-size="9.5" font-weight="bold" fill="#0f172a">RAKA MAIRINO LIANTARA</text>
-    <text x="335" y="520.8" font-size="9.5" fill="#334155" text-anchor="middle">0091295953</text>
-    <text x="420" y="520.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="520.8" font-size="9.5" fill="#334155" text-anchor="middle">0091295953</text>
-    <text x="605" y="520.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="520.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="528" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="528" x2="280" y2="552" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="528" x2="390" y2="552" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="528" x2="450" y2="552" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="528" x2="560" y2="552" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="528" x2="650" y2="552" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="544.8" font-size="9.5" font-weight="bold" fill="#0f172a">RAMADAN AKBAR</text>
-    <text x="335" y="544.8" font-size="9.5" fill="#334155" text-anchor="middle">0098997474</text>
-    <text x="420" y="544.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="544.8" font-size="9.5" fill="#334155" text-anchor="middle">0098997474</text>
-    <text x="605" y="544.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="544.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="552" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="552" x2="280" y2="576" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="552" x2="390" y2="576" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="552" x2="450" y2="576" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="552" x2="560" y2="576" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="552" x2="650" y2="576" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="568.8" font-size="9.5" font-weight="bold" fill="#0f172a">REYHAN VIRGIANSYAH</text>
-    <text x="335" y="568.8" font-size="9.5" fill="#334155" text-anchor="middle">0097023009</text>
-    <text x="420" y="568.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="568.8" font-size="9.5" fill="#334155" text-anchor="middle">0097023009</text>
-    <text x="605" y="568.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="568.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="576" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="576" x2="280" y2="600" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="576" x2="390" y2="600" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="576" x2="450" y2="600" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="576" x2="560" y2="600" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="576" x2="650" y2="600" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="592.8" font-size="9.5" font-weight="bold" fill="#0f172a">RIVAI RAMDHANI</text>
-    <text x="335" y="592.8" font-size="9.5" fill="#334155" text-anchor="middle">0088917058</text>
-    <text x="420" y="592.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="592.8" font-size="9.5" fill="#334155" text-anchor="middle">0088917058</text>
-    <text x="605" y="592.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="592.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="600" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="600" x2="280" y2="624" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="600" x2="390" y2="624" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="600" x2="450" y2="624" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="600" x2="560" y2="624" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="600" x2="650" y2="624" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="616.8" font-size="9.5" font-weight="bold" fill="#0f172a">SETIAWAN</text>
-    <text x="335" y="616.8" font-size="9.5" fill="#334155" text-anchor="middle">0095029876</text>
-    <text x="420" y="616.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="616.8" font-size="9.5" fill="#334155" text-anchor="middle">0095029876</text>
-    <text x="605" y="616.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="616.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="624" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="624" x2="280" y2="648" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="624" x2="390" y2="648" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="624" x2="450" y2="648" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="624" x2="560" y2="648" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="624" x2="650" y2="648" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="640.8" font-size="9.5" font-weight="bold" fill="#0f172a">SUHRO ARDI</text>
-    <text x="335" y="640.8" font-size="9.5" fill="#334155" text-anchor="middle">0096501768</text>
-    <text x="420" y="640.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="640.8" font-size="9.5" fill="#334155" text-anchor="middle">0096501768</text>
-    <text x="605" y="640.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="640.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="648" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="648" x2="280" y2="672" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="648" x2="390" y2="672" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="648" x2="450" y2="672" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="648" x2="560" y2="672" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="648" x2="650" y2="672" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="664.8" font-size="9.5" font-weight="bold" fill="#0f172a">SYAHRIL SAPUTRA</text>
-    <text x="335" y="664.8" font-size="9.5" fill="#334155" text-anchor="middle">0081687784</text>
-    <text x="420" y="664.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="664.8" font-size="9.5" fill="#334155" text-anchor="middle">0081687784</text>
-    <text x="605" y="664.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="664.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="672" width="700" height="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="672" x2="280" y2="696" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="672" x2="390" y2="696" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="672" x2="450" y2="696" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="672" x2="560" y2="696" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="672" x2="650" y2="696" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="688.8" font-size="9.5" font-weight="bold" fill="#0f172a">SYEFIRA NURI MAULIDA</text>
-    <text x="335" y="688.8" font-size="9.5" fill="#334155" text-anchor="middle">0103247330</text>
-    <text x="420" y="688.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="688.8" font-size="9.5" fill="#334155" text-anchor="middle">0103247330</text>
-    <text x="605" y="688.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="688.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
-        
-    <rect x="0" y="696" width="700" height="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="280" y1="696" x2="280" y2="720" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="390" y1="696" x2="390" y2="720" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="450" y1="696" x2="450" y2="720" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="560" y1="696" x2="560" y2="720" stroke="#cbd5e1" stroke-width="0.6"/>
-    <line x1="650" y1="696" x2="650" y2="720" stroke="#cbd5e1" stroke-width="0.6"/>
-
-    <text x="10" y="712.8" font-size="9.5" font-weight="bold" fill="#0f172a">SYIFA AULIA AZ ZAHRA</text>
-    <text x="335" y="712.8" font-size="9.5" fill="#334155" text-anchor="middle">0089263550</text>
-    <text x="420" y="712.8" font-size="9.5" fill="#334155" text-anchor="middle">XI</text>
-    <text x="505" y="712.8" font-size="9.5" fill="#334155" text-anchor="middle">0089263550</text>
-    <text x="605" y="712.8" font-size="9.5" font-weight="bold" fill="#0284c7" text-anchor="middle">LAB 2 - DKV</text>
-    <text x="675" y="712.8" font-size="9.5" font-weight="bold" fill="#0f172a" text-anchor="middle">2</text>
+    <text x="40" y="810" font-size="16" fill="#000000" text-anchor="middle">15</text>
+    <text x="95" y="810" font-size="16" fill="#000000" font-weight="500">PUTRA NAZAR MUTTAQIN</text>
+    <text x="525" y="810" font-size="12" fill="#cbd5e1">15</text>
         
   </g>
 </svg>

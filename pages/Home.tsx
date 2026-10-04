@@ -55,9 +55,8 @@ const Home: React.FC = () => {
 
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
+    { title: "TOEIC Seleksi Tahap 3 Murid & Guru", category: "Ujian Internasional", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#toeic", desc: "Jadwal & lampiran peserta seleksi TOEIC Tahap 3 tgl 15-16 Oktober 2026 (SE9REV). Peserta wajib hadir tepat waktu dan membawa earphone pribadi.", keywords: "toeic seleksi tahap 3 murid guru 15 16 oktober se9rev lab dkv sesi earphone" },
     { title: "Katalog Buku Kemendikdasmen RI", category: "Buku & Kurikulum", icon: <BookOpen className="w-6 h-6 text-teal-600" />, link: "/warta#katalog-buku", desc: "Akses dan unduh gratis ribuan Buku Teks Utama Kurikulum Merdeka Kemendikdasmen RI resmi untuk siswa & guru SMK.", keywords: "katalog buku kemendikdasmen kurikulum merdeka buku teks siswa modul panduan guru unduh pdf resmi kemdikbud" },
-    { title: "Asesmen STS Ganjil 2026/2027", category: "Ujian Semester", icon: <FileText className="w-6 h-6 text-indigo-600" />, link: "/warta#sts", desc: "Jadwal resmi STS Ganjil 28 Sept - 2 Okt 2026 seluruh Kelas X-XII. Wajib bawa alat tulis pribadi & kartu ujian.", keywords: "sts ganjil asesmen sumatif tengah semester jadwal kartu ujian alat tulis ruang 1 13 2026 x xi xii pengawas" },
-    { title: "Seleksi TOEIC Kelas XI & XII", category: "Ujian Bahasa", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#toeic", desc: "Jadwal sesi & lab seleksi TOEIC 24-25 September 2026. Peserta wajib hadir tepat waktu dan membawa earphone pribadi.", keywords: "toeic seleksi bahasa inggris lab sesi 1 2 earphone headphone kelas xi xii" },
     { title: "Portal Siswa & Jadwal KBM", category: "Layanan Siswa", icon: <Calendar className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Akses lembar jadwal pelajaran resmi Kelas X, XI, XII & Simulasi TKA serta direktori bimbingan & penempatan Prakerin.", keywords: "jadwal kbm pelajaran prakerin pkl bimbingan siswa kelas x xi xii kalender akademik dokumen" },
     { title: "Jadwal Pelajaran KOSP & JP", category: "Kurikulum Merdeka", icon: <BookOpen className="w-6 h-6 text-blue-600" />, link: "/kurikulum", desc: "Unduh struktur kurikulum, alokasi jam pelajaran (JP), dan jadwal pembelajaran aktif untuk semua kelas.", keywords: "jadwal pelajaran kosp kurikulum merdeka jam jp unduh dokumen guru jadwal aktif" },
     { title: "LSP-P1 Lisensi BNSP", category: "Sertifikasi Profesi", icon: <ShieldCheck className="w-6 h-6 text-amber-600" />, link: "https://lspsmktanjungpriok1.netlify.app/", desc: "Uji kompetensi keahlian bersertifikat Garuda Emas BNSP untuk jaminan daya saing tinggi di industri.", keywords: "lsp bnsp sertifikasi profesi kompetensi garuda emas ujian lisensi nasional" },
@@ -757,12 +756,12 @@ const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
-              category="Asesmen STS 2026"
-              title="Pelaksanaan STS Ganjil TA 2026/2027 Kelas X - XII"
-              date="28 September - 2 Oktober 2026"
-              excerpt="Pelaksanaan STS Ganjil tgl 28 Sept - 2 Okt 2026. Seluruh murid kelas X - XII wajib hadir tepat waktu dan membawa Alat tulis pribadi & kartu Ujian."
-              imageUrl="/sts/page-1.svg"
-              link="/warta#sts"
+              category="TOEIC Tahap 3 • Resmi"
+              title="PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU"
+              date="15 - 16 Oktober 2026"
+              excerpt="Surat Edaran SE9REV Pelaksanaan Seleksi TOEIC Tahap 3 untuk Murid Kelas XII (15 Okt) & Bapak/Ibu Guru (16 Okt). Wajib bawa earphone pribadi (Daftar Terlampir)."
+              imageUrl="/toeic/page-1.svg"
+              link="/warta#toeic"
             />
             <AnnouncementCard 
               category="Buku Kurikulum Merdeka"
@@ -773,12 +772,12 @@ const Home: React.FC = () => {
               link="/warta#katalog-buku"
             />
             <AnnouncementCard 
-              category="TOEIC 2026"
-              title="Pelaksanaan Seleksi TOEIC Kelas XI &amp; XII"
-              date="24 - 25 September 2026"
-              excerpt="Pelaksanaan Seleksi TOEIC tgl 24 Sept (Kelas XII) &amp; 25 Sept (Kelas XI). Seluruh murid wajib membawa earphone pribadi &amp; hadir tepat waktu."
-              imageUrl="/toeic/page-1.svg"
-              link="/warta#toeic"
+              category="Agenda Akademik Kelas XII"
+              title="Jadwal KBM & Simulasi TKA Kelas XII"
+              date="Semester Ganjil 2026/2027"
+              excerpt="Distribusi jadwal KBM aktif serta simulasi Tes Kemampuan Akademik (TKA) persiapan kelulusan vokasi Kelas XII SMK Tanjung Priok 1."
+              imageUrl="https://drive.google.com/thumbnail?id=1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od&sz=w800"
+              link="/warta#tka"
             />
           </div>
         </div>
