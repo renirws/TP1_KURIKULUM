@@ -1,0 +1,300 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1130" width="100%" height="100%" style="background:#ffffff; font-family: 'Arial', sans-serif;">
+  <rect width="800" height="1130" fill="#ffffff" />
+  
+  <!-- Outer border line like formal exam doc -->
+  <rect x="15" y="15" width="770" height="1100" fill="none" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Tut Wuri Handayani Logo -->
+  
+<g transform="translate(30, 20) scale(0.65)">
+  <!-- Outer Pentagon & Wing Motif -->
+  <circle cx="50" cy="50" r="46" fill="#0284c7" stroke="#0f172a" stroke-width="2"/>
+  <path d="M50 12 L84 75 L16 75 Z" fill="#facc15" stroke="#0369a1" stroke-width="2"/>
+  <!-- Belencong / Torch / Wings -->
+  <circle cx="50" cy="46" r="16" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+  <path d="M50 32 L56 50 L44 50 Z" fill="#ef4444"/>
+  <path d="M22 68 Q50 82 78 68" fill="none" stroke="#ffffff" stroke-width="4"/>
+  <text x="50" y="86" font-size="8" font-family="'Arial', sans-serif" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="1">TUT WURI HANDAYANI</text>
+</g>
+
+
+  <!-- Header Title -->
+  <g text-anchor="middle" font-family="'Arial', sans-serif">
+    <text x="420" y="42" font-size="14.5" font-weight="bold" fill="#0f172a" letter-spacing="0.5">DAFTAR HADIR PESERTA</text>
+    <text x="420" y="62" font-size="15.5" font-weight="bold" fill="#0f172a" letter-spacing="0.5">TES KEMAMPUAN AKADEMIK (TKA) SMK</text>
+    <text x="420" y="80" font-size="13.5" font-weight="bold" fill="#0f172a" letter-spacing="0.5">TAHUN 2026</text>
+  </g>
+
+  <!-- Metadata Information Grid -->
+  <!-- Left column -->
+  <g font-size="11" font-family="'Arial', sans-serif" fill="#0f172a">
+    <text x="30" y="115" font-weight="normal">KOTA/KABUPATEN</text>
+    <text x="175" y="115">:  <tspan font-weight="bold">KOTA JAKARTA UTARA</tspan></text>
+    <line x1="185" y1="117" x2="490" y2="117" stroke="#0f172a" stroke-width="0.7"/>
+
+    <text x="30" y="137" font-weight="normal">SEKOLAH/MADRASAH</text>
+    <text x="175" y="137">:  <tspan font-weight="bold">SMKS TANJUNG PRIOK 1 JAKARTA</tspan></text>
+    <line x1="185" y1="139" x2="490" y2="139" stroke="#0f172a" stroke-width="0.7"/>
+
+    <text x="30" y="159" font-weight="normal">ID SERVER / RUANG</text>
+    <text x="175" y="159">:  <tspan font-weight="bold">K01020018-BQ4K / Lab 2</tspan></text>
+    <line x1="185" y1="161" x2="490" y2="161" stroke="#0f172a" stroke-width="0.7"/>
+
+    <text x="30" y="181" font-weight="normal">HARI</text>
+    <text x="175" y="181">:  <tspan font-weight="bold">Senin - Selasa</tspan></text>
+    <text x="250" y="181">TANGGAL :  <tspan font-weight="bold">26 - 27 Oktober 2026</tspan></text>
+    <line x1="185" y1="183" x2="245" y2="183" stroke="#0f172a" stroke-width="0.7"/>
+    <line x1="315" y1="183" x2="490" y2="183" stroke="#0f172a" stroke-width="0.7"/>
+  </g>
+
+  <!-- Right column -->
+  <g font-size="11" font-family="'Arial', sans-serif" fill="#0f172a">
+    <text x="510" y="115" font-weight="normal">KODE</text>
+    <text x="560" y="115">:  <tspan font-weight="bold">02</tspan></text>
+    <line x1="570" y1="117" x2="680" y2="117" stroke="#0f172a" stroke-width="0.7"/>
+
+    <text x="510" y="137" font-weight="normal">KODE</text>
+    <text x="560" y="137">:  <tspan font-weight="bold">0018</tspan></text>
+    <line x1="570" y1="139" x2="680" y2="139" stroke="#0f172a" stroke-width="0.7"/>
+
+    <text x="510" y="159" font-weight="normal">SESI</text>
+    <text x="560" y="159">:  <tspan font-weight="bold" fill="#2563eb">1</tspan></text>
+    <line x1="570" y1="161" x2="680" y2="161" stroke="#0f172a" stroke-width="0.7"/>
+
+    <text x="510" y="181" font-weight="normal">PUKUL</text>
+    <text x="560" y="181">:  <tspan font-weight="bold">07:00-08:45 WIB</tspan></text>
+    <line x1="570" y1="183" x2="680" y2="183" stroke="#0f172a" stroke-width="0.7"/>
+  </g>
+
+  <!-- Table Header -->
+  <g font-family="'Arial', sans-serif" font-weight="bold" font-size="11" fill="#0f172a">
+    <rect x="25" y="196" width="750" height="26" fill="#e2e8f0" stroke="#0f172a" stroke-width="1.2"/>
+    <line x1="65" y1="196" x2="65" y2="222" stroke="#0f172a" stroke-width="1.2"/>
+    <line x1="200" y1="196" x2="200" y2="222" stroke="#0f172a" stroke-width="1.2"/>
+    <line x1="535" y1="196" x2="535" y2="222" stroke="#0f172a" stroke-width="1.2"/>
+    <line x1="685" y1="196" x2="685" y2="222" stroke="#0f172a" stroke-width="1.2"/>
+
+    <text x="45" y="213" text-anchor="middle">No.</text>
+    <text x="132" y="213" text-anchor="middle">Username</text>
+    <text x="367" y="213" text-anchor="middle">Nama Peserta</text>
+    <text x="610" y="213" text-anchor="middle">Tanda Tangan</text>
+    <text x="735" y="213" text-anchor="middle">Keterangan</text>
+  </g>
+
+  <!-- Rows -->
+  
+        <rect x="25" y="222" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="222" x2="65" y2="245" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="222" x2="200" y2="245" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="222" x2="535" y2="245" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="222" x2="685" y2="245" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="238" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">1</text>
+        <text x="75" y="238" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800169</text>
+        <text x="210" y="238" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">FATHIR ALINSKY CANAVARO</text>
+        <text x="560" y="238" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">1.</text>
+        
+
+        <rect x="25" y="245" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="245" x2="65" y2="268" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="245" x2="200" y2="268" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="245" x2="535" y2="268" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="245" x2="685" y2="268" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="261" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">2</text>
+        <text x="75" y="261" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800178</text>
+        <text x="210" y="261" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">HANIFAH AZZAHRA</text>
+        <text x="620" y="261" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">2.</text>
+        
+
+        <rect x="25" y="268" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="268" x2="65" y2="291" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="268" x2="200" y2="291" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="268" x2="535" y2="291" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="268" x2="685" y2="291" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="284" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">3</text>
+        <text x="75" y="284" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800187</text>
+        <text x="210" y="284" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">FATHIN HAFIZH DARMAWAN</text>
+        <text x="560" y="284" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">3.</text>
+        
+
+        <rect x="25" y="291" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="291" x2="65" y2="314" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="291" x2="200" y2="314" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="291" x2="535" y2="314" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="291" x2="685" y2="314" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="307" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">4</text>
+        <text x="75" y="307" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800196</text>
+        <text x="210" y="307" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">SILVIANA FEBRIYANTI</text>
+        <text x="620" y="307" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">4.</text>
+        
+
+        <rect x="25" y="314" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="314" x2="65" y2="337" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="314" x2="200" y2="337" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="314" x2="535" y2="337" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="314" x2="685" y2="337" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="330" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">5</text>
+        <text x="75" y="330" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800205</text>
+        <text x="210" y="330" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">AHMAD WILDAN RAMDANI</text>
+        <text x="560" y="330" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">5.</text>
+        
+
+        <rect x="25" y="337" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="337" x2="65" y2="360" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="337" x2="200" y2="360" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="337" x2="535" y2="360" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="337" x2="685" y2="360" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="353" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">6</text>
+        <text x="75" y="353" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800214</text>
+        <text x="210" y="353" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">AQILLA YASMIN</text>
+        <text x="620" y="353" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">6.</text>
+        
+
+        <rect x="25" y="360" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="360" x2="65" y2="383" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="360" x2="200" y2="383" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="360" x2="535" y2="383" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="360" x2="685" y2="383" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="376" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">7</text>
+        <text x="75" y="376" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800223</text>
+        <text x="210" y="376" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">FADHIL RIFQI KHAIRAN</text>
+        <text x="560" y="376" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">7.</text>
+        
+
+        <rect x="25" y="383" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="383" x2="65" y2="406" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="383" x2="200" y2="406" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="383" x2="535" y2="406" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="383" x2="685" y2="406" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="399" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">8</text>
+        <text x="75" y="399" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800232</text>
+        <text x="210" y="399" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">PUTRA JANABI NURRISQI</text>
+        <text x="620" y="399" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">8.</text>
+        
+
+        <rect x="25" y="406" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="406" x2="65" y2="429" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="406" x2="200" y2="429" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="406" x2="535" y2="429" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="406" x2="685" y2="429" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="422" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">9</text>
+        <text x="75" y="422" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800249</text>
+        <text x="210" y="422" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">MAURINHO GERRARDI</text>
+        <text x="560" y="422" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">9.</text>
+        
+
+        <rect x="25" y="429" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="429" x2="65" y2="452" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="429" x2="200" y2="452" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="429" x2="535" y2="452" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="429" x2="685" y2="452" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="445" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">10</text>
+        <text x="75" y="445" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800258</text>
+        <text x="210" y="445" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">Julian Afdillah</text>
+        <text x="620" y="445" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">10.</text>
+        
+
+        <rect x="25" y="452" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="452" x2="65" y2="475" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="452" x2="200" y2="475" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="452" x2="535" y2="475" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="452" x2="685" y2="475" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="468" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">11</text>
+        <text x="75" y="468" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800267</text>
+        <text x="210" y="468" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">MUHAMMAD RASYA IZHAR MALIQY</text>
+        <text x="560" y="468" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">11.</text>
+        
+
+        <rect x="25" y="475" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="475" x2="65" y2="498" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="475" x2="200" y2="498" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="475" x2="535" y2="498" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="475" x2="685" y2="498" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="491" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">12</text>
+        <text x="75" y="491" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800276</text>
+        <text x="210" y="491" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">TIARA ANGGRAENI</text>
+        <text x="620" y="491" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">12.</text>
+        
+
+        <rect x="25" y="498" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="498" x2="65" y2="521" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="498" x2="200" y2="521" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="498" x2="535" y2="521" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="498" x2="685" y2="521" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="514" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">13</text>
+        <text x="75" y="514" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800285</text>
+        <text x="210" y="514" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">PANGERAN FAADHIL HIZBULLAH</text>
+        <text x="560" y="514" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">13.</text>
+        
+
+        <rect x="25" y="521" width="750" height="23" fill="#f8fafc" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="521" x2="65" y2="544" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="521" x2="200" y2="544" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="521" x2="535" y2="544" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="521" x2="685" y2="544" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="537" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">14</text>
+        <text x="75" y="537" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800294</text>
+        <text x="210" y="537" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">ARKAN ATAYA RAMADHAN</text>
+        <text x="620" y="537" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">14.</text>
+        
+
+        <rect x="25" y="544" width="750" height="23" fill="#ffffff" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="65" y1="544" x2="65" y2="567" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="200" y1="544" x2="200" y2="567" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="535" y1="544" x2="535" y2="567" stroke="#0f172a" stroke-width="0.8"/>
+        <line x1="685" y1="544" x2="685" y2="567" stroke="#0f172a" stroke-width="0.8"/>
+        
+        <text x="45" y="560" font-size="10.5" text-anchor="middle" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">15</text>
+        <text x="75" y="560" font-size="10.5" font-family="'Courier New', monospace" font-weight="bold" fill="#0f172a">K0102001800303</text>
+        <text x="210" y="560" font-size="10.5" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a">ANDIKA PRATAMA</text>
+        <text x="560" y="560" font-size="10" font-family="'Arial', sans-serif" fill="#64748b">15.</text>
+        
+
+  <!-- Footnotes & Signature Section -->
+  <g transform="translate(30, 580)" font-family="'Arial', sans-serif" font-size="10" fill="#0f172a">
+    <text x="0" y="0" font-weight="bold" font-style="italic">Keterangan :</text>
+    <text x="0" y="16">1. Dibuat rangkap 3 (tiga), masing-masing untuk sekolah, kota/kab dan Provinsi.</text>
+    <text x="0" y="30">2. Pengawas ruang menyilang Nama Peserta yang tidak hadir.</text>
+    <text x="0" y="44">3. Daftar hadir untuk pusat di upload melalui laman TKA.</text>
+
+    <!-- Attendance Count Box -->
+    <rect x="0" y="60" width="280" height="60" fill="none" stroke="#0f172a" stroke-width="0.8"/>
+    <line x1="0" y1="80" x2="280" y2="80" stroke="#0f172a" stroke-width="0.8"/>
+    <line x1="0" y1="100" x2="280" y2="100" stroke="#0f172a" stroke-width="0.8"/>
+    <text x="8" y="74">Jumlah Peserta yang Seharusnya Hadir  :  ______  peserta</text>
+    <text x="8" y="94">Jumlah Peserta yang Tidak Hadir       :  ______  peserta</text>
+    <text x="8" y="114">Jumlah Peserta Hadir                  :  ______  peserta</text>
+
+    <!-- Signatures -->
+    <text x="450" y="60" font-weight="bold" text-anchor="middle">Proktor</text>
+    <text x="450" y="115" text-anchor="middle">( ______________________________ )</text>
+    <text x="380" y="130">NIP.</text>
+
+    <text x="630" y="60" font-weight="bold" text-anchor="middle">Pengawas</text>
+    <text x="630" y="115" text-anchor="middle">( ______________________________ )</text>
+    <text x="560" y="130">NIP.</text>
+  </g>
+
+  <!-- Bottom Ministry Banner -->
+  <g transform="translate(25, 1020)">
+    <rect x="0" y="0" width="750" height="32" fill="#ffffff" stroke="#0f172a" stroke-width="1.2"/>
+    <rect x="0" y="0" width="30" height="32" fill="#0f172a" opacity="0.05" stroke="#0f172a" stroke-width="0.8"/>
+    <rect x="720" y="0" width="30" height="32" fill="#0f172a" opacity="0.05" stroke="#0f172a" stroke-width="0.8"/>
+    <text x="375" y="21" font-size="12" font-family="'Arial', sans-serif" font-weight="bold" fill="#0f172a" text-anchor="middle" letter-spacing="1">
+      KEMENTERIAN PENDIDIKAN DASAR DAN MENENGAH
+    </text>
+  </g>
+</svg>

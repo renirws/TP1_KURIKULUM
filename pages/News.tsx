@@ -36,6 +36,7 @@ import {
   List
 } from 'lucide-react';
 import { toeicSlides, toeicParticipants } from '../services/toeicData';
+import { tkaSlides, tkaStudents } from '../services/tkaData';
 
 const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
@@ -50,7 +51,7 @@ const News: React.FC = () => {
   const [isAutoPlay, setIsAutoPlay] = useState(false);
   const [participantView, setParticipantView] = useState<'cards' | 'table'>('cards');
 
-  // Auto-play slideshow effect
+  // Auto-play slideshow effect for TOEIC
   React.useEffect(() => {
     if (!isAutoPlay) return;
     const interval = setInterval(() => {
@@ -98,22 +99,64 @@ const News: React.FC = () => {
     });
   }, [toeicSearchQuery, toeicRoleFilter, toeicLabFilter]);
 
-  // TKA Data
+  // TKA (Tes Kemampuan Akademik 26 - 27 Oktober 2026) State
   const [tkaSlide, setTkaSlide] = useState(0);
-  const tkaImages = [
-    {
-      title: "Jadwal KBM & Simulasi TKA Kelas XII",
-      session: "Lembar 1 - Matriks Jadwal",
-      desc: "Distribusi jadwal simulasi TKA per hari dan jam pelajaran",
-      url: "https://drive.google.com/thumbnail?id=1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od&sz=w1600"
-    },
-    {
-      title: "Daftar Kode Pengajar & Guru Piket",
-      session: "Lembar 2 - Lampiran Pengajar",
-      desc: "Daftar guru pendamping dan kode pengampu mata pelajaran",
-      url: "https://drive.google.com/thumbnail?id=1MtVR3nnr0g8nkLo2kZQc_afBTspy8qOG&sz=w1600"
-    }
-  ];
+  const [tkaSearchQuery, setTkaSearchQuery] = useState('');
+  const [tkaLabFilter, setTkaLabFilter] = useState<string>('Semua');
+  const [tkaSesiFilter, setTkaSesiFilter] = useState<string>('Semua');
+  const [isTkaAutoPlay, setIsTkaAutoPlay] = useState(false);
+  const [tkaView, setTkaView] = useState<'cards' | 'table'>('cards');
+  const [tkaInSliderZoom, setTkaInSliderZoom] = useState(1);
+
+  // Auto-play slideshow effect for TKA
+  React.useEffect(() => {
+    if (!isTkaAutoPlay) return;
+    const interval = setInterval(() => {
+      setTkaSlide((prev) => (prev + 1) % tkaSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isTkaAutoPlay]);
+
+  // Current TKA slide index in Zoom modal
+  const currentTkaSlideIndex = useMemo(() => {
+    if (!zoomImageUrl) return -1;
+    return tkaSlides.findIndex(s => s.imageUrl === zoomImageUrl);
+  }, [zoomImageUrl]);
+
+  const handleModalPrevTkaSlide = () => {
+    if (currentTkaSlideIndex === -1) return;
+    const prevIdx = (currentTkaSlideIndex - 1 + tkaSlides.length) % tkaSlides.length;
+    setTkaSlide(prevIdx);
+    setZoomImageUrl(tkaSlides[prevIdx].imageUrl);
+    setZoomScale(1);
+  };
+
+  const handleModalNextTkaSlide = () => {
+    if (currentTkaSlideIndex === -1) return;
+    const nextIdx = (currentTkaSlideIndex + 1) % tkaSlides.length;
+    setTkaSlide(nextIdx);
+    setZoomImageUrl(tkaSlides[nextIdx].imageUrl);
+    setZoomScale(1);
+  };
+
+  // Filtered TKA Students for Real-Time Search & Verification
+  const filteredTkaStudents = useMemo(() => {
+    return tkaStudents.filter(s => {
+      const q = tkaSearchQuery.toLowerCase().trim();
+      const matchesSearch = 
+        q === '' ||
+        s.name.toLowerCase().includes(q) ||
+        s.username.toLowerCase().includes(q) ||
+        s.lab.toLowerCase().includes(q) ||
+        s.idServer.toLowerCase().includes(q) ||
+        `sesi ${s.sesi}`.toLowerCase().includes(q);
+
+      const matchesLab = tkaLabFilter === 'Semua' || s.lab === tkaLabFilter;
+      const matchesSesi = tkaSesiFilter === 'Semua' || s.sesi.toString() === tkaSesiFilter;
+
+      return matchesSearch && matchesLab && matchesSesi;
+    });
+  }, [tkaSearchQuery, tkaLabFilter, tkaSesiFilter]);
 
   const handleZoom = (url: string) => {
     setZoomImageUrl(url);
@@ -165,9 +208,9 @@ const News: React.FC = () => {
   return (
     <main className="min-h-screen bg-gray-50 py-8 md:py-12">
       <SEO 
-        title="Warta Kurikulum: Pelaksanaan Seleksi TOEIC Tahap 3 Murid & Guru | SMK TANJUNG PRIOK 1"
-        description="Pengumuman resmi Pelaksanaan Seleksi TOEIC Tahap 3 untuk Murid Kelas XII (15 Oktober 2026) dan Bapak/Ibu Guru (16 Oktober 2026) SMK Tanjung Priok 1 Jakarta Utara berdasarkan Surat Edaran No: 09Rev/SE/SMKTP01/X/2026."
-        keywords="TOEIC Tahap 3 SMK Tanjung Priok 1, Seleksi TOEIC Murid Guru, Surat Edaran 09Rev/SE/SMKTP01/X/2026, Jadwal TOEIC 15 16 Oktober 2026, Warta Kurikulum SMK Tanjung Priok 1, Katalog Buku Kemendikdasmen"
+        title="Warta Kurikulum: Seleksi TOEIC Tahap 3 & Update Kelas Sesi TKA 26-27 Okt | SMK TANJUNG PRIOK 1"
+        description="Pengumuman resmi Pelaksanaan Seleksi TOEIC Tahap 3 (15-16 Okt) dan Update Daftar Siswa Kelas & Sesi Tes Kemampuan Akademik (TKA) 26-27 Oktober 2026 SMK Tanjung Priok 1 Jakarta Utara (7 Lembar Terlampir)."
+        keywords="TOEIC Tahap 3 SMK Tanjung Priok 1, TKA 26-27 Oktober 2026, Tes Kemampuan Akademik SMK, Daftar Siswa TKA, Lab TKA SMK Tanjung Priok 1, Warta Kurikulum SMK Tanjung Priok 1, Katalog Buku Kemendikdasmen"
         canonical="https://tp1kurikulum.my.id/warta"
       />
       <div className="container mx-auto px-4">
@@ -205,7 +248,7 @@ const News: React.FC = () => {
                 href="#tka" 
                 className="bg-white text-slate-700 border border-slate-200 font-bold px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition flex items-center gap-1.5 cursor-pointer"
               >
-                <span>💻 Simulasi TKA</span>
+                <span>💻 Update Sesi &amp; Peserta TKA (26-27 Okt)</span>
               </a>
               <a 
                 href="#ukk" 
@@ -990,109 +1033,637 @@ const News: React.FC = () => {
           </article>
 
           {/* =========================================================================
-              TKA SIMULATION SECTION - KELAS XII
+              FEATURED SECTION 3: DAFTAR SISWA UPDATE KELAS & SESI TKA 26 - 27 OKTOBER 2026
              ========================================================================= */}
-          <article id="tka" className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-100/80 scroll-mt-24">
-            <header className="bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-8 md:p-12 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                <FileText className="w-64 h-64 text-white" />
+          <article id="tka" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-indigo-200/80 scroll-mt-24">
+            {/* Header Banner with Clean Dark Theme and Pure White Title */}
+            <header className="bg-gradient-to-br from-[#0b132b] via-[#1c2541] to-[#3a506b] p-6 sm:p-8 md:p-12 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
+                <FileText className="w-80 h-80 text-white" />
               </div>
-              <div className="relative z-10">
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span className="bg-amber-400 text-slate-950 font-black px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
+
+              <div className="relative z-10 space-y-4">
+                {/* Official Badges */}
+                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                  <span className="bg-amber-400 text-slate-950 font-black px-3.5 py-1 rounded-full text-[11px] md:text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 fill-current" />
-                    <span>AGENDA AKADEMIK KELAS XII</span>
+                    <span>PENGUMUMAN RESMI KURIKULUM</span>
                   </span>
-                  <span className="bg-white/20 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-white/30">
-                    SIMULASI TKA 2026
+                  <span className="text-white/40 hidden sm:inline">•</span>
+                  <span className="bg-emerald-500/20 backdrop-blur-md text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>26 - 27 OKTOBER 2026</span>
+                  </span>
+                  <span className="bg-blue-500/20 backdrop-blur-md text-blue-200 border border-blue-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-blue-300" />
+                    <span>104 PESERTA TERDAFTAR (4 LAB)</span>
+                  </span>
+                  <span className="bg-indigo-500/20 backdrop-blur-md text-indigo-200 border border-indigo-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-indigo-300" />
+                    <span>7 LEMBAR DAFTAR HADIR</span>
                   </span>
                 </div>
-                
-                <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight leading-tight text-white">
-                  Jadwal KBM &amp; Simulasi TKA Kelas XII
+
+                {/* Pure White Clean Title as requested */}
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
+                  DAFTAR SISWA UPDATE KELAS DAN SESI TES KEMAMPUAN AKADEMIK (TKA) YANG AKAN DILAKSANAKAN PADA 26 - 27 OKTOBER 2026 (DAFTAR TERLAMPIR)
                 </h2>
-                
-                <p className="text-blue-100 text-base md:text-lg max-w-3xl leading-relaxed font-medium">
-                  Pengumuman resmi pembagian jadwal pembelajaran KBM aktif dan rangkaian agenda Simulasi Tes Kemampuan Akademik (TKA) bagi seluruh siswa Kelas XII semua konsentrasi keahlian.
+
+                <p className="text-slate-200/90 leading-relaxed text-sm md:text-base lg:text-lg max-w-3xl font-medium">
+                  Pengumuman resmi Tim Kurikulum SMK Tanjung Priok 1 Jakarta Utara mengenai pembagian ruang laboratorium, nomor peserta/username, ID Server, dan jadwal sesi <strong>Tes Kemampuan Akademik (TKA) SMK Tahun 2026</strong> untuk seluruh siswa Kelas XII (Semua Konsentrasi Keahlian: TPK, TKRO, DKV, dan Logistik).
                 </p>
+
+                {/* Header Action Buttons */}
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <a
+                    href="#tka-slider"
+                    className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-black px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-lg shadow-blue-500/25 active:scale-95 cursor-pointer touch-manipulation"
+                  >
+                    <Layers className="w-4 h-4" />
+                    <span>LIHAT SLIDESHOW DAFTAR HADIR (7 LEMBAR)</span>
+                  </a>
+                  <a
+                    href="#tka-search"
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation"
+                  >
+                    <Search className="w-4 h-4 text-emerald-400" />
+                    <span>CARI NAMA SISWA &amp; RUANGAN</span>
+                  </a>
+                </div>
               </div>
             </header>
 
-            <div className="p-8 md:p-12 space-y-8">
-              {/* TKA Visual Slider */}
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
-                  <div>
-                    <h3 className="text-xl font-black text-[#0f172a] flex items-center gap-2">
-                      <Layers className="w-5 h-5 text-blue-600" />
-                      <span>{tkaImages[tkaSlide].title}</span>
+            <div className="p-6 md:p-12 space-y-10">
+              {/* Executive Summary 4 Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-gradient-to-br from-indigo-50/80 to-blue-50/50 p-5 rounded-3xl border border-indigo-100 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-600/20">
+                      <Calendar className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded-full inline-block">
+                      Tanggal Pelaksanaan
+                    </span>
+                    <h3 className="text-base font-black text-slate-900 leading-snug">
+                      Senin &amp; Selasa, 26 - 27 Oktober 2026
                     </h3>
-                    <p className="text-gray-500 text-sm">{tkaImages[tkaSlide].desc}</p>
+                  </div>
+                  <p className="text-xs text-slate-600 mt-2 font-medium">
+                    Pelaksanaan serentak selama 2 hari sesuai jadwal sesi masing-masing peserta.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-50/80 to-sky-50/50 p-5 rounded-3xl border border-blue-100 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-600/20">
+                      <Clock className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-full inline-block">
+                      Jadwal 2 Sesi Ujian
+                    </span>
+                    <h3 className="text-base font-black text-slate-900 leading-snug">
+                      Sesi 1: 07:00 &bull; Sesi 2: 09:30 WIB
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-600 mt-2 font-medium">
+                    Durasi tes 105 menit. Wajib hadir 15 menit sebelum sesi dimulai.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-emerald-50/80 to-teal-50/50 p-5 rounded-3xl border border-emerald-100 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/20">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full inline-block">
+                      Alokasi Ruangan
+                    </span>
+                    <h3 className="text-base font-black text-slate-900 leading-snug">
+                      4 Laboratorium Komputer
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-600 mt-2 font-medium">
+                    Lab 1 (AG1K), Lab 2 (BQ4K), Lab 3 (CQ6K), &amp; Lab TL (DY7K).
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-50/80 to-fuchsia-50/50 p-5 rounded-3xl border border-purple-100 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md shadow-purple-600/20">
+                      <UserCheck className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-0.5 rounded-full inline-block">
+                      Jumlah Peserta
+                    </span>
+                    <h3 className="text-base font-black text-slate-900 leading-snug">
+                      104 Murid Kelas XII
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-600 mt-2 font-medium">
+                    100% siswa terdata lengkap dengan akun login &amp; ID server sinkron.
+                  </p>
+                </div>
+              </div>
+
+              {/* -------------------------------------------------------------
+                  TKA SLIDE SHOW: 7 LEMBAR DAFTAR HADIR PESERTA RESMI TKA
+                 ------------------------------------------------------------- */}
+              <div id="tka-slider" className="space-y-4 pt-2 scroll-mt-24">
+                {/* Active Slide Info Header */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-4 bg-slate-900 text-white rounded-2xl border border-slate-800">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-blue-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                        Lembar {tkaSlide + 1} dari {tkaSlides.length}
+                      </span>
+                      <span className="bg-indigo-500/20 text-indigo-300 text-[11px] font-bold px-2 py-0.5 rounded-md border border-indigo-500/30">
+                        {tkaSlides[tkaSlide].badge}
+                      </span>
+                      <span className="text-slate-400 text-xs hidden sm:inline">
+                        ID Server: <strong className="text-amber-400 font-mono">{tkaSlides[tkaSlide].idServer}</strong>
+                      </span>
+                    </div>
+                    <h3 className="text-lg md:text-xl font-black text-white">
+                      {tkaSlides[tkaSlide].title}
+                    </h3>
+                    <p className="text-xs text-slate-300 font-medium">
+                      {tkaSlides[tkaSlide].subtitle}
+                    </p>
                   </div>
 
-                  <div className="flex items-center space-x-2">
-                    <button 
-                      onClick={() => handleZoom(tkaImages[tkaSlide].url)}
-                      className="inline-flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer"
+                  {/* Top Bar Quick Controls */}
+                  <div className="flex flex-wrap items-center gap-2 shrink-0">
+                    <button
+                      onClick={() => setIsTkaAutoPlay(!isTkaAutoPlay)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition cursor-pointer active:scale-95 touch-manipulation ${
+                        isTkaAutoPlay 
+                          ? 'bg-amber-400 text-slate-950' 
+                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/15'
+                      }`}
+                      title={isTkaAutoPlay ? "Jeda Putar Otomatis" : "Putar Slide Otomatis"}
                     >
-                      <ZoomIn className="w-4 h-4 text-blue-400" />
-                      <span>Perbesar</span>
+                      {isTkaAutoPlay ? <Pause className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
+                      <span>{isTkaAutoPlay ? "Jeda" : "Auto Slide"}</span>
                     </button>
 
                     <button 
-                      onClick={() => handlePrintImage(tkaImages[tkaSlide].url, tkaImages[tkaSlide].title)}
-                      className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer"
+                      onClick={() => handleZoom(tkaSlides[tkaSlide].imageUrl)}
+                      className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold px-3.5 py-2 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                      title="Perbesar Layar Penuh Resolusi Tinggi"
                     >
-                      <Printer className="w-4 h-4" />
-                      <span>Cetak</span>
+                      <ZoomIn className="w-3.5 h-3.5 text-white" />
+                      <span>Zoom Resolusi Tinggi</span>
                     </button>
+
+                    <button 
+                      onClick={() => handlePrintImage(tkaSlides[tkaSlide].imageUrl, tkaSlides[tkaSlide].title)}
+                      className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-3 py-2 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                      title="Cetak Lembar Ini"
+                    >
+                      <Printer className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Cetak</span>
+                    </button>
+
+                    <a 
+                      href={tkaSlides[tkaSlide].imageUrl}
+                      download={`TKA_SMKTP1_Lembar_${tkaSlide + 1}.svg`}
+                      className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-3 py-2 rounded-xl text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer touch-manipulation"
+                      title="Unduh Berkas Gambar"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Unduh</span>
+                    </a>
                   </div>
                 </div>
 
-                {/* TKA Slide Container */}
-                <div className="relative bg-slate-900 rounded-3xl overflow-hidden shadow-2xl cursor-zoom-in max-w-4xl mx-auto" onClick={() => handleZoom(tkaImages[tkaSlide].url)}>
-                  <div className="aspect-[16/10] max-h-[60vh] flex items-center justify-center p-4">
+                {/* Inline Zoom Adjustment Bar for Fast Smartphone Access */}
+                <div className="flex flex-wrap items-center justify-between text-xs bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-slate-700 gap-2">
+                  <div className="flex items-center gap-1.5 font-bold">
+                    <span className="text-slate-500">Kontrol Zoom Langsung:</span>
+                    <button
+                      onClick={() => setTkaInSliderZoom(prev => Math.max(0.7, prev - 0.2))}
+                      className="px-2.5 py-1 bg-white hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-black shadow-xs cursor-pointer active:scale-95 touch-manipulation"
+                      title="Perkecil Lembar"
+                    >
+                      - Zoom
+                    </button>
+                    <button
+                      onClick={() => setTkaInSliderZoom(1)}
+                      className="px-2.5 py-1 bg-white hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-black shadow-xs cursor-pointer active:scale-95 touch-manipulation"
+                      title="Kembalikan ke 100%"
+                    >
+                      {Math.round(tkaInSliderZoom * 100)}% (Reset)
+                    </button>
+                    <button
+                      onClick={() => setTkaInSliderZoom(prev => Math.min(2.2, prev + 0.2))}
+                      className="px-2.5 py-1 bg-white hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-black shadow-xs cursor-pointer active:scale-95 touch-manipulation"
+                      title="Perbesar Lembar"
+                    >
+                      + Zoom
+                    </button>
+                  </div>
+                  <div className="text-[11px] text-slate-500 font-medium">
+                    💡 Ketuk 2x (double-tap) pada gambar untuk zoom 2x otomatis
+                  </div>
+                </div>
+
+                {/* High-Resolution Document Slide Display Container */}
+                <div 
+                  className="relative bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-800 group select-none"
+                  onDoubleClick={() => setTkaInSliderZoom(prev => prev === 1 ? 1.6 : 1)}
+                >
+                  <div className="min-h-[500px] max-h-[85vh] overflow-auto flex items-center justify-center p-3 md:p-6 bg-slate-900/90 cursor-grab active:cursor-grabbing">
                     <img 
-                      src={tkaImages[tkaSlide].url} 
-                      alt={tkaImages[tkaSlide].title}
-                      className="w-full h-full object-contain"
+                      src={tkaSlides[tkaSlide].imageUrl} 
+                      alt={tkaSlides[tkaSlide].title}
+                      style={{ transform: `scale(${tkaInSliderZoom})`, transformOrigin: 'top center' }}
+                      className="w-full max-w-4xl h-auto object-contain transition-transform duration-200 shadow-2xl rounded-lg bg-white"
                       loading="lazy"
                     />
                   </div>
 
-                  {/* Left / Right Nav */}
+                  {/* Left / Right Navigation Buttons */}
                   <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setTkaSlide((prev) => (prev === 0 ? tkaImages.length - 1 : prev - 1));
-                    }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer"
+                    onClick={() => setTkaSlide((prev) => (prev === 0 ? tkaSlides.length - 1 : prev - 1))}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-950/85 hover:bg-blue-600 text-white p-3 rounded-2xl shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation border border-white/10"
+                    aria-label="Lembar Sebelumnya"
+                    title="Lembar Sebelumnya"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="w-6 h-6" />
                   </button>
 
                   <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setTkaSlide((prev) => (prev === tkaImages.length - 1 ? 0 : prev + 1));
-                    }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer"
+                    onClick={() => setTkaSlide((prev) => (prev === tkaSlides.length - 1 ? 0 : prev + 1))}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-950/85 hover:bg-blue-600 text-white p-3 rounded-2xl shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation border border-white/10"
+                    aria-label="Lembar Selanjutnya"
+                    title="Lembar Selanjutnya"
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-6 h-6" />
                   </button>
+
+                  {/* Floating Modal Fullscreen Trigger Hint */}
+                  <div className="absolute bottom-3 right-3 bg-slate-950/80 backdrop-blur-md text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-white/10 flex items-center gap-2 pointer-events-none">
+                    <ZoomIn className="w-4 h-4 text-blue-400" />
+                    <span className="hidden sm:inline">Klik &quot;Zoom Resolusi Tinggi&quot; untuk tampilan layar penuh</span>
+                    <span className="sm:hidden">Ketuk zoom untuk perbesar</span>
+                  </div>
                 </div>
 
-                {/* TKA Thumbs */}
-                <div className="flex justify-center space-x-2 pt-2">
-                  {tkaImages.map((_, idx) => (
+                {/* Mobile Dropdown Slide Selector */}
+                <div className="block sm:hidden">
+                  <label htmlFor="tka-mobile-slide-select" className="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1.5">
+                    Pilih Lembar Daftar Hadir:
+                  </label>
+                  <select
+                    id="tka-mobile-slide-select"
+                    value={tkaSlide}
+                    onChange={(e) => setTkaSlide(Number(e.target.value))}
+                    className="w-full bg-white border-2 border-indigo-200 text-slate-900 font-bold rounded-xl px-3 py-2.5 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  >
+                    {tkaSlides.map((slide, idx) => (
+                      <option key={slide.id} value={idx}>
+                        Lembar {idx + 1}: {slide.badge} ({slide.totalPeserta} Murid)
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Thumbnail / Page Jump Selector Tabs */}
+                <div className="overflow-x-auto pb-2 no-scrollbar">
+                  <div className="flex items-center gap-2 min-w-max">
+                    {tkaSlides.map((slide, idx) => (
+                      <button
+                        key={slide.id}
+                        onClick={() => {
+                          setTkaSlide(idx);
+                          setTkaInSliderZoom(1);
+                        }}
+                        className={`px-3 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 border cursor-pointer active:scale-95 touch-manipulation ${
+                          tkaSlide === idx 
+                            ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-600/30' 
+                            : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                        }`}
+                      >
+                        <span className="w-4 h-4 rounded-full bg-slate-900/20 text-current flex items-center justify-center text-[10px]">
+                          {idx + 1}
+                        </span>
+                        <span>{slide.badge}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Pagination Dots */}
+                <div className="flex justify-center items-center gap-1.5 pt-1">
+                  {tkaSlides.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => setTkaSlide(idx)}
-                      className={`h-2.5 rounded-full transition-all ${
-                        tkaSlide === idx ? 'w-8 bg-blue-600' : 'w-2.5 bg-gray-300'
+                      className={`h-2 rounded-full transition-all cursor-pointer ${
+                        tkaSlide === idx ? 'w-8 bg-blue-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
                       }`}
+                      aria-label={`Buka slide ${idx + 1}`}
                     />
                   ))}
+                </div>
+              </div>
+
+              {/* -------------------------------------------------------------
+                  INTERACTIVE STUDENT FINDER & SEARCH (104 SISWA KELAS XII)
+                 ------------------------------------------------------------- */}
+              <div id="tka-search" className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200 space-y-6 scroll-mt-24">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div>
+                    <span className="text-[11px] font-black uppercase tracking-wider text-blue-700 bg-blue-100 px-3 py-1 rounded-full inline-block mb-1.5">
+                      PENCARIAN CEPAT &bull; VERIFIKASI PESERTA
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-black text-slate-900">
+                      Cari Nama Siswa, Lab &amp; Sesi TKA
+                    </h3>
+                    <p className="text-xs md:text-sm text-slate-500 font-medium">
+                      Ketik nama siswa atau username untuk memeriksa ruang laboratorium, nomor meja server, dan jadwal sesi.
+                    </p>
+                  </div>
+
+                  {/* Mode Tampilan: Kartu (Smartphone) vs Tabel */}
+                  <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-slate-200 self-start md:self-auto shrink-0 shadow-xs">
+                    <button
+                      onClick={() => setTkaView('cards')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer active:scale-95 touch-manipulation ${
+                        tkaView === 'cards' 
+                          ? 'bg-blue-600 text-white shadow-xs' 
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      <LayoutGrid className="w-3.5 h-3.5" />
+                      <span>Kartu (HP)</span>
+                    </button>
+                    <button
+                      onClick={() => setTkaView('table')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer active:scale-95 touch-manipulation ${
+                        tkaView === 'table' 
+                          ? 'bg-blue-600 text-white shadow-xs' 
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      <List className="w-3.5 h-3.5" />
+                      <span>Tabel</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Search Bar & Fast Lab Filter Chips */}
+                <div className="space-y-3">
+                  <div className="relative">
+                    <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={tkaSearchQuery}
+                      onChange={(e) => setTkaSearchQuery(e.target.value)}
+                      placeholder="Ketik nama murid (mis: Chandra, Nayla, Marvel, Alvino) atau username..."
+                      className="w-full pl-12 pr-10 py-3.5 bg-white border-2 border-slate-200 rounded-2xl text-xs md:text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 shadow-sm"
+                    />
+                    {tkaSearchQuery && (
+                      <button
+                        onClick={() => setTkaSearchQuery('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Fast Lab Category Chips */}
+                  <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                    <span className="text-xs font-bold text-slate-500 mr-1 flex items-center gap-1">
+                      <Filter className="w-3.5 h-3.5" />
+                      <span>Filter Lab:</span>
+                    </span>
+                    {[
+                      { label: "Semua (104)", val: "Semua" },
+                      { label: "Lab 1 (30)", val: "Lab 1" },
+                      { label: "Lab 2 (30)", val: "Lab 2" },
+                      { label: "Lab 3 (29)", val: "Lab 3" },
+                      { label: "Lab TL (15)", val: "Lab TL" }
+                    ].map((chip) => (
+                      <button
+                        key={chip.val}
+                        onClick={() => setTkaLabFilter(chip.val)}
+                        className={`px-3 py-1.5 rounded-full text-xs font-bold transition active:scale-95 touch-manipulation cursor-pointer ${
+                          tkaLabFilter === chip.val 
+                            ? 'bg-blue-600 text-white shadow-xs' 
+                            : 'bg-white text-slate-700 border border-slate-200 hover:border-blue-300'
+                        }`}
+                      >
+                        {chip.label}
+                      </button>
+                    ))}
+
+                    <span className="text-white/20 mx-1 hidden md:inline">|</span>
+
+                    <span className="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">Sesi:</span>
+                    {[
+                      { label: "Semua Sesi", val: "Semua" },
+                      { label: "Sesi 1 (Pagi)", val: "1" },
+                      { label: "Sesi 2 (Siang)", val: "2" }
+                    ].map((chip) => (
+                      <button
+                        key={chip.val}
+                        onClick={() => setTkaSesiFilter(chip.val)}
+                        className={`px-3 py-1.5 rounded-full text-xs font-bold transition active:scale-95 touch-manipulation cursor-pointer ${
+                          tkaSesiFilter === chip.val 
+                            ? 'bg-indigo-600 text-white shadow-xs' 
+                            : 'bg-white text-slate-700 border border-slate-200 hover:border-indigo-300'
+                        }`}
+                      >
+                        {chip.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs font-medium text-slate-500 pt-1">
+                    <span>Hasil pencarian: <strong className="text-blue-600 font-black">{filteredTkaStudents.length}</strong> siswa ditemukan</span>
+                    {(tkaSearchQuery || tkaLabFilter !== 'Semua' || tkaSesiFilter !== 'Semua') && (
+                      <button
+                        onClick={() => {
+                          setTkaSearchQuery('');
+                          setTkaLabFilter('Semua');
+                          setTkaSesiFilter('Semua');
+                        }}
+                        className="text-rose-600 font-bold hover:underline cursor-pointer"
+                      >
+                        Reset Filter
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Participant Results: Cards View (Smartphone Optimized) */}
+                {tkaView === 'cards' && (
+                  <div>
+                    {filteredTkaStudents.length > 0 ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                        {filteredTkaStudents.map((s, idx) => (
+                          <div 
+                            key={idx} 
+                            className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs hover:border-blue-300 transition-all hover:shadow-md space-y-2.5"
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-lg">
+                                #{s.no} &bull; {s.username}
+                              </span>
+                              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-200">
+                                Sesi {s.sesi}
+                              </span>
+                            </div>
+
+                            <h4 className="font-black text-slate-900 text-sm leading-snug">
+                              {s.name}
+                            </h4>
+
+                            <div className="text-xs text-slate-600 space-y-1.5 pt-2 border-t border-slate-100 font-medium">
+                              <div className="flex items-center justify-between">
+                                <span className="text-slate-400">Ruangan:</span>
+                                <span className="font-black text-blue-600">{s.lab}</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-slate-400">ID Server:</span>
+                                <span className="font-mono font-bold text-slate-700 text-[11px]">{s.idServer}</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-slate-400">Jadwal Sesi:</span>
+                                <span className="font-bold text-slate-800">{s.pukul}</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-slate-400">Hari &amp; Tanggal:</span>
+                                <span className="font-medium text-slate-600">{s.tanggal}</span>
+                              </div>
+                            </div>
+
+                            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                              <button
+                                onClick={() => {
+                                  setTkaSlide(s.page - 1);
+                                  document.getElementById('tka-slider')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="text-xs text-blue-600 hover:text-blue-800 font-bold flex items-center gap-1 cursor-pointer"
+                              >
+                                <span>Lihat di Lembar {s.page}</span>
+                                <ChevronRight className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => handleZoom(tkaSlides[s.page - 1].imageUrl)}
+                                className="text-[11px] text-slate-500 hover:text-slate-700 font-semibold flex items-center gap-1 cursor-pointer"
+                              >
+                                <ZoomIn className="w-3 h-3 text-blue-500" />
+                                <span>Perbesar Lembar</span>
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="bg-white rounded-2xl border border-slate-200 p-10 text-center text-slate-400 font-medium">
+                        Tidak ada siswa yang cocok dengan kata kunci &quot;{tkaSearchQuery}&quot;
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Participant Results: Table View */}
+                {tkaView === 'table' && (
+                  <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                    <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                      <table className="w-full text-left border-collapse text-xs md:text-sm">
+                        <thead className="bg-slate-900 text-white sticky top-0 z-10 text-[11px] md:text-xs uppercase tracking-wider">
+                          <tr>
+                            <th className="py-3 px-4 font-bold">No.</th>
+                            <th className="py-3 px-4 font-bold">Username Peserta</th>
+                            <th className="py-3 px-4 font-bold">Nama Murid</th>
+                            <th className="py-3 px-4 font-bold">Ruang Lab</th>
+                            <th className="py-3 px-4 font-bold">ID Server</th>
+                            <th className="py-3 px-4 font-bold">Sesi &amp; Waktu</th>
+                            <th className="py-3 px-4 font-bold">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {filteredTkaStudents.length > 0 ? (
+                            filteredTkaStudents.map((s, idx) => (
+                              <tr key={idx} className="hover:bg-blue-50/50 transition-colors">
+                                <td className="py-3 px-4 font-mono text-slate-400 font-bold">
+                                  {s.no}
+                                </td>
+                                <td className="py-3 px-4 font-mono font-bold text-slate-700 text-xs">
+                                  {s.username}
+                                </td>
+                                <td className="py-3 px-4 font-black text-slate-900">
+                                  {s.name}
+                                </td>
+                                <td className="py-3 px-4 font-bold text-blue-600">
+                                  {s.lab}
+                                </td>
+                                <td className="py-3 px-4 font-mono text-xs text-slate-600">
+                                  {s.idServer}
+                                </td>
+                                <td className="py-3 px-4 font-semibold text-slate-700">
+                                  Sesi {s.sesi} ({s.pukul})
+                                </td>
+                                <td className="py-3 px-4">
+                                  <button
+                                    onClick={() => {
+                                      setTkaSlide(s.page - 1);
+                                      document.getElementById('tka-slider')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95"
+                                  >
+                                    <span>Lembar {s.page}</span>
+                                    <ChevronRight className="w-3 h-3" />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan={7} className="py-12 text-center text-slate-400 font-medium">
+                                Tidak ada siswa yang cocok dengan kata kunci &quot;{tkaSearchQuery}&quot;
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* Footer Navigation Note */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-500 pt-2 gap-2">
+                  <span>Catatan: Pastikan datang 15 menit sebelum sesi dimulai dan memakai seragam rapi.</span>
+                  <button
+                    onClick={() => {
+                      setTkaSlide(0);
+                      document.getElementById('tka-slider')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="text-blue-600 font-bold hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Kembali ke Lembar 1 (Lab 1 Sesi 1)</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Tata Tertib Pelaksanaan TKA */}
+              <div className="p-5 md:p-6 bg-indigo-50/80 rounded-2xl border border-indigo-200 flex items-start gap-4 text-indigo-950">
+                <ShieldCheck className="w-7 h-7 text-indigo-700 shrink-0 mt-0.5" />
+                <div className="space-y-1.5 text-xs md:text-sm leading-relaxed">
+                  <span className="font-black block uppercase tracking-wide text-indigo-950">
+                    Tata Tertib Peserta Tes Kemampuan Akademik (TKA) 26 - 27 Oktober 2026:
+                  </span>
+                  <ul className="list-disc list-inside space-y-1 text-slate-700 font-medium">
+                    <li>Peserta wajib hadir <strong>15 menit</strong> sebelum waktu sesi dimulai. Keterlambatan tidak diberikan tambahan waktu.</li>
+                    <li>Wajib menempati meja laboratorium komputer sesuai dengan <strong>ID Server</strong> dan nomor urut peserta yang tertera pada daftar hadir.</li>
+                    <li>Dilarang membawa alat komunikasi, kamera, atau catatan ke dalam ruang laboratorium selama ujian berlangsung.</li>
+                    <li>Segera laporkan kepada Pengawas Ujian atau Teknisi Laboratorium jika mengalami kendala login akun atau komputer mati.</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -1144,7 +1715,12 @@ const News: React.FC = () => {
               </span>
               {currentToeicSlideIndex !== -1 && (
                 <span className="text-xs text-amber-300 font-black bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg hidden sm:inline">
-                  Lembar {currentToeicSlideIndex + 1} / {toeicSlides.length}
+                  TOEIC Lembar {currentToeicSlideIndex + 1} / {toeicSlides.length}
+                </span>
+              )}
+              {currentTkaSlideIndex !== -1 && (
+                <span className="text-xs text-indigo-300 font-black bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg hidden sm:inline">
+                  TKA Lembar {currentTkaSlideIndex + 1} / {tkaSlides.length}: {tkaSlides[currentTkaSlideIndex].badge}
                 </span>
               )}
               <span className="text-xs text-slate-400 hidden md:inline">
@@ -1165,6 +1741,27 @@ const News: React.FC = () => {
                   </button>
                   <button
                     onClick={handleModalNextSlide}
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-blue-600 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95 touch-manipulation"
+                    title="Lembar Selanjutnya"
+                  >
+                    <span className="hidden sm:inline">Next</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </>
+              )}
+
+              {currentTkaSlideIndex !== -1 && (
+                <>
+                  <button
+                    onClick={handleModalPrevTkaSlide}
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-blue-600 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95 touch-manipulation"
+                    title="Lembar Sebelumnya"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span className="hidden sm:inline">Prev</span>
+                  </button>
+                  <button
+                    onClick={handleModalNextTkaSlide}
                     className="p-2 rounded-xl bg-slate-800 hover:bg-blue-600 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95 touch-manipulation"
                     title="Lembar Selanjutnya"
                   >
@@ -1245,6 +1842,31 @@ const News: React.FC = () => {
               </>
             )}
 
+            {currentTkaSlideIndex !== -1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleModalPrevTkaSlide();
+                  }}
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-2xl backdrop-blur-md transition z-30 cursor-pointer active:scale-95 touch-manipulation"
+                  aria-label="Lembar Sebelumnya"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleModalNextTkaSlide();
+                  }}
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-2xl backdrop-blur-md transition z-30 cursor-pointer active:scale-95 touch-manipulation"
+                  aria-label="Lembar Selanjutnya"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
+
             <img 
               src={zoomImageUrl} 
               alt="Zoomed document" 
@@ -1256,8 +1878,8 @@ const News: React.FC = () => {
           {/* Bottom Hint */}
           <div className="text-center text-slate-400 text-xs py-2 border-t border-white/10 pointer-events-none flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4">
             <span>🔍 Ketuk 2x (double-tap) atau gunakan tombol zoom di atas untuk memperbesar.</span>
-            {currentToeicSlideIndex !== -1 && (
-              <span className="text-blue-400 font-bold">Gunakan panah kiri/kanan untuk berganti lembar.</span>
+            {(currentToeicSlideIndex !== -1 || currentTkaSlideIndex !== -1) && (
+              <span className="text-blue-400 font-bold">Gunakan panah kiri/kanan untuk berganti lembar dokumen.</span>
             )}
           </div>
         </div>

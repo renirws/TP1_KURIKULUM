@@ -33,7 +33,8 @@ import {
   Zap,
   Check,
   Globe,
-  Database
+  Database,
+  Layers
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
@@ -56,8 +57,9 @@ const Home: React.FC = () => {
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
     { title: "TOEIC Seleksi Tahap 3 Murid & Guru", category: "Ujian Internasional", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#toeic", desc: "Jadwal & lampiran peserta seleksi TOEIC Tahap 3 tgl 15-16 Oktober 2026 (SE9REV). Peserta wajib hadir tepat waktu dan membawa earphone pribadi.", keywords: "toeic seleksi tahap 3 murid guru 15 16 oktober se9rev lab dkv sesi earphone" },
+    { title: "Daftar Siswa Update TKA 26-27 Okt", category: "Ujian TKA 2026", icon: <Layers className="w-6 h-6 text-indigo-600" />, link: "/warta#tka", desc: "Update daftar nama siswa, ruang lab & sesi Tes Kemampuan Akademik (TKA) 26-27 Oktober 2026 (7 lembar dokumen terlampir).", keywords: "tka tes kemampuan akademik 26 27 oktober kelas sesi lab ruang daftar nama siswa" },
     { title: "Katalog Buku Kemendikdasmen RI", category: "Buku & Kurikulum", icon: <BookOpen className="w-6 h-6 text-teal-600" />, link: "/warta#katalog-buku", desc: "Akses dan unduh gratis ribuan Buku Teks Utama Kurikulum Merdeka Kemendikdasmen RI resmi untuk siswa & guru SMK.", keywords: "katalog buku kemendikdasmen kurikulum merdeka buku teks siswa modul panduan guru unduh pdf resmi kemdikbud" },
-    { title: "Portal Siswa & Jadwal KBM", category: "Layanan Siswa", icon: <Calendar className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Akses lembar jadwal pelajaran resmi Kelas X, XI, XII & Simulasi TKA serta direktori bimbingan & penempatan Prakerin.", keywords: "jadwal kbm pelajaran prakerin pkl bimbingan siswa kelas x xi xii kalender akademik dokumen" },
+    { title: "Portal Siswa & Jadwal KBM", category: "Layanan Siswa", icon: <Calendar className="w-6 h-6 text-emerald-600" />, link: "/siswa", desc: "Akses lembar jadwal pelajaran resmi Kelas X, XI, XII & agenda TKA serta direktori bimbingan & penempatan Prakerin.", keywords: "jadwal kbm pelajaran prakerin pkl bimbingan siswa kelas x xi xii kalender akademik dokumen" },
     { title: "Jadwal Pelajaran KOSP & JP", category: "Kurikulum Merdeka", icon: <BookOpen className="w-6 h-6 text-blue-600" />, link: "/kurikulum", desc: "Unduh struktur kurikulum, alokasi jam pelajaran (JP), dan jadwal pembelajaran aktif untuk semua kelas.", keywords: "jadwal pelajaran kosp kurikulum merdeka jam jp unduh dokumen guru jadwal aktif" },
     { title: "LSP-P1 Lisensi BNSP", category: "Sertifikasi Profesi", icon: <ShieldCheck className="w-6 h-6 text-amber-600" />, link: "https://lspsmktanjungpriok1.netlify.app/", desc: "Uji kompetensi keahlian bersertifikat Garuda Emas BNSP untuk jaminan daya saing tinggi di industri.", keywords: "lsp bnsp sertifikasi profesi kompetensi garuda emas ujian lisensi nasional" },
     { title: "Modul Generator PPM Guru", category: "Layanan Guru", icon: <FileText className="w-6 h-6 text-purple-600" />, link: "https://sites.google.com/view/modulgeneratesmktp1/moodul-generator", desc: "Akses dan generate modul ajar interaktif sesuai standar pemodelan pembelajaran bagi guru vokasi.", keywords: "modul generator ppm guru ajar mengajar administrasi perangkat mengajar rpp" },
@@ -772,11 +774,11 @@ const Home: React.FC = () => {
               link="/warta#katalog-buku"
             />
             <AnnouncementCard 
-              category="Agenda Akademik Kelas XII"
-              title="Jadwal KBM & Simulasi TKA Kelas XII"
-              date="Semester Ganjil 2026/2027"
-              excerpt="Distribusi jadwal KBM aktif serta simulasi Tes Kemampuan Akademik (TKA) persiapan kelulusan vokasi Kelas XII SMK Tanjung Priok 1."
-              imageUrl="https://drive.google.com/thumbnail?id=1OwtC54QBn-NKfoV0I_W1a9ViB5Spt4Od&sz=w800"
+              category="Tes Akademik • TKA 2026"
+              title="DAFTAR SISWA UPDATE KELAS & SESI TES KEMAMPUAN AKADEMIK (TKA)"
+              date="26 - 27 Oktober 2026"
+              excerpt="Update resmi daftar siswa, kelas, ruang lab & sesi Tes Kemampuan Akademik (TKA) 26-27 Oktober 2026. 7 lembar daftar hadir terlampir (bisa di-zoom)."
+              imageUrl="/tka/page-1.svg"
               link="/warta#tka"
             />
           </div>

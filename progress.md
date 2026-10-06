@@ -295,6 +295,44 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 
 ---
 
+### 20. Penggantian Jadwal KBM & Simulasi TKA Menjadi Daftar Siswa Update Kelas & Sesi TKA 26 - 27 Oktober 2026
+* **Permintaan**:
+  * Menghapus berita *Jadwal KBM & Simulasi TKA Kelas XII* pada halaman Warta Kurikulum.
+  * Menggantinya dengan: **Daftar siswa update kelas dan sesi Tes Kemampuan Akademik (TKA) yang akan dilaksanakan 26 - 27 Oktober 2026**.
+  * Terlampir gambar daftar nama siswa dalam bentuk slide show yang bisa di-zoom.
+  * Tampilan interface bersih, judul teks berwarna putih, serta kompatibel untuk *smartphone* dan *fast response*.
+* **Tindakan yang Dilakukan**:
+  * **Pembersihan Berita Jadwal KBM & Simulasi TKA Lama**:
+    * Menghapus seluruh seksi dan aset tautan lama Simulasi TKA di Warta Kurikulum (`pages/News.tsx`) dan memperbarui kartu pengumuman di Beranda (`pages/Home.tsx`).
+    * Memperbarui tautan jump anchor bilah atas menjadi `Update Sesi & Peserta TKA (26-27 Okt)`.
+  * **Interface Bersih dengan Judul Putih Bersih (Pure White)**:
+    * Judul artikel: `DAFTAR SISWA UPDATE KELAS DAN SESI TES KEMAMPUAN AKADEMIK (TKA) YANG AKAN DILAKSANAKAN PADA 26 - 27 OKTOBER 2026 (DAFTAR TERLAMPIR)` dengan kelas `text-white font-black`.
+    * Header bergradasi navy/slate elegan (`#0b132b` s.d `#3a506b`) dengan badge resmi Kemendikdasmen RI & Kurikulum.
+  * **Slideshow 7 Lembar Daftar Hadir Resmi TKA**:
+    * Menampilkan 7 lembar dokumen presensi resmi TKA 2026 (`tkaSlides` dari `services/tkaData.ts`) dalam format SVG tajam beresolusi tinggi:
+      * Lembar 1: Lab 1 • Sesi 1 (15 Murid, Server AG1K)
+      * Lembar 2: Lab 1 • Sesi 2 (15 Murid, Server AG1K)
+      * Lembar 3: Lab 2 • Sesi 1 (15 Murid, Server BQ4K)
+      * Lembar 4: Lab 2 • Sesi 2 (15 Murid, Server BQ4K)
+      * Lembar 5: Lab 3 • Sesi 1 (15 Murid, Server CQ6K)
+      * Lembar 6: Lab 3 • Sesi 2 (14 Murid, Server CQ6K)
+      * Lembar 7: Lab TL • Sesi 1 (15 Murid, Server DY7K)
+    * Kontrol slider lengkap: tombol *Putar Otomatis (Auto Slide)*, navigasi panah kiri/kanan, thumbnail tab responif, dropdown pilih lembar untuk ponsel, serta tombol *Cetak Lembar* dan *Unduh SVG*.
+  * **Fitur Zooming Ganda (In-Viewer & Lightbox Modal)**:
+    * Kontrol zoom langsung di penampil (- Zoom, 100% Reset, + Zoom, dan *double-click* 2x zoom).
+    * Modal Lightbox resolusi penuh dengan navigasi lembar sebelumnya/selanjutnya terintegrasi, zoom in/out, pan geser, dan cetak dokumen.
+  * **Pencarian Interaktif 104 Siswa TKA (Fast Response & Mobile-Friendly)**:
+    * Pencarian nama siswa atau username/NISN secara instan real-time.
+    * Chip filter cepat ruangan: *Semua (104)*, *Lab 1 (30)*, *Lab 2 (30)*, *Lab 3 (29)*, *Lab TL (15)*.
+    * Chip filter sesi: *Semua Sesi*, *Sesi 1 (07:00 - 08:45 WIB)*, *Sesi 2 (09:30 - 11:15 WIB)*.
+    * Tombol switch mode: **Mode Kartu (Default Smartphone)** dan **Mode Tabel Ringkasan**.
+    * Tombol 1-tap *Lihat di Lembar X* yang secara otomatis menggeser slider ke lembar daftar hadir siswa bersangkutan.
+  * **Sinkronisasi Beranda & SEO**:
+    * Memperbarui kartu pengumuman Beranda menjadi pengumuman TKA 26-27 Oktober 2026 yang terhubung ke `/warta#tka`.
+    * Memperbarui meta tag SEO OpenGraph dan Twitter Card untuk kata kunci TKA 2026.
+
+---
+
 ## 📈 Verifikasi & Validasi Sistem
 
 | Pengecekan | Metode Uji | Hasil |
