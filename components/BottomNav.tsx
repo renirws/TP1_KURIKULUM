@@ -30,6 +30,7 @@ export const BottomNav: React.FC = () => {
   ];
 
   const secondaryMenu = [
+    { name: 'Ajuan SK Aktif Mengajar', path: '/guru#ajuan-sk', icon: <FileText className="w-5 h-5 text-emerald-500" />, desc: 'Formulir Daring Guru TA 2026/2027' },
     { name: 'Katalog Buku Kemendikdasmen', path: '/warta#katalog-buku', icon: <BookOpen className="w-5 h-5 text-teal-500" />, desc: 'Buku Teks & Panduan Guru Gratis' },
     { name: 'Kurikulum', path: '/kurikulum', icon: <BookOpen className="w-5 h-5 text-blue-500" />, desc: 'Struktur KBM & Jam Pelajaran' },
     { name: 'Tautan Pintar', path: '/tautan', icon: <Link2 className="w-5 h-5 text-amber-500" />, desc: 'Akses Sistem & Aplikasi Eksternal' },

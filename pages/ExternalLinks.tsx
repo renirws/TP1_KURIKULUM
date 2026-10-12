@@ -73,6 +73,19 @@ const ExternalLinks: React.FC = () => {
       actionText: "Kirim Naskah Soal"
     },
     {
+      id: "ajuan-sk-aktif-mengajar",
+      title: "FORMULIR AJUAN SK AKTIF MENGAJAR TA 2026/2027",
+      description: "Formulir resmi daring permohonan dan ajuan penerbitan Surat Keputusan (SK) Aktif Mengajar bagi Bapak/Ibu Dewan Guru SMK Tanjung Priok 1 untuk keperluan sertifikasi pendidik (TPG), inpassing, rekening bank, pengurusan NUPTK, maupun kelengkapan berkas kedinasan. Sepenuhnya kompatibel dan mudah diisi melalui smartphone.",
+      url: "https://forms.gle/3KAELyz4A8KMXsDR6",
+      icon: <FileText className="w-8 h-8" />,
+      color: "from-emerald-600 via-teal-600 to-emerald-700",
+      category: "guru",
+      tag: "Ajuan SK Guru",
+      featured: true,
+      officialBadge: "Layanan Resmi Guru TP1",
+      actionText: "Isi Formulir Ajuan SK"
+    },
+    {
       id: "ruang-guru",
       title: "PORTAL RUANG GURU (LOGIN KURIKULUM)",
       description: "Portal resmi login sistem informasi kurikulum terpadu, manajemen administrasi guru, jurnal pembelajaran, rekap absensi, silabus, dan penilaian akademik SMK Tanjung Priok 1.",
@@ -202,6 +215,10 @@ const ExternalLinks: React.FC = () => {
     {
       q: "Bagaimana alur pengumpulan naskah soal STS Ganjil TA 2026/2027?",
       a: "Bapak/Ibu Guru pengampu mata pelajaran dapat mengunggah kisi-kisi, naskah soal, dan kunci jawaban melalui tautan Google Drive / formulir resmi 'UNGGAH SOAL STS GANJIL' dengan tenggat waktu yang telah ditetapkan tim kurikulum."
+    },
+    {
+      q: "Bagaimana cara guru mengajukan permohonan SK Aktif Mengajar lewat HP / smartphone?",
+      a: "Bapak/Ibu Guru dapat langsung membuka formulir resmi di https://forms.gle/3KAELyz4A8KMXsDR6 yang telah dioptimalkan untuk layar ponsel pintar. Isi biodata nama lengkap, NIP/NUPTK/NPK, mata pelajaran, jumlah jam mengajar, serta tujuan permohonan (misal untuk TPG/sertifikasi, rekening bank, atau dinas). Tim kurikulum akan memverifikasi dan memproses SK resmi dalam 1-2 hari kerja."
     },
     {
       q: "Apakah aplikasi web ini dapat diakses secara mobile layaknya aplikasi (APK)?",

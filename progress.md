@@ -333,6 +333,33 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 
 ---
 
+### 21. Penambahan Tautan Formulir Ajuan SK Aktif Mengajar & Optimasi SEO Mobile Senior
+* **Permintaan**:
+  * Menambahkan link tautan `https://forms.gle/3KAELyz4A8KMXsDR6` untuk formulir ajuan SK Aktif mengajar bagi guru.
+  * Membuat tampilan yang kompatibel dengan smartphone (*mobile-friendly*), UI/UX menarik & informatif, serta performa SEO senior agar aplikasi berada di urutan atas mesin pencarian (Google).
+* **Tindakan yang Dilakukan**:
+  * **Integrasi Tautan Resmi di Halaman Guru (`pages/Teachers.tsx`)**:
+    * Kartu Layanan Khusus: **Formulir Ajuan SK Aktif Mengajar** berdesain modern dengan gradasi navy-emerald (`#0f172a` ke indigo-emerald), badge resmi `LAYANAN RESMI GURU • AKTIF`, dan indikator `Kompatibel Smartphone`.
+    * Tombol Utama Sentuh Responsif: Tombol berukuran besar (`py-4 px-5`) dengan ikon dokumen untuk langsung membuka formulir Google Form di ponsel pintar tanpa kendala zoom/overflow.
+    * Tombol Salin Tautan Cepat (*Copy Link*): Dilengkapi feedback animasi `Tersalin!` seketika tanpa refresh.
+    * Tombol Bagikan WhatsApp (*Bagikan WA*): Membuka WhatsApp secara instan dengan pesan yang telah diformat otomatis untuk koordinasi sesama dewan guru.
+    * Petunjuk Ringkas Pengisian via HP: Box panduan 4 langkah mudah data yang perlu disiapkan (Nama & Gelar, NIP/NUPTK/NPK, Mapel & Jam Mengajar/JTM, serta Tujuan Ajuan).
+    * Tautan Akses Cepat di Header Portal Ruang Guru: Menambahkan chip `Ajuan SK` pada bilah navigasi kilat pendidik.
+    * Tautan silang (*cross-link*) pada kartu unduhan SK Mengajar: Menyediakan opsi `Ajukan SK Baru` bagi guru yang belum terdata.
+  * **Integrasi di Halaman Tautan Pintar (`pages/ExternalLinks.tsx`)**:
+    * Menambahkan entri tautan resmi `FORMULIR AJUAN SK AKTIF MENGAJAR TA 2026/2027` dalam kategori `guru` dengan tag `Ajuan SK Guru` dan tombol aksi langsung.
+    * Menambahkan FAQ interaktif tentang tata cara pengajuan SK Aktif Mengajar bagi dewan guru melalui smartphone.
+  * **Integrasi di Beranda (`pages/Home.tsx`) & Navigasi Bawah Ponsel (`components/BottomNav.tsx`)**:
+    * Memasukkan `Formulir Ajuan SK Aktif Mengajar` ke dalam daftar `quickShortcuts` interaktif dengan pencarian instan dan tagar kata kunci SEO lengkap.
+    * Menambahkan pertanyaan FAQ seputar pengajuan SK Aktif Mengajar untuk ditangkap oleh Google Search.
+    * Menambahkan menu langsung `Ajuan SK Aktif Mengajar` pada drawer menu bawah (*BottomNav*) smartphone.
+  * **Optimasi SEO Senior & PWA Mobile App Ranking**:
+    * Sinkronisasi Schema.org JSON-LD (`FAQPage`, `Service`, `ApplyAction`) untuk memicu Google Rich Snippets pada pencarian kata kunci SK Aktif Mengajar SMK Tanjung Priok 1.
+    * Optimasi Meta description, meta keywords, OpenGraph, dan Twitter Card di `index.html` dan `pages/Teachers.tsx`.
+    * PWA-ready dengan `manifest.json` agar pengguna smartphone dapat menggunakan web app ini layaknya file APK langsung dari layar utama ponsel.
+
+---
+
 ## 📈 Verifikasi & Validasi Sistem
 
 | Pengecekan | Metode Uji | Hasil |

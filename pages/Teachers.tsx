@@ -23,7 +23,12 @@ import {
   ArrowUpRight,
   Sparkles,
   ShieldCheck,
-  FileText
+  FileText,
+  Copy,
+  Check,
+  FileCheck,
+  Smartphone,
+  Share2
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
@@ -192,12 +197,21 @@ const Teachers: React.FC = () => {
   const websiteKurikulumLink = "https://www.kurikulumsmktanjungpriok1.sch.id";
   const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
   const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
+  const ajuanSkAktifMengajarLink = "https://forms.gle/3KAELyz4A8KMXsDR6";
 
   // States for Teacher Schedule Slideshow
   const [activeTab, setActiveTab] = useState<'MENGAJAR' | 'KBM'>('MENGAJAR');
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [lightboxImage, setLightboxImage] = useState<ScheduleImage | null>(null);
   const [showThumbnailGrid, setShowThumbnailGrid] = useState<boolean>(false);
+  const [copiedSkFormLink, setCopiedSkFormLink] = useState<boolean>(false);
+
+  const handleCopySkFormLink = () => {
+    navigator.clipboard.writeText(ajuanSkAktifMengajarLink).then(() => {
+      setCopiedSkFormLink(true);
+      setTimeout(() => setCopiedSkFormLink(false), 2500);
+    });
+  };
 
   // States for Lightbox Zoom & Pan
   const [zoomScale, setZoomScale] = useState<number>(1);
@@ -353,9 +367,26 @@ const Teachers: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen overflow-x-hidden w-full">
       <SEO 
-        title="Ruang Guru & Jadwal Mengajar Guru SMK Tanjung Priok 1 TA 2026/2027 | Portal Pendidik"
-        description="Portal resmi khusus tenaga pendidik SMK Tanjung Priok 1 Jakarta Utara. Akses portal login Ruang Guru (kurikulum.smktanjungpriok1.sch.id/login), Jadwal Mengajar Guru TA 2026/2027 terlengkap, sistem penugasan piket, administrasi kelas, SK mengajar, serta form izin guru."
-        keywords="Ruang Guru SMK Tanjung Priok 1, Jadwal Mengajar Guru, SMK Tanjung Priok 1, Kurikulum SMK Tanjung Priok 1, kurikulum.smktanjungpriok1.sch.id, Administrasi Guru, Perangkat Pembelajaran, Portal Pendidik Vokasi"
+        title="Formulir Ajuan SK Aktif Mengajar & Ruang Guru SMK Tanjung Priok 1 | Portal Pendidik TA 2026/2027"
+        description="Akses resmi Formulir Ajuan SK Aktif Mengajar Guru SMK Tanjung Priok 1 (https://forms.gle/3KAELyz4A8KMXsDR6), portal login Ruang Guru, Jadwal Mengajar Guru TA 2026/2027 terlengkap 28 lembar, sistem administrasi kelas, SK mengajar, serta layanan permohonan pendidik vokasi yang cepat dan responsif di smartphone."
+        keywords="Formulir Ajuan SK Aktif Mengajar, SK Aktif Mengajar SMK Tanjung Priok 1, Pengajuan SK Mengajar Online, Ruang Guru SMK Tanjung Priok 1, Jadwal Mengajar Guru, Kurikulum SMK Tanjung Priok 1, Administrasi Guru, Perangkat Pembelajaran, Portal Pendidik Vokasi, APK Kurikulum TP1 Mobile"
+        schemaMarkup={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Formulir Ajuan SK Aktif Mengajar & Ruang Guru SMK Tanjung Priok 1",
+          "description": "Layanan permohonan SK Aktif Mengajar dan jadwal mengajar resmi Dewan Guru SMK Tanjung Priok 1.",
+          "url": "https://tp1kurikulum.my.id/guru",
+          "mainEntity": {
+            "@type": "Service",
+            "name": "Formulir Ajuan SK Aktif Mengajar Guru TA 2026/2027",
+            "serviceType": "Administrasi Pendidik",
+            "provider": {
+              "@type": "School",
+              "name": "SMK TANJUNG PRIOK 1"
+            },
+            "url": "https://forms.gle/3KAELyz4A8KMXsDR6"
+          }
+        }}
       />
 
       {/* Header Section with 2-Column Responsive Layout */}
@@ -457,12 +488,17 @@ const Teachers: React.FC = () => {
                   {/* Fast Shortcut Links */}
                   <div className="pt-3 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
                     <span>Akses Cepat:</span>
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                       <a href={adminToolLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Tool Ajar</a>
                       <span>•</span>
                       <a href={uploadSoalStsLink} target="_blank" rel="noopener noreferrer" className="hover:text-amber-300 transition-colors">Soal STS</a>
                       <span>•</span>
                       <a href={skMengajarLink} target="_blank" rel="noopener noreferrer" className="hover:text-purple-300 transition-colors">SK Mengajar</a>
+                      <span>•</span>
+                      <a href="#ajuan-sk" className="text-emerald-400 hover:text-emerald-300 font-bold transition-colors inline-flex items-center gap-0.5">
+                        <Sparkles className="w-2.5 h-2.5 text-emerald-400" />
+                        <span>Ajuan SK</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -848,6 +884,90 @@ const Teachers: React.FC = () => {
               </a>
             </div>
 
+            {/* Formulir Ajuan SK Aktif Mengajar Card - Mobile-First & Smartphone Compatible */}
+            <div id="ajuan-sk" className="scroll-mt-24 bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 p-7 sm:p-8 rounded-[2.5rem] shadow-2xl text-white relative overflow-hidden group border-2 border-emerald-400/50 hover:border-emerald-400 transition-all">
+              <div className="absolute top-0 right-0 p-4 opacity-10 transform group-hover:scale-110 transition-transform pointer-events-none">
+                <FileCheck className="w-36 h-36 text-emerald-400" />
+              </div>
+              
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="inline-flex items-center space-x-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>LAYANAN RESMI GURU • AKTIF</span>
+                </span>
+                <span className="inline-flex items-center space-x-1 bg-sky-500/20 text-sky-200 border border-sky-400/30 px-2.5 py-1 rounded-full text-[10px] font-bold">
+                  <Smartphone className="w-3 h-3 text-sky-300" />
+                  <span>Kompatibel Smartphone</span>
+                </span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-black mb-2 tracking-tight text-white leading-tight">
+                Formulir Ajuan SK Aktif Mengajar
+              </h3>
+              
+              <p className="text-blue-100/90 text-xs sm:text-sm font-medium mb-4 leading-relaxed">
+                Formulir resmi permohonan penerbitan Surat Keputusan (SK) Aktif Mengajar bagi Bapak/Ibu Dewan Guru SMK Tanjung Priok 1 TA 2026/2027 untuk sertifikasi guru (TPG), inpassing, administrasi bank, pengurusan NUPTK, maupun kelengkapan berkas kedinasan.
+              </p>
+
+              {/* Mobile Quick Guide Box */}
+              <div className="bg-slate-900/90 rounded-2xl p-4 border border-slate-700/70 mb-5 space-y-2 text-xs">
+                <div className="flex items-center space-x-2 text-emerald-300 font-bold">
+                  <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Petunjuk Ringkas Pengisian via HP / Ponsel:</span>
+                </div>
+                <ul className="text-slate-300 space-y-1.5 list-disc list-inside font-medium leading-relaxed pl-0.5">
+                  <li>Siapkan <span className="text-white font-semibold">Nama Lengkap & Gelar</span> serta <span className="text-white font-semibold">NIP / NUPTK / NPK</span>.</li>
+                  <li>Isi <span className="text-white font-semibold">Mata Pelajaran Diampu</span> & total <span className="text-white font-semibold">Jam Mengajar (JTM)</span>.</li>
+                  <li>Pilih <span className="text-white font-semibold">Keperluan Ajuan</span> (Sertifikasi, Bank, Studi, Kedinasan).</li>
+                  <li>Proses verifikasi berkas: <span className="text-emerald-300 font-semibold">1 - 2 Hari Kerja</span>.</li>
+                </ul>
+              </div>
+
+              {/* Action Buttons: Direct Form & Copy Link for smartphone */}
+              <div className="space-y-2.5">
+                <a 
+                  href={ajuanSkAktifMengajarLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 px-5 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 hover:from-emerald-500 hover:to-teal-400 text-white font-black rounded-2xl transition-all text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-emerald-950/60 flex items-center justify-center space-x-2 transform active:scale-95 touch-manipulation cursor-pointer border border-emerald-300/40"
+                >
+                  <FileText className="w-4 h-4 text-emerald-100" />
+                  <span>BUKA FORMULIR AJUAN SK</span>
+                  <ExternalLink className="w-4 h-4 ml-1" />
+                </a>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={handleCopySkFormLink}
+                    className="py-3 px-3 bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 text-xs font-bold rounded-xl border border-slate-700 flex items-center justify-center space-x-1.5 transition-all active:scale-95 touch-manipulation cursor-pointer"
+                  >
+                    {copiedSkFormLink ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400">Tersalin!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5 text-slate-400" />
+                        <span>Salin Link</span>
+                      </>
+                    )}
+                  </button>
+
+                  <a
+                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent("Formulir Ajuan SK Aktif Mengajar SMK Tanjung Priok 1 TA 2026/2027:\nhttps://forms.gle/3KAELyz4A8KMXsDR6")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-3 px-3 bg-emerald-950/70 hover:bg-emerald-900/80 text-emerald-200 text-xs font-bold rounded-xl border border-emerald-600/40 flex items-center justify-center space-x-1.5 transition-all active:scale-95 touch-manipulation cursor-pointer"
+                  >
+                    <Share2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Bagikan WA</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
             {/* SK Mengajar Card */}
             <div className="bg-gradient-to-br from-purple-900 to-indigo-950 p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-purple-500/30">
               <div className="absolute top-0 right-0 p-4 opacity-5 transform group-hover:scale-110 transition-transform pointer-events-none">
@@ -868,6 +988,19 @@ const Teachers: React.FC = () => {
               >
                 UNDUH SK MENGAJAR
               </a>
+              {/* Secondary Quick Link to Ajuan Form */}
+              <div className="mt-4 pt-3 border-t border-purple-800/60 flex items-center justify-between text-xs">
+                <span className="text-purple-300 font-medium">Belum memiliki SK aktif?</span>
+                <a 
+                  href={ajuanSkAktifMengajarLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-300 hover:text-amber-200 font-bold inline-flex items-center gap-1 underline underline-offset-2"
+                >
+                  Ajukan SK Baru
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
 
             {/* Tool Ajar Guru Card */}
