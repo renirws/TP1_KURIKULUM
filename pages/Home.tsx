@@ -56,7 +56,7 @@ const Home: React.FC = () => {
 
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
-    { title: "TOEIC Seleksi Tahap 3 Murid & Guru", category: "Ujian Internasional", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#toeic", desc: "Jadwal & lampiran peserta seleksi TOEIC Tahap 3 tgl 15-16 Oktober 2026 (SE9REV). Peserta wajib hadir tepat waktu dan membawa earphone pribadi.", keywords: "toeic seleksi tahap 3 murid guru 15 16 oktober se9rev lab dkv sesi earphone" },
+    { title: "Jadwal Pelaksanaan TKA - ANBK 2026-2027", category: "Ujian TKA-ANBK Resmi", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#tka-anbk", desc: "Jadwal resmi Pelaksanaan TKA - ANBK TA 2026-2027 (26-29 Okt 2026). Shift I & II, 4 Laboratorium, mata uji, dan daftar Proktor/Teknisi terlampir.", keywords: "jadwal tka anbk 2026 2027 pelaksanaan tes kemampuan akademik ujian shift lab proktor teknisi oktober jakarta utara" },
     { title: "Daftar Siswa Update TKA 26-27 Okt", category: "Ujian TKA 2026", icon: <Layers className="w-6 h-6 text-indigo-600" />, link: "/warta#tka", desc: "Update daftar nama siswa, ruang lab & sesi Tes Kemampuan Akademik (TKA) 26-27 Oktober 2026 (7 lembar dokumen terlampir).", keywords: "tka tes kemampuan akademik 26 27 oktober kelas sesi lab ruang daftar nama siswa" },
     { title: "Formulir Ajuan SK Aktif Mengajar", category: "Layanan Guru", icon: <FileText className="w-6 h-6 text-emerald-600" />, link: "/guru#ajuan-sk", desc: "Formulir online resmi ajuan SK Aktif Mengajar TA 2026/2027 untuk sertifikasi & kedinasan. Kompatibel dibuka di smartphone.", keywords: "sk aktif mengajar formulir ajuan sk guru permohonan surat keputusan tunjangan sertifikasi nuptk mobile smartphone hp" },
     { title: "Katalog Buku Kemendikdasmen RI", category: "Buku & Kurikulum", icon: <BookOpen className="w-6 h-6 text-teal-600" />, link: "/warta#katalog-buku", desc: "Akses dan unduh gratis ribuan Buku Teks Utama Kurikulum Merdeka Kemendikdasmen RI resmi untuk siswa & guru SMK.", keywords: "katalog buku kemendikdasmen kurikulum merdeka buku teks siswa modul panduan guru unduh pdf resmi kemdikbud" },
@@ -763,12 +763,12 @@ const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnnouncementCard 
-              category="TOEIC Tahap 3 • Resmi"
-              title="PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU"
-              date="15 - 16 Oktober 2026"
-              excerpt="Surat Edaran SE9REV Pelaksanaan Seleksi TOEIC Tahap 3 untuk Murid Kelas XII (15 Okt) & Bapak/Ibu Guru (16 Okt). Wajib bawa earphone pribadi (Daftar Terlampir)."
-              imageUrl="/toeic/page-1.svg"
-              link="/warta#toeic"
+              category="TKA - ANBK 2026/2027 • Resmi"
+              title="JADWAL PELAKSANAAN TKA - ANBK TAHUN PELAJARAN 2026-2027"
+              date="26 - 29 Oktober 2026"
+              excerpt="Jadwal resmi pelaksanaan TKA - ANBK TA 2026-2027 tanggal 26–29 Oktober 2026. Pembagian Shift 1 & 2, alokasi 4 Laboratorium, mata uji, serta tim Proktor & Teknisi terlampir."
+              imageUrl="/assets/aistudio/jadwal_tka-anbk_2026-2027_c9ac7e6a.jpg"
+              link="/warta#tka-anbk"
             />
             <AnnouncementCard 
               category="Buku Kurikulum Merdeka"

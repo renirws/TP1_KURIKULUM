@@ -35,7 +35,7 @@ import {
   LayoutGrid,
   List
 } from 'lucide-react';
-import { toeicSlides, toeicParticipants } from '../services/toeicData';
+import { tkaAnbkDocument, tkaAnbkSchedule, proktorList, teknisiList } from '../services/tkaAnbkScheduleData';
 import { tkaSlides, tkaStudents } from '../services/tkaData';
 
 const News: React.FC = () => {
@@ -43,61 +43,11 @@ const News: React.FC = () => {
   const [zoomScale, setZoomScale] = useState(1);
   const [copiedKatalogLink, setCopiedKatalogLink] = useState(false);
 
-  // TOEIC Tahap 3 State
-  const [toeicSlide, setToeicSlide] = useState(0);
-  const [toeicSearchQuery, setToeicSearchQuery] = useState('');
-  const [toeicRoleFilter, setToeicRoleFilter] = useState<'Semua' | 'Murid' | 'Guru'>('Semua');
-  const [toeicLabFilter, setToeicLabFilter] = useState<string>('Semua');
-  const [isAutoPlay, setIsAutoPlay] = useState(false);
-  const [participantView, setParticipantView] = useState<'cards' | 'table'>('cards');
-
-  // Auto-play slideshow effect for TOEIC
-  React.useEffect(() => {
-    if (!isAutoPlay) return;
-    const interval = setInterval(() => {
-      setToeicSlide((prev) => (prev + 1) % toeicSlides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAutoPlay]);
-
-  // Current TOEIC slide index in Zoom modal
-  const currentToeicSlideIndex = useMemo(() => {
-    if (!zoomImageUrl) return -1;
-    return toeicSlides.findIndex(s => s.imageUrl === zoomImageUrl);
-  }, [zoomImageUrl]);
-
-  const handleModalPrevSlide = () => {
-    if (currentToeicSlideIndex === -1) return;
-    const prevIdx = (currentToeicSlideIndex - 1 + toeicSlides.length) % toeicSlides.length;
-    setToeicSlide(prevIdx);
-    setZoomImageUrl(toeicSlides[prevIdx].imageUrl);
-    setZoomScale(1);
-  };
-
-  const handleModalNextSlide = () => {
-    if (currentToeicSlideIndex === -1) return;
-    const nextIdx = (currentToeicSlideIndex + 1) % toeicSlides.length;
-    setToeicSlide(nextIdx);
-    setZoomImageUrl(toeicSlides[nextIdx].imageUrl);
-    setZoomScale(1);
-  };
-
-  // Filtered TOEIC Participants for Real-Time Search & Verification
-  const filteredToeicParticipants = useMemo(() => {
-    return toeicParticipants.filter(p => {
-      const matchesSearch = 
-        toeicSearchQuery.trim() === '' ||
-        p.name.toLowerCase().includes(toeicSearchQuery.toLowerCase()) ||
-        p.lab.toLowerCase().includes(toeicSearchQuery.toLowerCase()) ||
-        p.hari.toLowerCase().includes(toeicSearchQuery.toLowerCase()) ||
-        `sesi ${p.sesi}`.toLowerCase().includes(toeicSearchQuery.toLowerCase());
-      
-      const matchesRole = toeicRoleFilter === 'Semua' || p.role === toeicRoleFilter;
-      const matchesLab = toeicLabFilter === 'Semua' || p.lab === toeicLabFilter;
-
-      return matchesSearch && matchesRole && matchesLab;
-    });
-  }, [toeicSearchQuery, toeicRoleFilter, toeicLabFilter]);
+  // TKA - ANBK 2026-2027 Schedule State
+  const [selectedScheduleDay, setSelectedScheduleDay] = useState<string>('semua');
+  const [selectedScheduleShift, setSelectedScheduleShift] = useState<string>('semua');
+  const [scheduleViewMode, setScheduleViewMode] = useState<'cards' | 'table'>('cards');
+  const [scheduleSearchQuery, setScheduleSearchQuery] = useState('');
 
   // TKA (Tes Kemampuan Akademik 26 - 27 Oktober 2026) State
   const [tkaSlide, setTkaSlide] = useState(0);
@@ -208,9 +158,9 @@ const News: React.FC = () => {
   return (
     <main className="min-h-screen bg-gray-50 py-8 md:py-12">
       <SEO 
-        title="Warta Kurikulum: Seleksi TOEIC Tahap 3 & Update Kelas Sesi TKA 26-27 Okt | SMK TANJUNG PRIOK 1"
-        description="Pengumuman resmi Pelaksanaan Seleksi TOEIC Tahap 3 (15-16 Okt) dan Update Daftar Siswa Kelas & Sesi Tes Kemampuan Akademik (TKA) 26-27 Oktober 2026 SMK Tanjung Priok 1 Jakarta Utara (7 Lembar Terlampir)."
-        keywords="TOEIC Tahap 3 SMK Tanjung Priok 1, TKA 26-27 Oktober 2026, Tes Kemampuan Akademik SMK, Daftar Siswa TKA, Lab TKA SMK Tanjung Priok 1, Warta Kurikulum SMK Tanjung Priok 1, Katalog Buku Kemendikdasmen"
+        title="Warta Kurikulum: Jadwal Pelaksanaan TKA - ANBK 2026-2027 & Update Siswa | SMK TANJUNG PRIOK 1"
+        description="Jadwal resmi Pelaksanaan TKA - ANBK Tahun Pelajaran 2026-2027 (26-29 Oktober 2026) SMK Tanjung Priok 1 Jakarta Utara. Pembagian Shift 1 & 2, alokasi 4 Laboratorium, mata uji, tim Proktor & Teknisi, serta update daftar peserta siswa."
+        keywords="Jadwal TKA ANBK 2026 2027, Pelaksanaan TKA ANBK SMK Tanjung Priok 1, Jadwal ANBK SMK Jakarta Utara, Proktor Teknisi TKA ANBK, Mata Uji TKA ANBK, Shift TKA SMK, Daftar Siswa TKA 26 27 Oktober 2026, Warta Kurikulum Merdeka"
         canonical="https://tp1kurikulum.my.id/warta"
       />
       <div className="container mx-auto px-4">
@@ -233,22 +183,22 @@ const News: React.FC = () => {
                 <span>Pilih Warta:</span>
               </span>
               <a 
-                href="#toeic" 
-                className="bg-blue-600 text-white font-extrabold px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-blue-700 transition flex items-center gap-1.5 cursor-pointer"
+                href="#tka-anbk" 
+                className="bg-blue-600 text-white font-extrabold px-3.5 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-blue-700 transition flex items-center gap-1.5 cursor-pointer"
               >
-                <span>🎧 TOEIC Tahap 3: Murid &amp; Guru (15-16 Okt)</span>
-              </a>
-              <a 
-                href="#katalog-buku" 
-                className="bg-teal-600 text-white font-extrabold px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-teal-700 transition flex items-center gap-1.5 cursor-pointer"
-              >
-                <span>📚 Akses Katalog Buku Kemendikdasmen</span>
+                <span>📅 Jadwal TKA - ANBK TA 2026-2027 (26-29 Okt)</span>
               </a>
               <a 
                 href="#tka" 
-                className="bg-white text-slate-700 border border-slate-200 font-bold px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition flex items-center gap-1.5 cursor-pointer"
+                className="bg-indigo-600 text-white font-extrabold px-3.5 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-indigo-700 transition flex items-center gap-1.5 cursor-pointer"
               >
-                <span>💻 Update Sesi &amp; Peserta TKA (26-27 Okt)</span>
+                <span>💻 Daftar Siswa, Lab &amp; Sesi TKA (7 Lembar)</span>
+              </a>
+              <a 
+                href="#katalog-buku" 
+                className="bg-teal-600 text-white font-extrabold px-3.5 py-1.5 rounded-full whitespace-nowrap shadow-sm hover:bg-teal-700 transition flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>📚 Akses Katalog Buku Kemendikdasmen</span>
               </a>
               <a 
                 href="#ukk" 
@@ -260,51 +210,70 @@ const News: React.FC = () => {
           </header>
 
           {/* =========================================================================
-              FEATURED SECTION 1: PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU (15 - 16 OKTOBER 2026)
+              FEATURED SECTION 1: PELAKSANAAN TKA - ANBK TAHUN PELAJARAN 2026-2027 (JADWAL RESMI)
              ========================================================================= */}
-          <article id="toeic" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-200/80 scroll-mt-24">
+          <article id="tka-anbk" className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden border border-blue-200/80 scroll-mt-24">
             {/* Header Banner - High-contrast Clean Navy/Blue Gradient with Pure White Title */}
-            <header className="bg-gradient-to-br from-[#071328] via-[#0f2757] to-[#1e3a8a] p-6 md:p-12 text-white relative overflow-hidden">
+            <header className="bg-gradient-to-br from-[#051329] via-[#0d234d] to-[#1e3a8a] p-6 md:p-12 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none hidden sm:block">
-                <Headphones className="w-80 h-80 text-white" />
+                <Calendar className="w-80 h-80 text-white" />
               </div>
               <div className="relative z-10 space-y-4">
                 <div className="flex flex-wrap items-center gap-2 md:gap-3">
                   <span className="bg-amber-400 text-slate-950 font-black px-3.5 py-1 rounded-full text-[11px] md:text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 fill-current" />
-                    <span>SELEKSI TAHAP 3 • RESMI</span>
+                    <span>JADWAL RESMI KURIKULUM • TKA - ANBK</span>
                   </span>
                   <span className="text-white/40 hidden sm:inline">•</span>
                   <span className="bg-emerald-500/20 backdrop-blur-md text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-emerald-300" />
-                    <span>15 – 16 OKTOBER 2026</span>
+                    <span>26 – 29 OKTOBER 2026</span>
                   </span>
-                  <span className="bg-purple-500/20 backdrop-blur-md text-purple-200 border border-purple-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
-                    <Users className="w-3.5 h-3.5 text-purple-300" />
-                    <span>MURID KELAS XII &amp; GURU</span>
+                  <span className="bg-blue-500/20 backdrop-blur-md text-blue-200 border border-blue-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-blue-300" />
+                    <span>4 HARI • 2 SHIFT • 4 LAB</span>
+                  </span>
+                  <span className="bg-indigo-500/20 backdrop-blur-md text-indigo-200 border border-indigo-400/30 px-3 py-1 rounded-full text-[11px] md:text-xs font-bold flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-indigo-300" />
+                    <span>SMK TANJUNG PRIOK 1</span>
                   </span>
                 </div>
 
                 {/* Pure White Clean Title as requested */}
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
-                  PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID &amp; GURU YANG DILAKSANAKAN PADA 15 - 16 OKTOBER 2026 (DAFTAR TERLAMPIR)
+                  PELAKSANAAN TKA - ANBK TAHUN PELAJARAN 2026-2027
                 </h1>
 
                 <p className="text-blue-100/90 leading-relaxed text-sm md:text-base lg:text-lg max-w-3xl font-medium">
-                  Surat Edaran resmi Nomor: <strong className="text-white">09Rev/SE/SMKTP01/X/2026</strong>. Tes kemampuan bahasa Inggris berskala internasional (TOEIC) diselenggarakan secara luring di Laboratorium Komputer SMK Tanjung Priok 1 Jakarta untuk Murid Kelas XII dan Bapak/Ibu Guru.
+                  Jadwal resmi pelaksanaan <strong>Tes Kemampuan Akademik (TKA)</strong> dan <strong>Asesmen Nasional Berbasis Komputer (ANBK)</strong> SMK Tanjung Priok 1 Jakarta Utara tanggal <strong>26 s.d 29 Oktober 2026</strong>. Disahkan secara resmi oleh Kepala SMK Tanjung Priok 1 (<strong className="text-white">H. Andri Susanto, ST</strong>) dan Wakil Bidang Kurikulum (<strong className="text-white">Reni Widyastuti, M.Kom</strong>) tertanggal Jakarta, 21 Oktober 2026.
                 </p>
 
-                {/* Mandatory Requirements Alert Box */}
-                <div className="pt-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 bg-amber-500/20 border border-amber-300/40 rounded-2xl p-3.5 sm:px-5 sm:py-3.5 backdrop-blur-md text-amber-200 text-xs md:text-sm font-semibold">
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <AlertTriangle className="w-5 h-5 text-amber-300 flex-shrink-0" />
-                      <span className="font-black text-amber-100 uppercase tracking-wide">Peringatan Penting:</span>
-                    </div>
-                    <div className="text-amber-100 leading-snug">
-                      Siswa &amp; Guru <strong>wajib membawa earphone/headset pribadi</strong> yang dapat berfungsi dengan baik untuk sesi <em>Listening</em> &amp; hadir tepat waktu sesuai dengan pembagian sesi jadwal terlampir.
-                    </div>
-                  </div>
+                {/* Quick Action Buttons in Banner */}
+                <div className="pt-3 flex flex-wrap items-center gap-3">
+                  <button
+                    onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
+                    className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-black px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-lg shadow-blue-500/30 active:scale-95 cursor-pointer touch-manipulation"
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                    <span>PERBESAR DOKUMEN ASLI (ZOOM)</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePrintImage(tkaAnbkDocument.imageUrl, tkaAnbkDocument.title)}
+                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer touch-manipulation"
+                  >
+                    <Printer className="w-4 h-4" />
+                    <span>CETAK / PDF JADWAL</span>
+                  </button>
+
+                  <a
+                    href="#tka"
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation"
+                  >
+                    <Users className="w-4 h-4 text-amber-300" />
+                    <span>CEK DAFTAR SISWA (104 MURID)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
             </header>
@@ -313,502 +282,581 @@ const News: React.FC = () => {
             <div className="p-5 md:p-10 lg:p-12 space-y-10">
               {/* 4 Essential Summary Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {/* Card 1: Siswa Kelas XII */}
-                <div className="bg-blue-50/80 border border-blue-200/70 p-5 rounded-2xl">
-                  <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-md shadow-blue-500/20">
-                    <GraduationCap className="w-5 h-5" />
+                {/* Card 1: Hari & Tanggal Pelaksanaan */}
+                <div className="bg-blue-50/80 border border-blue-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-md shadow-blue-500/20">
+                      <Calendar className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 block">Waktu Pelaksanaan</span>
+                    <h4 className="text-base font-black text-slate-900 mt-1">26 – 29 Okt 2026</h4>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      4 hari berturut-turut (Senin s.d Kamis) meliputi 4 rumpun mata uji dan asesmen karakter.
+                    </p>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 block">Jadwal Siswa XII</span>
-                  <h4 className="text-base font-black text-slate-900 mt-1">Kamis, 15 Okt 2026</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Sesi 1: 08.00–10.00 WIB &amp; Sesi 2: 10.30–12.30 WIB (69 Murid di Lab 1, 2, 4 DKV &amp; Lab TL).
-                  </p>
+                  <div className="mt-3 pt-2 border-t border-blue-200/60 text-[11px] font-bold text-blue-700 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>4 Hari Penuh</span>
+                  </div>
                 </div>
 
-                {/* Card 2: Bapak / Ibu Guru */}
-                <div className="bg-purple-50/80 border border-purple-200/70 p-5 rounded-2xl">
-                  <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center mb-3 shadow-md shadow-purple-500/20">
-                    <UserCheck className="w-5 h-5" />
+                {/* Card 2: Pembagian Shift */}
+                <div className="bg-indigo-50/80 border border-indigo-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-3 shadow-md shadow-indigo-500/20">
+                      <Clock className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-indigo-600 block">Pembagian Shift</span>
+                    <h4 className="text-base font-black text-slate-900 mt-1">Shift I &amp; Shift II</h4>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Shift I: 07.00–09.00 WIB (4 Lab) &bull; Shift II: 09.30–11.30 WIB (3 Lab).
+                    </p>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 block">Jadwal Guru</span>
-                  <h4 className="text-base font-black text-slate-900 mt-1">Jum'at, 16 Okt 2026</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Sesi 3: 13.00–15.30 WIB setelah KBM Khusus (29 Guru di Lab 1 &amp; Lab 2 DKV).
-                  </p>
+                  <div className="mt-3 pt-2 border-t border-indigo-200/60 text-[11px] font-bold text-indigo-700 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>120 Menit / Shift</span>
+                  </div>
                 </div>
 
-                {/* Card 3: Perlengkapan Wajib */}
-                <div className="bg-rose-50/80 border border-rose-200/70 p-5 rounded-2xl">
-                  <div className="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center mb-3 shadow-md shadow-rose-500/20">
-                    <Headphones className="w-5 h-5" />
+                {/* Card 3: Laboratorium Komputer */}
+                <div className="bg-emerald-50/80 border border-emerald-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-3 shadow-md shadow-emerald-500/20">
+                      <Layers className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 block">Ruang Laboratorium</span>
+                    <h4 className="text-base font-black text-slate-900 mt-1">4 Lab Komputer</h4>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Lab 1, Lab 2, Lab 3, dan Lab 4 dengan masing-masing 1 Proktor pengawas ruang.
+                    </p>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-rose-600 block">Perlengkapan Wajib</span>
-                  <h4 className="text-base font-black text-slate-900 mt-1">Earphone Pribadi</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Wajib membawa earphone/headset kabel pribadi yang berfungsi baik untuk sesi tes Listening.
-                  </p>
+                  <div className="mt-3 pt-2 border-t border-emerald-200/60 text-[11px] font-bold text-emerald-700 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>4 Proktor &amp; 2 Teknisi</span>
+                  </div>
                 </div>
 
-                {/* Card 4: Surat Edaran Resmi */}
-                <div className="bg-emerald-50/80 border border-emerald-200/70 p-5 rounded-2xl">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-3 shadow-md shadow-emerald-500/20">
-                    <FileText className="w-5 h-5" />
+                {/* Card 4: Pengesahan & Legalitas */}
+                <div className="bg-purple-50/80 border border-purple-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center mb-3 shadow-md shadow-purple-500/20">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 block">Pengesahan Resmi</span>
+                    <h4 className="text-base font-black text-slate-900 mt-1">Jakarta, 21 Okt 2026</h4>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      H. Andri Susanto, ST (Kepsek) &amp; Reni Widyastuti, M.Kom (Wakakur).
+                    </p>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 block">Dokumen Resmi</span>
-                  <h4 className="text-base font-black text-slate-900 mt-1">SE No. 09Rev</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    09Rev/SE/SMKTP01/X/2026 ditandatangani Kepala Sekolah Andri Susanto, ST.
-                  </p>
+                  <div className="mt-3 pt-2 border-t border-purple-200/60 text-[11px] font-bold text-purple-700 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Terverifikasi Kurikulum</span>
+                  </div>
                 </div>
               </div>
 
               {/* -------------------------------------------------------------
-                  TOEIC TAHAP 3 SLIDE SHOW: SURAT EDARAN SE9REV & 7 LEMBAR DAFTAR PESERTA
+                  DOKUMEN ASLI RESMI: PREVIEW DOKUMEN TKA - ANBK 2026-2027
                  ------------------------------------------------------------- */}
-              <div className="space-y-4 pt-2">
-                {/* Control bar */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+              <div className="bg-slate-900 rounded-3xl p-5 md:p-8 text-white border border-slate-800 space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
                   <div>
-                    <h3 className="text-xl md:text-2xl font-black text-[#0f172a] flex items-center gap-2">
-                      <Layers className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
-                      <span>Slide Show Dokumen Resmi &amp; Daftar Peserta Tahap 3</span>
+                    <div className="flex items-center gap-2">
+                      <span className="bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-md text-[10px] uppercase tracking-wider">
+                        Dokumen Resmi Asli
+                      </span>
+                      <span className="text-xs text-slate-300 font-mono">
+                        {tkaAnbkDocument.nomorSurat}
+                      </span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mt-1">
+                      {tkaAnbkDocument.title}
                     </h3>
-                    <p className="text-slate-500 text-xs md:text-sm mt-0.5">
-                      Dimulai gambar <strong>SE9REV_TOEIC GURU DAN MURID</strong>, lalu daftar peserta murid kelas XII per laboratorium &amp; sesi, dan daftar guru.
+                    <p className="text-xs sm:text-sm text-slate-300">
+                      {tkaAnbkDocument.subTitle} &bull; {tkaAnbkDocument.tanggalDiterbitkan}
                     </p>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2">
                     <button
-                      onClick={() => setIsAutoPlay(!isAutoPlay)}
-                      className={`inline-flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider transition duration-300 cursor-pointer active:scale-95 touch-manipulation ${
-                        isAutoPlay ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/30' : 'bg-slate-800 hover:bg-slate-700 text-white shadow-md'
-                      }`}
-                      title={isAutoPlay ? 'Hentikan putar otomatis' : 'Putar slideshow otomatis'}
-                    >
-                      {isAutoPlay ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 text-blue-400" />}
-                      <span>{isAutoPlay ? 'Jeda Slide' : 'Auto Putar'}</span>
-                    </button>
-
-                    <button 
-                      onClick={() => handleZoom(toeicSlides[toeicSlide].imageUrl)}
-                      className="inline-flex items-center space-x-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md shadow-blue-500/25 transition duration-300 cursor-pointer active:scale-95 touch-manipulation"
+                      onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
+                      className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                      title="Perbesar Layar Penuh Dokumen"
                     >
                       <ZoomIn className="w-4 h-4" />
                       <span>Zoom Resolusi Tinggi</span>
                     </button>
 
-                    <button 
-                      onClick={() => handlePrintImage(toeicSlides[toeicSlide].imageUrl, toeicSlides[toeicSlide].title)}
-                      className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition duration-300 cursor-pointer active:scale-95 touch-manipulation"
+                    <button
+                      onClick={() => handlePrintImage(tkaAnbkDocument.imageUrl, tkaAnbkDocument.title)}
+                      className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                      title="Cetak Jadwal Resmi"
                     >
                       <Printer className="w-4 h-4" />
                       <span>Cetak / PDF</span>
                     </button>
+
+                    <a
+                      href={tkaAnbkDocument.imageUrl}
+                      download="JADWAL_TKA_ANBK_2026-2027_SMK_TANJUNG_PRIOK_1.jpg"
+                      className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer touch-manipulation"
+                      title="Unduh Berkas Gambar Jadwal"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Unduh</span>
+                    </a>
                   </div>
                 </div>
 
-                {/* Slider Viewport Container */}
-                <div className="relative max-w-4xl mx-auto">
-                  {/* Active Slide Info Bar */}
-                  <div className="bg-slate-900 text-white p-3.5 md:p-4 rounded-t-2xl md:rounded-t-3xl flex items-center justify-between gap-3 border-b border-slate-800">
-                    <div className="flex items-center gap-2.5">
-                      <span className={`font-black px-2.5 py-0.5 md:py-1 rounded-lg text-[10px] md:text-xs uppercase tracking-wider ${
-                        toeicSlide === 0
-                          ? 'bg-amber-400 text-slate-950 font-black'
-                          : toeicSlides[toeicSlide].role === 'Guru' 
-                          ? 'bg-purple-400 text-purple-950' 
-                          : 'bg-blue-400 text-blue-950'
-                      }`}>
-                        {toeicSlide === 0 ? 'SE9REV_TOEIC GURU DAN MURID' : toeicSlides[toeicSlide].badge}
-                      </span>
-                      <div className="text-left">
-                        <h4 className="font-black text-xs md:text-sm text-white leading-tight">
-                          {toeicSlides[toeicSlide].title}
-                        </h4>
-                        <p className="text-slate-400 text-[10px] md:text-xs hidden sm:block">
-                          {toeicSlides[toeicSlide].subtitle}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleZoom(toeicSlides[toeicSlide].imageUrl)}
-                        className="p-1.5 rounded-lg bg-slate-800 hover:bg-blue-600 text-blue-400 hover:text-white transition text-xs font-bold flex items-center gap-1 cursor-pointer"
-                        title="Perbesar Lembar Ini"
-                      >
-                        <ZoomIn className="w-3.5 h-3.5" />
-                        <span className="hidden md:inline">Zoom</span>
-                      </button>
-                      <span className="text-[11px] md:text-xs font-mono text-slate-300 bg-slate-800 px-3 py-1 rounded-full border border-slate-700 whitespace-nowrap">
-                        Lembar {toeicSlide + 1} / {toeicSlides.length}
-                      </span>
-                    </div>
+                {/* Document Image Stage with Clean Smartphone Frame */}
+                <div 
+                  onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
+                  className="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 cursor-zoom-in relative group max-h-[72vh] flex items-center justify-center p-2 sm:p-4 shadow-inner"
+                  title="Klik atau ketuk untuk zoom layar penuh"
+                >
+                  <img
+                    src={tkaAnbkDocument.imageUrl}
+                    alt={tkaAnbkDocument.title}
+                    className="w-full h-auto max-h-[68vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-2xl"
+                  />
+                  <div className="absolute bottom-4 right-4 bg-slate-950/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-xl border border-white/10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition shadow-lg pointer-events-none">
+                    <ZoomIn className="w-3.5 h-3.5 text-blue-400" />
+                    <span>Ketuk untuk Zoom Layar Penuh</span>
                   </div>
+                </div>
 
-                  {/* Main Interactive Document Stage with Touch Swipe */}
-                  <div 
-                    className="bg-slate-950 rounded-b-2xl md:rounded-b-3xl overflow-hidden relative shadow-2xl cursor-zoom-in border-x border-b border-slate-900 group select-none touch-pan-y"
-                    onClick={() => handleZoom(toeicSlides[toeicSlide].imageUrl)}
-                  >
-                    <div className="aspect-[1/1.41] sm:aspect-[1/1.38] md:aspect-[16/11] max-h-[78vh] flex items-center justify-center p-2 sm:p-4 bg-slate-950 overflow-hidden">
-                      <AnimatePresence mode="wait">
-                        <motion.img 
-                          key={toeicSlide}
-                          src={toeicSlides[toeicSlide].imageUrl}
-                          alt={toeicSlides[toeicSlide].title}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.2 }}
-                          drag="x"
-                          dragConstraints={{ left: 0, right: 0 }}
-                          dragElastic={0.2}
-                          onDragEnd={(_, info) => {
-                            if (info.offset.x < -40) {
-                              setToeicSlide((prev) => (prev + 1) % toeicSlides.length);
-                            } else if (info.offset.x > 40) {
-                              setToeicSlide((prev) => (prev - 1 + toeicSlides.length) % toeicSlides.length);
-                            }
-                          }}
-                          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.01] active:cursor-grabbing drop-shadow-xl"
-                          referrerPolicy="no-referrer"
-                        />
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Overlay Zoom Hint */}
-                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4 pointer-events-none">
-                      <div className="bg-white text-slate-950 p-3 rounded-full shadow-2xl mb-2 transform scale-90 group-hover:scale-100 transition duration-300">
-                        <ZoomIn className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs font-black uppercase tracking-wider bg-slate-900/90 px-4 py-1.5 rounded-full border border-white/20">
-                        Klik untuk Perbesar Gambar Dokumen
-                      </span>
-                    </div>
-
-                    {/* Left & Right Navigation Buttons */}
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setToeicSlide((prev) => (prev - 1 + toeicSlides.length) % toeicSlides.length);
-                      }}
-                      className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-blue-600 text-white p-2.5 sm:p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105 active:scale-95 touch-manipulation"
-                      aria-label="Lembar Sebelumnya"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setToeicSlide((prev) => (prev + 1) % toeicSlides.length);
-                      }}
-                      className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-blue-600 text-white p-2.5 sm:p-3 rounded-full shadow-xl backdrop-blur-md transition-all cursor-pointer z-20 group-hover:scale-105 active:scale-95 touch-manipulation"
-                      aria-label="Lembar Selanjutnya"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </div>
-
-                  {/* Fast Mobile Dropdown Selector (1-Tap Selection) */}
-                  <div className="sm:hidden pt-3">
-                    <label className="text-[11px] font-black text-slate-600 uppercase tracking-wider block mb-1">
-                      📄 Lompat Langsung ke Dokumen (1 s.d 8):
-                    </label>
-                    <select
-                      value={toeicSlide}
-                      onChange={(e) => setToeicSlide(Number(e.target.value))}
-                      className="w-full px-3.5 py-2.5 bg-white border-2 border-blue-500 rounded-xl text-xs font-black text-slate-800 shadow-sm focus:outline-none"
-                    >
-                      {toeicSlides.map((slide, idx) => (
-                        <option key={slide.id} value={idx}>
-                          Lembar {idx + 1}: {idx === 0 ? 'SE9REV_TOEIC GURU DAN MURID' : slide.title}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Thumbnail / Page Jump Selector Tabs (8 Lembar) */}
-                  <div className="flex items-center gap-2 overflow-x-auto pt-3 pb-1 no-scrollbar">
-                    {toeicSlides.map((slide, idx) => (
-                      <button
-                        key={slide.id}
-                        onClick={() => setToeicSlide(idx)}
-                        className={`px-3 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0 touch-manipulation ${
-                          toeicSlide === idx
-                            ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 scale-102 ring-2 ring-blue-300'
-                            : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'
-                        }`}
-                      >
-                        <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
-                          toeicSlide === idx ? 'bg-white text-blue-600 font-black' : 'bg-black/10'
-                        }`}>
-                          {idx + 1}
-                        </span>
-                        <span>{idx === 0 ? 'SE9REV_TOEIC GURU DAN MURID' : slide.badge}</span>
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Active Slide Description Note */}
-                  <div className="p-3.5 bg-slate-100 rounded-2xl text-slate-700 text-xs flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-blue-600 shrink-0" />
-                      <span>{toeicSlides[toeicSlide].description}</span>
-                    </div>
-                    <span className="font-bold text-blue-700 shrink-0 hidden sm:inline">
-                      {toeicSlides[toeicSlide].session}
-                    </span>
-                  </div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-400 gap-2 pt-1">
+                  <span>Ditandatangani oleh: <strong>H. Andri Susanto, ST</strong> (Kepala Sekolah) &amp; <strong>Reni Widyastuti, M.Kom</strong> (Waka Kurikulum)</span>
+                  <span className="text-emerald-400 font-bold flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Dokumen Asli Resmi Terverifikasi</span>
+                  </span>
                 </div>
               </div>
 
               {/* -------------------------------------------------------------
-                  INTERACTIVE PARTICIPANT FINDER (MURID & GURU) - FAST SEARCH
+                  INTERACTIVE SCHEDULE EXPLORER (DAY BY DAY & SHIFT MATRIX)
                  ------------------------------------------------------------- */}
-              <div className="pt-6 border-t border-slate-200/80 space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div className="space-y-6 pt-2">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200">
                   <div>
-                    <div className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-xs uppercase tracking-wider mb-1">
-                      <Search className="w-3.5 h-3.5" />
-                      <span>Cek Data Peserta TOEIC Tahap 3 (Daftar Terlampir)</span>
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-black text-slate-900">
-                      Pencarian Peserta Murid &amp; Guru
+                    <span className="text-blue-600 font-bold text-xs uppercase tracking-wider block">
+                      Rincian Pelaksanaan Lengkap
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                      Jadwal Harian, Mata Uji &amp; Penugasan Laboratorium
                     </h3>
-                    <p className="text-slate-500 text-xs md:text-sm mt-0.5">
-                      Ketik nama siswa atau guru untuk melihat ruangan lab, tanggal pelaksanaan, dan sesi yang ditentukan.
+                    <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+                      Pilih hari atau shift untuk melihat rincian mata uji, durasi, dan petugas Proktor pengawas ruang.
                     </p>
                   </div>
 
-                  {/* View Mode Toggle: Cards vs Table */}
-                  <div className="flex items-center gap-2 self-start sm:self-auto">
+                  {/* View Mode Toggle */}
+                  <div className="flex items-center gap-2 self-start md:self-auto bg-slate-100 p-1 rounded-2xl border border-slate-200">
                     <button
-                      onClick={() => setParticipantView('cards')}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer touch-manipulation ${
-                        participantView === 'cards'
-                          ? 'bg-blue-600 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      onClick={() => setScheduleViewMode('cards')}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer ${
+                        scheduleViewMode === 'cards'
+                          ? 'bg-white text-blue-600 shadow-sm'
+                          : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
                       <LayoutGrid className="w-3.5 h-3.5" />
-                      <span>Kartu (Mobile)</span>
+                      <span>Kartu Mobile</span>
                     </button>
                     <button
-                      onClick={() => setParticipantView('table')}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer touch-manipulation ${
-                        participantView === 'table'
-                          ? 'bg-blue-600 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      onClick={() => setScheduleViewMode('table')}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer ${
+                        scheduleViewMode === 'table'
+                          ? 'bg-white text-blue-600 shadow-sm'
+                          : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
                       <List className="w-3.5 h-3.5" />
-                      <span>Tabel Detail</span>
+                      <span>Tabel Matriks</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Filter and Search Bar Controls */}
-                <div className="bg-slate-50 p-4 md:p-5 rounded-2xl border border-slate-200/80 space-y-3.5">
-                  {/* Quick Role Filter Pills */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">
-                      Kategori:
+                {/* Day Filter Pills & Shift Tabs */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
+                    <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">
+                      Pilih Hari:
                     </span>
-                    {(['Semua', 'Murid', 'Guru'] as const).map((role) => (
+                    <button
+                      onClick={() => setSelectedScheduleDay('semua')}
+                      className={`px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition cursor-pointer ${
+                        selectedScheduleDay === 'semua'
+                          ? 'bg-blue-600 text-white shadow-sm font-black'
+                          : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                      }`}
+                    >
+                      Semua Hari (26 - 29 Okt)
+                    </button>
+                    {tkaAnbkSchedule.map((day) => (
                       <button
-                        key={role}
-                        onClick={() => setToeicRoleFilter(role)}
-                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer touch-manipulation ${
-                          toeicRoleFilter === role
-                            ? 'bg-slate-900 text-white shadow-sm'
-                            : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
+                        key={day.id}
+                        onClick={() => setSelectedScheduleDay(day.id)}
+                        className={`px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition cursor-pointer ${
+                          selectedScheduleDay === day.id
+                            ? 'bg-blue-600 text-white shadow-sm font-black'
+                            : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                         }`}
                       >
-                        {role === 'Semua' ? 'Semua (98)' : role === 'Murid' ? 'Murid Kelas XII (69)' : 'Bapak/Ibu Guru (29)'}
+                        {day.hari} ({day.tanggalRaw})
                       </button>
                     ))}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {/* Live Search Input */}
-                    <div className="relative md:col-span-2">
-                      <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                      <input
-                        type="search"
-                        value={toeicSearchQuery}
-                        onChange={(e) => setToeicSearchQuery(e.target.value)}
-                        placeholder="Ketik nama murid atau bapak/ibu guru..."
-                        className="w-full pl-10 pr-8 py-2.5 bg-white border border-slate-200 rounded-xl text-xs md:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
-                      />
-                      {toeicSearchQuery && (
+                  {/* Shift Filter & Live Search */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 overflow-x-auto text-xs">
+                      <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">
+                        Shift:
+                      </span>
+                      {['semua', 'Shift I', 'Shift II'].map((shift) => (
                         <button
-                          onClick={() => setToeicSearchQuery('')}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
-                          title="Hapus pencarian"
+                          key={shift}
+                          onClick={() => setSelectedScheduleShift(shift)}
+                          className={`px-3 py-1 rounded-xl text-xs font-bold transition cursor-pointer ${
+                            selectedScheduleShift === shift
+                              ? 'bg-indigo-600 text-white font-black shadow-xs'
+                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                          }`}
                         >
-                          ✕
+                          {shift === 'semua' ? 'Semua Shift' : shift}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Quick Search */}
+                    <div className="relative w-full sm:w-64">
+                      <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                      <input
+                        type="text"
+                        placeholder="Cari mapel atau proktor..."
+                        value={scheduleSearchQuery}
+                        onChange={(e) => setScheduleSearchQuery(e.target.value)}
+                        className="w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                      />
+                      {scheduleSearchQuery && (
+                        <button
+                          onClick={() => setScheduleSearchQuery('')}
+                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                        >
+                          <X className="w-3.5 h-3.5" />
                         </button>
                       )}
                     </div>
-
-                    {/* Lab Room Filter */}
-                    <div>
-                      <select
-                        value={toeicLabFilter}
-                        onChange={(e) => setToeicLabFilter(e.target.value)}
-                        className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs md:text-sm text-slate-800 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-                      >
-                        <option value="Semua">Semua Laboratorium (4 Lab)</option>
-                        <option value="LAB 1 DKV">LAB 1 DKV</option>
-                        <option value="LAB 2 DKV">LAB 2 DKV</option>
-                        <option value="LAB 4 DKV">LAB 4 DKV</option>
-                        <option value="LAB TL">LAB Teknik Logistik (TL)</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs font-medium text-slate-500 pt-1">
-                    <span>Hasil pencarian: <strong className="text-blue-600 font-black">{filteredToeicParticipants.length}</strong> peserta ditemukan</span>
-                    {(toeicSearchQuery || toeicRoleFilter !== 'Semua' || toeicLabFilter !== 'Semua') && (
-                      <button
-                        onClick={() => {
-                          setToeicSearchQuery('');
-                          setToeicRoleFilter('Semua');
-                          setToeicLabFilter('Semua');
-                        }}
-                        className="text-rose-600 font-bold hover:underline cursor-pointer"
-                      >
-                        Reset Filter
-                      </button>
-                    )}
                   </div>
                 </div>
 
-                {/* Participant Results: Cards View (Default on Smartphone) */}
-                {participantView === 'cards' && (
-                  <div>
-                    {filteredToeicParticipants.length > 0 ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                        {filteredToeicParticipants.map((p, idx) => (
+                {/* Dynamic Schedule View (Cards Mode) */}
+                {scheduleViewMode === 'cards' ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {tkaAnbkSchedule
+                      .filter((day) => selectedScheduleDay === 'semua' || selectedScheduleDay === day.id)
+                      .map((day) => {
+                        const matchingShifts = day.shifts.filter((shift) => {
+                          const matchesShiftFilter = selectedScheduleShift === 'semua' || selectedScheduleShift === shift.shiftCode;
+                          const q = scheduleSearchQuery.toLowerCase().trim();
+                          const matchesSearch = 
+                            q === '' ||
+                            day.hari.toLowerCase().includes(q) ||
+                            shift.mataUji.toLowerCase().includes(q) ||
+                            shift.survey.toLowerCase().includes(q) ||
+                            shift.labs.some(l => l.proktorName.toLowerCase().includes(q) || l.lab.toLowerCase().includes(q));
+                          return matchesShiftFilter && matchesSearch;
+                        });
+
+                        if (matchingShifts.length === 0) return null;
+
+                        return (
                           <div 
-                            key={idx} 
-                            className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all hover:shadow-md space-y-2.5"
+                            key={day.id}
+                            className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden"
                           >
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-lg">
-                                #{p.no}
-                              </span>
-                              <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                                p.role === 'Guru' 
-                                  ? 'bg-purple-100 text-purple-800 border border-purple-200' 
-                                  : 'bg-blue-100 text-blue-800 border border-blue-200'
-                              }`}>
-                                {p.role}
+                            {/* Day Header */}
+                            <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-4 flex items-center justify-between">
+                              <div className="flex items-center gap-2.5">
+                                <span className="w-8 h-8 rounded-lg bg-blue-500 text-white font-black flex items-center justify-center text-xs">
+                                  {day.hari.slice(0, 3).toUpperCase()}
+                                </span>
+                                <div>
+                                  <h4 className="font-black text-sm text-white">
+                                    {day.tanggalLengkap}
+                                  </h4>
+                                  <span className="text-[11px] text-blue-200 font-medium">
+                                    Mata Uji Utama: {day.mataUjiUtama}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className="text-[10px] bg-white/10 px-2.5 py-1 rounded-full text-slate-200 font-mono">
+                                {day.tanggalRaw}
                               </span>
                             </div>
-                            <h4 className="font-black text-slate-900 text-sm leading-snug">
-                              {p.name}
-                            </h4>
-                            <div className="text-xs text-slate-600 space-y-1.5 pt-2 border-t border-slate-100 font-medium">
-                              <div className="flex items-center justify-between">
-                                <span className="text-slate-400">Ruangan:</span>
-                                <span className="font-black text-blue-600">{p.lab}</span>
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-slate-400">Jadwal Sesi:</span>
-                                <span className="font-bold text-slate-800">Sesi {p.sesi} ({p.waktu})</span>
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-slate-400">Waktu Tes:</span>
-                                <span className="font-medium text-slate-600">{p.hari}, {p.tanggal}</span>
-                              </div>
+
+                            {/* Shifts List for this day */}
+                            <div className="p-4 space-y-4 divide-y divide-slate-100">
+                              {matchingShifts.map((shift, idx) => (
+                                <div key={idx} className={idx > 0 ? "pt-4 space-y-3" : "space-y-3"}>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
+                                        shift.shiftCode === 'Shift I'
+                                          ? 'bg-amber-100 text-amber-900'
+                                          : 'bg-indigo-100 text-indigo-900'
+                                      }`}>
+                                        {shift.name}
+                                      </span>
+                                      <span className="text-xs font-bold text-slate-700 flex items-center gap-1">
+                                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                                        <span>{shift.waktu}</span>
+                                      </span>
+                                    </div>
+                                    <span className="text-[11px] font-mono text-slate-400">
+                                      {shift.durasi}
+                                    </span>
+                                  </div>
+
+                                  {/* Subject & Survey Banner */}
+                                  <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3">
+                                    <div className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-0.5">
+                                      Mata Uji &amp; Survei
+                                    </div>
+                                    <div className="font-black text-slate-900 text-sm">
+                                      {shift.mataUji}
+                                    </div>
+                                    {shift.survey !== '-' && (
+                                      <div className="text-xs text-blue-600 font-bold mt-0.5 flex items-center gap-1">
+                                        <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                                        <span>+ {shift.survey}</span>
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  {/* Lab Assignment Matrix */}
+                                  <div className="space-y-1.5">
+                                    <div className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                      Alokasi Ruang Lab &amp; Proktor
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2 text-xs">
+                                      {shift.labs.map((l, lIdx) => (
+                                        <div 
+                                          key={lIdx} 
+                                          className={`p-2 rounded-xl border flex flex-col justify-between ${
+                                            l.active
+                                              ? 'bg-blue-50/50 border-blue-200/80'
+                                              : 'bg-slate-50 border-slate-200 opacity-50'
+                                          }`}
+                                        >
+                                          <div className="flex items-center justify-between">
+                                            <span className="font-black text-blue-900 text-[11px]">
+                                              {l.lab}
+                                            </span>
+                                            {l.active ? (
+                                              <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">
+                                                Proktor {l.proktorNumber}
+                                              </span>
+                                            ) : (
+                                              <span className="text-[9px] bg-slate-200 text-slate-600 px-1.5 py-0.2 rounded font-bold">
+                                                Nonaktif
+                                              </span>
+                                            )}
+                                          </div>
+                                          <div className="font-bold text-slate-800 text-[11px] truncate mt-1">
+                                            {l.proktorName}
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="bg-white rounded-2xl border border-slate-200 p-10 text-center text-slate-400 font-medium">
-                        Tidak ada peserta yang cocok dengan kata kunci &quot;{toeicSearchQuery}&quot;
-                      </div>
-                    )}
+                        );
+                      })}
                   </div>
-                )}
-
-                {/* Participant Results: Table View */}
-                {participantView === 'table' && (
+                ) : (
+                  /* Table Matrix View */
                   <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                    <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
-                      <table className="w-full text-left border-collapse text-xs md:text-sm">
-                        <thead className="bg-slate-900 text-white sticky top-0 z-10 text-[11px] md:text-xs uppercase tracking-wider">
-                          <tr>
-                            <th className="py-3 px-4 font-bold">No.</th>
-                            <th className="py-3 px-4 font-bold">Nama Peserta</th>
-                            <th className="py-3 px-4 font-bold">Kategori</th>
-                            <th className="py-3 px-4 font-bold">Ruang Lab</th>
-                            <th className="py-3 px-4 font-bold">Sesi &amp; Waktu</th>
-                            <th className="py-3 px-4 font-bold">Hari, Tanggal</th>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left border-collapse text-xs">
+                        <thead>
+                          <tr className="bg-slate-900 text-white font-black uppercase tracking-wider text-[11px]">
+                            <th className="py-3 px-4">Hari / Tanggal</th>
+                            <th className="py-3 px-4">Shift</th>
+                            <th className="py-3 px-4">Waktu</th>
+                            <th className="py-3 px-4">Mata Uji</th>
+                            <th className="py-3 px-4">Lab 1 (Proktor 1)</th>
+                            <th className="py-3 px-4">Lab 2 (Proktor 2)</th>
+                            <th className="py-3 px-4">Lab 3 (Proktor 3)</th>
+                            <th className="py-3 px-4">Lab 4 (Proktor 4)</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
-                          {filteredToeicParticipants.length > 0 ? (
-                            filteredToeicParticipants.map((p, idx) => (
-                              <tr key={idx} className="hover:bg-blue-50/50 transition-colors">
-                                <td className="py-3 px-4 font-mono text-slate-400 font-bold">
-                                  {p.no}
-                                </td>
-                                <td className="py-3 px-4 font-bold text-slate-900">
-                                  {p.name}
-                                </td>
-                                <td className="py-3 px-4">
-                                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                                    p.role === 'Guru' 
-                                      ? 'bg-purple-100 text-purple-800' 
-                                      : 'bg-blue-100 text-blue-800'
-                                  }`}>
-                                    {p.role}
-                                  </span>
-                                </td>
-                                <td className="py-3 px-4 font-bold text-blue-600">
-                                  {p.lab}
-                                </td>
-                                <td className="py-3 px-4 font-semibold text-slate-700">
-                                  Sesi {p.sesi} ({p.waktu})
-                                </td>
-                                <td className="py-3 px-4 text-slate-500 font-medium">
-                                  {p.hari}, {p.tanggal}
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr>
-                              <td colSpan={6} className="py-12 text-center text-slate-400 font-medium">
-                                Tidak ada peserta yang cocok dengan kata kunci &quot;{toeicSearchQuery}&quot;
-                              </td>
-                            </tr>
-                          )}
+                          {tkaAnbkSchedule
+                            .filter((day) => selectedScheduleDay === 'semua' || selectedScheduleDay === day.id)
+                            .flatMap((day) =>
+                              day.shifts
+                                .filter((shift) => selectedScheduleShift === 'semua' || selectedScheduleShift === shift.shiftCode)
+                                .map((shift, sIdx) => {
+                                  const q = scheduleSearchQuery.toLowerCase().trim();
+                                  const matchesSearch = 
+                                    q === '' ||
+                                    day.hari.toLowerCase().includes(q) ||
+                                    shift.mataUji.toLowerCase().includes(q) ||
+                                    shift.survey.toLowerCase().includes(q) ||
+                                    shift.labs.some(l => l.proktorName.toLowerCase().includes(q));
+
+                                  if (!matchesSearch) return null;
+
+                                  return (
+                                    <tr key={`${day.id}-${sIdx}`} className="hover:bg-slate-50 transition">
+                                      <td className="py-3 px-4 font-black text-slate-900 whitespace-nowrap">
+                                        {day.hari}, {day.tanggalRaw}
+                                      </td>
+                                      <td className="py-3 px-4">
+                                        <span className={`px-2 py-0.5 rounded-md font-black text-[10px] ${
+                                          shift.shiftCode === 'Shift I' ? 'bg-amber-100 text-amber-900' : 'bg-indigo-100 text-indigo-900'
+                                        }`}>
+                                          {shift.shiftCode}
+                                        </span>
+                                      </td>
+                                      <td className="py-3 px-4 font-mono text-slate-600 whitespace-nowrap">
+                                        {shift.waktu}
+                                      </td>
+                                      <td className="py-3 px-4 font-bold text-slate-800">
+                                        <div>{shift.mataUji}</div>
+                                        {shift.survey !== '-' && (
+                                          <div className="text-[11px] text-blue-600 font-semibold">{shift.survey}</div>
+                                        )}
+                                      </td>
+                                      <td className="py-3 px-4 text-slate-700 font-medium">
+                                        <div className="font-bold text-blue-700">Anggi Arini, S.Kom</div>
+                                      </td>
+                                      <td className="py-3 px-4 text-slate-700 font-medium">
+                                        <div className="font-bold text-indigo-700">M. Arif, S.Kom</div>
+                                      </td>
+                                      <td className="py-3 px-4 text-slate-700 font-medium">
+                                        <div className="font-bold text-purple-700">Husain</div>
+                                      </td>
+                                      <td className="py-3 px-4 text-slate-700 font-medium">
+                                        {shift.labs[3]?.active ? (
+                                          <div className="font-bold text-amber-700">Khairudin Arif, ST</div>
+                                        ) : (
+                                          <span className="text-slate-400 italic">- (Lab Tutup)</span>
+                                        )}
+                                      </td>
+                                    </tr>
+                                  );
+                                })
+                            )}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 )}
+              </div>
 
-                {/* Footer Navigation Note */}
-                <div className="flex items-center justify-between text-xs text-slate-500 pt-2">
-                  <span>Catatan: Pastikan datang 15 menit sebelum sesi dimulai.</span>
-                  <button
-                    onClick={() => {
-                      setToeicSlide(0);
-                      window.scrollTo({ top: 300, behavior: 'smooth' });
-                    }}
-                    className="text-blue-600 font-bold hover:underline flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>Kembali ke Surat Edaran (Slide 1)</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
+              {/* -------------------------------------------------------------
+                  TIM PETUGAS PROKTOR & TEKNISI RESMI TKA - ANBK
+                 ------------------------------------------------------------- */}
+              <div className="space-y-4 pt-4 border-t border-slate-200">
+                <div>
+                  <span className="text-indigo-600 font-bold text-xs uppercase tracking-wider block">
+                    Penugasan Personel Resmi
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                    Daftar Petugas Proktor &amp; Teknisi Laboratorium
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-500">
+                    Sesuai Surat Penetapan Pelaksanaan Ujian TKA - ANBK Tahun Pelajaran 2026-2027 SMK Tanjung Priok 1.
+                  </p>
                 </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {proktorList.map((proktor) => (
+                    <div 
+                      key={proktor.id} 
+                      className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:border-blue-300 transition"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                          {proktor.label}
+                        </span>
+                        <UserCheck className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <h4 className="font-black text-slate-900 text-sm">
+                        {proktor.nama}
+                      </h4>
+                      <p className="text-xs font-bold text-blue-700 mt-0.5">
+                        {proktor.jabatan}
+                      </p>
+                      <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                        {proktor.penugasan}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 2 Teknisi Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  {teknisiList.map((teknisi) => (
+                    <div 
+                      key={teknisi.id} 
+                      className="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-200/80 flex items-start gap-3"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                        <ShieldCheck className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="bg-emerald-200 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            {teknisi.label}
+                          </span>
+                          <span className="text-xs font-black text-slate-900">
+                            {teknisi.nama}
+                          </span>
+                        </div>
+                        <div className="text-xs font-bold text-emerald-800 mt-0.5">
+                          {teknisi.jabatan}
+                        </div>
+                        <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                          {teknisi.tugas}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* -------------------------------------------------------------
+                  CONNECTING CALLOUT TO STUDENT ROSTER (SECTION #tka)
+                 ------------------------------------------------------------- */}
+              <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-xl">
+                <div className="space-y-2">
+                  <span className="bg-amber-400 text-slate-950 font-black px-3 py-1 rounded-full text-[10px] uppercase tracking-wider inline-block">
+                    Cek Akun Login &amp; Ruangan
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-white">
+                    Daftar Siswa Update Kelas &amp; Sesi TKA (104 Murid)
+                  </h3>
+                  <p className="text-blue-100 text-xs sm:text-sm max-w-xl font-medium">
+                    Lihat 7 lembar daftar hadir resmi, nomor username peserta, dan ID server sinkron untuk pelaksanaan ujian 26 - 27 Oktober 2026.
+                  </p>
+                </div>
+
+                <a
+                  href="#tka"
+                  className="inline-flex items-center gap-2 bg-white text-blue-900 hover:bg-blue-50 font-black px-6 py-3.5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition shadow-lg active:scale-95 self-start sm:self-auto shrink-0 cursor-pointer"
+                >
+                  <Search className="w-4 h-4 text-blue-700" />
+                  <span>Buka Rincian Siswa</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </article>
@@ -1713,9 +1761,9 @@ const News: React.FC = () => {
               <span className="text-xs md:text-sm font-bold bg-blue-600 px-3 py-1 rounded-lg">
                 Preview Dokumen Resolusi Tinggi
               </span>
-              {currentToeicSlideIndex !== -1 && (
+              {zoomImageUrl === tkaAnbkDocument.imageUrl && (
                 <span className="text-xs text-amber-300 font-black bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg hidden sm:inline">
-                  TOEIC Lembar {currentToeicSlideIndex + 1} / {toeicSlides.length}
+                  Jadwal Resmi TKA - ANBK TA 2026-2027
                 </span>
               )}
               {currentTkaSlideIndex !== -1 && (
@@ -1729,27 +1777,6 @@ const News: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-1.5 sm:gap-2">
-              {currentToeicSlideIndex !== -1 && (
-                <>
-                  <button
-                    onClick={handleModalPrevSlide}
-                    className="p-2 rounded-xl bg-slate-800 hover:bg-blue-600 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95 touch-manipulation"
-                    title="Lembar Sebelumnya"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                    <span className="hidden sm:inline">Prev</span>
-                  </button>
-                  <button
-                    onClick={handleModalNextSlide}
-                    className="p-2 rounded-xl bg-slate-800 hover:bg-blue-600 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95 touch-manipulation"
-                    title="Lembar Selanjutnya"
-                  >
-                    <span className="hidden sm:inline">Next</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </>
-              )}
-
               {currentTkaSlideIndex !== -1 && (
                 <>
                   <button
@@ -1816,32 +1843,6 @@ const News: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
             onDoubleClick={() => setZoomScale(prev => prev === 1 ? 2 : 1)}
           >
-            {/* Modal Quick Left / Right Nav Overlays for fast tapping */}
-            {currentToeicSlideIndex !== -1 && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleModalPrevSlide();
-                  }}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-2xl backdrop-blur-md transition z-30 cursor-pointer active:scale-95 touch-manipulation"
-                  aria-label="Lembar Sebelumnya"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleModalNextSlide();
-                  }}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-slate-900/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-2xl backdrop-blur-md transition z-30 cursor-pointer active:scale-95 touch-manipulation"
-                  aria-label="Lembar Selanjutnya"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </>
-            )}
-
             {currentTkaSlideIndex !== -1 && (
               <>
                 <button
@@ -1878,7 +1879,7 @@ const News: React.FC = () => {
           {/* Bottom Hint */}
           <div className="text-center text-slate-400 text-xs py-2 border-t border-white/10 pointer-events-none flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4">
             <span>🔍 Ketuk 2x (double-tap) atau gunakan tombol zoom di atas untuk memperbesar.</span>
-            {(currentToeicSlideIndex !== -1 || currentTkaSlideIndex !== -1) && (
+            {currentTkaSlideIndex !== -1 && (
               <span className="text-blue-400 font-bold">Gunakan panah kiri/kanan untuk berganti lembar dokumen.</span>
             )}
           </div>

@@ -28,6 +28,9 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
 | 17 | **Penyelarasan Warna Putih Judul STS Ganjil** | ✅ Selesai | Menetapkan kelas warna putih bersih (`text-white`) langsung pada tag judul utama `<h1>` Pelaksanaan Asesmen Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 di Warta Kurikulum untuk kontras maksimal di latar belakang gelap. | Warta (`/warta#sts`) |
 | 18 | **Optimasi Ekstrem Fast Responsif & Core Web Vitals** | ✅ Selesai | Mengeliminasi delay tap 300ms ponsel (`touch-action: manipulation`), preconnect & dns-prefetch Google Fonts/Drive/Kemendikdasmen, manual chunk splitting Vite, pencegahan layout shift (CLS) gambar, GPU acceleration, serta akses cepat 1-tap Katalog Buku pada Bottom Nav mobile. | Global (`index.html`, `index.css`, `vite.config.ts`, `BottomNav.tsx`, `App.tsx`, `Home.tsx`) |
 | 19 | **Penggantian Berita STS & Seleksi Lama ke TOEIC Tahap 3 Murid & Guru** | ✅ Selesai | Menghapus berita STS & Seleksi TOEIC lama; menggantinya dengan PELAKSANAAN TOEIC SELEKSI TAHAP 3 UNTUK MURID & GURU YANG DILAKSANAKAN PADA 15 - 16 OKTOBER 2026 (DAFTAR TERLAMPIR); judul teks putih bersih; slideshow 8 lembar dimulai SE9REV_TOEIC GURU DAN MURID; fitur zoom interaktif (inline, modal flip slide, double-tap zoom); dan mode kartu/tabel mobile fast-responsive. | Warta (`/warta`), Home (`/`), Layanan Data (`toeicData.ts`) |
+| 20 | **Penghapusan Jadwal KBM & Simulasi TKA Diganti Daftar Siswa TKA 26-27 Okt** | ✅ Selesai | Mengganti Jadwal KBM & Simulasi TKA pada Warta Kurikulum dengan DAFTAR SISWA UPDATE KELAS DAN SESI TES KEMAMPUAN AKADEMIK (TKA) 26-27 OKTOBER 2026 (7 lembar dokumen resmi slide show, zoomable, filter nama & lab, kompatibel smartphone). | Warta (`/warta`), Home (`/`), Layanan Data (`tkaData.ts`) |
+| 21 | **Integrasi Formulir Ajuan SK Aktif Mengajar Guru** | ✅ Selesai | Menambahkan tautan resmi Google Form `https://forms.gle/3KAELyz4A8KMXsDR6` untuk formulir permohonan SK Aktif Mengajar guru dengan integrasi kartu smartphone di Portal Guru, Tautan Pintar, FAQ, dan Bottom Nav. | Guru (`/guru`), Tautan (`/tautan`), Home (`/`), Navigasi |
+| 22 | **Penghapusan Berita TOEIC & Pelaksanaan Jadwal TKA - ANBK 2026-2027** | ✅ Selesai | Menghapus tuntas semua berita TOEIC (guru & siswa); menggantinya dengan Jadwal Resmi Pelaksanaan TKA - ANBK TA 2026-2027 (26-29 Okt 2026) berdasarkan surat resmi Ka. Sekolah & Waka Kurikulum. UI/UX fast-responsive, kartu & tabel mobile, preview dokumen zoomable, tim Proktor/Teknisi, dan optimasi SEO ranking Google. | Warta (`/warta`), Home (`/`), Layanan Data (`tkaAnbkScheduleData.ts`), SEO (`index.html`) |
 
 ---
 
@@ -357,6 +360,36 @@ Laporan ini disusun secara komprehensif, terstruktur, dan valid untuk memantau s
     * Sinkronisasi Schema.org JSON-LD (`FAQPage`, `Service`, `ApplyAction`) untuk memicu Google Rich Snippets pada pencarian kata kunci SK Aktif Mengajar SMK Tanjung Priok 1.
     * Optimasi Meta description, meta keywords, OpenGraph, dan Twitter Card di `index.html` dan `pages/Teachers.tsx`.
     * PWA-ready dengan `manifest.json` agar pengguna smartphone dapat menggunakan web app ini layaknya file APK langsung dari layar utama ponsel.
+
+---
+
+### 22. Penghapusan Berita TOEIC & Pelaksanaan Jadwal TKA - ANBK TA 2026-2027
+* **Permintaan**: Pada halaman Warta Kurikulum (`/warta`), menghapus tuntas semua berita tentang TOEIC baik TOEIC guru maupun murid. Diganti dengan pelaksanaan TKA - ANBK Tahun Ajaran 2026-2027 berdasarkan lampiran jadwal resmi. Perubahan ini membuat web berkinerja lebih *fast responsive*, sangat kompatibel dengan *smartphone*, serta menyajikan UI/UX yang informatif dan menarik untuk menempati ranking teratas di mesin pencarian (SEO Senior).
+* **Tindakan yang Dilakukan**:
+  * **Penghapusan Total Berita & Data TOEIC**:
+    * Menghapus seluruh entri berita, anchor jump, filter kategori, dan kartu pengumuman bertopik TOEIC Guru dan Murid pada `pages/News.tsx` dan `pages/Home.tsx`.
+    * Menghapus modul data tidak terpakai `services/toeicData.ts` untuk menghemat bundle size dan memori perangkat mobile.
+  * **Integrasi Jadwal Resmi TKA - ANBK TA 2026-2027**:
+    * Dokumen Acuan: Surat Jadwal TKA - ANBK Tahun Pelajaran 2026-2027 SMK Tanjung Priok 1 tertanggal Jakarta, 21 Oktober 2026, ditandatangani resmi oleh Kepala SMK Tanjung Priok 1 (**H. Andri Susanto, ST**) dan Wakil Bidang Kurikulum (**Reni Widyastuti, M.Kom**).
+    * Asset Image Viewer: Menyematkan berkas resmi `/assets/aistudio/jadwal_tka-anbk_2026-2027_c9ac7e6a.jpg` dengan penampil interaktif yang mendukung pembesar resolusi tinggi (*Lightbox Zoom Modal*), cetak PDF otomatis via sandboxed iframe, dan unduhan berkas langsung.
+    * Pembuatan Data Service Terstruktur `services/tkaAnbkScheduleData.ts`:
+      * **Senin, 26/10/2026**: Bahasa Indonesia & Survey Karakter (Shift I: Lab 1-4, Shift II: Lab 1-3).
+      * **Selasa, 27/10/2026**: Bahasa Inggris & Survey Lingkungan Belajar (Shift I: Lab 1-4, Shift II: Lab 1-3).
+      * **Rabu, 28/10/2026**: Matematika (Shift I: Lab 1-4, Shift II: Lab 1-3).
+      * **Kamis, 29/10/2026**: Projek Kreatif & KWH & PPKN (Shift I: Lab 1-4, Shift II: Lab 1-3).
+      * **Tim Proktor**: Proktor 1 (Anggi Arini, S.Kom - Lab 1), Proktor 2 (M. Arif, S.Kom - Lab 2), Proktor 3 (Husain - Lab 3), Proktor 4 (Khairudin Arif, ST - Lab 4).
+      * **Tim Teknisi**: Teknisi 1 (Daniel Saarani, S.Ds - Server/Jaringan), Teknisi 2 (Rizal - Troubleshooting/Hardware).
+  * **Desain UI/UX & Fast Responsiveness untuk Smartphone**:
+    * Banner hero kontras tinggi dengan gradasi malam gelap (`#051329` via `#0d234d` to `#1e3a8a`) dan tipografi judul utama putih bersih (`text-white font-black`) yang elegan.
+    * 4 Kartu Ringkasan Eksekutif (Waktu Pelaksanaan, Pembagian Shift, Ruang Lab, dan Legalitas Pengesahan).
+    * Filter hari interaktif (Semua, Senin, Selasa, Rabu, Kamis), filter shift (Shift I & Shift II), dan input pencarian instan mapel/proktor.
+    * Toggle Tampilan Ganda: Mode **Kartu Mobile** (ramah sentuhan jempol dan ringkas di smartphone) & Mode **Tabel Matriks Laboratorium** (detail lengkap untuk layar tablet/desktop).
+    * Kartu direktori penugasan resmi Proktor & Teknisi dengan status ruang dan spesialisasi teknis.
+    * Kartu *call-to-action* langsung yang menghubungkan ke lembar Daftar Siswa & Sesi TKA (104 Murid terdaftar) di seksi bawahnya.
+  * **Optimasi SEO Senior & PWA Mobile APK**:
+    * Penyesuaian `<SEO>` pada `pages/News.tsx` dengan kata kunci relevan target pencarian (*Jadwal TKA ANBK 2026 2027, Pelaksanaan TKA ANBK SMK Tanjung Priok 1, Proktor Teknisi TKA ANBK, Mata Uji TKA*).
+    * Pengayaan `index.html` meta tags (`description`, `keywords`) serta penambahan entri FAQ baru pada `Schema.org` JSON-LD (`FAQPage`) agar Google Search menampilkan rich snippet FAQ jadwal TKA - ANBK di urutan atas hasil pencarian.
+    * Menjaga performa Core Web Vitals dengan *zero layout shift*, rendering instan tanpa request eksternal yang berat, serta kompatibilitas aplikasi web APK.
 
 ---
 
