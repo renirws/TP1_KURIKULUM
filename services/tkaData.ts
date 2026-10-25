@@ -10,8 +10,10 @@ export interface TkaSlide {
   tanggal: string;
   badge: string;
   imageUrl: string;
+  scanImageUrl: string;
   description: string;
   totalPeserta: number;
+  proktor: string;
 }
 
 export interface TkaStudent {
@@ -24,7 +26,21 @@ export interface TkaStudent {
   pukul: string;
   tanggal: string;
   page: number;
+  proktor?: string;
 }
+
+export const TKA_PDF_DOCUMENT_URL = "/assets/aistudio/DAFTAR_SISWA_TKA_9a5f3392.pdf";
+export const TKA_SCHEDULE_IMAGE_URL = "/assets/aistudio/jadwal_tka-anbk_2026-2027_c9ac7e6a.jpg";
+
+export const tkaSummaryStats = {
+  totalPeserta: 104,
+  totalSesi1: 60,
+  totalSesi2: 44,
+  totalLab: 4,
+  tanggalPelaksanaan: "26 - 27 Oktober 2026 (Simulasi TKA) & 26 - 29 Oktober 2026 (TKA-ANBK)",
+  pdfUrl: TKA_PDF_DOCUMENT_URL,
+  jadwalImgUrl: TKA_SCHEDULE_IMAGE_URL
+};
 
 export const tkaSlides: TkaSlide[] = [
   {
@@ -39,8 +55,10 @@ export const tkaSlides: TkaSlide[] = [
     tanggal: "26 - 27 Oktober 2026",
     badge: "Lab 1 • Sesi 1",
     imageUrl: "/tka/page-1.svg",
-    description: "Lembar 1: Daftar hadir peserta TKA di Lab 1 Sesi 1 (I Kadek Chandra Satrya s.d Khairul Annam).",
-    totalPeserta: 15
+    scanImageUrl: "/assets/extracted_pages/page_1.jpg",
+    description: "Lembar 1: Berkas asli daftar hadir peserta TKA di Lab 1 Sesi 1 (I Kadek Chandra Satrya s.d Khairul Annam).",
+    totalPeserta: 15,
+    proktor: "Anggi Arini, S.Kom"
   },
   {
     id: "tka-page-2",
@@ -54,8 +72,10 @@ export const tkaSlides: TkaSlide[] = [
     tanggal: "26 - 27 Oktober 2026",
     badge: "Lab 1 • Sesi 2",
     imageUrl: "/tka/page-2.svg",
-    description: "Lembar 2: Daftar hadir peserta TKA di Lab 1 Sesi 2 (Marvel Diandra Saputra s.d Audry).",
-    totalPeserta: 15
+    scanImageUrl: "/assets/extracted_pages/page_2.jpg",
+    description: "Lembar 2: Berkas asli daftar hadir peserta TKA di Lab 1 Sesi 2 (Marvel Diandra Saputra s.d Audry).",
+    totalPeserta: 15,
+    proktor: "Anggi Arini, S.Kom"
   },
   {
     id: "tka-page-3",
@@ -69,8 +89,10 @@ export const tkaSlides: TkaSlide[] = [
     tanggal: "26 - 27 Oktober 2026",
     badge: "Lab 2 • Sesi 1",
     imageUrl: "/tka/page-3.svg",
-    description: "Lembar 3: Daftar hadir peserta TKA di Lab 2 Sesi 1 (Fathir Alinsky Canavaro s.d Andika Pratama).",
-    totalPeserta: 15
+    scanImageUrl: "/assets/extracted_pages/page_3.jpg",
+    description: "Lembar 3: Berkas asli daftar hadir peserta TKA di Lab 2 Sesi 1 (Fathir Alinsky Canavaro s.d Andika Pratama).",
+    totalPeserta: 15,
+    proktor: "M. Arif, S.Kom"
   },
   {
     id: "tka-page-4",
@@ -84,8 +106,10 @@ export const tkaSlides: TkaSlide[] = [
     tanggal: "26 - 27 Oktober 2026",
     badge: "Lab 2 • Sesi 2",
     imageUrl: "/tka/page-4.svg",
-    description: "Lembar 4: Daftar hadir peserta TKA di Lab 2 Sesi 2 (Fahri Pratama Mulya s.d Rizki Farel Novriansyah).",
-    totalPeserta: 15
+    scanImageUrl: "/assets/extracted_pages/page_4.jpg",
+    description: "Lembar 4: Berkas asli daftar hadir peserta TKA di Lab 2 Sesi 2 (Fahri Pratama Mulya s.d Rizki Farel Novriansyah).",
+    totalPeserta: 15,
+    proktor: "M. Arif, S.Kom"
   },
   {
     id: "tka-page-5",
@@ -99,8 +123,10 @@ export const tkaSlides: TkaSlide[] = [
     tanggal: "26 - 27 Oktober 2026",
     badge: "Lab 3 • Sesi 1",
     imageUrl: "/tka/page-5.svg",
-    description: "Lembar 5: Daftar hadir peserta TKA di Lab 3 Sesi 1 (Nayla Ceasary Arti Utomo s.d Christian Immanuel Purba).",
-    totalPeserta: 15
+    scanImageUrl: "/assets/extracted_pages/page_5.jpg",
+    description: "Lembar 5: Berkas asli daftar hadir peserta TKA di Lab 3 Sesi 1 (Nayla Ceasary Arti Utomo s.d Christian Immanuel Purba).",
+    totalPeserta: 15,
+    proktor: "Husain"
   },
   {
     id: "tka-page-6",
@@ -114,36 +140,40 @@ export const tkaSlides: TkaSlide[] = [
     tanggal: "26 - 27 Oktober 2026",
     badge: "Lab 3 • Sesi 2",
     imageUrl: "/tka/page-6.svg",
-    description: "Lembar 6: Daftar hadir peserta TKA di Lab 3 Sesi 2 (Rizky Aditya s.d Sigit Wahyudi).",
-    totalPeserta: 14
+    scanImageUrl: "/assets/extracted_pages/page_6.jpg",
+    description: "Lembar 6: Berkas asli daftar hadir peserta TKA di Lab 3 Sesi 2 (Rizky Aditya s.d Sigit Wahyudi).",
+    totalPeserta: 14,
+    proktor: "Husain"
   },
   {
     id: "tka-page-7",
     pageNumber: 7,
-    title: "Daftar Peserta TKA • Lab TL (Sesi 1)",
+    title: "Daftar Peserta TKA • Lab TL / Lab 4 (Sesi 1)",
     subtitle: "ID Server: K01020018-DY7K • Pukul: 07:00 - 08:45 WIB (15 Murid)",
-    lab: "Lab TL",
+    lab: "Lab 4 (TL)",
     idServer: "K01020018-DY7K",
     sesi: 1,
     pukul: "07:00 - 08:45 WIB",
     tanggal: "26 - 27 Oktober 2026",
-    badge: "Lab TL • Sesi 1",
+    badge: "Lab 4 (TL) • Sesi 1",
     imageUrl: "/tka/page-7.svg",
-    description: "Lembar 7: Daftar hadir peserta TKA di Lab Teknik Logistik (TL) Sesi 1 (Alvino Pratama s.d Alex Rahman Hakim).",
-    totalPeserta: 15
+    scanImageUrl: "/assets/extracted_pages/page_7.jpg",
+    description: "Lembar 7: Berkas asli daftar hadir peserta TKA di Lab 4 / Teknik Logistik (TL) Sesi 1 (Alvino Pratama s.d Alex Rahman Hakim).",
+    totalPeserta: 15,
+    proktor: "Khairudin Arif, ST"
   }
 ];
 
 export const tkaStudents: TkaStudent[] = [
   // --- LEMBAR 1: LAB 1 - SESI 1 (15 Murid) ---
-  { no: 1, username: "K0102001800018", name: "I KADEK CHANDRA SATRYA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 2, username: "K0102001800027", name: "BangBang Irawan", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 3, username: "K0102001800036", name: "DZAKY ABDUL AZIZ", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 4, username: "K0102001800045", name: "MUHAMMAD SOFIANSYAH", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 5, username: "K0102001800054", name: "AFDHAN AFDIILLAH RUZ", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 6, username: "K0102001800063", name: "NAUFAL MUSYAFFA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 7, username: "K0102001800072", name: "TEGAR SETIAWAN", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
-  { no: 8, username: "K0102001800089", name: "MUHAMMAD FIRDAUS TRI SAPUTRA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
+  { no: 1, username: "K0102001800018", name: "I KADEK CHANDRA SATRYA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 2, username: "K0102001800027", name: "BangBang Irawan", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 3, username: "K0102001800036", name: "DZAKY ABDUL AZIZ", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 4, username: "K0102001800045", name: "MUHAMMAD SOFIANSYAH", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 5, username: "K0102001800054", name: "AFDHAN AFDHILLAH RUZ", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 6, username: "K0102001800063", name: "NAUFAL MUSYAFFA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 7, username: "K0102001800072", name: "TEGAR SETIAWAN", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
+  { no: 8, username: "K0102001800089", name: "MUHAMMAD FIRDAUS TRI SAPUTRA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1, proktor: "Anggi Arini, S.Kom" },
   { no: 9, username: "K0102001800098", name: "MUFLIH MUZAKI AGUSTA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
   { no: 10, username: "K0102001800107", name: "IZHAR HABIB MUSYAFFA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },
   { no: 11, username: "K0102001800116", name: "INDRA DAMAR AL - SAMPURNA", lab: "Lab 1", idServer: "K01020018-AG1K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 1 },

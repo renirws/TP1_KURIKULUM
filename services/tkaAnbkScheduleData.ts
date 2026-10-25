@@ -50,9 +50,11 @@ export const tkaAnbkDocument = {
   kepalaSekolah: "H. Andri Susanto, ST",
   wakilKurikulum: "Reni Widyastuti, M.Kom",
   imageUrl: "/assets/aistudio/jadwal_tka-anbk_2026-2027_c9ac7e6a.jpg",
+  pdfDaftarSiswaUrl: "/assets/aistudio/DAFTAR_SISWA_TKA_9a5f3392.pdf",
   totalHari: 4,
   totalShift: 2,
-  totalLab: 4
+  totalLab: 4,
+  totalPeserta: 104
 };
 
 export const proktorList: ProktorItem[] = [

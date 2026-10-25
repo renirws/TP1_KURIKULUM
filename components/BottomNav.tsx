@@ -15,7 +15,8 @@ import {
   Phone, 
   Mail,
   ChevronRight,
-  ExternalLink
+  ExternalLink,
+  Calendar
 } from 'lucide-react';
 
 export const BottomNav: React.FC = () => {
@@ -30,6 +31,7 @@ export const BottomNav: React.FC = () => {
   ];
 
   const secondaryMenu = [
+    { name: 'Jadwal TKA - ANBK 2026/2027', path: '/warta#tka-anbk', icon: <Calendar className="w-5 h-5 text-blue-600" />, desc: 'Jadwal Ujian & 104 Peserta Siswa' },
     { name: 'Ajuan SK Aktif Mengajar', path: '/guru#ajuan-sk', icon: <FileText className="w-5 h-5 text-emerald-500" />, desc: 'Formulir Daring Guru TA 2026/2027' },
     { name: 'Katalog Buku Kemendikdasmen', path: '/warta#katalog-buku', icon: <BookOpen className="w-5 h-5 text-teal-500" />, desc: 'Buku Teks & Panduan Guru Gratis' },
     { name: 'Kurikulum', path: '/kurikulum', icon: <BookOpen className="w-5 h-5 text-blue-500" />, desc: 'Struktur KBM & Jam Pelajaran' },

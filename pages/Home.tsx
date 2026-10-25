@@ -103,6 +103,10 @@ const Home: React.FC = () => {
     {
       question: "Bagaimana cara Dewan Guru mengajukan permohonan SK Aktif Mengajar secara online lewat smartphone?",
       answer: "Bapak/Ibu Dewan Guru SMK Tanjung Priok 1 dapat mengajukan permohonan penerbitan SK Aktif Mengajar TA 2026/2027 secara langsung melalui ponsel pintar di tautan resmi https://forms.gle/3KAELyz4A8KMXsDR6 atau lewat menu Portal Guru. Cukup mengisi biodata nama lengkap, NIP/NUPTK/NPK, mata pelajaran diampu, jumlah jam mengajar, dan keperluan berkas (sertifikasi guru, rekening bank, pengurusan NUPTK, atau dinas). Berkas akan diproses dan diterbitkan tim kurikulum dalam 1-2 hari kerja."
+    },
+    {
+      question: "Kapan jadwal pelaksanaan TKA - ANBK Tahun Pelajaran 2026-2027 dan bagaimana cara cek daftar 104 siswa peserta?",
+      answer: "Pelaksanaan TKA - ANBK Tahun Pelajaran 2026-2027 berlangsung pada 26 s.d 29 Oktober 2026 di 4 laboratorium komputer. Shift I (07.00 - 09.00 WIB) diikuti 60 siswa (Lab 1, 2, 3, 4/TL) dan Shift II (09.30 - 11.30 WIB) diikuti 44 siswa (Lab 1, 2, 3). Daftar lengkap 104 siswa, username login (K01020018...), nama proktor, teknisi, serta unduhan berkas PDF resmi (2.1 MB) dan 7 lembar scan autentik dapat dicek langsung melalui menu Warta Kurikulum di website/APK ini."
     }
   ];
 

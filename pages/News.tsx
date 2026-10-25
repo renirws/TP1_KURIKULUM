@@ -36,12 +36,20 @@ import {
   List
 } from 'lucide-react';
 import { tkaAnbkDocument, tkaAnbkSchedule, proktorList, teknisiList } from '../services/tkaAnbkScheduleData';
-import { tkaSlides, tkaStudents } from '../services/tkaData';
+import { tkaSlides, tkaStudents, tkaSummaryStats, TKA_PDF_DOCUMENT_URL, TKA_SCHEDULE_IMAGE_URL } from '../services/tkaData';
 
 const News: React.FC = () => {
   const [zoomImageUrl, setZoomImageUrl] = useState<string | null>(null);
   const [zoomScale, setZoomScale] = useState(1);
   const [copiedKatalogLink, setCopiedKatalogLink] = useState(false);
+  const [copiedUsername, setCopiedUsername] = useState<string | null>(null);
+
+  // Tab State for Main TKA - ANBK Module: 'jadwal' | 'peserta' | 'dokumen'
+  const [anbkActiveTab, setAnbkActiveTab] = useState<'jadwal' | 'peserta' | 'dokumen'>('jadwal');
+  const [docPreviewType, setDocPreviewType] = useState<'scan' | 'vector'>('scan');
+
+  // Quick lookup query for instant student checking
+  const [quickLookupQuery, setQuickLookupQuery] = useState('');
 
   // TKA - ANBK 2026-2027 Schedule State
   const [selectedScheduleDay, setSelectedScheduleDay] = useState<string>('semua');
@@ -58,6 +66,33 @@ const News: React.FC = () => {
   const [tkaView, setTkaView] = useState<'cards' | 'table'>('cards');
   const [tkaInSliderZoom, setTkaInSliderZoom] = useState(1);
 
+  // Auto-synchronize tab with browser URL hash for instant deep linking
+  React.useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash === '#tka' || hash === '#tka-peserta' || hash === '#tka-search') {
+        setAnbkActiveTab('peserta');
+        setTimeout(() => {
+          const el = document.getElementById('tka-peserta') || document.getElementById('tab-peserta-content');
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      } else if (hash === '#tka-dokumen' || hash === '#tka-slider') {
+        setAnbkActiveTab('dokumen');
+        setTimeout(() => {
+          document.getElementById('tka-slider-box')?.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      } else if (hash === '#tka-anbk') {
+        setAnbkActiveTab('jadwal');
+        setTimeout(() => {
+          document.getElementById('tka-anbk')?.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   // Auto-play slideshow effect for TKA
   React.useEffect(() => {
     if (!isTkaAutoPlay) return;
@@ -70,14 +105,14 @@ const News: React.FC = () => {
   // Current TKA slide index in Zoom modal
   const currentTkaSlideIndex = useMemo(() => {
     if (!zoomImageUrl) return -1;
-    return tkaSlides.findIndex(s => s.imageUrl === zoomImageUrl);
+    return tkaSlides.findIndex(s => s.imageUrl === zoomImageUrl || s.scanImageUrl === zoomImageUrl);
   }, [zoomImageUrl]);
 
   const handleModalPrevTkaSlide = () => {
     if (currentTkaSlideIndex === -1) return;
     const prevIdx = (currentTkaSlideIndex - 1 + tkaSlides.length) % tkaSlides.length;
     setTkaSlide(prevIdx);
-    setZoomImageUrl(tkaSlides[prevIdx].imageUrl);
+    setZoomImageUrl(docPreviewType === 'scan' ? tkaSlides[prevIdx].scanImageUrl : tkaSlides[prevIdx].imageUrl);
     setZoomScale(1);
   };
 
@@ -85,11 +120,18 @@ const News: React.FC = () => {
     if (currentTkaSlideIndex === -1) return;
     const nextIdx = (currentTkaSlideIndex + 1) % tkaSlides.length;
     setTkaSlide(nextIdx);
-    setZoomImageUrl(tkaSlides[nextIdx].imageUrl);
+    setZoomImageUrl(docPreviewType === 'scan' ? tkaSlides[nextIdx].scanImageUrl : tkaSlides[nextIdx].imageUrl);
     setZoomScale(1);
   };
 
-  // Filtered TKA Students for Real-Time Search & Verification
+  const handleCopyUsername = (username: string) => {
+    navigator.clipboard.writeText(username).then(() => {
+      setCopiedUsername(username);
+      setTimeout(() => setCopiedUsername(null), 2500);
+    });
+  };
+
+  // Filtered TKA Students for Real-Time Search & Verification (< 5ms response)
   const filteredTkaStudents = useMemo(() => {
     return tkaStudents.filter(s => {
       const q = tkaSearchQuery.toLowerCase().trim();
@@ -99,6 +141,7 @@ const News: React.FC = () => {
         s.username.toLowerCase().includes(q) ||
         s.lab.toLowerCase().includes(q) ||
         s.idServer.toLowerCase().includes(q) ||
+        (s.proktor && s.proktor.toLowerCase().includes(q)) ||
         `sesi ${s.sesi}`.toLowerCase().includes(q);
 
       const matchesLab = tkaLabFilter === 'Semua' || s.lab === tkaLabFilter;
@@ -107,6 +150,16 @@ const News: React.FC = () => {
       return matchesSearch && matchesLab && matchesSesi;
     });
   }, [tkaSearchQuery, tkaLabFilter, tkaSesiFilter]);
+
+  // Quick lookup top matching students (instant quick verification)
+  const quickLookupResults = useMemo(() => {
+    const q = quickLookupQuery.toLowerCase().trim();
+    if (!q) return [];
+    return tkaStudents.filter(s => 
+      s.name.toLowerCase().includes(q) || 
+      s.username.toLowerCase().includes(q)
+    ).slice(0, 5);
+  }, [quickLookupQuery]);
 
   const handleZoom = (url: string) => {
     setZoomImageUrl(url);
@@ -155,13 +208,78 @@ const News: React.FC = () => {
     }
   };
 
+  // Senior SEO JSON-LD Structured Data
+  const newsSeoSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Event",
+        "name": "Pelaksanaan TKA - ANBK Tahun Pelajaran 2026-2027 & Jadwal Peserta Siswa",
+        "description": "Jadwal resmi Pelaksanaan TKA - ANBK 2026-2027 SMK Tanjung Priok 1 Jakarta Utara (26-29 Oktober 2026), rincian 2 shift, 4 laboratorium komputer, 104 peserta didik Kelas XII, proktor, teknisi, dan download berkas PDF asli.",
+        "startDate": "2026-10-26T07:00:00+07:00",
+        "endDate": "2026-10-29T11:30:00+07:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Laboratorium Komputer 1-4 SMK Tanjung Priok 1",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jl. Mangga No.3, Lagoa, Koja",
+            "addressLocality": "Jakarta Utara",
+            "addressRegion": "DKI Jakarta",
+            "postalCode": "14270",
+            "addressCountry": "ID"
+          }
+        },
+        "organizer": {
+          "@type": "School",
+          "name": "SMK TANJUNG PRIOK 1",
+          "url": "https://tp1kurikulum.my.id"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://tp1kurikulum.my.id/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Warta Kurikulum",
+            "item": "https://tp1kurikulum.my.id/warta"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Jadwal TKA - ANBK 2026-2027 & Jadwal Peserta",
+            "item": "https://tp1kurikulum.my.id/warta#tka-anbk"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "APK Kurikulum & Jadwal TKA ANBK SMK Tanjung Priok 1",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All Mobile and Desktop",
+        "url": "https://tp1kurikulum.my.id/warta",
+        "description": "Aplikasi Web Mobile untuk cek jadwal ujian TKA - ANBK 2026-2027, nomor peserta siswa, pembagian sesi, dan unduh dokumen resmi kurikulum."
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-gray-50 py-8 md:py-12">
       <SEO 
-        title="Warta Kurikulum: Jadwal Pelaksanaan TKA - ANBK 2026-2027 & Update Siswa | SMK TANJUNG PRIOK 1"
-        description="Jadwal resmi Pelaksanaan TKA - ANBK Tahun Pelajaran 2026-2027 (26-29 Oktober 2026) SMK Tanjung Priok 1 Jakarta Utara. Pembagian Shift 1 & 2, alokasi 4 Laboratorium, mata uji, tim Proktor & Teknisi, serta update daftar peserta siswa."
-        keywords="Jadwal TKA ANBK 2026 2027, Pelaksanaan TKA ANBK SMK Tanjung Priok 1, Jadwal ANBK SMK Jakarta Utara, Proktor Teknisi TKA ANBK, Mata Uji TKA ANBK, Shift TKA SMK, Daftar Siswa TKA 26 27 Oktober 2026, Warta Kurikulum Merdeka"
+        title="Jadwal TKA - ANBK 2026-2027 & Jadwal Peserta Siswa (104 Murid) | SMK TANJUNG PRIOK 1"
+        description="Jadwal resmi Pelaksanaan TKA - ANBK Tahun Pelajaran 2026-2027 & Jadwal Peserta 104 Siswa SMK Tanjung Priok 1 Jakarta Utara (26-29 Oktober 2026). Rincian 4 Lab, Shift 1 & 2, ID Server, Proktor, Teknisi, dan download berkas PDF asli."
+        keywords="Jadwal TKA ANBK 2026 2027, Pelaksanaan TKA ANBK SMK Tanjung Priok 1, Jadwal Peserta TKA ANBK, Daftar Siswa TKA 26 27 Oktober 2026, Download Jadwal TKA ANBK PDF, APK Kurikulum SMK Tanjung Priok 1, Proktor Teknisi TKA ANBK, Shift TKA SMK, Warta Kurikulum Merdeka"
         canonical="https://tp1kurikulum.my.id/warta"
+        schemaMarkup={newsSeoSchema}
       />
       <div className="container mx-auto px-4">
         <motion.div 
@@ -251,39 +369,55 @@ const News: React.FC = () => {
                 {/* Quick Action Buttons in Banner */}
                 <div className="pt-3 flex flex-wrap items-center gap-3">
                   <button
-                    onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
-                    className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-black px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-lg shadow-blue-500/30 active:scale-95 cursor-pointer touch-manipulation"
+                    onClick={() => {
+                      setAnbkActiveTab('jadwal');
+                      handleZoom(tkaAnbkDocument.imageUrl);
+                    }}
+                    className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-black px-4 sm:px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-lg shadow-blue-500/30 active:scale-95 cursor-pointer touch-manipulation"
                   >
                     <ZoomIn className="w-4 h-4" />
-                    <span>PERBESAR DOKUMEN ASLI (ZOOM)</span>
+                    <span>ZOOM BAGAN JADWAL</span>
                   </button>
 
                   <button
-                    onClick={() => handlePrintImage(tkaAnbkDocument.imageUrl, tkaAnbkDocument.title)}
-                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer touch-manipulation"
+                    onClick={() => {
+                      setAnbkActiveTab('peserta');
+                      const el = document.getElementById('tab-peserta-content');
+                      el?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-4 sm:px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-lg active:scale-95 cursor-pointer touch-manipulation"
                   >
-                    <Printer className="w-4 h-4" />
-                    <span>CETAK / PDF JADWAL</span>
+                    <Users className="w-4 h-4 text-slate-950" />
+                    <span>JADWAL PESERTA (104 MURID)</span>
                   </button>
 
                   <a
-                    href="#tka"
-                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation"
+                    href={TKA_PDF_DOCUMENT_URL}
+                    download="DAFTAR_SISWA_TKA_ANBK_2026-2027_SMK_TANJUNG_PRIOK_1.pdf"
+                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 sm:px-5 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer touch-manipulation"
+                    title="Unduh Berkas PDF Daftar Siswa TKA ANBK (2.1 MB)"
                   >
-                    <Users className="w-4 h-4 text-amber-300" />
-                    <span>CEK DAFTAR SISWA (104 MURID)</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <Download className="w-4 h-4" />
+                    <span>UNDUH PDF RESMI</span>
                   </a>
+
+                  <button
+                    onClick={() => handlePrintImage(tkaAnbkDocument.imageUrl, tkaAnbkDocument.title)}
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-4 py-3 rounded-2xl text-xs md:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation"
+                  >
+                    <Printer className="w-4 h-4" />
+                    <span>CETAK / PDF</span>
+                  </button>
                 </div>
               </div>
             </header>
 
             {/* Content Body */}
-            <div className="p-5 md:p-10 lg:p-12 space-y-10">
+            <div className="p-4 sm:p-6 md:p-10 lg:p-12 space-y-8">
               {/* 4 Essential Summary Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {/* Card 1: Hari & Tanggal Pelaksanaan */}
-                <div className="bg-blue-50/80 border border-blue-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                <div className="bg-blue-50/80 border border-blue-200/70 p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-md shadow-blue-500/20">
                       <Calendar className="w-5 h-5" />
@@ -295,13 +429,13 @@ const News: React.FC = () => {
                     </p>
                   </div>
                   <div className="mt-3 pt-2 border-t border-blue-200/60 text-[11px] font-bold text-blue-700 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
                     <span>4 Hari Penuh</span>
                   </div>
                 </div>
 
                 {/* Card 2: Pembagian Shift */}
-                <div className="bg-indigo-50/80 border border-indigo-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                <div className="bg-indigo-50/80 border border-indigo-200/70 p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-3 shadow-md shadow-indigo-500/20">
                       <Clock className="w-5 h-5" />
@@ -313,13 +447,13 @@ const News: React.FC = () => {
                     </p>
                   </div>
                   <div className="mt-3 pt-2 border-t border-indigo-200/60 text-[11px] font-bold text-indigo-700 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
                     <span>120 Menit / Shift</span>
                   </div>
                 </div>
 
                 {/* Card 3: Laboratorium Komputer */}
-                <div className="bg-emerald-50/80 border border-emerald-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                <div className="bg-emerald-50/80 border border-emerald-200/70 p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-3 shadow-md shadow-emerald-500/20">
                       <Layers className="w-5 h-5" />
@@ -331,533 +465,1269 @@ const News: React.FC = () => {
                     </p>
                   </div>
                   <div className="mt-3 pt-2 border-t border-emerald-200/60 text-[11px] font-bold text-emerald-700 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>4 Proktor &amp; 2 Teknisi</span>
                   </div>
                 </div>
 
-                {/* Card 4: Pengesahan & Legalitas */}
-                <div className="bg-purple-50/80 border border-purple-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                {/* Card 4: Peserta Terdaftar (Dari Dokumen Terlampir) */}
+                <div className="bg-purple-50/80 border border-purple-200/70 p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center mb-3 shadow-md shadow-purple-500/20">
-                      <FileText className="w-5 h-5" />
+                      <Users className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 block">Pengesahan Resmi</span>
-                    <h4 className="text-base font-black text-slate-900 mt-1">Jakarta, 21 Okt 2026</h4>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 block">Peserta Terdaftar</span>
+                    <h4 className="text-base font-black text-slate-900 mt-1">104 Murid (7 Lembar)</h4>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      H. Andri Susanto, ST (Kepsek) &amp; Reni Widyastuti, M.Kom (Wakakur).
+                      Sesi 1: 60 murid &bull; Sesi 2: 44 murid lengkap dengan username &amp; ID server.
                     </p>
                   </div>
-                  <div className="mt-3 pt-2 border-t border-purple-200/60 text-[11px] font-bold text-purple-700 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Terverifikasi Kurikulum</span>
-                  </div>
+                  <button
+                    onClick={() => setAnbkActiveTab('peserta')}
+                    className="mt-3 pt-2 border-t border-purple-200/60 text-[11px] font-black text-purple-700 flex items-center justify-between hover:text-purple-900 cursor-pointer"
+                  >
+                    <span>Buka Rincian Siswa</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
 
               {/* -------------------------------------------------------------
-                  DOKUMEN ASLI RESMI: PREVIEW DOKUMEN TKA - ANBK 2026-2027
+                  INSTANT SMARTPHONE QUICK STUDENT LOOKUP (< 5ms RESPONSE)
                  ------------------------------------------------------------- */}
-              <div className="bg-slate-900 rounded-3xl p-5 md:p-8 text-white border border-slate-800 space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-md text-[10px] uppercase tracking-wider">
-                        Dokumen Resmi Asli
-                      </span>
-                      <span className="text-xs text-slate-300 font-mono">
-                        {tkaAnbkDocument.nomorSurat}
-                      </span>
+              <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-white border border-blue-900/50 shadow-xl space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-xs shrink-0 shadow-sm">
+                      ⚡
+                    </span>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-black text-white">
+                        Cek Cepat Jadwal Siswa di Smartphone
+                      </h3>
+                      <p className="text-[11px] sm:text-xs text-blue-200 font-medium">
+                        Ketik nama lengkap atau nomor username Anda untuk mengetahui Lab, Sesi, dan Proktor seketika.
+                      </p>
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mt-1">
-                      {tkaAnbkDocument.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-300">
-                      {tkaAnbkDocument.subTitle} &bull; {tkaAnbkDocument.tanggalDiterbitkan}
-                    </p>
                   </div>
-
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
-                      className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
-                      title="Perbesar Layar Penuh Dokumen"
-                    >
-                      <ZoomIn className="w-4 h-4" />
-                      <span>Zoom Resolusi Tinggi</span>
-                    </button>
-
-                    <button
-                      onClick={() => handlePrintImage(tkaAnbkDocument.imageUrl, tkaAnbkDocument.title)}
-                      className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
-                      title="Cetak Jadwal Resmi"
-                    >
-                      <Printer className="w-4 h-4" />
-                      <span>Cetak / PDF</span>
-                    </button>
-
-                    <a
-                      href={tkaAnbkDocument.imageUrl}
-                      download="JADWAL_TKA_ANBK_2026-2027_SMK_TANJUNG_PRIOK_1.jpg"
-                      className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer touch-manipulation"
-                      title="Unduh Berkas Gambar Jadwal"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Unduh</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Document Image Stage with Clean Smartphone Frame */}
-                <div 
-                  onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
-                  className="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 cursor-zoom-in relative group max-h-[72vh] flex items-center justify-center p-2 sm:p-4 shadow-inner"
-                  title="Klik atau ketuk untuk zoom layar penuh"
-                >
-                  <img
-                    src={tkaAnbkDocument.imageUrl}
-                    alt={tkaAnbkDocument.title}
-                    className="w-full h-auto max-h-[68vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-2xl"
-                  />
-                  <div className="absolute bottom-4 right-4 bg-slate-950/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-xl border border-white/10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition shadow-lg pointer-events-none">
-                    <ZoomIn className="w-3.5 h-3.5 text-blue-400" />
-                    <span>Ketuk untuk Zoom Layar Penuh</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-400 gap-2 pt-1">
-                  <span>Ditandatangani oleh: <strong>H. Andri Susanto, ST</strong> (Kepala Sekolah) &amp; <strong>Reni Widyastuti, M.Kom</strong> (Waka Kurikulum)</span>
-                  <span className="text-emerald-400 font-bold flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Dokumen Asli Resmi Terverifikasi</span>
+                  <span className="text-[10px] bg-white/10 px-2.5 py-1 rounded-full text-slate-300 font-mono self-start sm:self-auto">
+                    Data Resmi PDF 104 Siswa
                   </span>
                 </div>
-              </div>
 
-              {/* -------------------------------------------------------------
-                  INTERACTIVE SCHEDULE EXPLORER (DAY BY DAY & SHIFT MATRIX)
-                 ------------------------------------------------------------- */}
-              <div className="space-y-6 pt-2">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200">
-                  <div>
-                    <span className="text-blue-600 font-bold text-xs uppercase tracking-wider block">
-                      Rincian Pelaksanaan Lengkap
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
-                      Jadwal Harian, Mata Uji &amp; Penugasan Laboratorium
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                      Pilih hari atau shift untuk melihat rincian mata uji, durasi, dan petugas Proktor pengawas ruang.
-                    </p>
-                  </div>
-
-                  {/* View Mode Toggle */}
-                  <div className="flex items-center gap-2 self-start md:self-auto bg-slate-100 p-1 rounded-2xl border border-slate-200">
+                <div className="relative">
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    value={quickLookupQuery}
+                    onChange={(e) => setQuickLookupQuery(e.target.value)}
+                    placeholder="Contoh ketik: Chandra, Marvel, Nayla, Alvino, atau K01020018..."
+                    className="w-full pl-10 sm:pl-11 pr-10 py-3 bg-white/10 border border-white/20 rounded-xl text-xs sm:text-sm font-semibold text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:bg-white/15 transition"
+                  />
+                  {quickLookupQuery && (
                     <button
-                      onClick={() => setScheduleViewMode('cards')}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer ${
-                        scheduleViewMode === 'cards'
-                          ? 'bg-white text-blue-600 shadow-sm'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                      onClick={() => setQuickLookupQuery('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 cursor-pointer"
+                      title="Hapus pencarian"
                     >
-                      <LayoutGrid className="w-3.5 h-3.5" />
-                      <span>Kartu Mobile</span>
+                      <X className="w-4 h-4" />
                     </button>
-                    <button
-                      onClick={() => setScheduleViewMode('table')}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer ${
-                        scheduleViewMode === 'table'
-                          ? 'bg-white text-blue-600 shadow-sm'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      <List className="w-3.5 h-3.5" />
-                      <span>Tabel Matriks</span>
-                    </button>
-                  </div>
+                  )}
                 </div>
 
-                {/* Day Filter Pills & Shift Tabs */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
-                    <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">
-                      Pilih Hari:
-                    </span>
-                    <button
-                      onClick={() => setSelectedScheduleDay('semua')}
-                      className={`px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition cursor-pointer ${
-                        selectedScheduleDay === 'semua'
-                          ? 'bg-blue-600 text-white shadow-sm font-black'
-                          : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                      }`}
-                    >
-                      Semua Hari (26 - 29 Okt)
-                    </button>
-                    {tkaAnbkSchedule.map((day) => (
-                      <button
-                        key={day.id}
-                        onClick={() => setSelectedScheduleDay(day.id)}
-                        className={`px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition cursor-pointer ${
-                          selectedScheduleDay === day.id
-                            ? 'bg-blue-600 text-white shadow-sm font-black'
-                            : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                        }`}
-                      >
-                        {day.hari} ({day.tanggalRaw})
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Shift Filter & Live Search */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="flex items-center gap-2 overflow-x-auto text-xs">
-                      <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">
-                        Shift:
-                      </span>
-                      {['semua', 'Shift I', 'Shift II'].map((shift) => (
-                        <button
-                          key={shift}
-                          onClick={() => setSelectedScheduleShift(shift)}
-                          className={`px-3 py-1 rounded-xl text-xs font-bold transition cursor-pointer ${
-                            selectedScheduleShift === shift
-                              ? 'bg-indigo-600 text-white font-black shadow-xs'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                          }`}
-                        >
-                          {shift === 'semua' ? 'Semua Shift' : shift}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Quick Search */}
-                    <div className="relative w-full sm:w-64">
-                      <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                      <input
-                        type="text"
-                        placeholder="Cari mapel atau proktor..."
-                        value={scheduleSearchQuery}
-                        onChange={(e) => setScheduleSearchQuery(e.target.value)}
-                        className="w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500"
-                      />
-                      {scheduleSearchQuery && (
-                        <button
-                          onClick={() => setScheduleSearchQuery('')}
-                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
-                        >
-                          <X className="w-3.5 h-3.5" />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dynamic Schedule View (Cards Mode) */}
-                {scheduleViewMode === 'cards' ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {tkaAnbkSchedule
-                      .filter((day) => selectedScheduleDay === 'semua' || selectedScheduleDay === day.id)
-                      .map((day) => {
-                        const matchingShifts = day.shifts.filter((shift) => {
-                          const matchesShiftFilter = selectedScheduleShift === 'semua' || selectedScheduleShift === shift.shiftCode;
-                          const q = scheduleSearchQuery.toLowerCase().trim();
-                          const matchesSearch = 
-                            q === '' ||
-                            day.hari.toLowerCase().includes(q) ||
-                            shift.mataUji.toLowerCase().includes(q) ||
-                            shift.survey.toLowerCase().includes(q) ||
-                            shift.labs.some(l => l.proktorName.toLowerCase().includes(q) || l.lab.toLowerCase().includes(q));
-                          return matchesShiftFilter && matchesSearch;
-                        });
-
-                        if (matchingShifts.length === 0) return null;
-
-                        return (
+                {/* Instant Quick Lookup Result Cards */}
+                {quickLookupQuery.trim() !== '' && (
+                  <div className="space-y-2 pt-1">
+                    {quickLookupResults.length > 0 ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                        {quickLookupResults.map((s, idx) => (
                           <div 
-                            key={day.id}
-                            className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden"
+                            key={idx}
+                            className="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-xl text-xs space-y-1.5 hover:bg-white/15 transition"
                           >
-                            {/* Day Header */}
-                            <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-4 flex items-center justify-between">
-                              <div className="flex items-center gap-2.5">
-                                <span className="w-8 h-8 rounded-lg bg-blue-500 text-white font-black flex items-center justify-center text-xs">
-                                  {day.hari.slice(0, 3).toUpperCase()}
-                                </span>
-                                <div>
-                                  <h4 className="font-black text-sm text-white">
-                                    {day.tanggalLengkap}
-                                  </h4>
-                                  <span className="text-[11px] text-blue-200 font-medium">
-                                    Mata Uji Utama: {day.mataUjiUtama}
-                                  </span>
-                                </div>
-                              </div>
-                              <span className="text-[10px] bg-white/10 px-2.5 py-1 rounded-full text-slate-200 font-mono">
-                                {day.tanggalRaw}
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="font-mono text-[10px] bg-white/20 px-2 py-0.5 rounded text-amber-300 font-bold">
+                                {s.username}
+                              </span>
+                              <span className="text-[10px] font-black uppercase bg-blue-500 text-white px-2 py-0.5 rounded-full">
+                                {s.lab} • Sesi {s.sesi}
                               </span>
                             </div>
-
-                            {/* Shifts List for this day */}
-                            <div className="p-4 space-y-4 divide-y divide-slate-100">
-                              {matchingShifts.map((shift, idx) => (
-                                <div key={idx} className={idx > 0 ? "pt-4 space-y-3" : "space-y-3"}>
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                                        shift.shiftCode === 'Shift I'
-                                          ? 'bg-amber-100 text-amber-900'
-                                          : 'bg-indigo-100 text-indigo-900'
-                                      }`}>
-                                        {shift.name}
-                                      </span>
-                                      <span className="text-xs font-bold text-slate-700 flex items-center gap-1">
-                                        <Clock className="w-3.5 h-3.5 text-slate-400" />
-                                        <span>{shift.waktu}</span>
-                                      </span>
-                                    </div>
-                                    <span className="text-[11px] font-mono text-slate-400">
-                                      {shift.durasi}
-                                    </span>
-                                  </div>
-
-                                  {/* Subject & Survey Banner */}
-                                  <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3">
-                                    <div className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-0.5">
-                                      Mata Uji &amp; Survei
-                                    </div>
-                                    <div className="font-black text-slate-900 text-sm">
-                                      {shift.mataUji}
-                                    </div>
-                                    {shift.survey !== '-' && (
-                                      <div className="text-xs text-blue-600 font-bold mt-0.5 flex items-center gap-1">
-                                        <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                                        <span>+ {shift.survey}</span>
-                                      </div>
-                                    )}
-                                  </div>
-
-                                  {/* Lab Assignment Matrix */}
-                                  <div className="space-y-1.5">
-                                    <div className="text-[10px] font-black uppercase tracking-wider text-slate-400">
-                                      Alokasi Ruang Lab &amp; Proktor
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-2 text-xs">
-                                      {shift.labs.map((l, lIdx) => (
-                                        <div 
-                                          key={lIdx} 
-                                          className={`p-2 rounded-xl border flex flex-col justify-between ${
-                                            l.active
-                                              ? 'bg-blue-50/50 border-blue-200/80'
-                                              : 'bg-slate-50 border-slate-200 opacity-50'
-                                          }`}
-                                        >
-                                          <div className="flex items-center justify-between">
-                                            <span className="font-black text-blue-900 text-[11px]">
-                                              {l.lab}
-                                            </span>
-                                            {l.active ? (
-                                              <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">
-                                                Proktor {l.proktorNumber}
-                                              </span>
-                                            ) : (
-                                              <span className="text-[9px] bg-slate-200 text-slate-600 px-1.5 py-0.2 rounded font-bold">
-                                                Nonaktif
-                                              </span>
-                                            )}
-                                          </div>
-                                          <div className="font-bold text-slate-800 text-[11px] truncate mt-1">
-                                            {l.proktorName}
-                                          </div>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
+                            <h4 className="font-black text-white text-xs sm:text-sm leading-tight">
+                              {s.name}
+                            </h4>
+                            <div className="text-[11px] text-blue-200 flex flex-col gap-0.5 pt-1 border-t border-white/10">
+                              <span>⏰ Pukul: <strong className="text-white">{s.pukul}</strong></span>
+                              <span>🖥️ Server: <strong className="font-mono text-amber-300">{s.idServer}</strong></span>
+                              <span>👨‍🏫 Proktor: <strong className="text-white">{s.proktor || (s.lab.includes('1') ? 'Anggi Arini, S.Kom' : s.lab.includes('2') ? 'M. Arif, S.Kom' : s.lab.includes('3') ? 'Husain' : 'Khairudin Arif, ST')}</strong></span>
+                            </div>
+                            <div className="pt-1 flex items-center justify-between">
+                              <button
+                                onClick={() => handleCopyUsername(s.username)}
+                                className="text-[10px] bg-amber-400 text-slate-950 px-2 py-1 rounded-lg font-black hover:bg-amber-300 transition flex items-center gap-1 active:scale-95 cursor-pointer"
+                              >
+                                {copiedUsername === s.username ? (
+                                  <>
+                                    <Check className="w-3 h-3 text-emerald-700" />
+                                    <span>Tersalin!</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy className="w-3 h-3" />
+                                    <span>Salin Akun</span>
+                                  </>
+                                )}
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setAnbkActiveTab('peserta');
+                                  setTkaSearchQuery(s.name);
+                                  document.getElementById('tab-peserta-content')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="text-[11px] text-blue-300 hover:text-white font-bold flex items-center gap-1 cursor-pointer"
+                              >
+                                <span>Lihat Rincian</span>
+                                <ChevronRight className="w-3 h-3" />
+                              </button>
                             </div>
                           </div>
-                        );
-                      })}
-                  </div>
-                ) : (
-                  /* Table Matrix View */
-                  <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-left border-collapse text-xs">
-                        <thead>
-                          <tr className="bg-slate-900 text-white font-black uppercase tracking-wider text-[11px]">
-                            <th className="py-3 px-4">Hari / Tanggal</th>
-                            <th className="py-3 px-4">Shift</th>
-                            <th className="py-3 px-4">Waktu</th>
-                            <th className="py-3 px-4">Mata Uji</th>
-                            <th className="py-3 px-4">Lab 1 (Proktor 1)</th>
-                            <th className="py-3 px-4">Lab 2 (Proktor 2)</th>
-                            <th className="py-3 px-4">Lab 3 (Proktor 3)</th>
-                            <th className="py-3 px-4">Lab 4 (Proktor 4)</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                          {tkaAnbkSchedule
-                            .filter((day) => selectedScheduleDay === 'semua' || selectedScheduleDay === day.id)
-                            .flatMap((day) =>
-                              day.shifts
-                                .filter((shift) => selectedScheduleShift === 'semua' || selectedScheduleShift === shift.shiftCode)
-                                .map((shift, sIdx) => {
-                                  const q = scheduleSearchQuery.toLowerCase().trim();
-                                  const matchesSearch = 
-                                    q === '' ||
-                                    day.hari.toLowerCase().includes(q) ||
-                                    shift.mataUji.toLowerCase().includes(q) ||
-                                    shift.survey.toLowerCase().includes(q) ||
-                                    shift.labs.some(l => l.proktorName.toLowerCase().includes(q));
-
-                                  if (!matchesSearch) return null;
-
-                                  return (
-                                    <tr key={`${day.id}-${sIdx}`} className="hover:bg-slate-50 transition">
-                                      <td className="py-3 px-4 font-black text-slate-900 whitespace-nowrap">
-                                        {day.hari}, {day.tanggalRaw}
-                                      </td>
-                                      <td className="py-3 px-4">
-                                        <span className={`px-2 py-0.5 rounded-md font-black text-[10px] ${
-                                          shift.shiftCode === 'Shift I' ? 'bg-amber-100 text-amber-900' : 'bg-indigo-100 text-indigo-900'
-                                        }`}>
-                                          {shift.shiftCode}
-                                        </span>
-                                      </td>
-                                      <td className="py-3 px-4 font-mono text-slate-600 whitespace-nowrap">
-                                        {shift.waktu}
-                                      </td>
-                                      <td className="py-3 px-4 font-bold text-slate-800">
-                                        <div>{shift.mataUji}</div>
-                                        {shift.survey !== '-' && (
-                                          <div className="text-[11px] text-blue-600 font-semibold">{shift.survey}</div>
-                                        )}
-                                      </td>
-                                      <td className="py-3 px-4 text-slate-700 font-medium">
-                                        <div className="font-bold text-blue-700">Anggi Arini, S.Kom</div>
-                                      </td>
-                                      <td className="py-3 px-4 text-slate-700 font-medium">
-                                        <div className="font-bold text-indigo-700">M. Arif, S.Kom</div>
-                                      </td>
-                                      <td className="py-3 px-4 text-slate-700 font-medium">
-                                        <div className="font-bold text-purple-700">Husain</div>
-                                      </td>
-                                      <td className="py-3 px-4 text-slate-700 font-medium">
-                                        {shift.labs[3]?.active ? (
-                                          <div className="font-bold text-amber-700">Khairudin Arif, ST</div>
-                                        ) : (
-                                          <span className="text-slate-400 italic">- (Lab Tutup)</span>
-                                        )}
-                                      </td>
-                                    </tr>
-                                  );
-                                })
-                            )}
-                        </tbody>
-                      </table>
-                    </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="p-3 bg-white/5 rounded-xl text-center text-xs text-slate-300 font-medium">
+                        Tidak ada siswa dengan nama &quot;{quickLookupQuery}&quot;. Pastikan ejaan nama atau ketik nomor username.
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
 
               {/* -------------------------------------------------------------
-                  TIM PETUGAS PROKTOR & TEKNISI RESMI TKA - ANBK
+                  PRIMARY SEGMENTED CONTROL: 3 INTEGRATED VIEWS
                  ------------------------------------------------------------- */}
-              <div className="space-y-4 pt-4 border-t border-slate-200">
-                <div>
-                  <span className="text-indigo-600 font-bold text-xs uppercase tracking-wider block">
-                    Penugasan Personel Resmi
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
-                    Daftar Petugas Proktor &amp; Teknisi Laboratorium
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-500">
-                    Sesuai Surat Penetapan Pelaksanaan Ujian TKA - ANBK Tahun Pelajaran 2026-2027 SMK Tanjung Priok 1.
-                  </p>
-                </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-slate-200/80 rounded-2xl border border-slate-300 overflow-x-auto no-scrollbar">
+                  <button
+                    onClick={() => setAnbkActiveTab('jadwal')}
+                    className={`flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition cursor-pointer active:scale-95 touch-manipulation flex-1 justify-center ${
+                      anbkActiveTab === 'jadwal'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-slate-700 hover:text-slate-950 hover:bg-white/60'
+                    }`}
+                  >
+                    <Calendar className="w-4 h-4 shrink-0" />
+                    <span>Jadwal Ujian &amp; Proktor</span>
+                  </button>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {proktorList.map((proktor) => (
-                    <div 
-                      key={proktor.id} 
-                      className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:border-blue-300 transition"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                          {proktor.label}
-                        </span>
-                        <UserCheck className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <h4 className="font-black text-slate-900 text-sm">
-                        {proktor.nama}
-                      </h4>
-                      <p className="text-xs font-bold text-blue-700 mt-0.5">
-                        {proktor.jabatan}
-                      </p>
-                      <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                        {proktor.penugasan}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                  <button
+                    onClick={() => setAnbkActiveTab('peserta')}
+                    className={`flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition cursor-pointer active:scale-95 touch-manipulation flex-1 justify-center ${
+                      anbkActiveTab === 'peserta'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-slate-700 hover:text-slate-950 hover:bg-white/60'
+                    }`}
+                  >
+                    <Users className="w-4 h-4 shrink-0" />
+                    <span>Jadwal Peserta Siswa (104 Murid)</span>
+                  </button>
 
-                {/* 2 Teknisi Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  {teknisiList.map((teknisi) => (
-                    <div 
-                      key={teknisi.id} 
-                      className="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-200/80 flex items-start gap-3"
-                    >
-                      <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-                        <ShieldCheck className="w-5 h-5" />
-                      </div>
+                  <button
+                    onClick={() => setAnbkActiveTab('dokumen')}
+                    className={`flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition cursor-pointer active:scale-95 touch-manipulation flex-1 justify-center ${
+                      anbkActiveTab === 'dokumen'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-slate-700 hover:text-slate-950 hover:bg-white/60'
+                    }`}
+                  >
+                    <FileText className="w-4 h-4 shrink-0" />
+                    <span>Berkas Asli PDF &amp; Scan (7 Lembar)</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* =============================================================
+                  TAB 1: JADWAL PELAKSANAAN, MATA UJI & TIM PROKTOR
+                 ============================================================= */}
+              {anbkActiveTab === 'jadwal' && (
+                <div className="space-y-8 animate-fadeIn">
+                  {/* Official Letterhead Schedule Image Preview */}
+                  <div className="bg-slate-900 rounded-3xl p-4 sm:p-6 md:p-8 text-white border border-slate-800 space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="bg-emerald-200 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
-                            {teknisi.label}
+                          <span className="bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-md text-[10px] uppercase tracking-wider">
+                            Dokumen Resmi Terverifikasi
                           </span>
-                          <span className="text-xs font-black text-slate-900">
-                            {teknisi.nama}
+                          <span className="text-xs text-slate-300 font-mono">
+                            {tkaAnbkDocument.nomorSurat}
                           </span>
                         </div>
-                        <div className="text-xs font-bold text-emerald-800 mt-0.5">
-                          {teknisi.jabatan}
-                        </div>
-                        <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">
-                          {teknisi.tugas}
+                        <h3 className="text-lg sm:text-xl font-black text-white mt-1">
+                          {tkaAnbkDocument.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-300">
+                          {tkaAnbkDocument.subTitle} &bull; {tkaAnbkDocument.tanggalDiterbitkan}
                         </p>
                       </div>
+
+                      <div className="flex flex-wrap items-center gap-2">
+                        <button
+                          onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
+                          className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold px-3.5 py-2 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                          title="Perbesar Layar Penuh Dokumen"
+                        >
+                          <ZoomIn className="w-4 h-4" />
+                          <span>Zoom Penuh</span>
+                        </button>
+
+                        <button
+                          onClick={() => handlePrintImage(tkaAnbkDocument.imageUrl, tkaAnbkDocument.title)}
+                          className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-3.5 py-2 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                          title="Cetak Jadwal Resmi"
+                        >
+                          <Printer className="w-4 h-4" />
+                          <span>Cetak / PDF</span>
+                        </button>
+
+                        <a
+                          href={tkaAnbkDocument.imageUrl}
+                          download="JADWAL_TKA_ANBK_2026-2027_SMK_TANJUNG_PRIOK_1.jpg"
+                          className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-3 py-2 rounded-xl text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer touch-manipulation"
+                          title="Unduh Berkas Gambar Jadwal"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Unduh</span>
+                        </a>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* -------------------------------------------------------------
-                  CONNECTING CALLOUT TO STUDENT ROSTER (SECTION #tka)
-                 ------------------------------------------------------------- */}
-              <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-xl">
-                <div className="space-y-2">
-                  <span className="bg-amber-400 text-slate-950 font-black px-3 py-1 rounded-full text-[10px] uppercase tracking-wider inline-block">
-                    Cek Akun Login &amp; Ruangan
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-white">
-                    Daftar Siswa Update Kelas &amp; Sesi TKA (104 Murid)
-                  </h3>
-                  <p className="text-blue-100 text-xs sm:text-sm max-w-xl font-medium">
-                    Lihat 7 lembar daftar hadir resmi, nomor username peserta, dan ID server sinkron untuk pelaksanaan ujian 26 - 27 Oktober 2026.
-                  </p>
-                </div>
+                    {/* Document Image Stage */}
+                    <div 
+                      onClick={() => handleZoom(tkaAnbkDocument.imageUrl)}
+                      className="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 cursor-zoom-in relative group max-h-[72vh] flex items-center justify-center p-2 sm:p-4 shadow-inner"
+                      title="Klik atau ketuk untuk zoom layar penuh"
+                    >
+                      <img
+                        src={tkaAnbkDocument.imageUrl}
+                        alt={tkaAnbkDocument.title}
+                        className="w-full h-auto max-h-[68vh] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01] drop-shadow-2xl"
+                      />
+                      <div className="absolute bottom-3 right-3 bg-slate-950/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-xl border border-white/10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition shadow-lg pointer-events-none">
+                        <ZoomIn className="w-3.5 h-3.5 text-blue-400" />
+                        <span>Ketuk untuk Zoom Layar Penuh</span>
+                      </div>
+                    </div>
 
-                <a
-                  href="#tka"
-                  className="inline-flex items-center gap-2 bg-white text-blue-900 hover:bg-blue-50 font-black px-6 py-3.5 rounded-2xl text-xs sm:text-sm uppercase tracking-wider transition shadow-lg active:scale-95 self-start sm:self-auto shrink-0 cursor-pointer"
-                >
-                  <Search className="w-4 h-4 text-blue-700" />
-                  <span>Buka Rincian Siswa</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-400 gap-2 pt-1">
+                      <span>Ditandatangani oleh: <strong>H. Andri Susanto, ST</strong> (Kepala Sekolah) &amp; <strong>Reni Widyastuti, M.Kom</strong> (Waka Kurikulum)</span>
+                      <span className="text-emerald-400 font-bold flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>Dokumen Asli Resmi Terverifikasi</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Interactive Schedule Explorer (Day by Day & Shift Matrix) */}
+                  <div className="space-y-6 pt-2">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200">
+                      <div>
+                        <span className="text-blue-600 font-bold text-xs uppercase tracking-wider block">
+                          Rincian Pelaksanaan Lengkap
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                          Jadwal Harian, Mata Uji &amp; Penugasan Laboratorium
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+                          Pilih hari atau shift untuk melihat rincian mata uji, durasi, dan petugas Proktor pengawas ruang.
+                        </p>
+                      </div>
+
+                      {/* View Mode Toggle */}
+                      <div className="flex items-center gap-2 self-start md:self-auto bg-slate-100 p-1 rounded-2xl border border-slate-200">
+                        <button
+                          onClick={() => setScheduleViewMode('cards')}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer ${
+                            scheduleViewMode === 'cards'
+                              ? 'bg-white text-blue-600 shadow-sm'
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <LayoutGrid className="w-3.5 h-3.5" />
+                          <span>Kartu Mobile</span>
+                        </button>
+                        <button
+                          onClick={() => setScheduleViewMode('table')}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer ${
+                            scheduleViewMode === 'table'
+                              ? 'bg-white text-blue-600 shadow-sm'
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <List className="w-3.5 h-3.5" />
+                          <span>Tabel Matriks</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Day Filter Pills & Shift Tabs */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
+                        <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">
+                          Pilih Hari:
+                        </span>
+                        <button
+                          onClick={() => setSelectedScheduleDay('semua')}
+                          className={`px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition cursor-pointer ${
+                            selectedScheduleDay === 'semua'
+                              ? 'bg-blue-600 text-white shadow-sm font-black'
+                              : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                          }`}
+                        >
+                          Semua Hari (26 - 29 Okt)
+                        </button>
+                        {tkaAnbkSchedule.map((day) => (
+                          <button
+                            key={day.id}
+                            onClick={() => setSelectedScheduleDay(day.id)}
+                            className={`px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition cursor-pointer ${
+                              selectedScheduleDay === day.id
+                                ? 'bg-blue-600 text-white shadow-sm font-black'
+                                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                            }`}
+                          >
+                            {day.hari} ({day.tanggalRaw})
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Shift Filter & Live Search */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 overflow-x-auto text-xs">
+                          <span className="text-slate-500 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">
+                            Shift:
+                          </span>
+                          {['semua', 'Shift I', 'Shift II'].map((shift) => (
+                            <button
+                              key={shift}
+                              onClick={() => setSelectedScheduleShift(shift)}
+                              className={`px-3 py-1 rounded-xl text-xs font-bold transition cursor-pointer ${
+                                selectedScheduleShift === shift
+                                  ? 'bg-indigo-600 text-white font-black shadow-xs'
+                                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                              }`}
+                            >
+                              {shift === 'semua' ? 'Semua Shift' : shift}
+                            </button>
+                          ))}
+                        </div>
+
+                        {/* Quick Search */}
+                        <div className="relative w-full sm:w-64">
+                          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                          <input
+                            type="text"
+                            placeholder="Cari mapel atau proktor..."
+                            value={scheduleSearchQuery}
+                            onChange={(e) => setScheduleSearchQuery(e.target.value)}
+                            className="w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                          />
+                          {scheduleSearchQuery && (
+                            <button
+                              onClick={() => setScheduleSearchQuery('')}
+                              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Dynamic Schedule View (Cards Mode) */}
+                    {scheduleViewMode === 'cards' ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {tkaAnbkSchedule
+                          .filter((day) => selectedScheduleDay === 'semua' || selectedScheduleDay === day.id)
+                          .map((day) => {
+                            const matchingShifts = day.shifts.filter((shift) => {
+                              const matchesShiftFilter = selectedScheduleShift === 'semua' || selectedScheduleShift === shift.shiftCode;
+                              const q = scheduleSearchQuery.toLowerCase().trim();
+                              const matchesSearch = 
+                                q === '' ||
+                                day.hari.toLowerCase().includes(q) ||
+                                shift.mataUji.toLowerCase().includes(q) ||
+                                shift.survey.toLowerCase().includes(q) ||
+                                shift.labs.some(l => l.proktorName.toLowerCase().includes(q) || l.lab.toLowerCase().includes(q));
+                              return matchesShiftFilter && matchesSearch;
+                            });
+
+                            if (matchingShifts.length === 0) return null;
+
+                            return (
+                              <div 
+                                key={day.id}
+                                className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden"
+                              >
+                                {/* Day Header */}
+                                <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-4 flex items-center justify-between">
+                                  <div className="flex items-center gap-2.5">
+                                    <span className="w-8 h-8 rounded-lg bg-blue-500 text-white font-black flex items-center justify-center text-xs">
+                                      {day.hari.slice(0, 3).toUpperCase()}
+                                    </span>
+                                    <div>
+                                      <h4 className="font-black text-sm text-white">
+                                        {day.tanggalLengkap}
+                                      </h4>
+                                      <span className="text-[11px] text-blue-200 font-medium">
+                                        Mata Uji Utama: {day.mataUjiUtama}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <span className="text-[10px] bg-white/10 px-2.5 py-1 rounded-full text-slate-200 font-mono">
+                                    {day.tanggalRaw}
+                                  </span>
+                                </div>
+
+                                {/* Shifts List for this day */}
+                                <div className="p-4 space-y-4 divide-y divide-slate-100">
+                                  {matchingShifts.map((shift, idx) => (
+                                    <div key={idx} className={idx > 0 ? "pt-4 space-y-3" : "space-y-3"}>
+                                      <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
+                                            shift.shiftCode === 'Shift I'
+                                              ? 'bg-amber-100 text-amber-900'
+                                              : 'bg-indigo-100 text-indigo-900'
+                                          }`}>
+                                            {shift.name}
+                                          </span>
+                                          <span className="text-xs font-bold text-slate-700 flex items-center gap-1">
+                                            <Clock className="w-3.5 h-3.5 text-slate-400" />
+                                            <span>{shift.waktu}</span>
+                                          </span>
+                                        </div>
+                                        <span className="text-[11px] font-mono text-slate-400">
+                                          {shift.durasi}
+                                        </span>
+                                      </div>
+
+                                      {/* Subject & Survey Banner */}
+                                      <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3">
+                                        <div className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-0.5">
+                                          Mata Uji &amp; Survei
+                                        </div>
+                                        <div className="font-black text-slate-900 text-sm">
+                                          {shift.mataUji}
+                                        </div>
+                                        {shift.survey !== '-' && (
+                                          <div className="text-xs text-blue-600 font-bold mt-0.5 flex items-center gap-1">
+                                            <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                                            <span>+ {shift.survey}</span>
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      {/* Lab Assignment Matrix */}
+                                      <div className="space-y-1.5">
+                                        <div className="flex items-center justify-between">
+                                          <div className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                            Alokasi Ruang Lab &amp; Proktor
+                                          </div>
+                                          <button
+                                            onClick={() => {
+                                              setAnbkActiveTab('peserta');
+                                              setTkaSesiFilter(shift.shiftCode === 'Shift I' ? '1' : '2');
+                                              document.getElementById('tab-peserta-content')?.scrollIntoView({ behavior: 'smooth' });
+                                            }}
+                                            className="text-[10px] text-blue-600 font-bold hover:underline flex items-center gap-0.5 cursor-pointer"
+                                          >
+                                            <span>Cek Peserta {shift.shiftCode}</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                          </button>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-2 text-xs">
+                                          {shift.labs.map((l, lIdx) => (
+                                            <div 
+                                              key={lIdx} 
+                                              className={`p-2 rounded-xl border flex flex-col justify-between ${
+                                                l.active
+                                                  ? 'bg-blue-50/50 border-blue-200/80'
+                                                  : 'bg-slate-50 border-slate-200 opacity-50'
+                                              }`}
+                                            >
+                                              <div className="flex items-center justify-between">
+                                                <span className="font-black text-blue-900 text-[11px]">
+                                                  {l.lab}
+                                                </span>
+                                                {l.active ? (
+                                                  <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">
+                                                    Proktor {l.proktorNumber}
+                                                  </span>
+                                                ) : (
+                                                  <span className="text-[9px] bg-slate-200 text-slate-600 px-1.5 py-0.2 rounded font-bold">
+                                                    Nonaktif
+                                                  </span>
+                                                )}
+                                              </div>
+                                              <div className="font-bold text-slate-800 text-[11px] truncate mt-1">
+                                                {l.proktorName}
+                                              </div>
+                                              {l.active && (
+                                                <button
+                                                  onClick={() => {
+                                                    setAnbkActiveTab('peserta');
+                                                    setTkaLabFilter(l.lab === 'Lab 4' ? 'Lab 4 (TL)' : l.lab);
+                                                    setTkaSesiFilter(shift.shiftCode === 'Shift I' ? '1' : '2');
+                                                    document.getElementById('tab-peserta-content')?.scrollIntoView({ behavior: 'smooth' });
+                                                  }}
+                                                  className="mt-1 text-[10px] text-blue-700 font-black hover:underline text-left cursor-pointer"
+                                                >
+                                                  Lihat Peserta ➔
+                                                </button>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    ) : (
+                      /* Table Matrix View */
+                      <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse text-xs">
+                            <thead>
+                              <tr className="bg-slate-900 text-white font-black uppercase tracking-wider text-[11px]">
+                                <th className="py-3 px-4">Hari / Tanggal</th>
+                                <th className="py-3 px-4">Shift</th>
+                                <th className="py-3 px-4">Waktu</th>
+                                <th className="py-3 px-4">Mata Uji</th>
+                                <th className="py-3 px-4">Lab 1 (Proktor 1)</th>
+                                <th className="py-3 px-4">Lab 2 (Proktor 2)</th>
+                                <th className="py-3 px-4">Lab 3 (Proktor 3)</th>
+                                <th className="py-3 px-4">Lab 4 (Proktor 4)</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100">
+                              {tkaAnbkSchedule
+                                .filter((day) => selectedScheduleDay === 'semua' || selectedScheduleDay === day.id)
+                                .flatMap((day) =>
+                                  day.shifts
+                                    .filter((shift) => selectedScheduleShift === 'semua' || selectedScheduleShift === shift.shiftCode)
+                                    .map((shift, sIdx) => {
+                                      const q = scheduleSearchQuery.toLowerCase().trim();
+                                      const matchesSearch = 
+                                        q === '' ||
+                                        day.hari.toLowerCase().includes(q) ||
+                                        shift.mataUji.toLowerCase().includes(q) ||
+                                        shift.survey.toLowerCase().includes(q) ||
+                                        shift.labs.some(l => l.proktorName.toLowerCase().includes(q));
+
+                                      if (!matchesSearch) return null;
+
+                                      return (
+                                        <tr key={`${day.id}-${sIdx}`} className="hover:bg-slate-50 transition">
+                                          <td className="py-3 px-4 font-black text-slate-900 whitespace-nowrap">
+                                            {day.hari}, {day.tanggalRaw}
+                                          </td>
+                                          <td className="py-3 px-4">
+                                            <span className={`px-2 py-0.5 rounded-md font-black text-[10px] ${
+                                              shift.shiftCode === 'Shift I' ? 'bg-amber-100 text-amber-900' : 'bg-indigo-100 text-indigo-900'
+                                            }`}>
+                                              {shift.shiftCode}
+                                            </span>
+                                          </td>
+                                          <td className="py-3 px-4 font-mono text-slate-600 whitespace-nowrap">
+                                            {shift.waktu}
+                                          </td>
+                                          <td className="py-3 px-4 font-bold text-slate-800">
+                                            <div>{shift.mataUji}</div>
+                                            {shift.survey !== '-' && (
+                                              <div className="text-[11px] text-blue-600 font-semibold">{shift.survey}</div>
+                                            )}
+                                          </td>
+                                          <td className="py-3 px-4 text-slate-700 font-medium">
+                                            <div className="font-bold text-blue-700">Anggi Arini, S.Kom</div>
+                                          </td>
+                                          <td className="py-3 px-4 text-slate-700 font-medium">
+                                            <div className="font-bold text-indigo-700">M. Arif, S.Kom</div>
+                                          </td>
+                                          <td className="py-3 px-4 text-slate-700 font-medium">
+                                            <div className="font-bold text-purple-700">Husain</div>
+                                          </td>
+                                          <td className="py-3 px-4 text-slate-700 font-medium">
+                                            {shift.labs[3]?.active ? (
+                                              <div className="font-bold text-amber-700">Khairudin Arif, ST</div>
+                                            ) : (
+                                              <span className="text-slate-400 italic">- (Lab Tutup)</span>
+                                            )}
+                                          </td>
+                                        </tr>
+                                      );
+                                    })
+                                )}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Proktor & Teknisi Profiles */}
+                  <div className="space-y-4 pt-4 border-t border-slate-200">
+                    <div>
+                      <span className="text-indigo-600 font-bold text-xs uppercase tracking-wider block">
+                        Penugasan Personel Resmi
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                        Daftar Petugas Proktor &amp; Teknisi Laboratorium
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-500">
+                        Sesuai Surat Penetapan Pelaksanaan Ujian TKA - ANBK Tahun Pelajaran 2026-2027 SMK Tanjung Priok 1.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {proktorList.map((proktor) => (
+                        <div 
+                          key={proktor.id} 
+                          className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:border-blue-300 transition"
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="bg-blue-100 text-blue-800 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                              {proktor.label}
+                            </span>
+                            <UserCheck className="w-4 h-4 text-blue-600" />
+                          </div>
+                          <h4 className="font-black text-slate-900 text-sm">
+                            {proktor.nama}
+                          </h4>
+                          <p className="text-xs font-bold text-blue-700 mt-0.5">
+                            {proktor.jabatan}
+                          </p>
+                          <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                            {proktor.penugasan}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* 2 Teknisi Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                      {teknisiList.map((teknisi) => (
+                        <div 
+                          key={teknisi.id} 
+                          className="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-200/80 flex items-start gap-3"
+                        >
+                          <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                            <ShieldCheck className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="bg-emerald-200 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                {teknisi.label}
+                              </span>
+                              <span className="text-xs font-black text-slate-900">
+                                {teknisi.nama}
+                              </span>
+                            </div>
+                            <div className="text-xs font-bold text-emerald-800 mt-0.5">
+                              {teknisi.jabatan}
+                            </div>
+                            <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                              {teknisi.tugas}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* =============================================================
+                  TAB 2: JADWAL PESERTA SISWA TKA - ANBK (104 MURID DARI PDF)
+                 ============================================================= */}
+              {anbkActiveTab === 'peserta' && (
+                <div id="tka-peserta" className="space-y-6 animate-fadeIn scroll-mt-24">
+                  <span id="tka" className="block -mt-24 pt-24 invisible" />
+                  {/* Official PDF Source Banner */}
+                  <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 rounded-3xl p-5 sm:p-7 text-white shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="space-y-1.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-md text-[10px] uppercase tracking-wider">
+                          Sumber Berkas Terlampir
+                        </span>
+                        <span className="text-xs text-blue-200 font-mono">
+                          DAFTAR_SISWA_TKA_9a5f3392.pdf (2.1 MB)
+                        </span>
+                      </div>
+                      <h3 className="text-lg sm:text-2xl font-black text-white">
+                        Jadwal &amp; Rincian Peserta TKA - ANBK (104 Murid)
+                      </h3>
+                      <p className="text-xs sm:text-sm text-blue-100 max-w-2xl font-medium leading-relaxed">
+                        Daftar lengkap 104 peserta didik Kelas XII beserta nomor username login, ruang laboratorium, ID server sinkron, dan petugas Proktor pengawas.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 shrink-0">
+                      <a
+                        href={TKA_PDF_DOCUMENT_URL}
+                        download="DAFTAR_SISWA_TKA_ANBK_2026-2027_SMK_TANJUNG_PRIOK_1.pdf"
+                        className="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow-md active:scale-95 cursor-pointer touch-manipulation"
+                      >
+                        <Download className="w-4 h-4" />
+                        <span>Unduh Berkas PDF Asli</span>
+                      </a>
+
+                      <button
+                        onClick={() => {
+                          setAnbkActiveTab('dokumen');
+                          setTkaSlide(0);
+                        }}
+                        className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider backdrop-blur-md transition active:scale-95 cursor-pointer touch-manipulation"
+                      >
+                        <Layers className="w-4 h-4" />
+                        <span>Lihat 7 Lembar Scan</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Search and Filters for Students */}
+                  <div className="bg-slate-50 p-4 sm:p-6 rounded-3xl border border-slate-200 space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div>
+                        <h4 className="text-base sm:text-lg font-black text-slate-900">
+                          Pencarian &amp; Filter Peserta Ujian
+                        </h4>
+                        <p className="text-xs text-slate-500 font-medium">
+                          Gunakan kolom pencarian atau klik tombol lab/sesi untuk verifikasi instan.
+                        </p>
+                      </div>
+
+                      {/* Mode Tampilan: Kartu Smartphone vs Tabel */}
+                      <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-slate-200 self-start sm:self-auto shrink-0 shadow-xs">
+                        <button
+                          onClick={() => setTkaView('cards')}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer active:scale-95 touch-manipulation ${
+                            tkaView === 'cards' 
+                              ? 'bg-blue-600 text-white shadow-xs' 
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <LayoutGrid className="w-3.5 h-3.5" />
+                          <span>Kartu (HP)</span>
+                        </button>
+                        <button
+                          onClick={() => setTkaView('table')}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer active:scale-95 touch-manipulation ${
+                            tkaView === 'table' 
+                              ? 'bg-blue-600 text-white shadow-xs' 
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <List className="w-3.5 h-3.5" />
+                          <span>Tabel Matriks</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Search Bar */}
+                    <div className="relative">
+                      <Search className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <input
+                        type="text"
+                        value={tkaSearchQuery}
+                        onChange={(e) => setTkaSearchQuery(e.target.value)}
+                        placeholder="Ketik nama murid (mis: Chandra, Farrel, Nayla, Alvino) atau username..."
+                        className="w-full pl-10 sm:pl-11 pr-10 py-3 bg-white border-2 border-slate-200 rounded-2xl text-xs sm:text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 shadow-sm"
+                      />
+                      {tkaSearchQuery && (
+                        <button
+                          onClick={() => setTkaSearchQuery('')}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Filter Buttons */}
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="text-xs font-bold text-slate-500 mr-1 flex items-center gap-1">
+                          <Filter className="w-3.5 h-3.5" />
+                          <span>Ruang Lab:</span>
+                        </span>
+                        {[
+                          { label: "Semua (104)", val: "Semua" },
+                          { label: "Lab 1 (30)", val: "Lab 1" },
+                          { label: "Lab 2 (30)", val: "Lab 2" },
+                          { label: "Lab 3 (29)", val: "Lab 3" },
+                          { label: "Lab 4 / TL (15)", val: "Lab 4 (TL)" }
+                        ].map((chip) => (
+                          <button
+                            key={chip.val}
+                            onClick={() => setTkaLabFilter(chip.val)}
+                            className={`px-3 py-1.5 rounded-full text-xs font-bold transition active:scale-95 touch-manipulation cursor-pointer ${
+                              tkaLabFilter === chip.val 
+                                ? 'bg-blue-600 text-white shadow-xs' 
+                                : 'bg-white text-slate-700 border border-slate-200 hover:border-blue-300'
+                            }`}
+                          >
+                            {chip.label}
+                          </button>
+                        ))}
+
+                        <span className="text-slate-300 mx-1 hidden md:inline">|</span>
+
+                        <span className="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">Sesi:</span>
+                        {[
+                          { label: "Semua Sesi", val: "Semua" },
+                          { label: "Sesi 1 (Pagi: 07.00 - 08.45)", val: "1" },
+                          { label: "Sesi 2 (Siang: 09.30 - 11.15)", val: "2" }
+                        ].map((chip) => (
+                          <button
+                            key={chip.val}
+                            onClick={() => setTkaSesiFilter(chip.val)}
+                            className={`px-3 py-1.5 rounded-full text-xs font-bold transition active:scale-95 touch-manipulation cursor-pointer ${
+                              tkaSesiFilter === chip.val 
+                                ? 'bg-indigo-600 text-white shadow-xs' 
+                                : 'bg-white text-slate-700 border border-slate-200 hover:border-indigo-300'
+                            }`}
+                          >
+                            {chip.label}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs font-medium text-slate-500 pt-1">
+                        <span>Menampilkan: <strong className="text-blue-600 font-black">{filteredTkaStudents.length}</strong> dari 104 peserta terdaftar</span>
+                        {(tkaSearchQuery || tkaLabFilter !== 'Semua' || tkaSesiFilter !== 'Semua') && (
+                          <button
+                            onClick={() => {
+                              setTkaSearchQuery('');
+                              setTkaLabFilter('Semua');
+                              setTkaSesiFilter('Semua');
+                            }}
+                            className="text-rose-600 font-bold hover:underline cursor-pointer"
+                          >
+                            Reset Filter
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Participant Results: Cards View (Smartphone Optimized) */}
+                    {tkaView === 'cards' && (
+                      <div>
+                        {filteredTkaStudents.length > 0 ? (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-2">
+                            {filteredTkaStudents.map((s, idx) => (
+                              <div 
+                                key={idx} 
+                                className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs hover:border-blue-400 transition-all hover:shadow-md space-y-2.5"
+                              >
+                                <div className="flex items-center justify-between gap-2">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="font-mono text-xs font-black text-slate-600 bg-slate-100 px-2 py-0.5 rounded-lg">
+                                      #{s.no}
+                                    </span>
+                                    <span className="font-mono text-xs font-bold text-slate-700">
+                                      {s.username}
+                                    </span>
+                                  </div>
+                                  <button
+                                    onClick={() => handleCopyUsername(s.username)}
+                                    className="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-700 px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition active:scale-95 cursor-pointer"
+                                    title="Salin Nomor Username"
+                                  >
+                                    {copiedUsername === s.username ? (
+                                      <>
+                                        <Check className="w-3 h-3 text-emerald-600" />
+                                        <span className="text-emerald-700 font-black">Tersalin!</span>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Copy className="w-3 h-3 text-slate-500" />
+                                        <span>Salin</span>
+                                      </>
+                                    )}
+                                  </button>
+                                </div>
+
+                                <h4 className="font-black text-slate-900 text-sm leading-snug">
+                                  {s.name}
+                                </h4>
+
+                                <div className="text-xs text-slate-600 space-y-1.5 pt-2 border-t border-slate-100 font-medium">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-slate-400">Ruangan:</span>
+                                    <span className="font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">
+                                      {s.lab}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-slate-400">ID Server:</span>
+                                    <span className="font-mono font-bold text-slate-700 text-[11px] bg-slate-50 px-1.5 py-0.5 rounded">
+                                      {s.idServer}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-slate-400">Jadwal Sesi:</span>
+                                    <span className="font-bold text-indigo-700">
+                                      Sesi {s.sesi} ({s.pukul})
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-slate-400">Proktor Pengawas:</span>
+                                    <span className="font-bold text-slate-800 text-[11px]">
+                                      {s.proktor || (s.lab.includes('1') ? 'Anggi Arini, S.Kom' : s.lab.includes('2') ? 'M. Arif, S.Kom' : s.lab.includes('3') ? 'Husain' : 'Khairudin Arif, ST')}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                                  <button
+                                    onClick={() => {
+                                      setAnbkActiveTab('dokumen');
+                                      setTkaSlide(s.page - 1);
+                                      setDocPreviewType('scan');
+                                      document.getElementById('tka-slider-box')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="text-xs text-blue-600 hover:text-blue-800 font-bold flex items-center gap-1 cursor-pointer"
+                                  >
+                                    <span>Lembar {s.page} (Scan Asli)</span>
+                                    <ChevronRight className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button
+                                    onClick={() => handleZoom(tkaSlides[s.page - 1].scanImageUrl)}
+                                    className="text-[11px] text-slate-500 hover:text-slate-700 font-semibold flex items-center gap-1 cursor-pointer"
+                                  >
+                                    <ZoomIn className="w-3 h-3 text-blue-500" />
+                                    <span>Zoom Lembar</span>
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="bg-white rounded-2xl border border-slate-200 p-10 text-center text-slate-400 font-medium">
+                            Tidak ada siswa yang cocok dengan filter atau kata kunci &quot;{tkaSearchQuery}&quot;
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Participant Results: Table View */}
+                    {tkaView === 'table' && (
+                      <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                        <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                          <table className="w-full text-left border-collapse text-xs md:text-sm">
+                            <thead className="bg-slate-900 text-white sticky top-0 z-10 text-[11px] md:text-xs uppercase tracking-wider">
+                              <tr>
+                                <th className="py-3 px-4 font-bold">No.</th>
+                                <th className="py-3 px-4 font-bold">Username Peserta</th>
+                                <th className="py-3 px-4 font-bold">Nama Murid</th>
+                                <th className="py-3 px-4 font-bold">Ruang Lab</th>
+                                <th className="py-3 px-4 font-bold">ID Server</th>
+                                <th className="py-3 px-4 font-bold">Sesi &amp; Waktu</th>
+                                <th className="py-3 px-4 font-bold">Proktor</th>
+                                <th className="py-3 px-4 font-bold">Aksi</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100">
+                              {filteredTkaStudents.length > 0 ? (
+                                filteredTkaStudents.map((s, idx) => (
+                                  <tr key={idx} className="hover:bg-blue-50/50 transition-colors">
+                                    <td className="py-3 px-4 font-mono text-slate-400 font-bold">
+                                      {s.no}
+                                    </td>
+                                    <td className="py-3 px-4 font-mono font-bold text-slate-700 text-xs">
+                                      {s.username}
+                                    </td>
+                                    <td className="py-3 px-4 font-black text-slate-900">
+                                      {s.name}
+                                    </td>
+                                    <td className="py-3 px-4 font-bold text-blue-600">
+                                      {s.lab}
+                                    </td>
+                                    <td className="py-3 px-4 font-mono text-xs text-slate-600">
+                                      {s.idServer}
+                                    </td>
+                                    <td className="py-3 px-4 font-semibold text-slate-700">
+                                      Sesi {s.sesi} ({s.pukul})
+                                    </td>
+                                    <td className="py-3 px-4 text-xs font-bold text-slate-800">
+                                      {s.proktor || (s.lab.includes('1') ? 'Anggi Arini, S.Kom' : s.lab.includes('2') ? 'M. Arif, S.Kom' : s.lab.includes('3') ? 'Husain' : 'Khairudin Arif, ST')}
+                                    </td>
+                                    <td className="py-3 px-4">
+                                      <button
+                                        onClick={() => {
+                                          setAnbkActiveTab('dokumen');
+                                          setTkaSlide(s.page - 1);
+                                          setDocPreviewType('scan');
+                                          document.getElementById('tka-slider-box')?.scrollIntoView({ behavior: 'smooth' });
+                                        }}
+                                        className="bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 cursor-pointer active:scale-95"
+                                      >
+                                        <span>Lembar {s.page}</span>
+                                        <ChevronRight className="w-3 h-3" />
+                                      </button>
+                                    </td>
+                                  </tr>
+                                ))
+                              ) : (
+                                <tr>
+                                  <td colSpan={8} className="py-12 text-center text-slate-400 font-medium">
+                                    Tidak ada siswa yang cocok dengan filter atau kata kunci &quot;{tkaSearchQuery}&quot;
+                                  </td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Tata Tertib Peserta TKA ANBK */}
+                  <div className="p-5 md:p-6 bg-indigo-50/80 rounded-2xl border border-indigo-200 flex items-start gap-4 text-indigo-950">
+                    <ShieldCheck className="w-7 h-7 text-indigo-700 shrink-0 mt-0.5" />
+                    <div className="space-y-1.5 text-xs md:text-sm leading-relaxed">
+                      <span className="font-black block uppercase tracking-wide text-indigo-950">
+                        Tata Tertib Peserta Tes Kemampuan Akademik (TKA - ANBK) 2026/2027:
+                      </span>
+                      <ul className="list-disc list-inside space-y-1 text-slate-700 font-medium">
+                        <li>Peserta wajib hadir <strong>15 menit</strong> sebelum waktu sesi dimulai. Keterlambatan tidak diberikan tambahan waktu.</li>
+                        <li>Wajib menempati meja laboratorium komputer sesuai dengan <strong>ID Server</strong> dan nomor urut peserta yang tertera pada daftar hadir.</li>
+                        <li>Dilarang membawa alat komunikasi, kamera, kalkulator, atau catatan ke dalam ruang laboratorium selama ujian berlangsung.</li>
+                        <li>Segera laporkan kepada Pengawas Ujian (Proktor) atau Teknisi Laboratorium jika mengalami kendala login akun atau komputer mati.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* =============================================================
+                  TAB 3: BERKAS ASLI PDF SCANNER & 7 LEMBAR DAFTAR HADIR
+                 ============================================================= */}
+              {anbkActiveTab === 'dokumen' && (
+                <div id="tka-slider-box" className="space-y-6 animate-fadeIn scroll-mt-24">
+                  <span id="tka-dokumen" className="block -mt-24 pt-24 invisible" />
+                  {/* Download Options for Original Attachments */}
+                  <div className="bg-slate-900 rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-white border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-md text-[10px] uppercase tracking-wider">
+                          Dokumen Terlampir Asli
+                        </span>
+                        <span className="text-xs text-slate-400 font-mono">
+                          Format PDF Scanner HD (2.1 MB)
+                        </span>
+                      </div>
+                      <h3 className="text-lg sm:text-xl font-black text-white">
+                        Daftar Hadir Resmi Peserta TKA 2026-2027 (7 Lembar Scan)
+                      </h3>
+                      <p className="text-xs text-slate-300 font-medium max-w-2xl">
+                        Berkas hasil scan resolusi tinggi dari lembar daftar hadir asli ujian TKA - ANBK Lab 1, Lab 2, Lab 3, dan Lab 4.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 shrink-0">
+                      <a
+                        href={TKA_PDF_DOCUMENT_URL}
+                        download="DAFTAR_SISWA_TKA_ANBK_2026-2027_SMK_TANJUNG_PRIOK_1.pdf"
+                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow-md active:scale-95 cursor-pointer touch-manipulation"
+                      >
+                        <Download className="w-4 h-4" />
+                        <span>Unduh File PDF Lengkap (2.1 MB)</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Document Switcher & Active Slide Header */}
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-4 bg-slate-900 text-white rounded-2xl border border-slate-800">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="bg-blue-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                          Lembar {tkaSlide + 1} dari {tkaSlides.length}
+                        </span>
+                        <span className="bg-indigo-500/20 text-indigo-300 text-[11px] font-bold px-2 py-0.5 rounded-md border border-indigo-500/30">
+                          {tkaSlides[tkaSlide].badge}
+                        </span>
+                        <span className="text-slate-400 text-xs hidden sm:inline">
+                          ID Server: <strong className="text-amber-400 font-mono">{tkaSlides[tkaSlide].idServer}</strong>
+                        </span>
+                      </div>
+                      <h3 className="text-base sm:text-lg font-black text-white">
+                        {tkaSlides[tkaSlide].title}
+                      </h3>
+                      <p className="text-xs text-slate-300 font-medium">
+                        {tkaSlides[tkaSlide].subtitle} &bull; Proktor: <strong className="text-white">{tkaSlides[tkaSlide].proktor}</strong>
+                      </p>
+                    </div>
+
+                    {/* Mode Preview Switcher & Actions */}
+                    <div className="flex flex-wrap items-center gap-2 shrink-0">
+                      {/* Scan vs Vector Switcher */}
+                      <div className="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700">
+                        <button
+                          onClick={() => setDocPreviewType('scan')}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-black transition cursor-pointer active:scale-95 ${
+                            docPreviewType === 'scan'
+                              ? 'bg-amber-400 text-slate-950 shadow-xs'
+                              : 'text-slate-400 hover:text-white'
+                          }`}
+                        >
+                          Foto Scan Asli
+                        </button>
+                        <button
+                          onClick={() => setDocPreviewType('vector')}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-black transition cursor-pointer active:scale-95 ${
+                            docPreviewType === 'vector'
+                              ? 'bg-blue-600 text-white shadow-xs'
+                              : 'text-slate-400 hover:text-white'
+                          }`}
+                        >
+                          Vektor Digital (SVG)
+                        </button>
+                      </div>
+
+                      <button 
+                        onClick={() => handleZoom(docPreviewType === 'scan' ? tkaSlides[tkaSlide].scanImageUrl : tkaSlides[tkaSlide].imageUrl)}
+                        className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                        title="Perbesar Layar Penuh Resolusi Tinggi"
+                      >
+                        <ZoomIn className="w-3.5 h-3.5 text-white" />
+                        <span>Zoom</span>
+                      </button>
+
+                      <button 
+                        onClick={() => handlePrintImage(docPreviewType === 'scan' ? tkaSlides[tkaSlide].scanImageUrl : tkaSlides[tkaSlide].imageUrl, tkaSlides[tkaSlide].title)}
+                        className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition active:scale-95 cursor-pointer touch-manipulation"
+                        title="Cetak Lembar Ini"
+                      >
+                        <Printer className="w-3.5 h-3.5" />
+                        <span>Cetak</span>
+                      </button>
+
+                      <a 
+                        href={docPreviewType === 'scan' ? tkaSlides[tkaSlide].scanImageUrl : tkaSlides[tkaSlide].imageUrl}
+                        download={`TKA_SMKTP1_Lembar_${tkaSlide + 1}.${docPreviewType === 'scan' ? 'jpg' : 'svg'}`}
+                        className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer touch-manipulation"
+                        title="Unduh Lembar Ini"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Unduh</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Inline Zoom Adjustment Bar for Fast Smartphone Access */}
+                  <div className="flex flex-wrap items-center justify-between text-xs bg-slate-100 p-2.5 rounded-xl border border-slate-200 text-slate-700 gap-2">
+                    <div className="flex items-center gap-1.5 font-bold">
+                      <span className="text-slate-500">Kontrol Zoom:</span>
+                      <button
+                        onClick={() => setTkaInSliderZoom(prev => Math.max(0.7, prev - 0.2))}
+                        className="px-2.5 py-1 bg-white hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-black shadow-xs cursor-pointer active:scale-95 touch-manipulation"
+                        title="Perkecil Lembar"
+                      >
+                        - Zoom
+                      </button>
+                      <button
+                        onClick={() => setTkaInSliderZoom(1)}
+                        className="px-2.5 py-1 bg-white hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-black shadow-xs cursor-pointer active:scale-95 touch-manipulation"
+                        title="Kembalikan ke 100%"
+                      >
+                        {Math.round(tkaInSliderZoom * 100)}% (Reset)
+                      </button>
+                      <button
+                        onClick={() => setTkaInSliderZoom(prev => Math.min(2.2, prev + 0.2))}
+                        className="px-2.5 py-1 bg-white hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-black shadow-xs cursor-pointer active:scale-95 touch-manipulation"
+                        title="Perbesar Lembar"
+                      >
+                        + Zoom
+                      </button>
+                    </div>
+                    <div className="text-[11px] text-slate-500 font-medium">
+                      💡 Ketuk 2x (double-tap) pada gambar untuk zoom 2x otomatis
+                    </div>
+                  </div>
+
+                  {/* Document Slide Display Stage */}
+                  <div 
+                    className="relative bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-800 group select-none"
+                    onDoubleClick={() => setTkaInSliderZoom(prev => prev === 1 ? 1.6 : 1)}
+                  >
+                    <div className="min-h-[500px] max-h-[85vh] overflow-auto flex items-center justify-center p-3 md:p-6 bg-slate-900/90 cursor-grab active:cursor-grabbing">
+                      <img 
+                        src={docPreviewType === 'scan' ? tkaSlides[tkaSlide].scanImageUrl : tkaSlides[tkaSlide].imageUrl} 
+                        alt={tkaSlides[tkaSlide].title}
+                        style={{ transform: `scale(${tkaInSliderZoom})`, transformOrigin: 'top center' }}
+                        className="w-full max-w-4xl h-auto object-contain transition-transform duration-200 shadow-2xl rounded-lg bg-white"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Left / Right Navigation Buttons */}
+                    <button 
+                      onClick={() => setTkaSlide((prev) => (prev === 0 ? tkaSlides.length - 1 : prev - 1))}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-950/85 hover:bg-blue-600 text-white p-3 rounded-2xl shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation border border-white/10"
+                      aria-label="Lembar Sebelumnya"
+                      title="Lembar Sebelumnya"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <button 
+                      onClick={() => setTkaSlide((prev) => (prev === tkaSlides.length - 1 ? 0 : prev + 1))}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-950/85 hover:bg-blue-600 text-white p-3 rounded-2xl shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer touch-manipulation border border-white/10"
+                      aria-label="Lembar Selanjutnya"
+                      title="Lembar Selanjutnya"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+
+                    {/* Floating Modal Fullscreen Trigger Hint */}
+                    <div className="absolute bottom-3 right-3 bg-slate-950/80 backdrop-blur-md text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-white/10 flex items-center gap-2 pointer-events-none">
+                      <ZoomIn className="w-4 h-4 text-blue-400" />
+                      <span className="hidden sm:inline">Klik &quot;Zoom&quot; untuk tampilan layar penuh</span>
+                      <span className="sm:hidden">Ketuk zoom untuk perbesar</span>
+                    </div>
+                  </div>
+
+                  {/* Thumbnail / Page Jump Selector Tabs */}
+                  <div className="overflow-x-auto pb-2 no-scrollbar">
+                    <div className="flex items-center gap-2 min-w-max">
+                      {tkaSlides.map((slide, idx) => (
+                        <button
+                          key={slide.id}
+                          onClick={() => {
+                            setTkaSlide(idx);
+                            setTkaInSliderZoom(1);
+                          }}
+                          className={`px-3 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 border cursor-pointer active:scale-95 touch-manipulation ${
+                            tkaSlide === idx 
+                              ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-600/30' 
+                              : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                          }`}
+                        >
+                          <span className="w-4 h-4 rounded-full bg-slate-900/20 text-current flex items-center justify-center text-[10px]">
+                            {idx + 1}
+                          </span>
+                          <span>{slide.badge}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </article>
 
