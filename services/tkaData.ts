@@ -266,20 +266,20 @@ export const tkaStudents: TkaStudent[] = [
   { no: 88, username: "K0102001801032", name: "MUHAMMAD ZAHRAN KUSUMA", lab: "Lab 3", idServer: "K01020018-CQ6K", sesi: 2, pukul: "09:30 - 11:15 WIB", tanggal: "26 - 27 Oktober 2026", page: 6 },
   { no: 89, username: "K0102001801049", name: "SIGIT WAHYUDI", lab: "Lab 3", idServer: "K01020018-CQ6K", sesi: 2, pukul: "09:30 - 11:15 WIB", tanggal: "26 - 27 Oktober 2026", page: 6 },
 
-  // --- LEMBAR 7: LAB TL - SESI 1 (15 Murid) ---
-  { no: 90, username: "K0102001800463", name: "ALVINO PRATAMA", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 91, username: "K0102001800472", name: "AUFA DWI AKBAR PRASETYO", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 92, username: "K0102001800489", name: "DESCAM DANUARTA", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 93, username: "K0102001800498", name: "MUHAMMAD SAHRUL RAMADHAN", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 94, username: "K0102001800507", name: "Nabil Syahputra", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 95, username: "K0102001800516", name: "Muhammad Rizky Zulkarnain", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 96, username: "K0102001800525", name: "MUHAMMAD IBRAHIM SOLIHIN PUTRA", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 97, username: "K0102001800534", name: "KHOERU DZIKRI", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 98, username: "K0102001800543", name: "YUDA SAPUTRA", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 99, username: "K0102001800552", name: "MUHAMMAD FATHIR AL QAHTANI", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 100, username: "K0102001800569", name: "RIFQI IRFANI", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 101, username: "K0102001800578", name: "PUTRA NAZAR MUTTAQIN", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 102, username: "K0102001800587", name: "RAFAH WAHYUDI", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 103, username: "K0102001800596", name: "Rafi Ananda Saputra", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
-  { no: 104, username: "K0102001800605", name: "ALEX RAHMAN HAKIM", lab: "Lab TL", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 }
+  // --- LEMBAR 7: LAB 4 (TL) - SESI 1 (15 Murid) ---
+  { no: 90, username: "K0102001800463", name: "ALVINO PRATAMA", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 91, username: "K0102001800472", name: "AUFA DWI AKBAR PRASETYO", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 92, username: "K0102001800489", name: "DESCAM DANUARTA", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 93, username: "K0102001800498", name: "MUHAMMAD SAHRUL RAMADHAN", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 94, username: "K0102001800507", name: "Nabil Syahputra", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 95, username: "K0102001800516", name: "Muhammad Rizky Zulkarnain", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 96, username: "K0102001800525", name: "MUHAMMAD IBRAHIM SOLIHIN PUTRA", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 97, username: "K0102001800534", name: "KHOERU DZIKRI", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 98, username: "K0102001800543", name: "YUDA SAPUTRA", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 99, username: "K0102001800552", name: "MUHAMMAD FATHIR AL QAHTANI", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 100, username: "K0102001800569", name: "RIFQI IRFANI", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 101, username: "K0102001800578", name: "PUTRA NAZAR MUTTAQIN", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 102, username: "K0102001800587", name: "RAFAH WAHYUDI", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 103, username: "K0102001800596", name: "Rafi Ananda Saputra", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 },
+  { no: 104, username: "K0102001800605", name: "ALEX RAHMAN HAKIM", lab: "Lab 4 (TL)", idServer: "K01020018-DY7K", sesi: 1, pukul: "07:00 - 08:45 WIB", tanggal: "26 - 27 Oktober 2026", page: 7 }
 ];

@@ -144,7 +144,11 @@ const News: React.FC = () => {
         (s.proktor && s.proktor.toLowerCase().includes(q)) ||
         `sesi ${s.sesi}`.toLowerCase().includes(q);
 
-      const matchesLab = tkaLabFilter === 'Semua' || s.lab === tkaLabFilter;
+      const matchesLab = 
+        tkaLabFilter === 'Semua' || 
+        s.lab === tkaLabFilter ||
+        (tkaLabFilter.includes('4') && (s.lab.includes('4') || s.lab.includes('TL'))) ||
+        (tkaLabFilter.includes('TL') && (s.lab.includes('4') || s.lab.includes('TL')));
       const matchesSesi = tkaSesiFilter === 'Semua' || s.sesi.toString() === tkaSesiFilter;
 
       return matchesSearch && matchesLab && matchesSesi;
@@ -2362,7 +2366,7 @@ const News: React.FC = () => {
                       { label: "Lab 1 (30)", val: "Lab 1" },
                       { label: "Lab 2 (30)", val: "Lab 2" },
                       { label: "Lab 3 (29)", val: "Lab 3" },
-                      { label: "Lab TL (15)", val: "Lab TL" }
+                      { label: "Lab 4 / TL (15)", val: "Lab 4 (TL)" }
                     ].map((chip) => (
                       <button
                         key={chip.val}
