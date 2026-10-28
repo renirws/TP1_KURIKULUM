@@ -196,7 +196,7 @@ const Teachers: React.FC = () => {
   const ruangGuruLink = "https://kurikulum.smktanjungpriok1.sch.id/login";
   const websiteKurikulumLink = "https://www.kurikulumsmktanjungpriok1.sch.id";
   const skMengajarLink = "https://drive.google.com/drive/folders/1VqkRmZRZbykY16aoJFe9Hvytuf4ZH5aH?usp=drive_link";
-  const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
+  const uploadSoalSasLink = "https://s.id/UploadSoalSASGanjil2026";
   const ajuanSkAktifMengajarLink = "https://forms.gle/3KAELyz4A8KMXsDR6";
 
   // States for Teacher Schedule Slideshow
@@ -491,7 +491,7 @@ const Teachers: React.FC = () => {
                     <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                       <a href={adminToolLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">Tool Ajar</a>
                       <span>•</span>
-                      <a href={uploadSoalStsLink} target="_blank" rel="noopener noreferrer" className="hover:text-amber-300 transition-colors">Soal STS</a>
+                      <a href={uploadSoalSasLink} target="_blank" rel="noopener noreferrer" className="hover:text-amber-300 transition-colors">Soal SAS</a>
                       <span>•</span>
                       <a href={skMengajarLink} target="_blank" rel="noopener noreferrer" className="hover:text-purple-300 transition-colors">SK Mengajar</a>
                       <span>•</span>
@@ -860,7 +860,7 @@ const Teachers: React.FC = () => {
               </a>
             </div>
 
-            {/* Unggah Soal STS Ganjil Card */}
+            {/* Unggah Soal SAS Ganjil Card */}
             <div className="bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 p-7 sm:p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden group border border-amber-300/40">
               <div className="absolute top-0 right-0 p-4 opacity-10 transform group-hover:scale-110 transition-transform pointer-events-none">
                 <Upload className="w-32 h-32 text-amber-100" />
@@ -868,18 +868,18 @@ const Teachers: React.FC = () => {
               <div className="inline-flex items-center space-x-1.5 bg-white/20 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase text-amber-100 mb-3 border border-white/20">
                 <span>PRIORITAS GURU</span>
               </div>
-              <h3 className="text-2xl font-black mb-3 tracking-tight">Unggah Soal STS Ganjil</h3>
+              <h3 className="text-2xl font-black mb-3 tracking-tight">Unggah Soal SAS Ganjil</h3>
               <p className="text-amber-100 text-sm font-medium mb-6 leading-relaxed">
-                Portal resmi pengiriman naskah soal Sumatif Tengah Semester (STS) Ganjil TA 2026/2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.
+                Portal resmi pengiriman naskah soal Sumatif Akhir Semester (SAS) Ganjil TA 2026/2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.
               </p>
               <a 
-                href={uploadSoalStsLink}
+                href={uploadSoalSasLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-black rounded-2xl transition-all text-xs tracking-widest uppercase shadow-lg transform active:scale-95 border-b-4 border-amber-800 flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <Upload className="w-4 h-4 text-yellow-300" />
-                <span>UNGGAH SOAL STS GANJIL</span>
+                <span>UNGGAH SOAL SAS GANJIL TA 2026/2027</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-80" />
               </a>
             </div>

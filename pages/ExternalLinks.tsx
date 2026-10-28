@@ -61,16 +61,16 @@ const ExternalLinks: React.FC = () => {
       actionText: "Buka Katalog Buku"
     },
     {
-      id: "upload-sts",
-      title: "UNGGAH SOAL STS GANJIL TA 2026-2027",
-      description: "Portal resmi pengiriman dan penyerahan naskah soal Sumatif Tengah Semester (STS) Ganjil Tahun Pelajaran 2026-2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.",
-      url: "https://s.id/UploadSoalSTSGanjil26-27",
+      id: "upload-sas",
+      title: "UNGGAH SOAL SAS GANJIL TA 2026/2027",
+      description: "Portal resmi pengiriman dan penyerahan naskah soal Sumatif Akhir Semester (SAS) Ganjil Tahun Pelajaran 2026/2027 untuk Bapak/Ibu Guru SMK Tanjung Priok 1.",
+      url: "https://s.id/UploadSoalSASGanjil2026",
       icon: <Upload className="w-8 h-8" />,
       color: "from-amber-500 to-orange-600",
       category: "ujian",
-      tag: "Pengumpulan Soal",
+      tag: "Pengumpulan Soal SAS",
       officialBadge: "Guru TP1",
-      actionText: "Kirim Naskah Soal"
+      actionText: "Kirim Naskah Soal SAS"
     },
     {
       id: "ajuan-sk-aktif-mengajar",
@@ -213,8 +213,8 @@ const ExternalLinks: React.FC = () => {
       a: "Portal Ruang Guru dikhususkan bagi Dewan Guru dan Tenaga Kependidikan SMK Tanjung Priok 1 untuk administrasi silabus, presensi harian, nilai sumatif, dan input KOSP. Login dapat diakses di https://kurikulum.smktanjungpriok1.sch.id/login."
     },
     {
-      q: "Bagaimana alur pengumpulan naskah soal STS Ganjil TA 2026/2027?",
-      a: "Bapak/Ibu Guru pengampu mata pelajaran dapat mengunggah kisi-kisi, naskah soal, dan kunci jawaban melalui tautan Google Drive / formulir resmi 'UNGGAH SOAL STS GANJIL' dengan tenggat waktu yang telah ditetapkan tim kurikulum."
+      q: "Bagaimana alur pengumpulan naskah soal SAS Ganjil TA 2026/2027?",
+      a: "Bapak/Ibu Guru pengampu mata pelajaran dapat mengunggah kisi-kisi, naskah soal, dan kunci jawaban melalui formulir resmi 'UNGGAH SOAL SAS GANJIL TA 2026/2027' di https://s.id/UploadSoalSASGanjil2026 dengan tenggat waktu yang telah ditetapkan tim kurikulum."
     },
     {
       q: "Bagaimana cara guru mengajukan permohonan SK Aktif Mengajar lewat HP / smartphone?",
@@ -289,8 +289,8 @@ const ExternalLinks: React.FC = () => {
     <main className="min-h-screen bg-slate-50 py-10 md:py-16">
       <SEO 
         title="Tautan Penting & Katalog Buku Kemendikdasmen | SMK TANJUNG PRIOK 1"
-        description="Akses resmi Katalog Buku Kemendikdasmen RI Kurikulum Merdeka, Portal Ruang Guru, Unggah Soal STS Ganjil, KOSP 2026-2027, SIM PKL, LSP BNSP, dan Modul Generator."
-        keywords="Katalog Buku Kemendikdasmen, Buku Kurikulum Merdeka Kemendikdasmen, Buku Teks Siswa SMK, Tautan Penting SMK Tanjung Priok 1, Portal Ruang Guru SMK, Upload Soal STS Ganjil, KOSP SMK Tanjung Priok 1, SIM PKL SMK Tanjung Priok 1, LSP BNSP"
+        description="Akses resmi Katalog Buku Kemendikdasmen RI Kurikulum Merdeka, Portal Ruang Guru, Unggah Soal SAS Ganjil TA 2026/2027, KOSP 2026-2027, SIM PKL, LSP BNSP, dan Modul Generator."
+        keywords="Katalog Buku Kemendikdasmen, Buku Kurikulum Merdeka Kemendikdasmen, Buku Teks Siswa SMK, Tautan Penting SMK Tanjung Priok 1, Portal Ruang Guru SMK, Upload Soal SAS Ganjil 2026, KOSP SMK Tanjung Priok 1, SIM PKL SMK Tanjung Priok 1, LSP BNSP"
         canonical="https://tp1kurikulum.my.id/tautan"
         schemaMarkup={jsonLdData}
       />

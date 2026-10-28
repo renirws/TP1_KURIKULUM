@@ -51,15 +51,15 @@ const AcademicCalendar: React.FC = () => {
   const teacherDriveLink = "https://drive.google.com/drive/folders/1HxQQYr6xHylifV_ry07JH1vM3Bw2m5Bk?usp=drive_link";
   const usPrakLink = "https://s.id/UsPrak25-26";
   const dispensasiUploadLink = "https://forms.gle/ADw1HZ3FYqqu68Jd8";
-  const uploadSoalStsLink = "https://s.id/UploadSoalSTSGanjil26-27";
+  const uploadSoalSasLink = "https://s.id/UploadSoalSASGanjil2026";
   
   const downloadableFiles = [
     { 
-      name: 'Formulir Unggah Soal STS Ganjil TA 2026/2027', 
+      name: 'Formulir Unggah Soal SAS Ganjil TA 2026/2027', 
       type: 'Tautan Google Form (s.id)', 
       size: 'Portal Guru', 
       icon: <Upload className="w-6 h-6 text-amber-500" />,
-      url: 'https://s.id/UploadSoalSTSGanjil26-27'
+      url: 'https://s.id/UploadSoalSASGanjil2026'
     },
     { 
       name: 'Kalender Pendidikan SMK Tanjung Priok 1 TA 2026/2027', 
@@ -805,14 +805,14 @@ const AcademicCalendar: React.FC = () => {
                 <div className="space-y-2">
                   <h4 className="text-xl font-black">Pengiriman Berkas, Soal Ujian & Perizinan</h4>
                   <p className="text-indigo-200/80 font-medium text-xs leading-relaxed">
-                    Unggah naskah soal STS Ganjil, tugas praktik mandiri, dokumen pendukung perizinan siswa, atau laporan guru ke server sekolah. Gunakan akun email institusi resmi Anda.
+                    Unggah naskah soal SAS Ganjil TA 2026/2027, tugas praktik mandiri, dokumen pendukung perizinan siswa, atau laporan guru ke server sekolah. Gunakan akun email institusi resmi Anda.
                   </p>
                 </div>
 
                 <div className="flex flex-col space-y-3.5 pt-2">
-                  {/* Primary Highlighted Button for Upload Soal STS Ganjil 26-27 */}
+                  {/* Primary Highlighted Button for Upload Soal SAS Ganjil 26-27 */}
                   <a 
-                    href={uploadSoalStsLink}
+                    href={uploadSoalSasLink}
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="group relative block w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-white p-4 sm:p-5 rounded-2xl font-black transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-[0.98] border-b-4 border-amber-800"
@@ -828,7 +828,7 @@ const AcademicCalendar: React.FC = () => {
                             <span className="text-[10px] text-amber-100 font-bold uppercase tracking-wider">TA 2026/2027</span>
                           </div>
                           <h5 className="text-xs sm:text-sm md:text-base font-black truncate text-white leading-tight mt-0.5">
-                            UNGGAH SOAL STS GANJIL TA 2026/2027
+                            UNGGAH SOAL SAS GANJIL TA 2026/2027
                           </h5>
                         </div>
                       </div>
