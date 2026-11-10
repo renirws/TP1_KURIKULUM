@@ -36,73 +36,73 @@ interface ScheduleImage {
 const SCHEDULE_IMAGES: Record<'X' | 'XI' | 'XII' | 'TKA' | 'PRAKERIN', ScheduleImage[]> = {
   X: [
     {
-      originalUrl: "https://drive.google.com/file/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1uEM6mriBBxHkN6QsM7nNXWQ41pzJjKYJ",
-      title: "Halaman 1 • Jadwal KBM Kelas X"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0001_18f4b80b.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0001_18f4b80b.jpg",
+      title: "Halaman 1 • Kelas X MK (Pemesinan Kapal)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1rnduZL9sr7u1EaV5zBEUL5ffgnHyJfhJ/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1rnduZL9sr7u1EaV5zBEUL5ffgnHyJfhJ",
-      title: "Halaman 2 • Jadwal KBM Kelas X"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0002_beee9e94.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0002_beee9e94.jpg",
+      title: "Halaman 2 • Kelas X MO 1 (Otomotif 1)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/12MxWLhNqXZA_DVndRfibwGSXvdyxF9K2/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/12MxWLhNqXZA_DVndRfibwGSXvdyxF9K2",
-      title: "Halaman 3 • Jadwal KBM Kelas X"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0003_7dc18880.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0003_7dc18880.jpg",
+      title: "Halaman 3 • Kelas X MO 2 (Otomotif 2)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1sv5PLyebS6Aalb4sssoU9Eu76S4KxBhI/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1sv5PLyebS6Aalb4sssoU9Eu76S4KxBhI",
-      title: "Halaman 4 • Jadwal KBM Kelas X"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0004_990f097b.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0004_990f097b.jpg",
+      title: "Halaman 4 • Kelas X DKV 1 (Desain Komunikasi Visual)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1zxZLVy6k8ZAtYTdCdM4N9JMAas-tLWhZ/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1zxZLVy6k8ZAtYTdCdM4N9JMAas-tLWhZ",
-      title: "Halaman 5 • Jadwal KBM Kelas X"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0005_7f624334.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0005_7f624334.jpg",
+      title: "Halaman 5 • Kelas X LOG (Teknik Logistik)"
     }
   ],
   XI: [
     {
-      originalUrl: "https://drive.google.com/file/d/13VrgMS65Nm3iEXWi_dlN6rxjnn7rbTOU/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/13VrgMS65Nm3iEXWi_dlN6rxjnn7rbTOU",
-      title: "Halaman 1 • Jadwal KBM Kelas XI"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0006_1f912e9d.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0006_1f912e9d.jpg",
+      title: "Halaman 1 • Kelas XI MK (Pemesinan Kapal)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1kIqAB_WWz0VUbOpxhowHIfNiW75CZBhg/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1kIqAB_WWz0VUbOpxhowHIfNiW75CZBhg",
-      title: "Halaman 2 • Jadwal KBM Kelas XI"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0007_71e421d4.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0007_71e421d4.jpg",
+      title: "Halaman 2 • Kelas XI MO 1 (Otomotif)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1pKHe78yDLIsa_pAda7_iRDsNYn2_Zlwv/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1pKHe78yDLIsa_pAda7_iRDsNYn2_Zlwv",
-      title: "Halaman 3 • Jadwal KBM Kelas XI"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0008_a0999cfb.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0008_a0999cfb.jpg",
+      title: "Halaman 3 • Kelas XI DKV 1 (Desain Komunikasi Visual)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1ddlnimSnF0HOjkt62CAwSflClMc1gslD/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1ddlnimSnF0HOjkt62CAwSflClMc1gslD",
-      title: "Halaman 4 • Jadwal KBM Kelas XI"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0009_8695192d.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0009_8695192d.jpg",
+      title: "Halaman 4 • Kelas XI LOG (Teknik Logistik)"
     }
   ],
   XII: [
     {
-      originalUrl: "https://drive.google.com/file/d/1iFA39x_n2R0H11n9h0kWK-ih1ia5jB6t/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1iFA39x_n2R0H11n9h0kWK-ih1ia5jB6t",
-      title: "Halaman 1 • Jadwal KBM Kelas XII"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0010_185ce5da.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0010_185ce5da.jpg",
+      title: "Halaman 1 • Kelas XII MK (Pemesinan Kapal)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/18PnY9oahXQh6pJzCIg05tEYij9cdEOpd/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/18PnY9oahXQh6pJzCIg05tEYij9cdEOpd",
-      title: "Halaman 2 • Jadwal KBM Kelas XII"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0011_28b4ae3f.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0011_28b4ae3f.jpg",
+      title: "Halaman 2 • Kelas XII MO 1 (Otomotif)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/1K0ViEwC9ueV5wUoLuX9gvdrpUFQ4i320/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/1K0ViEwC9ueV5wUoLuX9gvdrpUFQ4i320",
-      title: "Halaman 3 • Jadwal KBM Kelas XII"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0012_d255aa8c.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0012_d255aa8c.jpg",
+      title: "Halaman 3 • Kelas XII DKV 1 (Desain Komunikasi Visual)"
     },
     {
-      originalUrl: "https://drive.google.com/file/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy/view?usp=drive_link",
-      directUrl: "https://lh3.googleusercontent.com/d/13-MPs6TUA6Z8brUJI54EgcthLJLwkqCy",
-      title: "Halaman 4 • Jadwal KBM Kelas XII"
+      originalUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0013_46133969.jpg",
+      directUrl: "/assets/aistudio/jadwal_kelas_revisi_page-0013_46133969.jpg",
+      title: "Halaman 4 • Kelas XII LOG (Teknik Logistik)"
     }
   ],
   TKA: [
@@ -387,15 +387,15 @@ const Students: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <SEO 
-        title="Portal Siswa SMK TANJUNG PRIOK 1 | Jadwal Pelajaran, Simulasi TKA & Prakerin"
-        description="Portal Siswa SMK Tanjung Priok 1 Jakarta Utara. Unduh dan pantau jadwal pelajaran KBM Kelas X, XI, XII, jadwal simulasi TKA, serta akses informasi pembimbingan & lokasi Prakerin tahun ajaran 2026/2027."
-        keywords="Portal Siswa SMK Tanjung Priok 1, Jadwal Pelajaran SMK Tanjung Priok 1, Jadwal KBM SMK, Simulasi TKA SMK Tanjung Priok 1, Prakerin SMK Tanjung Priok 1, PKL SMK Tanjung Priok 1, SMK Jakarta Utara"
+        title="Jadwal Pelajaran KBM Siswa Kelas X, XI, XII & Portal Siswa SMK TANJUNG PRIOK 1 | TA 2026/2027"
+        description="Update resmi jadwal mata pelajaran KBM TA 2026/2027 SMK Tanjung Priok 1: Kelas X (MK, MO 1, MO 2, DKV 1, LOG), Kelas XI (MK, MO 1, DKV 1, LOG), dan Kelas XII (MK, MO 1, DKV 1, LOG). Tampilan responsif, cepat, fitur cetak mandiri, unduh berkas, dan kompatibel smartphone."
+        keywords="Jadwal Pelajaran SMK Tanjung Priok 1, Jadwal Kelas X SMK TP1, Jadwal Kelas XI SMK TP1, Jadwal Kelas XII SMK TP1, Jadwal Pemesinan Kapal, Jadwal TKRO Otomotif, Jadwal DKV, Jadwal Teknik Logistik, Portal Siswa SMK Tanjung Priok 1, KBM 2026 2027, APK Kurikulum TP1 Mobile"
         canonical="https://tp1kurikulum.my.id/siswa"
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "Portal Siswa SMK Tanjung Priok 1 | Jadwal KBM, Simulasi TKA & Prakerin",
-          "description": "Layanan portal akademik siswa resmi SMK Tanjung Priok 1 Jakarta Utara. Dilengkapi jadwal pelajaran KBM interaktif, simulasi TKA Kelas XII, serta informasi direktori pembimbingan dan lokasi Prakerin.",
+          "name": "Portal Siswa SMK Tanjung Priok 1 | Jadwal KBM Kelas X, XI, XII Revisi",
+          "description": "Layanan portal akademik siswa resmi SMK Tanjung Priok 1 Jakarta Utara. Dilengkapi jadwal pelajaran KBM interaktif 13 lembar (Kelas X, XI, XII), simulasi TKA Kelas XII, serta informasi direktori pembimbingan dan lokasi Prakerin.",
           "isPartOf": {
             "@type": "WebSite",
             "name": "Kurikulum SMK Tanjung Priok 1",
@@ -468,12 +468,30 @@ const Students: React.FC = () => {
               
               return (
                 <div className="relative max-w-3xl mx-auto">
-                  {/* Outer description */}
-                  <div className="text-center mb-5">
-                    <p className="text-blue-200/90 text-sm font-bold tracking-wide uppercase flex items-center justify-center gap-2">
-                      <Calendar className="w-4.5 h-4.5 text-blue-400" />
-                      {currentImage.title}
+                  {/* Outer description & Mobile Quick Jump */}
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-4 bg-slate-900/60 p-3 sm:p-4 rounded-2xl border border-slate-700/50 backdrop-blur-md">
+                    <p className="text-blue-200 font-bold text-xs sm:text-sm tracking-wide flex items-center gap-2 truncate">
+                      <Calendar className="w-4 h-4 text-blue-400 shrink-0" />
+                      <span className="truncate">{currentImage.title}</span>
                     </p>
+
+                    {totalImages > 1 && (
+                      <div className="relative shrink-0 w-full sm:w-auto">
+                        <select
+                          value={activeImageIndex}
+                          onChange={(e) => setActiveImageIndex(Number(e.target.value))}
+                          aria-label="Pilih Kelas atau Halaman Jadwal"
+                          className="w-full sm:w-auto appearance-none bg-slate-800 text-white font-extrabold text-xs px-3.5 py-2 pr-8 rounded-xl border border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer shadow-sm"
+                        >
+                          {activeImages.map((img, idx) => (
+                            <option key={idx} value={idx}>
+                              {img.title}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
+                    )}
                   </div>
 
                   {/* Main Image Stage Card */}
@@ -562,21 +580,28 @@ const Students: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Thumbnail Strip / Navigation Indicator */}
+                    {/* Thumbnail Strip / Class Navigation Indicator */}
                     <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                      {activeImages.map((img, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setActiveImageIndex(idx)}
-                          className={`px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer border ${
-                            activeImageIndex === idx
-                              ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20 scale-105'
-                              : 'bg-slate-50 border-slate-100 text-slate-500 hover:bg-slate-100 hover:text-slate-800'
-                          }`}
-                        >
-                          Hal {idx + 1}
-                        </button>
-                      ))}
+                      {activeImages.map((img, idx) => {
+                        const classLabel = img.title.includes('•') 
+                          ? img.title.split('•')[1]?.trim().replace(/^Kelas\s+/i, '').replace(/\s*\([^)]*\)/g, '').trim()
+                          : `Hal ${idx + 1}`;
+
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveImageIndex(idx)}
+                            className={`px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer border flex items-center space-x-1.5 ${
+                              activeImageIndex === idx
+                                ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20 scale-105'
+                                : 'bg-slate-50 border-slate-100 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                            }`}
+                          >
+                            <span className="opacity-70 text-[10px]">P{idx + 1}:</span>
+                            <span>{classLabel}</span>
+                          </button>
+                        );
+                      })}
                     </div>
 
                     {/* Print / Save PDF Quick Actions Panel */}
