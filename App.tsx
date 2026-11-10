@@ -15,6 +15,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { BottomNav } from './components/BottomNav';
 import { PageWrapper } from './components/PageWrapper';
+import { InstallApkModal } from './components/InstallApkModal';
 
 const App: React.FC = () => {
   // Menggunakan thumbnail Google Drive dengan lebar maksimal untuk kualitas lebih baik
@@ -111,6 +112,7 @@ const App: React.FC = () => {
 
         <Footer />
         <BottomNav />
+        <InstallApkModal />
       </div>
     </Router>
   );

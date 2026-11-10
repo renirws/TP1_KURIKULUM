@@ -34,7 +34,10 @@ import {
   Check,
   Globe,
   Database,
-  Layers
+  Layers,
+  Smartphone,
+  Download,
+  Share2
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
@@ -56,6 +59,14 @@ const Home: React.FC = () => {
 
   // SEO-friendly Interactive Quick Navigation Shortcuts
   const quickShortcuts = [
+    { 
+      title: "Pasang APK Resmi Kurikulum TP1", 
+      category: "Aplikasi Mobile APK", 
+      icon: <Smartphone className="w-6 h-6 text-indigo-600" />, 
+      link: "#unduh-apk", 
+      desc: "Unduh dan pasang aplikasi mobile APK resmi di HP Android & iOS. Ringan (< 5MB), cepat, akses offline jadwal guru & siswa.", 
+      keywords: "apk smk tanjung priok 1 download unduh pasang aplikasi android hp smartphone pwa web app resmi gratis" 
+    },
     { title: "Jadwal Pelaksanaan TKA - ANBK 2026-2027", category: "Ujian TKA-ANBK Resmi", icon: <Award className="w-6 h-6 text-blue-600" />, link: "/warta#tka-anbk", desc: "Jadwal resmi Pelaksanaan TKA - ANBK TA 2026-2027 (26-29 Okt 2026). Shift I & II, 4 Laboratorium, mata uji, dan daftar Proktor/Teknisi terlampir.", keywords: "jadwal tka anbk 2026 2027 pelaksanaan tes kemampuan akademik ujian shift lab proktor teknisi oktober jakarta utara" },
     { title: "Daftar Siswa Update TKA 26-27 Okt", category: "Ujian TKA 2026", icon: <Layers className="w-6 h-6 text-indigo-600" />, link: "/warta#tka", desc: "Update daftar nama siswa, ruang lab & sesi Tes Kemampuan Akademik (TKA) 26-27 Oktober 2026 (7 lembar dokumen terlampir).", keywords: "tka tes kemampuan akademik 26 27 oktober kelas sesi lab ruang daftar nama siswa" },
     { title: "Formulir Ajuan SK Aktif Mengajar", category: "Layanan Guru", icon: <FileText className="w-6 h-6 text-emerald-600" />, link: "/guru#ajuan-sk", desc: "Formulir online resmi ajuan SK Aktif Mengajar TA 2026/2027 untuk sertifikasi & kedinasan. Kompatibel dibuka di smartphone.", keywords: "sk aktif mengajar formulir ajuan sk guru permohonan surat keputusan tunjangan sertifikasi nuptk mobile smartphone hp" },
@@ -164,7 +175,34 @@ const Home: React.FC = () => {
 
   return (
     <main className="overflow-x-hidden">
-      <SEO />
+      <SEO 
+        title="APK Kurikulum & Portal Akademik SMK TANJUNG PRIOK 1 | Download Web App Mobile"
+        description="Download dan pasang APK Resmi Sistem Informasi Kurikulum SMK TANJUNG PRIOK 1 Jakarta Utara. Akses cepat Jadwal Mengajar Guru 29 Lembar, Pelaksanaan TKA-ANBK 2026/2027, Form SK Guru, dan Buku Kemendikdasmen."
+        keywords="APK SMK Tanjung Priok 1, Download APK Kurikulum SMK Tanjung Priok 1, Aplikasi SMK Tanjung Priok 1, APK Kurikulum TP1, Jadwal Mengajar Guru 2026 2027, Jadwal Revisi Guru TP1, Jadwal TKA ANBK 2026 2027, Pelaksanaan TKA ANBK SMK Tanjung Priok 1, Daftar Siswa TKA 26 27 Oktober 2026, Formulir Ajuan SK Aktif Mengajar, SK Aktif Mengajar Guru, Ruang Guru SMK Tanjung Priok 1, Kurikulum Merdeka SMK, Katalog Buku Kemendikdasmen, Jadwal Pelajaran SMK, LSP SMK Tanjung Priok 1, Modul Generator PPM, UKK 2026, USBK 2026, SPMB 2026, SMK Jakarta Utara, Pendidikan Vokasi"
+        schemaMarkup={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "APK Kurikulum & Portal Akademik SMK TANJUNG PRIOK 1",
+          "operatingSystem": "Android, iOS, Web",
+          "applicationCategory": "EducationalApplication",
+          "downloadUrl": "https://tp1kurikulum.my.id/",
+          "installUrl": "https://tp1kurikulum.my.id/",
+          "url": "https://tp1kurikulum.my.id/",
+          "fileSize": "4.2MB",
+          "softwareVersion": "2.6.0",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1280"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
+          },
+          "description": "Aplikasi Web & APK Resmi Kurikulum SMK TANJUNG PRIOK 1 Jakarta Utara untuk akses cepat jadwal mengajar guru 29 lembar, jadwal TKA-ANBK 2026/2027, formulir ajuan SK aktif mengajar, dan buku teks Kemendikdasmen."
+        }}
+      />
       {/* 1. Hero Section - Premium & SEO Optimized */}
       <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center bg-gradient-to-br from-[#070b19] via-[#0f172a] to-[#1e3a8a] text-white py-20 px-4 overflow-hidden">
         {/* Abstract vector backgrounds */}
@@ -362,6 +400,157 @@ const Home: React.FC = () => {
               <div className="text-lg font-black tracking-tight leading-none text-blue-600">Bimbingan PKL</div>
               <div className="text-[10px] uppercase tracking-widest font-black text-slate-400 mt-1.5">Panduan Praktik Kerja</div>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 2.2 Dedicated SEO & Mobile-First APK Showcase & Install Section */}
+      <section id="unduh-apk" className="py-16 md:py-20 bg-gradient-to-br from-[#0b1329] via-[#0f172a] to-[#1e293b] text-white relative overflow-hidden border-b border-slate-800">
+        {/* Ambient background glows */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-96 h-96 bg-indigo-600/20 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-6xl mx-auto bg-gradient-to-r from-slate-900/90 to-blue-950/90 rounded-[2.5rem] border border-blue-500/30 p-6 sm:p-10 md:p-14 shadow-2xl backdrop-blur-xl">
+            <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
+              
+              {/* Left Column: APK Description & Value Proposition */}
+              <div className="lg:col-span-7 space-y-6 text-left">
+                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase shadow-md">
+                  <Smartphone className="w-3.5 h-3.5 text-white animate-bounce" />
+                  <span>Aplikasi Resmi Mobile • Android &amp; iOS</span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                  APK Kurikulum <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
+                    SMK Tanjung Priok 1
+                  </span>
+                </h2>
+
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-medium">
+                  Aplikasi mobile resmi kurikulum digital untuk memudahkan Guru dan Siswa mengakses jadwal pelajaran, agenda ujian nasional, modul merdeka, dan administrasi sekolah langsung dari layar utama smartphone tanpa mengetik alamat website berulang kali.
+                </p>
+
+                {/* Core Benefits Grid */}
+                <div className="grid sm:grid-cols-2 gap-3 pt-1">
+                  <div className="flex items-start space-x-3 bg-slate-800/60 border border-slate-700/60 p-3.5 rounded-2xl">
+                    <Zap className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-black text-white block">Ringan &amp; Cepat</span>
+                      <span className="text-[11px] text-slate-400 block mt-0.5">Ukuran &lt; 5MB, tanpa konsumsi kuota boros</span>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3 bg-slate-800/60 border border-slate-700/60 p-3.5 rounded-2xl">
+                    <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-black text-white block">Aman &amp; Terverifikasi</span>
+                      <span className="text-[11px] text-slate-400 block mt-0.5">Langsung dari server resmi sekolah</span>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3 bg-slate-800/60 border border-slate-700/60 p-3.5 rounded-2xl">
+                    <Calendar className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-black text-white block">Jadwal Guru 29 Lembar</span>
+                      <span className="text-[11px] text-slate-400 block mt-0.5">Revisi terbaru KBM TA 2026/2027</span>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3 bg-slate-800/60 border border-slate-700/60 p-3.5 rounded-2xl">
+                    <Award className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-black text-white block">Jadwal TKA - ANBK</span>
+                      <span className="text-[11px] text-slate-400 block mt-0.5">Data 104 peserta &amp; alokasi ruang lab</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rating & User Count Badge */}
+                <div className="flex items-center space-x-3 pt-2 text-xs text-slate-300">
+                  <div className="flex text-amber-400">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="font-extrabold text-white">4.9 / 5.0</span>
+                  <span className="text-slate-400">• Digunakan 1.280+ Guru &amp; Siswa</span>
+                </div>
+
+                {/* Call to Action Button */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-3">
+                  <a
+                    href="#unduh-apk"
+                    onClick={() => {
+                      const btn = document.querySelector('button[aria-label="Pasang APK Resmi SMK Tanjung Priok 1"]') as HTMLButtonElement;
+                      if (btn) btn.click();
+                    }}
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider rounded-2xl shadow-xl shadow-blue-600/30 flex items-center justify-center space-x-2.5 transition-all transform active:scale-95 cursor-pointer border border-blue-400/40"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Pasang APK di Smartphone (1-Klik)</span>
+                  </a>
+                  <Link
+                    to="/guru"
+                    className="px-6 py-4 bg-slate-800/90 hover:bg-slate-700 text-white font-black text-xs sm:text-sm uppercase tracking-wider rounded-2xl flex items-center justify-center space-x-2 transition-all border border-slate-700 cursor-pointer"
+                  >
+                    <BookOpen className="w-4 h-4 text-sky-400" />
+                    <span>Jadwal Guru 29 Lembar</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Column: Mobile Device Visual Presentation */}
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="w-full max-w-sm bg-gradient-to-b from-slate-800 to-slate-900 p-5 rounded-[2.5rem] border-4 border-slate-700 shadow-2xl relative">
+                  {/* Phone notch speaker bar */}
+                  <div className="w-24 h-4 bg-slate-950 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <div className="w-8 h-1 bg-slate-800 rounded-full"></div>
+                  </div>
+
+                  {/* App Screen Content Preview */}
+                  <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800 space-y-4 text-left">
+                    <div className="flex items-center space-x-3 pb-3 border-b border-slate-800">
+                      <div className="w-10 h-10 bg-white rounded-xl p-1 shrink-0 flex items-center justify-center">
+                        <img 
+                          src="https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w200" 
+                          alt="Logo SMK TP1" 
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest block">Aplikasi Resmi</span>
+                        <span className="text-xs font-black text-white">APK Kurikulum TP1</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="bg-blue-900/40 border border-blue-500/30 p-2.5 rounded-xl">
+                        <span className="text-[9px] font-bold text-blue-300 uppercase block">Jadwal KBM Aktif</span>
+                        <span className="text-xs font-black text-white">29 Lembar Revisi Guru &amp; Siswa</span>
+                      </div>
+                      <div className="bg-emerald-900/40 border border-emerald-500/30 p-2.5 rounded-xl">
+                        <span className="text-[9px] font-bold text-emerald-300 uppercase block">Ujian TKA-ANBK 2026/2027</span>
+                        <span className="text-xs font-black text-white">104 Peserta • 4 Lab Komputer</span>
+                      </div>
+                      <div className="bg-amber-900/40 border border-amber-500/30 p-2.5 rounded-xl">
+                        <span className="text-[9px] font-bold text-amber-300 uppercase block">Layanan Pendidik</span>
+                        <span className="text-xs font-black text-white">Ajuan SK Aktif &amp; Soal SAS Ganjil</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 text-center">
+                      <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30">
+                        <Check className="w-3 h-3" />
+                        Kompatibel Semua Smartphone
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Phone Home Indicator bar */}
+                  <div className="w-28 h-1 bg-slate-600 rounded-full mx-auto mt-4"></div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>

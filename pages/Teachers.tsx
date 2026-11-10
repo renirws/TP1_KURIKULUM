@@ -40,144 +40,149 @@ interface ScheduleImage {
 
 const TEACHER_SCHEDULE_IMAGES: ScheduleImage[] = [
   {
-    originalUrl: "https://drive.google.com/file/d/11cLe9qVMsaqLv9HnACmJvCs_VJxOXvIz/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/11cLe9qVMsaqLv9HnACmJvCs_VJxOXvIz",
-    title: "Halaman 1 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0001_7ce035e5.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0001_7ce035e5.jpg",
+    title: "Halaman 1 • Jadwal Revisi Guru (M. Arif, S.Kom)"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1FXNyO3UXJgIePQ3751sTMV1u4O95im-B/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1FXNyO3UXJgIePQ3751sTMV1u4O95im-B",
-    title: "Halaman 2 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0002_ed6ec3fe.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0002_ed6ec3fe.jpg",
+    title: "Halaman 2 • Jadwal Revisi Guru (Tias Hadaning, S.Pd)"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1cJ6cT6-gXY-fWMB-4HEREpIdzIrn1onI/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1cJ6cT6-gXY-fWMB-4HEREpIdzIrn1onI",
-    title: "Halaman 3 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0003_ce64a34e.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0003_ce64a34e.jpg",
+    title: "Halaman 3 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1XPA2UL-pXGpP5zoglPnDVdtGU3KoXtce/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1XPA2UL-pXGpP5zoglPnDVdtGU3KoXtce",
-    title: "Halaman 4 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0004_099e4954.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0004_099e4954.jpg",
+    title: "Halaman 4 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1Kp8G895Tb2X2UvaEYT-op77B4T0YJ2Q2/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1Kp8G895Tb2X2UvaEYT-op77B4T0YJ2Q2",
-    title: "Halaman 5 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0005_e37880b7.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0005_e37880b7.jpg",
+    title: "Halaman 5 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1QBKRVO8b__W9LpXMUYE5KSnBx8Np9dDr/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1QBKRVO8b__W9LpXMUYE5KSnBx8Np9dDr",
-    title: "Halaman 6 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0006_5ae0b51d.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0006_5ae0b51d.jpg",
+    title: "Halaman 6 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/18nQ7rjDuRdkKIaUdBF-8K3_YYH5F2nQw/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/18nQ7rjDuRdkKIaUdBF-8K3_YYH5F2nQw",
-    title: "Halaman 7 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0007_b101094f.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0007_b101094f.jpg",
+    title: "Halaman 7 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1ZyzfkkY_0O3ULwr7QlurbXwmBSNtpJmu/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1ZyzfkkY_0O3ULwr7QlurbXwmBSNtpJmu",
-    title: "Halaman 8 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0008_eab2b7f5.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0008_eab2b7f5.jpg",
+    title: "Halaman 8 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1O96p2YObGAkjqOW-4aVHVp--tNFIPndW/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1O96p2YObGAkjqOW-4aVHVp--tNFIPndW",
-    title: "Halaman 9 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0009_1b83bcf3.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0009_1b83bcf3.jpg",
+    title: "Halaman 9 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1UinfrhlKPtA3aiZ3fh4Jc8mpkoPDsS4O/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1UinfrhlKPtA3aiZ3fh4Jc8mpkoPDsS4O",
-    title: "Halaman 10 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0010_f849f2ef.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0010_f849f2ef.jpg",
+    title: "Halaman 10 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/14Z6e3XLfEHbfHIpwPfyy1XM4FU_1OUWs/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/14Z6e3XLfEHbfHIpwPfyy1XM4FU_1OUWs",
-    title: "Halaman 11 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0011_055fae5f.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0011_055fae5f.jpg",
+    title: "Halaman 11 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1f5SHDVOxWqzX4FLAxcCZaUaH8ul-zSdf/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1f5SHDVOxWqzX4FLAxcCZaUaH8ul-zSdf",
-    title: "Halaman 12 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0012_bf67ce5a.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0012_bf67ce5a.jpg",
+    title: "Halaman 12 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1QSWwqq8aqrL84QI6U2txSJQcs_nSXesA/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1QSWwqq8aqrL84QI6U2txSJQcs_nSXesA",
-    title: "Halaman 13 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0013_3b625845.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0013_3b625845.jpg",
+    title: "Halaman 13 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1UYwgpjDFLLzQYrT-lK-oAjAyBqWM8RtX/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1UYwgpjDFLLzQYrT-lK-oAjAyBqWM8RtX",
-    title: "Halaman 14 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0014_b41ea693.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0014_b41ea693.jpg",
+    title: "Halaman 14 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1fBPbE8bfQZL1-taxxA07L3Nljz20S9tJ/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1fBPbE8bfQZL1-taxxA07L3Nljz20S9tJ",
-    title: "Halaman 15 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0015_0a5e5665.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0015_0a5e5665.jpg",
+    title: "Halaman 15 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1sjwTmAoP8ljH2COpymylDg0HfyEzLdM6/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1sjwTmAoP8ljH2COpymylDg0HfyEzLdM6",
-    title: "Halaman 16 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0016_04c37bed.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0016_04c37bed.jpg",
+    title: "Halaman 16 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1qvrSUT11kL56QxSZyT6_aSKKh_NEymEV/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1qvrSUT11kL56QxSZyT6_aSKKh_NEymEV",
-    title: "Halaman 17 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0017_23c6cb9e.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0017_23c6cb9e.jpg",
+    title: "Halaman 17 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1UOozplmKgiKKiF87mdkH76EehV9Kioa5/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1UOozplmKgiKKiF87mdkH76EehV9Kioa5",
-    title: "Halaman 18 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0018_7abe5ca8.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0018_7abe5ca8.jpg",
+    title: "Halaman 18 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1G04kVSEWtJlxvVBm17t5W4SIfeBksFYr/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1G04kVSEWtJlxvVBm17t5W4SIfeBksFYr",
-    title: "Halaman 19 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0019_9317246b.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0019_9317246b.jpg",
+    title: "Halaman 19 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1sZ7BjtDAOJJMubo78Znc2dgrkY46dFxT/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1sZ7BjtDAOJJMubo78Znc2dgrkY46dFxT",
-    title: "Halaman 20 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0020_d401e9f4.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0020_d401e9f4.jpg",
+    title: "Halaman 20 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/19cibj-g5DCXmfT1jL8_GT2KsS5hrMATr/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/19cibj-g5DCXmfT1jL8_GT2KsS5hrMATr",
-    title: "Halaman 21 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0021_1183d9c0.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0021_1183d9c0.jpg",
+    title: "Halaman 21 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1rJNBfMgbBAF7u6jxY-3ZiyjP9CJloh3v/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1rJNBfMgbBAF7u6jxY-3ZiyjP9CJloh3v",
-    title: "Halaman 22 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0022_586c92ab.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0022_586c92ab.jpg",
+    title: "Halaman 22 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1oB-2xbF3rGnaS7jr1P75GyBplND7TyX0/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1oB-2xbF3rGnaS7jr1P75GyBplND7TyX0",
-    title: "Halaman 23 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0023_9fae08fa.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0023_9fae08fa.jpg",
+    title: "Halaman 23 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1dv9bk0M1hLaG9cFbJQ2_1_j3mgf9cbmQ/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1dv9bk0M1hLaG9cFbJQ2_1_j3mgf9cbmQ",
-    title: "Halaman 24 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0024_4b507f40.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0024_4b507f40.jpg",
+    title: "Halaman 24 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1CZ7CHDcUizNvD1RrAQXQQJz6OL8aNuIp/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1CZ7CHDcUizNvD1RrAQXQQJz6OL8aNuIp",
-    title: "Halaman 25 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0025_0526bae4.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0025_0526bae4.jpg",
+    title: "Halaman 25 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1QJfOXPOWzjX6hWgsN4B2lCUEBJGVMkFE/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1QJfOXPOWzjX6hWgsN4B2lCUEBJGVMkFE",
-    title: "Halaman 26 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0026_b7c83c20.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0026_b7c83c20.jpg",
+    title: "Halaman 26 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1PHsenjYEevFkjePgHWVbidc53IFhVwlC/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1PHsenjYEevFkjePgHWVbidc53IFhVwlC",
-    title: "Halaman 27 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0027_a39f0b13.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0027_a39f0b13.jpg",
+    title: "Halaman 27 • Jadwal Revisi Guru TA 2026/2027"
   },
   {
-    originalUrl: "https://drive.google.com/file/d/1YDEnWyWouENWIo_xB5cy7P1KZ7WdRFEY/view?usp=drive_link",
-    directUrl: "https://lh3.googleusercontent.com/d/1YDEnWyWouENWIo_xB5cy7P1KZ7WdRFEY",
-    title: "Halaman 28 • Jadwal Mengajar Guru"
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0028_c5812ebe.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0028_c5812ebe.jpg",
+    title: "Halaman 28 • Jadwal Revisi Guru TA 2026/2027"
+  },
+  {
+    originalUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0029_bc93dc77.jpg",
+    directUrl: "/assets/aistudio/jadwal_revisi_ngajar_page-0029_bc93dc77.jpg",
+    title: "Halaman 29 • Jadwal Revisi Guru TA 2026/2027"
   }
 ];
 
@@ -368,7 +373,7 @@ const Teachers: React.FC = () => {
     <div className="bg-gray-50 min-h-screen overflow-x-hidden w-full">
       <SEO 
         title="Formulir Ajuan SK Aktif Mengajar & Ruang Guru SMK Tanjung Priok 1 | Portal Pendidik TA 2026/2027"
-        description="Akses resmi Formulir Ajuan SK Aktif Mengajar Guru SMK Tanjung Priok 1 (https://forms.gle/3KAELyz4A8KMXsDR6), portal login Ruang Guru, Jadwal Mengajar Guru TA 2026/2027 terlengkap 28 lembar, sistem administrasi kelas, SK mengajar, serta layanan permohonan pendidik vokasi yang cepat dan responsif di smartphone."
+        description="Akses resmi Formulir Ajuan SK Aktif Mengajar Guru SMK Tanjung Priok 1 (https://forms.gle/3KAELyz4A8KMXsDR6), portal login Ruang Guru, Jadwal Revisi Mengajar Guru TA 2026/2027 terlengkap 29 lembar, sistem administrasi kelas, SK mengajar, serta layanan permohonan pendidik vokasi yang cepat dan responsif di smartphone."
         keywords="Formulir Ajuan SK Aktif Mengajar, SK Aktif Mengajar SMK Tanjung Priok 1, Pengajuan SK Mengajar Online, Ruang Guru SMK Tanjung Priok 1, Jadwal Mengajar Guru, Kurikulum SMK Tanjung Priok 1, Administrasi Guru, Perangkat Pembelajaran, Portal Pendidik Vokasi, APK Kurikulum TP1 Mobile"
         schemaMarkup={{
           "@context": "https://schema.org",
@@ -422,7 +427,7 @@ const Teachers: React.FC = () => {
                 </div>
                 <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-300">
                   <BookOpen className="w-3.5 h-3.5 text-sky-400" />
-                  <span>28 Lembar Jadwal Guru</span>
+                  <span>29 Lembar Jadwal Revisi Guru</span>
                 </div>
                 <div className="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-300">
                   <Clock className="w-3.5 h-3.5 text-emerald-400" />

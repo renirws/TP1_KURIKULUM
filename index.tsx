@@ -15,3 +15,13 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// Register Service Worker for offline capability & PWA installability
+if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // SW registration fallback
+    });
+  });
+}
+
