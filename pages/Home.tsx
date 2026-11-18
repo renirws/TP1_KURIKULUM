@@ -511,8 +511,10 @@ const Home: React.FC = () => {
                     <div className="flex items-center space-x-3 pb-3 border-b border-slate-800">
                       <div className="w-10 h-10 bg-white rounded-xl p-1 shrink-0 flex items-center justify-center">
                         <img 
-                          src="https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w200" 
+                          src="/assets/aistudio/logo_smk_100_px_f1891ed0.jpg" 
                           alt="Logo SMK TP1" 
+                          width="40"
+                          height="40"
                           className="w-full h-full object-contain"
                         />
                       </div>
@@ -968,7 +970,7 @@ const Home: React.FC = () => {
               title="Akses Katalog Buku Kemendikdasmen RI"
               date="Kemendikdasmen RI"
               excerpt="Akses & unduh gratis ribuan Buku Teks Siswa SMK (Fase E & F), Buku Panduan Guru, serta Buku Pengayaan resmi dari Kemendikdasmen RI."
-              imageUrl="https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w800"
+              imageUrl="/assets/aistudio/logo_smk_100_px_f1891ed0.jpg"
               link="/warta#katalog-buku"
             />
             <AnnouncementCard 
@@ -1221,7 +1223,9 @@ const AnnouncementCard: React.FC<{ category: string, title: string, date: string
                 height="360"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
+                  imageUrl.includes('logo_smk') ? 'object-contain bg-white p-3' : 'object-cover'
+                }`}
                 referrerPolicy="no-referrer"
               />
             </div>

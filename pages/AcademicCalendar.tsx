@@ -368,7 +368,7 @@ const AcademicCalendar: React.FC = () => {
             "addressCountry": "ID"
           },
           "url": "https://smktanjungpriok1.sch.id",
-          "logo": "https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w200",
+          "logo": "https://tp1kurikulum.my.id/assets/aistudio/logo_smk_100_px_f1891ed0.jpg",
           "image": "https://drive.google.com/thumbnail?id=1MtVR3nnr0g8nkLo2kZQc_afBTspy8qOG&sz=w1600",
           "telephone": "+62214301192",
           "email": "smk1dikantara@gmail.com",

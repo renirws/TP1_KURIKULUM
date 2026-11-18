@@ -5,8 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  // Using a direct link format for Google Drive thumbnail/preview for better reliability
-  const logoUrl = "https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w200";
+  const logoUrl = "/assets/aistudio/logo_smk_100_px_f1891ed0.jpg";
 
   const navLinks = [
     { name: 'Beranda', path: '/' },
@@ -30,8 +29,8 @@ export const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-24">
           {/* Logo Section */}
-          <Link to="/" className="flex items-center space-x-4">
-            <div className="w-16 h-16 bg-white p-1 shadow-sm rounded-lg overflow-hidden border border-gray-100 flex items-center justify-center">
+          <Link to="/" className="flex items-center space-x-3 sm:space-x-4 min-w-0">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white p-1 shadow-sm rounded-xl overflow-hidden border border-slate-100 flex items-center justify-center shrink-0">
                <img 
                 src={logoUrl} 
                 alt="Logo SMK Tanjung Priok 1" 
@@ -41,14 +40,11 @@ export const Navbar: React.FC = () => {
                 fetchPriority="high"
                 decoding="async"
                 className="w-full h-full object-contain"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/64?text=ST1";
-                }}
               />
             </div>
-            <div>
-              <span className="block text-xl md:text-2xl font-black text-[#0f172a] leading-tight">SMK TANJUNG PRIOK 1</span>
-              <p className="text-xs text-[#3b82f6] uppercase tracking-widest font-black italic">Excellent and Professional</p>
+            <div className="min-w-0">
+              <span className="block text-lg sm:text-xl md:text-2xl font-black text-[#0f172a] leading-tight truncate">SMK TANJUNG PRIOK 1</span>
+              <p className="text-[10px] sm:text-xs text-[#3b82f6] uppercase tracking-widest font-black italic truncate">Excellent and Professional</p>
             </div>
           </Link>
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
-  const footerLogoUrl = "https://drive.google.com/thumbnail?id=1jzEQMGw4tEbkBsubQ3HB5Xg__X_0lIFA&sz=w200";
+  const footerLogoUrl = "/assets/aistudio/logo_smk_100_px_f1891ed0.jpg";
 
   return (
     <footer className="bg-[#0f172a] text-white pt-24 pb-12">
@@ -12,14 +12,15 @@ export const Footer: React.FC = () => {
           {/* Brand */}
           <div className="space-y-8">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white p-2 rounded-2xl flex items-center justify-center shadow-xl overflow-hidden">
+              <div className="w-16 h-16 bg-white p-1.5 rounded-2xl flex items-center justify-center shadow-xl overflow-hidden shrink-0">
                 <img 
                   src={footerLogoUrl} 
                   alt="Logo SMK Tanjung Priok 1" 
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/64?text=ST1";
-                  }}
                 />
               </div>
               <h2 className="text-2xl font-black tracking-tighter">SMK TANJUNG <br/>PRIOK 1</h2>

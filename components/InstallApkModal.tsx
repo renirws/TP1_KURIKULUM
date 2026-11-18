@@ -128,8 +128,10 @@ export const InstallApkModal: React.FC = () => {
                 <div className="flex items-center space-x-3 mb-2">
                   <div className="w-12 h-12 rounded-2xl bg-white p-1.5 shadow-md flex items-center justify-center shrink-0">
                     <img 
-                      src="https://drive.google.com/thumbnail?id=1aVGydXBLShtJ0v7HrEutC1V8zEMMbGOd&sz=w200" 
+                      src="/assets/aistudio/logo_smk_100_px_f1891ed0.jpg" 
                       alt="Logo SMK Tanjung Priok 1" 
+                      width="48"
+                      height="48"
                       className="w-full h-full object-contain"
                     />
                   </div>
