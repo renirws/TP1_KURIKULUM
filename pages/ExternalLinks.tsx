@@ -22,7 +22,8 @@ import {
   ArrowRight,
   ExternalLink as ExternalLinkIcon,
   Sparkle,
-  ClipboardCheck
+  ClipboardCheck,
+  FileSpreadsheet
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { Link } from 'react-router-dom';
@@ -97,6 +98,18 @@ const ExternalLinks: React.FC = () => {
       tag: "Inventaris Kelas",
       officialBadge: "Wali Kelas TP1",
       actionText: "Isi Form Inventaris"
+    },
+    {
+      id: "unggah-leger-kelas",
+      title: "UNGGAH LEGER KELAS",
+      description: "Formulir daring pengiriman dan pengumpulan berkas leger nilai kelas binaan bagi Wali Kelas SMK Tanjung Priok 1. Cepat, praktis, dan kompatibel dengan smartphone.",
+      url: "https://forms.gle/PDwCM8MjNYzbV2v88",
+      icon: <FileSpreadsheet className="w-8 h-8" />,
+      color: "from-violet-600 via-purple-600 to-indigo-700",
+      category: "guru",
+      tag: "Leger Kelas",
+      officialBadge: "Wali Kelas TP1",
+      actionText: "Unggah Leger Kelas"
     },
     {
       id: "ruang-guru",

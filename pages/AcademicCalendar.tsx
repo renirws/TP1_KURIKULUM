@@ -26,7 +26,8 @@ import {
   ExternalLink,
   ClipboardCheck,
   Smartphone,
-  Copy
+  Copy,
+  FileSpreadsheet
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
@@ -52,17 +53,26 @@ const AcademicCalendar: React.FC = () => {
   const [hoveredDayInfo, setHoveredDayInfo] = useState<{ month: string; date: number; label: string; type: string } | null>(null);
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
   const [copiedInventarisLink, setCopiedInventarisLink] = useState<boolean>(false);
+  const [copiedLegerLink, setCopiedLegerLink] = useState<boolean>(false);
 
   const teacherDriveLink = "https://drive.google.com/drive/folders/1HxQQYr6xHylifV_ry07JH1vM3Bw2m5Bk?usp=drive_link";
   const usPrakLink = "https://s.id/UsPrak25-26";
   const dispensasiUploadLink = "https://forms.gle/ADw1HZ3FYqqu68Jd8";
   const uploadSoalSasLink = "https://s.id/UploadSoalSASGanjil2026";
   const inventarisKelasBinaanLink = "https://forms.gle/UfMpkapzdybaTwqR8";
+  const legerKelasLink = "https://forms.gle/PDwCM8MjNYzbV2v88";
 
   const handleCopyInventarisLink = () => {
     navigator.clipboard.writeText(inventarisKelasBinaanLink).then(() => {
       setCopiedInventarisLink(true);
       setTimeout(() => setCopiedInventarisLink(false), 2500);
+    });
+  };
+
+  const handleCopyLegerLink = () => {
+    navigator.clipboard.writeText(legerKelasLink).then(() => {
+      setCopiedLegerLink(true);
+      setTimeout(() => setCopiedLegerLink(false), 2500);
     });
   };
   
@@ -338,9 +348,9 @@ const AcademicCalendar: React.FC = () => {
   return (
     <div className="bg-slate-50 min-h-screen pb-24 overflow-x-hidden">
       <SEO 
-        title="Unggah & Unduh Berkas Akademik, Kalender Pendidikan & Form Inventaris Kelas Binaan | SMK TANJUNG PRIOK 1"
-        description="Portal Unggah & Unduh Berkas resmi SMK Tanjung Priok 1 Jakarta Utara: Form Inventaris Kelas Binaan Wali Kelas, Unggah Soal SAS Ganjil TA 2026/2027, Formulir Dispensasi Siswa, Data USPrak, dan Kalender Pendidikan 2026/2027 yang cepat dan kompatibel di smartphone."
-        keywords="Form Inventaris Kelas Binaan, Inventaris Kelas SMK Tanjung Priok 1, Unggah Berkas SMK Tanjung Priok 1, Upload Soal SAS Ganjil 2026, Kalender Pendidikan SMK Tanjung Priok 1, Portal Guru Mobile"
+        title="Unggah & Unduh Berkas Akademik, Leger Kelas & Inventaris | SMK TANJUNG PRIOK 1"
+        description="Portal Unggah & Unduh Berkas resmi SMK Tanjung Priok 1 Jakarta Utara: Unggah Leger Kelas, Form Inventaris Kelas Binaan Wali Kelas, Unggah Soal SAS Ganjil TA 2026/2027, Formulir Dispensasi Siswa, Data USPrak, dan Kalender Pendidikan 2026/2027 yang cepat dan kompatibel di smartphone."
+        keywords="Unggah Leger Kelas, Leger Nilai SMK Tanjung Priok 1, Form Inventaris Kelas Binaan, Unggah Berkas SMK Tanjung Priok 1, Upload Soal SAS Ganjil 2026, Kalender Pendidikan SMK Tanjung Priok 1, Portal Guru Mobile"
         canonical="https://tp1kurikulum.my.id/berkas"
       />
       {/* Dynamic SEO JSON-LD Structured Data */}
@@ -829,9 +839,9 @@ const AcademicCalendar: React.FC = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-xl font-black">Pengiriman Berkas, Soal Ujian, Inventaris & Perizinan</h4>
+                  <h4 className="text-xl font-black">Pengiriman Berkas, Soal Ujian, Leger, Inventaris & Perizinan</h4>
                   <p className="text-indigo-200/80 font-medium text-xs leading-relaxed">
-                    Unggah naskah soal SAS Ganjil TA 2026/2027, isi formulir inventaris kelas binaan wali kelas, dokumen perizinan siswa, atau laporan guru ke server sekolah langsung dari HP maupun laptop.
+                    Unggah naskah soal SAS Ganjil TA 2026/2027, unggah leger kelas, isi formulir inventaris kelas binaan wali kelas, dokumen perizinan siswa, atau laporan guru ke server sekolah langsung dari HP maupun laptop.
                   </p>
                 </div>
 
@@ -909,6 +919,60 @@ const AcademicCalendar: React.FC = () => {
                         ) : (
                           <>
                             <Copy className="w-4 h-4 text-cyan-200 shrink-0" />
+                            <span>Salin Link</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Unggah Leger Kelas Card */}
+                  <div id="unggah-leger-kelas" className="scroll-mt-24 bg-gradient-to-r from-violet-600/90 via-purple-600/90 to-indigo-700/90 rounded-2xl p-4 sm:p-5 border border-violet-300/40 shadow-xl space-y-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-start space-x-3 min-w-0">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 mt-0.5">
+                          <FileSpreadsheet className="w-5 h-5 text-violet-100" />
+                        </div>
+                        <div className="text-left min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="bg-white/25 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Wali Kelas</span>
+                            <span className="text-[10px] text-violet-100 font-bold uppercase tracking-wider">Rekap & Nilai</span>
+                          </div>
+                          <h5 className="text-sm sm:text-base font-black text-white leading-tight mt-1">
+                            UNGGAH LEGER KELAS
+                          </h5>
+                          <p className="text-[11px] sm:text-xs text-violet-50/90 font-medium leading-relaxed mt-1">
+                            Portal pengiriman dan pengumpulan berkas leger nilai kelas binaan wali kelas secara daring, cepat, dan mudah diakses lewat smartphone.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+                      <a
+                        href={legerKelasLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-white hover:bg-violet-50 text-slate-900 font-black py-3.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-[0.98] shadow-md border-b-4 border-violet-200 flex items-center justify-center space-x-2 touch-manipulation"
+                      >
+                        <FileSpreadsheet className="w-4 h-4 text-violet-600 shrink-0" />
+                        <span>UNGGAH LEGER KELAS</span>
+                        <ExternalLink className="w-3.5 h-3.5 text-violet-600 shrink-0" />
+                      </a>
+                      <button
+                        type="button"
+                        onClick={handleCopyLegerLink}
+                        className="sm:w-auto bg-slate-900/60 hover:bg-slate-900/80 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all active:scale-[0.98] border border-white/20 flex items-center justify-center space-x-1.5 cursor-pointer touch-manipulation"
+                        title="Salin tautan Unggah Leger Kelas"
+                      >
+                        {copiedLegerLink ? (
+                          <>
+                            <Check className="w-4 h-4 text-emerald-300 shrink-0" />
+                            <span className="text-emerald-200">Tersalin!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4 text-violet-200 shrink-0" />
                             <span>Salin Link</span>
                           </>
                         )}
