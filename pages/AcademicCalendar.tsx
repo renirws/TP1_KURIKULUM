@@ -23,8 +23,12 @@ import {
   BookMarked,
   X,
   ZoomIn,
-  ExternalLink
+  ExternalLink,
+  ClipboardCheck,
+  Smartphone,
+  Copy
 } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 // Type definitions for calendar items
 type CategoryType = 'HBE' | 'LS' | 'MPLS' | 'ANBK' | 'STS_SAS' | 'UKK' | 'LHB_LHR' | 'LU' | 'CUTI';
@@ -47,11 +51,20 @@ const AcademicCalendar: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<CategoryType | 'ALL'>('ALL');
   const [hoveredDayInfo, setHoveredDayInfo] = useState<{ month: string; date: number; label: string; type: string } | null>(null);
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
+  const [copiedInventarisLink, setCopiedInventarisLink] = useState<boolean>(false);
 
   const teacherDriveLink = "https://drive.google.com/drive/folders/1HxQQYr6xHylifV_ry07JH1vM3Bw2m5Bk?usp=drive_link";
   const usPrakLink = "https://s.id/UsPrak25-26";
   const dispensasiUploadLink = "https://forms.gle/ADw1HZ3FYqqu68Jd8";
   const uploadSoalSasLink = "https://s.id/UploadSoalSASGanjil2026";
+  const inventarisKelasBinaanLink = "https://forms.gle/UfMpkapzdybaTwqR8";
+
+  const handleCopyInventarisLink = () => {
+    navigator.clipboard.writeText(inventarisKelasBinaanLink).then(() => {
+      setCopiedInventarisLink(true);
+      setTimeout(() => setCopiedInventarisLink(false), 2500);
+    });
+  };
   
   const downloadableFiles = [
     { 
@@ -323,7 +336,13 @@ const AcademicCalendar: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-24">
+    <div className="bg-slate-50 min-h-screen pb-24 overflow-x-hidden">
+      <SEO 
+        title="Unggah & Unduh Berkas Akademik, Kalender Pendidikan & Form Inventaris Kelas Binaan | SMK TANJUNG PRIOK 1"
+        description="Portal Unggah & Unduh Berkas resmi SMK Tanjung Priok 1 Jakarta Utara: Form Inventaris Kelas Binaan Wali Kelas, Unggah Soal SAS Ganjil TA 2026/2027, Formulir Dispensasi Siswa, Data USPrak, dan Kalender Pendidikan 2026/2027 yang cepat dan kompatibel di smartphone."
+        keywords="Form Inventaris Kelas Binaan, Inventaris Kelas SMK Tanjung Priok 1, Unggah Berkas SMK Tanjung Priok 1, Upload Soal SAS Ganjil 2026, Kalender Pendidikan SMK Tanjung Priok 1, Portal Guru Mobile"
+        canonical="https://tp1kurikulum.my.id/berkas"
+      />
       {/* Dynamic SEO JSON-LD Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify({
@@ -758,13 +777,13 @@ const AcademicCalendar: React.FC = () => {
 
             <div className="grid gap-4">
               {downloadableFiles.map((file, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:border-slate-200 transition flex items-center justify-between group">
-                  <div className="flex items-center space-x-5">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-indigo-50 transition">
+                <div key={idx} className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:border-slate-200 transition flex items-center justify-between gap-3 group">
+                  <div className="flex items-center space-x-3.5 sm:space-x-5 min-w-0">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-indigo-50 transition shrink-0">
                       {file.icon}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 group-hover:text-indigo-900 transition">{file.name}</h4>
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-indigo-900 transition leading-snug">{file.name}</h4>
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
                         {file.type} • {file.size}
                       </p>
@@ -774,7 +793,7 @@ const AcademicCalendar: React.FC = () => {
                     href={file.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3.5 bg-slate-50 rounded-2xl text-indigo-600 hover:bg-indigo-900 hover:text-white transition shadow-sm"
+                    className="p-3 sm:p-3.5 bg-slate-50 rounded-2xl text-indigo-600 hover:bg-indigo-900 hover:text-white transition shadow-sm shrink-0 touch-manipulation"
                     aria-label={`Unduh ${file.name}`}
                   >
                     <Download className="w-5 h-5" />
@@ -785,7 +804,7 @@ const AcademicCalendar: React.FC = () => {
           </div>
 
           {/* Upload Portal Card */}
-          <div className="space-y-6">
+          <div id="unggah-berkas" className="space-y-6 scroll-mt-24">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600">
                 <Upload className="w-5 h-5" />
@@ -793,19 +812,26 @@ const AcademicCalendar: React.FC = () => {
               <h3 className="text-2xl font-black text-slate-900">Sistem Unggah Berkas</h3>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-[2.5rem] p-8 text-white relative overflow-hidden shadow-xl border-b-8 border-indigo-600">
+            <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-[2.5rem] p-6 sm:p-8 text-white relative overflow-hidden shadow-xl border-b-8 border-indigo-600">
               <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                 <School className="w-32 h-32" />
               </div>
 
               <div className="relative z-10 space-y-6">
-                <div className="inline-block bg-indigo-600 text-[10px] font-black tracking-widest uppercase px-4 py-1.5 rounded-full">
-                  PORTAL AKADEMIK TERPADU
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-block bg-indigo-600 text-[10px] font-black tracking-widest uppercase px-4 py-1.5 rounded-full">
+                    PORTAL AKADEMIK TERPADU
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 bg-sky-500/20 border border-sky-400/30 text-sky-200 text-[10px] font-bold px-3 py-1 rounded-full">
+                    <Smartphone className="w-3 h-3 text-sky-300" />
+                    <span>Kompatibel Smartphone</span>
+                  </div>
                 </div>
+
                 <div className="space-y-2">
-                  <h4 className="text-xl font-black">Pengiriman Berkas, Soal Ujian & Perizinan</h4>
+                  <h4 className="text-xl font-black">Pengiriman Berkas, Soal Ujian, Inventaris & Perizinan</h4>
                   <p className="text-indigo-200/80 font-medium text-xs leading-relaxed">
-                    Unggah naskah soal SAS Ganjil TA 2026/2027, tugas praktik mandiri, dokumen pendukung perizinan siswa, atau laporan guru ke server sekolah. Gunakan akun email institusi resmi Anda.
+                    Unggah naskah soal SAS Ganjil TA 2026/2027, isi formulir inventaris kelas binaan wali kelas, dokumen perizinan siswa, atau laporan guru ke server sekolah langsung dari HP maupun laptop.
                   </p>
                 </div>
 
@@ -815,7 +841,7 @@ const AcademicCalendar: React.FC = () => {
                     href={uploadSoalSasLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="group relative block w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-white p-4 sm:p-5 rounded-2xl font-black transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-[0.98] border-b-4 border-amber-800"
+                    className="group relative block w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-white p-4 sm:p-5 rounded-2xl font-black transition-all duration-300 shadow-xl hover:scale-[1.01] active:scale-[0.98] border-b-4 border-amber-800 touch-manipulation"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center space-x-3 min-w-0">
@@ -823,11 +849,11 @@ const AcademicCalendar: React.FC = () => {
                           <Upload className="w-5 h-5 text-yellow-100" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="flex items-center space-x-2">
+                          <div className="flex flex-wrap items-center gap-1.5">
                             <span className="bg-white/20 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Prioritas Utama</span>
                             <span className="text-[10px] text-amber-100 font-bold uppercase tracking-wider">TA 2026/2027</span>
                           </div>
-                          <h5 className="text-xs sm:text-sm md:text-base font-black truncate text-white leading-tight mt-0.5">
+                          <h5 className="text-xs sm:text-sm md:text-base font-black text-white leading-tight mt-0.5 break-words">
                             UNGGAH SOAL SAS GANJIL TA 2026/2027
                           </h5>
                         </div>
@@ -836,11 +862,65 @@ const AcademicCalendar: React.FC = () => {
                     </div>
                   </a>
 
+                  {/* Form Inventaris Kelas Binaan Card */}
+                  <div id="inventaris-kelas-binaan" className="scroll-mt-24 bg-gradient-to-r from-cyan-600/90 via-sky-600/90 to-blue-700/90 rounded-2xl p-4 sm:p-5 border border-cyan-300/40 shadow-xl space-y-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-start space-x-3 min-w-0">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 mt-0.5">
+                          <ClipboardCheck className="w-5 h-5 text-cyan-100" />
+                        </div>
+                        <div className="text-left min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="bg-white/25 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Wali Kelas</span>
+                            <span className="text-[10px] text-cyan-100 font-bold uppercase tracking-wider">Sarpras & Kelas</span>
+                          </div>
+                          <h5 className="text-sm sm:text-base font-black text-white leading-tight mt-1">
+                            FORM INVENTARIS KELAS BINAAN
+                          </h5>
+                          <p className="text-[11px] sm:text-xs text-cyan-50/90 font-medium leading-relaxed mt-1">
+                            Pelaporan & pendataan kondisi sarana prasarana serta perlengkapan ruang kelas binaan secara daring lewat smartphone.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+                      <a
+                        href={inventarisKelasBinaanLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-white hover:bg-cyan-50 text-slate-900 font-black py-3.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-[0.98] shadow-md border-b-4 border-cyan-200 flex items-center justify-center space-x-2 touch-manipulation"
+                      >
+                        <ClipboardCheck className="w-4 h-4 text-sky-600 shrink-0" />
+                        <span>ISI FORM INVENTARIS</span>
+                        <ExternalLink className="w-3.5 h-3.5 text-sky-600 shrink-0" />
+                      </a>
+                      <button
+                        type="button"
+                        onClick={handleCopyInventarisLink}
+                        className="sm:w-auto bg-slate-900/60 hover:bg-slate-900/80 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all active:scale-[0.98] border border-white/20 flex items-center justify-center space-x-1.5 cursor-pointer touch-manipulation"
+                        title="Salin tautan Form Inventaris Kelas Binaan"
+                      >
+                        {copiedInventarisLink ? (
+                          <>
+                            <Check className="w-4 h-4 text-emerald-300 shrink-0" />
+                            <span className="text-emerald-200">Tersalin!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4 text-cyan-200 shrink-0" />
+                            <span>Salin Link</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
                   <a 
                     href={teacherDriveLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-indigo-600 hover:bg-indigo-700 py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-indigo-900 flex items-center justify-center space-x-2"
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.01] active:scale-[0.98] border-b-4 border-indigo-900 flex items-center justify-center space-x-2 touch-manipulation"
                   >
                     <School className="w-4.5 h-4.5 text-indigo-200 shrink-0" />
                     <span>AKSES PORTAL GURU (GOOGLE DRIVE)</span>
@@ -850,7 +930,7 @@ const AcademicCalendar: React.FC = () => {
                     href={usPrakLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-white text-slate-900 hover:bg-slate-50 py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-slate-300 flex items-center justify-center space-x-2"
+                    className="w-full bg-white text-slate-900 hover:bg-slate-50 py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.01] active:scale-[0.98] border-b-4 border-slate-300 flex items-center justify-center space-x-2 touch-manipulation"
                   >
                     <FileText className="w-4.5 h-4.5 text-blue-600 shrink-0" />
                     <span>KIRIM DATA USPRAK TA 2026/2027</span>
@@ -860,7 +940,7 @@ const AcademicCalendar: React.FC = () => {
                     href={dispensasiUploadLink}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.02] active:scale-[0.98] border-b-4 border-emerald-900 flex items-center justify-center space-x-2"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-4 px-4 rounded-2xl font-black text-center text-xs md:text-sm transition shadow-lg hover:scale-[1.01] active:scale-[0.98] border-b-4 border-emerald-900 flex items-center justify-center space-x-2 touch-manipulation"
                   >
                     <BookMarked className="w-4.5 h-4.5 text-emerald-200 shrink-0" />
                     <span>UNGGAH SURAT DISPENSASI & IZIN SISWA</span>

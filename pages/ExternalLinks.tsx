@@ -21,7 +21,8 @@ import {
   GraduationCap,
   ArrowRight,
   ExternalLink as ExternalLinkIcon,
-  Sparkle
+  Sparkle,
+  ClipboardCheck
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { Link } from 'react-router-dom';
@@ -84,6 +85,18 @@ const ExternalLinks: React.FC = () => {
       featured: true,
       officialBadge: "Layanan Resmi Guru TP1",
       actionText: "Isi Formulir Ajuan SK"
+    },
+    {
+      id: "inventaris-kelas-binaan",
+      title: "FORM INVENTARIS KELAS BINAAN",
+      description: "Formulir pelaporan dan pendataan kondisi sarana prasarana serta perlengkapan ruang kelas binaan bagi Wali Kelas SMK Tanjung Priok 1. Cepat diisi langsung dari smartphone maupun laptop.",
+      url: "https://forms.gle/UfMpkapzdybaTwqR8",
+      icon: <ClipboardCheck className="w-8 h-8" />,
+      color: "from-cyan-600 via-sky-600 to-blue-700",
+      category: "guru",
+      tag: "Inventaris Kelas",
+      officialBadge: "Wali Kelas TP1",
+      actionText: "Isi Form Inventaris"
     },
     {
       id: "ruang-guru",
