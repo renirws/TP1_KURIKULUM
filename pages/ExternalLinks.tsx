@@ -23,7 +23,9 @@ import {
   ExternalLink as ExternalLinkIcon,
   Sparkle,
   ClipboardCheck,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Truck,
+  PackageCheck
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { Link } from 'react-router-dom';
@@ -185,6 +187,30 @@ const ExternalLinks: React.FC = () => {
       actionText: "Mulai Tes Minat Bakat"
     },
     {
+      id: "stimulator-logistik-1",
+      title: "Stimulator Pembelajar Logistik 1",
+      description: "Media stimulator interaktif pembelajaran Manajemen Logistik SMK Tanjung Priok 1 untuk simulasi alur pergudangan, rantai pasok, dan administrasi logistik langsung dari smartphone.",
+      url: "https://logistik1stimulator.netlify.app",
+      icon: <Truck className="w-8 h-8" />,
+      color: "from-cyan-500 to-blue-600",
+      category: "siswa",
+      tag: "Stimulator Logistik",
+      officialBadge: "Praktik Logistik",
+      actionText: "Buka Stimulator 1"
+    },
+    {
+      id: "stimulator-logistik-4",
+      title: "Stimulator Pembelajar Logistik 4",
+      description: "Aplikasi stimulator pembelajaran Logistik versi 4 berbasis web responsif untuk latihan studi kasus distribusi barang, inventory, dan kompetensi keahlian Teknik Logistik.",
+      url: "https://logistik4.netlify.app",
+      icon: <PackageCheck className="w-8 h-8" />,
+      color: "from-indigo-500 to-cyan-600",
+      category: "siswa",
+      tag: "Stimulator Logistik",
+      officialBadge: "Praktik Logistik",
+      actionText: "Buka Stimulator 4"
+    },
+    {
       id: "lsp-bnsp",
       title: "Sertifikasi Kompetensi LSP-P1 BNSP",
       description: "Portal pendaftaran dan verifikasi asesi (siswa) untuk uji sertifikasi kompetensi kerja berlisensi Badan Nasional Sertifikasi Profesi (BNSP) di LSP-P1 SMK Tanjung Priok 1.",
@@ -312,11 +338,11 @@ const ExternalLinks: React.FC = () => {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 py-10 md:py-16">
+    <main className="min-h-screen bg-slate-50 py-8 md:py-16 overflow-x-hidden">
       <SEO 
-        title="Tautan Penting & Katalog Buku Kemendikdasmen | SMK TANJUNG PRIOK 1"
-        description="Akses resmi Katalog Buku Kemendikdasmen RI Kurikulum Merdeka, Portal Ruang Guru, Unggah Soal SAS Ganjil TA 2026/2027, KOSP 2026-2027, SIM PKL, LSP BNSP, dan Modul Generator."
-        keywords="Katalog Buku Kemendikdasmen, Buku Kurikulum Merdeka Kemendikdasmen, Buku Teks Siswa SMK, Tautan Penting SMK Tanjung Priok 1, Portal Ruang Guru SMK, Upload Soal SAS Ganjil 2026, KOSP SMK Tanjung Priok 1, SIM PKL SMK Tanjung Priok 1, LSP BNSP"
+        title="Tautan Penting, Stimulator Logistik & Katalog Buku Kemendikdasmen | SMK TANJUNG PRIOK 1"
+        description="Akses resmi Katalog Buku Kemendikdasmen RI Kurikulum Merdeka, Stimulator Pembelajar Logistik, Portal Ruang Guru, Unggah Soal SAS Ganjil TA 2026/2027, KOSP 2026-2027, SIM PKL, LSP BNSP, dan Modul Generator."
+        keywords="Stimulator Pembelajar Logistik, Simulasi Logistik SMK, Katalog Buku Kemendikdasmen, Buku Kurikulum Merdeka Kemendikdasmen, Tautan Penting SMK Tanjung Priok 1, Portal Ruang Guru SMK, Upload Soal SAS Ganjil 2026, KOSP SMK Tanjung Priok 1, SIM PKL SMK Tanjung Priok 1, LSP BNSP"
         canonical="https://tp1kurikulum.my.id/tautan"
         schemaMarkup={jsonLdData}
       />
@@ -421,7 +447,7 @@ const ExternalLinks: React.FC = () => {
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari tautan, buku kemendikdasmen, kosp, login..."
+                placeholder="Cari tautan, stimulator logistik, buku kemendikdasmen, kosp..."
                 className="w-full pl-11 pr-10 py-3 text-sm bg-slate-50 rounded-2xl border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400 font-medium"
               />
               {searchQuery && (
@@ -452,7 +478,7 @@ const ExternalLinks: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold tracking-tight whitespace-nowrap transition-all duration-200 shrink-0 ${
+                  className={`px-4 py-2.5 rounded-xl text-xs font-bold tracking-tight whitespace-nowrap transition-all duration-200 shrink-0 cursor-pointer touch-manipulation ${
                     active 
                       ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 scale-102' 
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -473,11 +499,11 @@ const ExternalLinks: React.FC = () => {
                 <motion.article
                   key={link.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                  initial={{ opacity: 0, scale: 0.97, y: 12 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25, delay: index * 0.05 }}
-                  className={`relative bg-white rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border flex flex-col justify-between overflow-hidden group ${
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2, delay: Math.min(index * 0.03, 0.18) }}
+                  className={`relative bg-white rounded-3xl p-5 sm:p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border flex flex-col justify-between overflow-hidden group ${
                     link.featured 
                       ? 'border-blue-300 ring-2 ring-blue-500/10' 
                       : 'border-slate-200/80 hover:border-blue-200'
@@ -488,25 +514,26 @@ const ExternalLinks: React.FC = () => {
 
                   <div>
                     {/* Top Meta Badges */}
-                    <div className="flex items-center justify-between gap-2 mb-5">
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-start justify-between gap-2 mb-5">
+                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
                         <span className="text-[11px] font-black uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                           {link.tag}
                         </span>
                         {link.officialBadge && (
                           <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 flex items-center gap-1">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                            {link.officialBadge}
+                            <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                            <span>{link.officialBadge}</span>
                           </span>
                         )}
                       </div>
 
                       {/* Copy Link Button */}
                       <button
+                        type="button"
                         onClick={() => handleCopyLink(link.id, link.url)}
                         title="Salin Tautan"
                         aria-label={`Salin tautan ${link.title}`}
-                        className="p-2 rounded-xl text-slate-400 hover:text-blue-600 hover:bg-blue-50 active:scale-90 transition-all border border-transparent hover:border-blue-100"
+                        className="p-2.5 rounded-xl text-slate-400 hover:text-blue-600 hover:bg-blue-50 active:scale-90 transition-all border border-transparent hover:border-blue-100 shrink-0 cursor-pointer touch-manipulation"
                       >
                         {copiedId === link.id ? (
                           <span className="flex items-center text-xs font-bold text-emerald-600 gap-1">
@@ -524,8 +551,8 @@ const ExternalLinks: React.FC = () => {
                       <div className={`shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br ${link.color} text-white flex items-center justify-center shadow-lg shadow-blue-500/10 group-hover:scale-105 group-hover:rotate-2 transition-all duration-300`}>
                         {link.icon}
                       </div>
-                      <div className="flex-1">
-                        <h2 className="text-xl md:text-2xl font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
                           {link.title}
                         </h2>
                       </div>
@@ -539,7 +566,7 @@ const ExternalLinks: React.FC = () => {
 
                   {/* Action Buttons Footer */}
                   <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                    <div className="text-[11px] text-slate-400 font-mono truncate max-w-[200px]" title={link.url}>
+                    <div className="text-[11px] text-slate-400 font-mono truncate max-w-full sm:max-w-[210px]" title={link.url}>
                       {link.url.replace(/^https?:\/\//, '')}
                     </div>
 
@@ -547,14 +574,14 @@ const ExternalLinks: React.FC = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm ${
+                      className={`inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm touch-manipulation ${
                         link.featured
                           ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/25'
                           : 'bg-slate-900 hover:bg-blue-600 text-white shadow-slate-900/10'
                       }`}
                     >
                       <span>{link.actionText || 'Kunjungi Portal'}</span>
-                      <ExternalLinkIcon className="w-3.5 h-3.5" />
+                      <ExternalLinkIcon className="w-3.5 h-3.5 shrink-0" />
                     </a>
                   </div>
                 </motion.article>
